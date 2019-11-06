@@ -1,2 +1,5 @@
-# labs-swiftui
-Experiments with a SwiftUI version of Hyperspace for macOS and iOS
+# Labs: SwiftUI
+
+An experiment on the future of Hyperspace on Mac, iPhone, and iPad
+
+`Information to be determined.`
