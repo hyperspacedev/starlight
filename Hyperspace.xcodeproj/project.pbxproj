@@ -50,6 +50,9 @@
 		BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		BFBB3C8324A2D5C2007FEFE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFBB3C9824A2D631007FEFE8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BFBB3C9924A2D80D007FEFE8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		BFBB3C9B24A2DA30007FEFE8 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 		BFBB3C5524A2D5BE007FEFE8 = {
 			isa = PBXGroup;
 			children = (
+				BFBB3C9924A2D80D007FEFE8 /* README.md */,
+				BFBB3C9B24A2DA30007FEFE8 /* .github */,
 				BFBB3C5A24A2D5BF007FEFE8 /* Shared */,
 				BFBB3C6424A2D5C2007FEFE8 /* iOS */,
 				BFBB3C6B24A2D5C2007FEFE8 /* macOS */,
@@ -94,6 +99,7 @@
 				BFBB3C8024A2D5C2007FEFE8 /* Tests macOS */,
 				BFBB3C6324A2D5C2007FEFE8 /* Products */,
 				BFBB3C9824A2D631007FEFE8 /* .gitignore */,
+				BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */,
 			);
 			sourceTree = "<group>";
 		};
