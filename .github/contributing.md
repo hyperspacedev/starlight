@@ -1,28 +1,28 @@
-# Hyperspace Contribution Guidelines (version 2)
+# Hyperspace Codename Starlight Project Contribution Guidelines (version 1)
 
-Thank you for contributing to Hyperspace! To make the contribution process quick, smooth, easy, and fun, we've devised a set of guidelines. Please consult these when making a pull request, issue, etc.
+Thank you for contributing to the Codename Starlight! To make the contribution process quick, smooth, easy, and fun, we've devised a set of guidelines. Please consult these when making a pull request, issue, etc.
 
 ## General Code Guidelines
 
-These guidelines apply to code that is written in Hyperspace.
+These guidelines apply to code that is written in the Codename Starlight Project.
 
 ### Declare styles with components (NEW)
 
-Hyperspace 1.0 uses the [Material-UI](https://material-ui.com) framework to create beautiful design that scales across devices. Part of using this framework includes defining styles right inside of the code as [JSS](https://material-ui.com/getting-started/faq/#do-i-have-to-use-jss-to-style-my-app). As such, we recommend adding a file dedicated to your styles in the component's folder and writing in the styles accordingly.
+Codename Starlight 1.0 uses the [SwiftUI](https://developer.apple.com/xcode/swiftui/) framework to create beautiful and concise designs that scale across devices. Part of using this framework includes defining views right inside of the code using SwiftUI's declarative syntax as SwiftUI views. As such, we recommend adding a file dedicated to your views in the `Shared/Components` directory.
 
-### If possible, use a type
+### If possible, use a type.
 
-Hyperspace uses custom types via [TypeScript](https://www.typescriptlang.org/) to specify variables, parameters, and other parts of code to prevent ambiguity. If it is possible to use an existing type from `src/types` (or other types from project libraries) or make a new type, use it. Otherwise, use `any` as the type.
+Codename Starlight uses custom data models - or types - via [Swift structs](https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html) to specify variables, parameters, and other parts of code to prevent ambiguity. If it is possible to use an existing type from `Shared/Models` (or other types from project libraries) or make a new type, use it.
 
-Suffice to say, this also means that new components or code _should_ be written in TypeScript files (.ts, .tsx) unless there is a compatibility issue that prevents this from working properly.
+Suffice to say, this also means that new components or code _must_ be written in Swift, and all files must end with the extension `.swift`, and _never_ using Objective-C.
 
 ### Keep code organized
 
-The Hyperspace structure is organized based on utilities, components, tests, and other types of files to make everything easy to locate. Please try to keep this organization when making a new component or test.
+Codename Starlight's structure is organized based on utilities, components, tests, and other types of files to make everything easy to locate. Please try to keep this organization when making a new component or test.
 
-### Prettify your files (pretty please)
+### Always, please, always, use Swiftlint.
 
-Hyperspace includes configurations for using the Prettier code formatter to format code in the project. Please ensure your code has been properly formatted by Prettier before submitting any to a pull request.
+Codename Starlight includes configurations for using Realm's Swiftlint code formatter to format swift code in the project. Please ensure your code has been properly formatted by Swiftlint before submitting any to a pull request.
 
 ## Issues
 
@@ -30,7 +30,7 @@ These guidelines apply to issues on GitHub.
 
 ### Be as descriptive and concise as possible
 
-So that Hyerpspace contributors and developers can better understand what the issue or request may be, issue descriptions should be concise but also descrptive. Refrain from writing an issue in a convoluted way that confuses others.
+So that Codename Starlight contributors and developers can better understand what the issue or request may be, issue descriptions should be concise but also descriptive. Refrain from writing an issue in a convoluted way that confuses others.
 
 Additionally, if you feel using a screenshot or video will better illustrate your description, add them in conjuction with (or to replace) the description. Remember to consult the [Screenshot Guidelines](#screenshots).
 
@@ -38,7 +38,7 @@ Additionally, if you feel using a screenshot or video will better illustrate you
 
 Issues are categorized by types such as `bug`, `enhancement`, `question`, etc. by contributors that can access labels. Since it isn't possible to tag an issue during creation, prepend the tag to your issue's title.
 
-> Example: [Enhancement request] Support settings sync with TorielDB
+> Example: [Enhancement request] Support iCloud syncing for settings
 
 ## Pull Requests
 
@@ -53,7 +53,6 @@ Pull requests generally include many changes that address a particular problem o
 >
 > - Custom emojis from the user's server can be used in a post by typing its shortcode or inserting it through the new emoji picker*.
 > - Posts and profile names display custom emoji.
-> - A new utility, emojifyHTML, will automatically replace emoji shortcodes with img elements.
 
 ### Reference existing issues and PRs
 
@@ -67,11 +66,11 @@ If there are any documented issues that the pull request addresses, reference th
 
 > Example:
 >
-> - Use TorielDB to sync data (fixes #1)
+> - Use iCloud to sync data (fixes #1)
 
 ### (Optional) Sign-off your code
 
-Hyperspace contributors try to credit pull request contributors in release notes as a way of saying thanks. Another way to ensure that we credit the right person if by signing-off your code. This can be done either in the pull request's description or the latest commit pushed to branch linked with the pull request:
+Codename Starlight contributors - or basically anyone who works in open-source projects - try to credit pull request contributors in release notes as a way of saying thanks. Another way to ensure that we credit the right person is by signing-off your code. This can be done either in the pull request's description or the latest commit pushed to branch linked with the pull request:
 
 ```
 Signed-off-by: Your Name <youremail@email.com>
@@ -94,3 +93,41 @@ Mastodon supports posting to four different visibility levels. As a means of res
 ### Ensure screenshots are clear
 
 Screenshots are often included to help illustrate or demonstrate a point with an issue or pull request. It may be difficult to understand the screenshot's purpose if the image is too small or distorted. Ensure that all screenshots are clear and visible.
+
+## Code comments
+To make it easier for contributors to maintain Codename Starlight's code, we use Swift's standard markdown in comments. This is important not only because it helps to organize our code and make it cleaner, but it also allows Xcode to show a quick preview of, for example, what a function does, or what arguments a class takes; when you right-click a symbol and select `Show quick help`.
+
+```swift
+/// This is a *cool* class that allows you to do **cool things** 😎.
+class coolClass {
+
+    // MARK: - STORED PROPERTIES
+    
+    /// This is some class property that is supposed to do something useful but im not sure.
+    public var argument1: String
+    
+    /// This is another class property that is also supposed to do something useful but im also not sure.
+    public var argument2: String
+
+    // MARK: - INITIALIZERS
+
+    /// - Parameters
+    ///     - argument1: some argument with the type `String` that does something useful.
+    ///     - argument2: some argument with the type `String` that does something useful.
+    public init(
+        argument1: String,
+        argument2: String
+    ) {
+        self.argument1 = argument1
+        self.argument2 = argument2
+    }
+    
+    // MARK: - COMPUTED PROPERTIES
+    
+    /// This is an example of a computed property.
+    private let someComputedProperty: Int
+
+}
+```
+
+There're many guides on how to use this type of Markdown, and we strongly encourage it's use.

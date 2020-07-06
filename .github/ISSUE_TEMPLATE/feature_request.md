@@ -6,6 +6,8 @@ labels: "enhancement"
 assignees: ""
 ---
 
+- [] I know that I'm requesting a feature for Codename Starlight (SwiftUI) and not for Hyperspace Desktop (JS).
+
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 

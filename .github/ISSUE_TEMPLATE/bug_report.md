@@ -6,6 +6,9 @@ labels: "bug"
 assignees: ""
 ---
 
+- [] I have checked that nobody else has reported this issue.
+- [] I know that I'm reporting a bug for Codename Starlight (SwiftUI) and not for Hyperspace Desktop (JS).
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -25,9 +28,9 @@ If applicable, add screenshots to help explain your problem.
 
 **App Information (please complete the following information):**
 
--   OS: [e.g. iOS]
--   Browser [e.g. chrome, safari] (if applicable)
--   Version [e.g. 22]
+-   OS: [e.g. iOS 14]
+-   Version [e.g. 1.0]
+-   Is Jailbroken (when applicable)
 
 **Additional context**
 Add any other context about the problem here.
