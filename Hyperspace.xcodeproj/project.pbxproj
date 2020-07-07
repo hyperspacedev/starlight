@@ -30,6 +30,8 @@
 		FA48238A24B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
 		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
+		FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
+		FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,7 @@
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +220,7 @@
 				FA48238824B46E580095E415 /* Emoji.swift */,
 				FA48238524B46A860095E415 /* Field.swift */,
 				FAE4B25524B47032000B5405 /* Source.swift */,
+				FAE4B25B24B4ABFA000B5405 /* Status.swift */,
 				BF673F0324B4A51F00A97FF3 /* Account.swift */,
 				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
 			);
@@ -430,6 +434,7 @@
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
+				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
@@ -446,6 +451,7 @@
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
+				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
 				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
 				BF673F0B24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0824B4AEBA00A97FF3 /* Notification.swift in Sources */,
