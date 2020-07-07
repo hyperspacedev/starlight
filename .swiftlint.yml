@@ -16,8 +16,19 @@ custom_rules:
             - identifier
         message: "This is Codename Starlight, not Hyperspace." # Violation message (optional).
         severity: warning # Violation severity (optional).
+        
+    no_hyperspace_abbreviation: # Rule identifier
+        name: "No Hyperspace Abbreviations" # Rule name (optional).
+        regex: "([h,H][s,S])" # Matching pattern
+        capture_group: 0 # of regex capture group to highlight the rule violation at (optional).
+        match_kinds: # SyntaxKinds to match (optional).
+            - comment
+            - identifier
+            - string
+        message: "This is Codename Starlight, not Hyperspace." # Violation message (optional).
+        severity: warning # Violation severity (optional).
     
     no_hyperspace_hiding_in_strings:
         regex: "([h,H]yperspace)"
         match_kinds: string
-                message: "This is Codename Starlight, not Hyperspace. Please avoid referring Hyperspace in the project." # Violation message (optional).
+        message: "This is Codename Starlight, not Hyperspace. Please avoid referring Hyperspace in the project." # Violation message (optional).
