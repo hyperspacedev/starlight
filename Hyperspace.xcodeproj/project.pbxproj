@@ -27,6 +27,8 @@
 		BF673F1A24B4C37200A97FF3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1824B4C37200A97FF3 /* Card.swift */; };
 		BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1B24B4C93000A97FF3 /* Poll.swift */; };
 		BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1B24B4C93000A97FF3 /* Poll.swift */; };
+		BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1E24B4CB5B00A97FF3 /* Mention.swift */; };
+		BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1E24B4CB5B00A97FF3 /* Mention.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
@@ -75,6 +77,7 @@
 		BF673F1524B4C30A00A97FF3 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		BF673F1824B4C37200A97FF3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		BF673F1B24B4C93000A97FF3 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
+		BF673F1E24B4CB5B00A97FF3 /* Mention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 				BF673F1224B4C20200A97FF3 /* Application.swift */,
 				BF673F1824B4C37200A97FF3 /* Card.swift */,
 				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
+				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -469,6 +473,7 @@
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
+				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 			);
@@ -492,6 +497,7 @@
 				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
 				BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8524A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
+				BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1424B4C20200A97FF3 /* Application.swift in Sources */,
 				BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */,
 			);
