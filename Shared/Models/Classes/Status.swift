@@ -1,6 +1,6 @@
 //
 //  Status.swift
-//  Hyperspace
+//  Codename Starlight
 //
 //  Created by Alejandro Modroño Vara on 07/07/2020.
 //
@@ -11,6 +11,7 @@ import Foundation
 public class Status: Codable {
 
     /// The status' unique identifier.
+    // swiftlint:disable:next identifier_name
     public let id: String
 
     /// URI of the status used for federation.
@@ -83,9 +84,12 @@ public class Status: Codable {
     /// Primary language of this status.
     public let language: String?
 
-    /*
-    *   Plain-text source of a status. Returned instead of content when status is deleted,
-    *   so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
+    /**
+     Plain-text source of a status.
+     
+     Returned instead of content when status is deleted,
+     so the user may redraft from the source text without the client having to reverse-engineer
+     the original text from the HTML content.
     */
     public let text: String?
 
@@ -99,6 +103,7 @@ public class Status: Codable {
     public let pinned: Bool?
 
     private enum CodingKeys: String, CodingKey {
+        // swiftlint:disable:next identifier_name
         case id
         case uri
         case createdAt = "created_at"
