@@ -76,13 +76,13 @@ public class Status: Codable {
 
     /// The poll attached to the status.
     public let poll: Poll?
-    
+
     /// Preview card for links included within status content.
     public let card: Card?
 
     /// Primary language of this status.
     public let language: String?
-    
+
     /*
     *   Plain-text source of a status. Returned instead of content when status is deleted,
     *   so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.

@@ -21,6 +21,10 @@
 		BF673F1124B4BDA300A97FF3 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0F24B4BDA300A97FF3 /* History.swift */; };
 		BF673F1324B4C20200A97FF3 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1224B4C20200A97FF3 /* Application.swift */; };
 		BF673F1424B4C20200A97FF3 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1224B4C20200A97FF3 /* Application.swift */; };
+		BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1524B4C30A00A97FF3 /* CardType.swift */; };
+		BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1524B4C30A00A97FF3 /* CardType.swift */; };
+		BF673F1924B4C37200A97FF3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1824B4C37200A97FF3 /* Card.swift */; };
+		BF673F1A24B4C37200A97FF3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F1824B4C37200A97FF3 /* Card.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
@@ -66,6 +70,8 @@
 		BF673F0C24B4BD2800A97FF3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		BF673F0F24B4BDA300A97FF3 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		BF673F1224B4C20200A97FF3 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		BF673F1524B4C30A00A97FF3 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		BF673F1824B4C37200A97FF3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 			children = (
 				BF455EDA24B402120066FB1B /* Visibility.swift */,
 				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
+				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
 				BF673F0F24B4BDA300A97FF3 /* History.swift */,
 				BF673F1224B4C20200A97FF3 /* Application.swift */,
+				BF673F1824B4C37200A97FF3 /* Card.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -446,9 +454,11 @@
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
+				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
@@ -466,9 +476,11 @@
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
+				BF673F1A24B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
 				BF673F0B24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0824B4AEBA00A97FF3 /* Notification.swift in Sources */,
