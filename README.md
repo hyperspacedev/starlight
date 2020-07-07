@@ -18,8 +18,9 @@ To build Codename Starlight, you'll need the following:
 
 - A Mac running macOS 11 (Big Sur) or later
 - Xcode 12 or higher
+- [SwiftLint][sl]
 
-Download the repository code using `git clone` or opening directly in Xcode via GitHub and press the "Run" button to build and run the app for macOS. Targets can be changed to reflect the appropriate device to target.
+Download the repository code using `git clone` or opening directly in Xcode via GitHub and press the "Run" button to build and run the app. Targets can be changed to reflect the appropriate device to target.
 
 ## Licensing
 
@@ -30,3 +31,6 @@ Codename Starlight is licensed under the Non-Violent Public License, the same li
 Contribution guidelines are available in the [contributing file](.github/contributing.md) and when you make an issue/pull request. Additionally, you can access our [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 If you want to aid the project in other ways, consider supporting the project on [Patreon](https://patreon.com/hyperspacedev).
+
+<!-- Links -->
+[sl]: https://github.com/realm/swiftlint
