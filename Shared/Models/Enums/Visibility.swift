@@ -12,7 +12,7 @@ import Foundation
  
  Posts can be restricted to a certain selection of people or used as a direct message.
  */
-enum Visibility {
+public enum Visibility {
     /// When a post is meant for everyone to see.
     case `public`
 
