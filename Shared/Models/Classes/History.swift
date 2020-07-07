@@ -10,6 +10,8 @@ import Foundation
 /// A class representation of a tag's history.
 public class History: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The ID associated with this history event.
     // swiftlint:disable:next identifier_name
     public let id = UUID()
@@ -22,4 +24,22 @@ public class History: Codable, Identifiable {
 
     /// The number of accounts that used this tag on this day.
     public let accounts: Int
+
+    // MARK: - COMPUTED PROPERTIES
+    enum CodingKeys: String, CodingKey {
+        case day
+        case uses
+        case accounts
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension History: Hashable {
+    public static func == (lhs: History, rhs: History) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

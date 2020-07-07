@@ -13,6 +13,8 @@ import Foundation
 */
 public class Source: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// Required for being able to iterate through this data model usign SwiftUI
     // swiftlint:disable:next identifier_name
     public let id = UUID()

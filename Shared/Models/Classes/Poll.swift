@@ -10,6 +10,8 @@ import Foundation
 /// A class representation of a poll option.
 public class PollOption: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The ID for this poll option.
     // swiftlint:disable:next identifier_name
     public let id = UUID()
@@ -20,6 +22,8 @@ public class PollOption: Codable, Identifiable {
     /// The number of votes for this option.
     public let votesCount: Int?
 
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
         case title
         case votesCount = "votes_count"
@@ -28,6 +32,9 @@ public class PollOption: Codable, Identifiable {
 
 /// A class representation of a poll.
 public class Poll: Codable, Identifiable {
+
+    // MARK: - STORED PROPERTIES
+
     /// The ID for this poll registered with the server.
     // swiftlint:disable:next identifier_name
     public let id: String
@@ -50,6 +57,8 @@ public class Poll: Codable, Identifiable {
     /// Whether the user has voted on this poll.
     public let voted: Bool?
 
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name
         case id
@@ -59,5 +68,16 @@ public class Poll: Codable, Identifiable {
         case votesCount = "votes_count"
         case options
         case voted
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Poll: Hashable {
+    public static func == (lhs: Poll, rhs: Poll) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

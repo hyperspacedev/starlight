@@ -10,6 +10,8 @@ import Foundation
 /// Represents an announcement set by an administrator.
 public class Announcement: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The announcement id.
     // swiftlint:disable:next identifier_name
     public let id: String
@@ -44,6 +46,8 @@ public class Announcement: Codable, Identifiable {
     /// When the future announcement will end.
     public let endsAt: String?
 
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
 
         // swiftlint:disable:next identifier_name
@@ -59,5 +63,16 @@ public class Announcement: Codable, Identifiable {
         case scheduledAt = "scheduled_at"
         case startsAt = "starts_at"
         case endsAt = "ends_at"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Announcement: Hashable {
+    public static func == (lhs: Announcement, rhs: Announcement) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

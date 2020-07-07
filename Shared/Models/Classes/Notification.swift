@@ -12,7 +12,7 @@ import Foundation
  */
 public class Notification: Codable, Identifiable {
 
-    // MARK: Properties
+    // MARK: - STORED PROPERTIES
 
     /// The ID of the notification from the server.
     // swiftlint:disable:next identifier_name
@@ -30,7 +30,8 @@ public class Notification: Codable, Identifiable {
     /// The post associated with this notification.
     public let status: Status?
 
-    // MARK: Computed Properties
+    // MARK: COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name
         case id
@@ -38,5 +39,16 @@ public class Notification: Codable, Identifiable {
         case account
         case status
         case createdAt = "created_at"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Notification: Hashable {
+    public static func == (lhs: Notification, rhs: Notification) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

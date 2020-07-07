@@ -10,6 +10,8 @@ import Foundation
 /// Represents an emoji reaction to an Announcement.
 public class AnnouncementReaction: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The reaction id, needed for iterating through the reactions.
     // swiftlint:disable:next identifier_name
     public let id = UUID()
@@ -30,10 +32,9 @@ public class AnnouncementReaction: Codable, Identifiable {
     /// A link to a non-animated version of the custom emoji.
     public let staticUrl: String
 
-    private enum CodingKeys: String, CodingKey {
+    // MARK: - COMPUTED PROPERTIES
 
-        // swiftlint:disable:next identifier_name
-        case id
+    private enum CodingKeys: String, CodingKey {
 
         case name
         case count
@@ -43,5 +44,16 @@ public class AnnouncementReaction: Codable, Identifiable {
 
         case url
         case staticUrl = "static_url"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension AnnouncementReaction: Hashable {
+    public static func == (lhs: AnnouncementReaction, rhs: AnnouncementReaction) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

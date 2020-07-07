@@ -10,6 +10,8 @@ import Foundation
 /// Represents the relationship between accounts, such as following / blocking / muting / etc.
 public class Relationship: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The account id.
     // swiftlint:disable:next identifier_name
     public let id: String
@@ -44,6 +46,8 @@ public class Relationship: Codable, Identifiable {
     /// Equals to `true` if the user was blocked by the account.
     public let blockedBy: Bool
 
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
 
         // swiftlint:disable:next identifier_name
@@ -59,5 +63,16 @@ public class Relationship: Codable, Identifiable {
         case blocking
         case domainBlocking = "domain_blocking"
         case blockedBy = "blocked_by"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Relationship: Hashable {
+    public static func == (lhs: Relationship, rhs: Relationship) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

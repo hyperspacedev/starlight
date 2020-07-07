@@ -10,6 +10,8 @@ import Foundation
 /// Represents a status posted by an account.
 public class Status: Codable {
 
+    // MARK: - STORED PROPERTIES
+
     /// The status' unique identifier.
     // swiftlint:disable:next identifier_name
     public let id: String
@@ -101,6 +103,8 @@ public class Status: Codable {
 
     /// Have you pinned this status? Only appears if the status is pinnable.
     public let pinned: Bool?
+
+    // MARK: - COMPUTED PROPERTIES
 
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name

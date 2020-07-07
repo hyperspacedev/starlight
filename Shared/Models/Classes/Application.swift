@@ -13,6 +13,9 @@ import Foundation
  An application is a registered service or app with the instance the user interacts with.
  */
 public class Application: Codable, Identifiable {
+
+    // MARK: - STORED PROPERTIES
+
     /// The ID for this application.
     // swiftlint:disable:next identifier_name
     public let id = UUID()
@@ -26,9 +29,22 @@ public class Application: Codable, Identifiable {
     /// The application's API key for push streaming, if applicable.
     public let vapidKey: String?
 
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
         case name
         case website
         case vapidKey = "vapid_key"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Application: Hashable {
+    public static func == (lhs: Application, rhs: Application) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

@@ -10,6 +10,8 @@ import Foundation
 /// Represents a profile field as a name-value pair with optional verification.
 public class Field: Codable, Identifiable {
 
+    // MARK: - STORED PROPERTIES
+
     /// Required for being able to iterate through this data model usign SwiftUI
     // swiftlint:disable:next identifier_name
     public let id = UUID()

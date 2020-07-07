@@ -15,7 +15,7 @@ import Foundation
  */
 public class Account: Codable, Identifiable {
 
-    // MARK: Properties
+    // MARK: - STORED PROPERTIES
 
     /// The account's ID as registered by the server.
     // swiftlint:disable:next identifier_name
@@ -99,7 +99,8 @@ public class Account: Codable, Identifiable {
     /// Whether or not the account is a bot.
     public let bot: Bool?
 
-    // MARK: Computed Properties
+    // MARK: - COMPUTED PROPERTIES
+
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name
         case id
@@ -121,5 +122,16 @@ public class Account: Codable, Identifiable {
         case fields
         case bot
         case createdAt = "created_at"
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Account: Hashable {
+    public static func == (lhs: Account, rhs: Account) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

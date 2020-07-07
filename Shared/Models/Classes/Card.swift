@@ -10,7 +10,7 @@ import Foundation
 /// A class representation of a content card.
 public class Card: Codable, Identifiable {
 
-    // MARK: Properties
+    // MARK: - STORED PROPERTIES
 
     /// The ID for this card.
     // swiftlint:disable:next identifier_name
@@ -49,7 +49,7 @@ public class Card: Codable, Identifiable {
     /// The suggested height for this card.
     public let height: Int?
 
-    // MARK: Computed Properties
+    // MARK: - COMPUTED PROPERTIES
 
     private enum CodingKeys: String, CodingKey {
         case title
@@ -63,5 +63,16 @@ public class Card: Codable, Identifiable {
         case html
         case width
         case height
+    }
+}
+
+/// Grants us conformance to `Hashable` for _free_
+extension Card: Hashable {
+    public static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
