@@ -3,3 +3,21 @@ line_length: 120
 excluded:
   - Tests iOS
   - Tests macOS
+  
+# Custom rules used in this project.
+custom_rules:
+    
+    no_hyperspace: # Rule identifier
+        name: "No Hyperspace" # Rule name (optional).
+        regex: "([h,H]yperspace)" # Matching pattern
+        capture_group: 0 # of regex capture group to highlight the rule violation at (optional).
+        match_kinds: # SyntaxKinds to match (optional).
+            - comment
+            - identifier
+        message: "This is Codename Starlight, not Hyperspace." # Violation message (optional).
+        severity: warning # Violation severity (optional).
+    
+    no_hyperspace_hiding_in_strings:
+        regex: "([h,H]yperspace)"
+        match_kinds: string
+                message: "This is Codename Starlight, not Hyperspace. Please avoid referring Hyperspace in the project." # Violation message (optional).
