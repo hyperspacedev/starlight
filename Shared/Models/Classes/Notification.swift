@@ -31,6 +31,15 @@ public class Notification: Codable, Identifiable {
     /// The post associated with this notification.
     public let status: String?
     
+    // MARK: Computed Properties
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case type
+        case account
+        case status
+        case createdAt = "created_at"
+    }
+    
     init() {
         
     }

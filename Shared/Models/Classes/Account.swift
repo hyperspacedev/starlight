@@ -72,6 +72,16 @@ public class Account: Codable, Identifiable {
      If the `avatar` field points to an animated pictured, this property is used to target a static version.
      */
     public let avatarStatic: String
+
+    /// The URL associated with this account's header picture.
+    public let header: String
+
+    /**
+     The URL associated with this account's header picture.
+     
+     If the `header` field points to an animated pictured, this property is used to target a static version.
+     */
+    public let headerStatic: String
     
     /**
      The custom emojis associated with this account.
@@ -88,4 +98,27 @@ public class Account: Codable, Identifiable {
     
     /// Whether or not the account is a bot.
     public let bot: Bool?
+    
+    // MARK: Computed Properties
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case username
+        case acct
+        case displayName = "display_name"
+        case locked
+        case followersCount = "followers_count"
+        case followingCount = "following_count"
+        case statusesCount = "statuses_count"
+        case note
+        case url
+        case avatar
+        case avatarStatic = "avatar_staic"
+        case header
+        case headerStatic = "header_static"
+        case emojis
+        case moved
+        case fields
+        case bot
+        case createdAt = "created_at"
+    }
 }
