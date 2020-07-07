@@ -82,25 +82,26 @@ public class Account: Codable, Identifiable {
      If the `header` field points to an animated pictured, this property is used to target a static version.
      */
     public let headerStatic: String
-    
+
     /**
      The custom emojis associated with this account.
      
      Typically, this contains the emoji data for any emoji present in the display name of the account.
      */
     public let emojis: [Emoji]
-    
+
     /// The account that the person has migrated to, if available.
     public let moved: Account?
-    
+
     /// The table data associated with this account.
     public let fields: [Field]
-    
+
     /// Whether or not the account is a bot.
     public let bot: Bool?
-    
+
     // MARK: Computed Properties
     private enum CodingKeys: String, CodingKey {
+        // swiftlint:disable:next identifier_name
         case id
         case username
         case acct

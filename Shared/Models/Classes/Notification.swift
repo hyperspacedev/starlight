@@ -30,18 +30,14 @@ public class Notification: Codable, Identifiable {
     // TODO: Replace String? with Status?
     /// The post associated with this notification.
     public let status: String?
-    
+
     // MARK: Computed Properties
     private enum CodingKeys: String, CodingKey {
+        // swiftlint:disable:next identifier_name
         case id
         case type
         case account
         case status
         case createdAt = "created_at"
     }
-    
-    init() {
-        
-    }
-    
 }
