@@ -10,7 +10,7 @@ custom_rules:
     no_hyperspace: # Rule identifier
         name: "No Hyperspace" # Rule name (optional).
         regex: "([h,H]yperspace)" # Matching pattern
-        capture_group: 0 # of regex capture group to highlight the rule violation at (optional).
+        capture_group: 0 # Number of regex capture group to highlight the rule violation at (optional).
         match_kinds: # SyntaxKinds to match (optional).
             - comment
             - identifier
@@ -20,6 +20,8 @@ custom_rules:
     no_hyperspace_abbreviation: # Rule identifier
         name: "No Hyperspace Abbreviations" # Rule name (optional).
         regex: "([h,H][s,S])" # Matching pattern
+        included: "Shared/Models/*" # Regex that defines paths to include during linting (optional).
+        excluded: ".*\\.swift" # regex that defines paths to exclude during linting. optional.
         capture_group: 0 # of regex capture group to highlight the rule violation at (optional).
         match_kinds: # SyntaxKinds to match (optional).
             - comment

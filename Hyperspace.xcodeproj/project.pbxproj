@@ -18,6 +18,14 @@
 		BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFF0845824B3A11000B52BCB /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BFF0845724B3A11000B52BCB /* SwiftLintFramework */; };
+		FA48238324B45EFB0095E415 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238224B45EFB0095E415 /* Account.swift */; };
+		FA48238424B45EFB0095E415 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238224B45EFB0095E415 /* Account.swift */; };
+		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
+		FA48238724B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
+		FA48238924B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
+		FA48238A24B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
+		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
+		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +66,10 @@
 		BFBB3C9924A2D80D007FEFE8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BFBB3C9B24A2DA30007FEFE8 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
+		FA48238224B45EFB0095E415 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +108,8 @@
 		BF455ED824B401830066FB1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA48238124B45CC30095E415 /* Classes */,
 				BF455EDE24B4021E0066FB1B /* Enums */,
-				BF455EDD24B402170066FB1B /* Structs */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,13 +120,6 @@
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		BF455EDD24B402170066FB1B /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Structs;
 			sourceTree = "<group>";
 		};
 		BF455EDE24B4021E0066FB1B /* Enums */ = {
@@ -197,6 +202,17 @@
 				BFBB3C8324A2D5C2007FEFE8 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		FA48238124B45CC30095E415 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FA48238224B45EFB0095E415 /* Account.swift */,
+				FA48238824B46E580095E415 /* Emoji.swift */,
+				FA48238524B46A860095E415 /* Field.swift */,
+				FAE4B25524B47032000B5405 /* Source.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,9 +419,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
+				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
+				FA48238324B45EFB0095E415 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +433,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
+				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
 				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
 				BFBB3C8524A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
+				FA48238424B45EFB0095E415 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,7 +639,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -624,7 +648,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Hyperspace;
+				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Starlight;
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -639,7 +663,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -648,7 +672,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Hyperspace;
+				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Starlight;
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
