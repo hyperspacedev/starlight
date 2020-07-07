@@ -14,14 +14,14 @@ import Foundation
  */
 public enum Visibility: String, Codable {
     /// When a post is meant for everyone to see.
-    case `public` = "public"
+    case `public`
 
     /// When a post is meant to be followers-only.
-    case `private` = "private"
+    case `private`
 
     /// When a post is meant to be visible to everyone, but only via link.
-    case unlisted = "unlisted"
+    case unlisted
 
     /// When a post is meant to be a direct message, only intended for its recipients.
-    case direct = "direct"
+    case direct
 }

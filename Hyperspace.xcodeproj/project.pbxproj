@@ -15,6 +15,10 @@
 		BF673F0824B4AEBA00A97FF3 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0624B4AEBA00A97FF3 /* Notification.swift */; };
 		BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */; };
 		BF673F0B24B4AF2D00A97FF3 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */; };
+		BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0C24B4BD2800A97FF3 /* Tag.swift */; };
+		BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0C24B4BD2800A97FF3 /* Tag.swift */; };
+		BF673F1024B4BDA300A97FF3 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0F24B4BDA300A97FF3 /* History.swift */; };
+		BF673F1124B4BDA300A97FF3 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0F24B4BDA300A97FF3 /* History.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
@@ -55,6 +59,8 @@
 		BF673F0324B4A51F00A97FF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BF673F0624B4AEBA00A97FF3 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		BF673F0C24B4BD2800A97FF3 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		BF673F0F24B4BDA300A97FF3 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +225,8 @@
 				FAE4B25524B47032000B5405 /* Source.swift */,
 				BF673F0324B4A51F00A97FF3 /* Account.swift */,
 				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
+				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
+				BF673F0F24B4BDA300A97FF3 /* History.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -429,6 +437,8 @@
 			files = (
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
@@ -445,6 +455,8 @@
 			files = (
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
 				BF673F0B24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
