@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
+		BF455EDC24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperspaceApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 		BF455ED824B401830066FB1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BF455EDE24B4021E0066FB1B /* Enums */,
+				BF455EDD24B402170066FB1B /* Structs */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,6 +107,21 @@
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		BF455EDD24B402170066FB1B /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		BF455EDE24B4021E0066FB1B /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				BF455EDA24B402120066FB1B /* Visibility.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		BFBB3C5524A2D5BE007FEFE8 = {
@@ -341,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
+				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
 				BFBB3C8524A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
