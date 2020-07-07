@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BF455EDC24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
+		BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0324B4A51F00A97FF3 /* Account.swift */; };
+		BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0324B4A51F00A97FF3 /* Account.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
-		BFBB3C8424A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */; };
-		BFBB3C8524A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */; };
+		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
+		BFBB3C8524A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
 		BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */; };
 		BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */; };
 		BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFF0845824B3A11000B52BCB /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BFF0845724B3A11000B52BCB /* SwiftLintFramework */; };
-		FA48238324B45EFB0095E415 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238224B45EFB0095E415 /* Account.swift */; };
-		FA48238424B45EFB0095E415 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238224B45EFB0095E415 /* Account.swift */; };
 		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
 		FA48238724B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
 		FA48238924B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
@@ -48,7 +48,8 @@
 /* Begin PBXFileReference section */
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BF673EFF24B407E400A97FF3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperspaceApp.swift; sourceTree = "<group>"; };
+		BF673F0324B4A51F00A97FF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyperspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +67,6 @@
 		BFBB3C9924A2D80D007FEFE8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BFBB3C9B24A2DA30007FEFE8 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
-		FA48238224B45EFB0095E415 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			children = (
 				BF455ED924B401860066FB1B /* Components */,
 				BF455ED824B401830066FB1B /* Models */,
-				BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */,
+				BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */,
 				BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -207,10 +207,10 @@
 		FA48238124B45CC30095E415 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FA48238224B45EFB0095E415 /* Account.swift */,
 				FA48238824B46E580095E415 /* Emoji.swift */,
 				FA48238524B46A860095E415 /* Field.swift */,
 				FAE4B25524B47032000B5405 /* Source.swift */,
+				BF673F0324B4A51F00A97FF3 /* Account.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -424,8 +424,8 @@
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
-				BFBB3C8424A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
-				FA48238324B45EFB0095E415 /* Account.swift in Sources */,
+				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
+				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,8 +438,8 @@
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
 				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
-				BFBB3C8524A2D5C2007FEFE8 /* HyperspaceApp.swift in Sources */,
-				FA48238424B45EFB0095E415 /* Account.swift in Sources */,
+				BFBB3C8524A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
+				BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +639,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -648,7 +648,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Starlight;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -663,7 +663,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -672,7 +672,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Starlight;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;

@@ -1,6 +1,6 @@
 //
 //  Source.swift
-//  Hyperspace
+//  Codename Starlight
 //
 //  Created by Alejandro Modroño Vara on 07/07/2020.
 //
@@ -14,6 +14,7 @@ import Foundation
 public class Source: Codable, Identifiable {
 
     /// Required for being able to iterate through this data model usign SwiftUI
+    // swiftlint:disable:next identifier_name
     public let id = UUID()
 
     /// The profile's bio / description.
