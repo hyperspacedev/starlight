@@ -89,6 +89,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF455ED824B401830066FB1B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BF455ED924B401860066FB1B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		BFBB3C5524A2D5BE007FEFE8 = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +123,9 @@
 		BFBB3C5A24A2D5BF007FEFE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BF455ED924B401860066FB1B /* Components */,
+				BF455ED824B401830066FB1B /* Models */,
 				BFBB3C5B24A2D5BF007FEFE8 /* HyperspaceApp.swift */,
-				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 				BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */,
 			);
 			path = Shared;
