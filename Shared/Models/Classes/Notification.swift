@@ -27,9 +27,8 @@ public class Notification: Codable, Identifiable {
     /// The account that the notification was triggered from.
     public let account: Account
 
-    // TODO: Replace String? with Status?
     /// The post associated with this notification.
-    public let status: String?
+    public let status: Status?
 
     // MARK: Computed Properties
     private enum CodingKeys: String, CodingKey {
