@@ -101,26 +101,30 @@ public class Status: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case uri
-        case url
-        case account
-        case inReplyToID = "in_reply_to_id"
-        case inReplyToAccountID = "in_reply_to_account_id"
-        case content
         case createdAt = "created_at"
+        case account
+        case content
+        case visibility
+        case sensitive
+        case spoilerText = "spoiler_text"
+        case mediaAttachments = "media_attachments"
+        case application
+        case mentions
+        case tags
         case emojis
         case reblogsCount = "reblogs_count"
         case favouritesCount = "favourites_count"
+        case repliesCount = "replies_count"
+        case url
+        case inReplyToID = "in_reply_to_id"
+        case inReplyToAccountID = "in_reply_to_account_id"
+        case reblog
+        case poll
+        case card
+        case language
+        case text
         case reblogged
         case favourited
-        case sensitive
-        case spoilerText = "spoiler_text"
-        case visibility
-        case mediaAttachments = "media_attachments"
-        case mentions
-        case tags
-        case application
-        case language
-        case reblog
         case pinned
     }
 }
