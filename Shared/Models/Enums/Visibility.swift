@@ -12,16 +12,16 @@ import Foundation
  
  Posts can be restricted to a certain selection of people or used as a direct message.
  */
-public enum Visibility {
+public enum Visibility: String, Codable {
     /// When a post is meant for everyone to see.
-    case `public`
+    case `public` = "public"
 
     /// When a post is meant to be followers-only.
-    case `private`
+    case `private` = "private"
 
     /// When a post is meant to be visible to everyone, but only via link.
-    case unlisted
+    case unlisted = "unlisted"
 
     /// When a post is meant to be a direct message, only intended for its recipients.
-    case direct
+    case direct = "direct"
 }
