@@ -17,17 +17,17 @@ enum HSVisibility {
      When a post is meant for everyone to see.
      */
     case `public`
-    
+
     /**
      When a post is meant to be followers-only.
      */
     case `private`
-    
+
     /**
      When a post is meant to be visible to everyone, but only via link.
      */
     case unlisted
-    
+
     /**
      When a post is meant to be a direct message, only intended for its recipients.
      */
