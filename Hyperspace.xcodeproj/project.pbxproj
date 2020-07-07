@@ -35,6 +35,8 @@
 		BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2424B4CD6500A97FF3 /* Attachment.swift */; };
 		BF673F2824B4CF9200A97FF3 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2724B4CF9200A97FF3 /* Context.swift */; };
 		BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2724B4CF9200A97FF3 /* Context.swift */; };
+		BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
+		BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
@@ -87,6 +89,7 @@
 		BF673F2124B4CCEE00A97FF3 /* AttachmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentType.swift; sourceTree = "<group>"; };
 		BF673F2424B4CD6500A97FF3 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		BF673F2724B4CF9200A97FF3 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		BF673F2A24B4D08F00A97FF3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,10 +167,10 @@
 		BF455EDE24B4021E0066FB1B /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				BF455EDA24B402120066FB1B /* Visibility.swift */,
-				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
-				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
 				BF673F2124B4CCEE00A97FF3 /* AttachmentType.swift */,
+				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
+				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
+				BF455EDA24B402120066FB1B /* Visibility.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -249,20 +252,21 @@
 		FA48238124B45CC30095E415 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BF673F0324B4A51F00A97FF3 /* Account.swift */,
+				BF673F1224B4C20200A97FF3 /* Application.swift */,
+				BF673F2424B4CD6500A97FF3 /* Attachment.swift */,
+				BF673F1824B4C37200A97FF3 /* Card.swift */,
+				BF673F2724B4CF9200A97FF3 /* Context.swift */,
 				FA48238824B46E580095E415 /* Emoji.swift */,
 				FA48238524B46A860095E415 /* Field.swift */,
+				BF673F0F24B4BDA300A97FF3 /* History.swift */,
+				BF673F2A24B4D08F00A97FF3 /* Instance.swift */,
+				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
+				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
+				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
 				FAE4B25524B47032000B5405 /* Source.swift */,
 				FAE4B25B24B4ABFA000B5405 /* Status.swift */,
-				BF673F0324B4A51F00A97FF3 /* Account.swift */,
-				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
 				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
-				BF673F0F24B4BDA300A97FF3 /* History.swift */,
-				BF673F1224B4C20200A97FF3 /* Application.swift */,
-				BF673F1824B4C37200A97FF3 /* Card.swift */,
-				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
-				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
-				BF673F2424B4CD6500A97FF3 /* Attachment.swift */,
-				BF673F2724B4CF9200A97FF3 /* Context.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -475,6 +479,7 @@
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
@@ -502,6 +507,7 @@
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
