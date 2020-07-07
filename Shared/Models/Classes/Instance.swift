@@ -14,6 +14,7 @@ import Foundation
  about the instance and who can be contacted.
  */
 public class Instance: Codable, Identifiable {
+
     /// The ID for this server.
     // swiftlint:disable:next identifier_name
     public let id = UUID()

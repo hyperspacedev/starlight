@@ -54,6 +54,12 @@
 		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
 		FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
+		FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25E24B4EE83000B5405 /* Announcement.swift */; };
+		FAE4B26024B4EE83000B5405 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25E24B4EE83000B5405 /* Announcement.swift */; };
+		FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */; };
+		FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */; };
+		FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B26424B4F532000B5405 /* Relationship.swift */; };
+		FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B26424B4F532000B5405 /* Relationship.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +118,9 @@
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		FAE4B25E24B4EE83000B5405 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementReaction.swift; sourceTree = "<group>"; };
+		FAE4B26424B4F532000B5405 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +270,9 @@
 				FA48238524B46A860095E415 /* Field.swift */,
 				BF673F0F24B4BDA300A97FF3 /* History.swift */,
 				BF673F2A24B4D08F00A97FF3 /* Instance.swift */,
+				FAE4B25E24B4EE83000B5405 /* Announcement.swift */,
+				FAE4B26424B4F532000B5405 /* Relationship.swift */,
+				FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */,
 				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
 				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
 				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
@@ -479,8 +491,11 @@
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */,
 				BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
+				FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */,
+				FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
@@ -507,8 +522,11 @@
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				FAE4B26024B4EE83000B5405 /* Announcement.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
+				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
+				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
