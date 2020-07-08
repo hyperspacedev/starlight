@@ -35,10 +35,15 @@ struct StandardNavigationLayout: View {
             NavigationView {
                 VStack {
                     #if os(macOS)
-                    TextField("Search...", text: $searchText)
+                    HStack {
+                        TextField("Search...", text: self.$searchText)
+                            .cornerRadius(4)
+                    }
                         .padding()
-                        .padding(.trailing, 8)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onTapGesture {
+                            self.selection = [.searchResults]
+                        }
                     #endif
 
                     List(selection: $selection) {
@@ -144,15 +149,14 @@ struct StandardNavigationLayout: View {
                 }
 
                 ToolbarItem {
-                    Button(action: {}) {
+                    Button(action: selectNotifications) {
                         Image(systemName: "bell")
                     }
                     .help("View your notifications.")
-                    .tag(NavigationViews.notifications)
                 }
 
                 ToolbarItem {
-                    Button(action: {}) {
+                    Button(action: selectNotifications) {
                         Image(systemName: "square.and.pencil")
                     }.help("Write a new post.")
                 }
@@ -169,6 +173,11 @@ struct StandardNavigationLayout: View {
                 NSSplitViewController.toggleSidebar(_:)
             ), with: nil)
         #endif
+    }
+
+    /// Change the current view selection to the notifications view.
+    private func selectNotifications() {
+        self.selection = [.notifications]
     }
 }
 
