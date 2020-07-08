@@ -13,16 +13,16 @@ import Foundation
 public enum NotificationType: String, Codable {
 
     /// When an account follows the user
-    case follow = "follow"
+    case follow
 
     /// When an account mentions the user in a post
-    case mention = "mention"
+    case mention
 
     /// When an account reblogs the user's post
-    case reblog = "reblog"
+    case reblog
 
     /// When an account favorites the user's post
-    case favourite = "favourite"
+    case favourite
 
     /// When an account is requesting to follow the user
     case followRequest = "follow_request"
