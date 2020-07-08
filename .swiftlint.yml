@@ -1,5 +1,33 @@
-line_length: 120
-
 excluded:
   - Tests iOS
   - Tests macOS
+
+opt_in_rules:
+  - empty_count
+
+# Custom rules used in this project.
+custom_rules:
+    
+    no_hyperspace: # Rule identifier
+        name: "No Hyperspace" # Rule name (optional).
+        regex: "([h,H]yperspace)" # Matching pattern
+        capture_group: 0 # Number of regex capture group to highlight the rule violation at (optional).
+        match_kinds: # SyntaxKinds to match (optional).
+            - comment
+            - identifier
+            - string
+        message: "This is Codename Starlight, not Hyperspace. Please avoid referring to Hyperspace in the project." # Violation message (optional).
+        severity: warning # Violation severity (optional).
+        
+    no_hyperspace_abbreviation:
+        name: "No Hyperspace Abbreviations"
+        regex: "([h,H][s,S])"
+        included: "*Shared/Models\\.swift"
+        excluded: ".*\\.swift"
+        capture_group: 0
+        match_kinds:
+            - comment
+            - identifier
+            - string
+        message: "This is Codename Starlight, not Hyperspace."
+        severity: warning
