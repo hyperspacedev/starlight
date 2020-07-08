@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF11463E24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
+		BF11463F24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BF455EDC24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0324B4A51F00A97FF3 /* Account.swift */; };
@@ -82,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BF673EFF24B407E400A97FF3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF673F0324B4A51F00A97FF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -159,6 +162,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF11463C24B613CC0040691B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				BF11463D24B613E70040691B /* Standard.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		BF455ED824B401830066FB1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +182,7 @@
 		BF455ED924B401860066FB1B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BF11463C24B613CC0040691B /* Navigation */,
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 			);
 			path = Components;
@@ -493,6 +505,7 @@
 			files = (
 				BF673F2224B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
+				BF11463E24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */,
@@ -525,6 +538,7 @@
 			files = (
 				BF673F2324B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
+				BF11463F24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAE4B26024B4EE83000B5405 /* Announcement.swift in Sources */,
