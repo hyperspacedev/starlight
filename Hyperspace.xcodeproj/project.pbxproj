@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
+		BF014B0F24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF11463E24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF11463F24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
@@ -47,7 +49,6 @@
 		BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */; };
 		BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
-		BFF0845824B3A11000B52BCB /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BFF0845724B3A11000B52BCB /* SwiftLintFramework */; };
 		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
 		FA48238724B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
 		FA48238924B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF014B0D24B67CBE002C5812 /* Compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compact.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BF673EFF24B407E400A97FF3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -141,7 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF0845824B3A11000B52BCB /* SwiftLintFramework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				BF11463D24B613E70040691B /* Standard.swift */,
+				BF014B0D24B67CBE002C5812 /* Compact.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -335,7 +337,6 @@
 			);
 			name = macOS;
 			packageProductDependencies = (
-				BFF0845724B3A11000B52BCB /* SwiftLintFramework */,
 			);
 			productName = macOS;
 			productReference = BFBB3C6A24A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -412,7 +413,7 @@
 			);
 			mainGroup = BFBB3C5524A2D5BE007FEFE8;
 			packageReferences = (
-				BFF0845624B3A11000B52BCB /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				BFF469D224B68D3E00F5CA44 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = BFBB3C6324A2D5C2007FEFE8 /* Products */;
 			projectDirPath = "";
@@ -513,6 +514,7 @@
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
+				BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
@@ -546,6 +548,7 @@
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
+				BF014B0F24B67CBE002C5812 /* Compact.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
@@ -722,11 +725,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Hyperspace;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -744,12 +749,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.marquiskurt.Hyperspace;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -941,7 +947,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BFF0845624B3A11000B52BCB /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		BFF469D224B68D3E00F5CA44 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
 			requirement = {
@@ -950,14 +956,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		BFF0845724B3A11000B52BCB /* SwiftLintFramework */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BFF0845624B3A11000B52BCB /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = SwiftLintFramework;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFBB3C5624A2D5BE007FEFE8 /* Project object */;
 }

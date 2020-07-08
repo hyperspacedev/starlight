@@ -22,7 +22,7 @@ struct ContentView: View {
                 .frame(minWidth: 500, minHeight: 300)
             #else
             if horizontalSizeClass == .compact {
-
+                CompactNavigationLayout()
             } else {
                 StandardNavigationLayout()
             }
