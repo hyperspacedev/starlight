@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CompactNavigationLayout: View {
+/// This navigation layout will be used when the device is running on iOS with compact mode (i.e. iPhones and iPods).
+struct AppTabNavigation: View {
     var body: some View {
         TabView {
             VStack {
-                Text("Home Feed View")
-                    .padding()
+                TimelineView()
             }.tabItem {
                 Label("Home", systemImage: "house")
             }
@@ -46,6 +46,6 @@ struct CompactNavigationLayout: View {
 
 struct Compact_Previews: PreviewProvider {
     static var previews: some View {
-        CompactNavigationLayout()
+        AppTabNavigation()
     }
 }

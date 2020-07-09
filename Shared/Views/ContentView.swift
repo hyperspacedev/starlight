@@ -17,12 +17,14 @@ struct ContentView: View {
 
     var body: some View {
         Group {
+
             #if os(macOS)
+
             StandardNavigationLayout()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             #else
             if horizontalSizeClass == .compact {
-                CompactNavigationLayout()
+                AppTabNavigation()
             } else {
                 StandardNavigationLayout()
             }

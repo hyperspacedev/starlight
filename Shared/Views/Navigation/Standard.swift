@@ -47,7 +47,9 @@ struct StandardNavigationLayout: View {
                     #endif
 
                     List(selection: $selection) {
-                        Section {
+
+                        Group {
+
                             NavigationLink(
                                 destination:
                                     Text("Home timeline")
@@ -58,6 +60,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Home"))
                                 .tag(NavigationViews.home)
+
                             NavigationLink(
                                 destination:
                                     Text("Local timeline")
@@ -68,6 +71,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Local"))
                                 .tag(NavigationViews.local)
+
                             NavigationLink(
                                 destination:
                                     Text("Public timeline")
@@ -78,6 +82,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Public"))
                                 .tag(NavigationViews.public)
+
                             NavigationLink(
                                 destination:
                                     Text("Messages")
@@ -88,6 +93,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Messages"))
                                 .tag(NavigationViews.messages)
+
                             #if os(iOS)
                             NavigationLink(
                                 destination:
@@ -100,9 +106,13 @@ struct StandardNavigationLayout: View {
                                 .accessibility(label: Text("Search"))
                                 .tag(NavigationViews.searchResults)
                             #endif
+
                         }
 
-                        Section {
+                        Group {
+
+                            Divider()
+
                             NavigationLink(
                                 destination:
                                     Text("Announcements")
@@ -113,6 +123,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Announcements"))
                                 .tag(NavigationViews.announcements)
+
                             NavigationLink(
                                 destination:
                                     Text("Activity")
@@ -123,6 +134,7 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Activity"))
                                 .tag(NavigationViews.activity)
+
                             NavigationLink(
                                 destination:
                                     Text("Recommended")
@@ -133,12 +145,13 @@ struct StandardNavigationLayout: View {
                                 })
                                 .accessibility(label: Text("Recommended"))
                                 .tag(NavigationViews.recommended)
+
                         }
                     }
                     .listStyle(SidebarListStyle())
                     .frame(minWidth: 170, maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .frame(minWidth: 170, idealWidth: 180, maxWidth: .infinity, maxHeight: .infinity)
+                .frame(minWidth: 190, idealWidth: 200, maxWidth: .infinity, maxHeight: .infinity)
             }
             .toolbar {
                 #if os(macOS)
