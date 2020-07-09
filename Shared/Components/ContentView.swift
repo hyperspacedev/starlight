@@ -19,7 +19,7 @@ struct ContentView: View {
         Group {
             #if os(macOS)
             StandardNavigationLayout()
-                .frame(minWidth: 500, minHeight: 300)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             #else
             if horizontalSizeClass == .compact {
                 CompactNavigationLayout()

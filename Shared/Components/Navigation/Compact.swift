@@ -1,6 +1,6 @@
 //
 //  Compact.swift
-//  Hyperspace
+//  Codename Starlight
 //
 //  Created by Marquis Kurt on 7/8/20.
 //
