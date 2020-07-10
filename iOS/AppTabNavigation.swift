@@ -12,33 +12,38 @@ struct AppTabNavigation: View {
     var body: some View {
         TabView {
             VStack {
-                TimelineView()
+                CompactTimelineView()
             }.tabItem {
                 Label("Home", systemImage: "house")
+                    .imageScale(.large)
             }
             VStack {
                 Text("Network View")
                     .padding()
             }.tabItem {
                 Label("Network", systemImage: "network")
+                    .imageScale(.large)
             }
             VStack {
                 Text("Explore View")
                     .padding()
             }.tabItem {
                 Label("Explore", systemImage: "magnifyingglass")
+                    .imageScale(.large)
             }
             VStack {
                 Text("Personal View")
                     .padding()
             }.tabItem {
                 Label("You", systemImage: "person.circle")
+                    .imageScale(.large)
             }
             VStack {
                 Text("Settings View")
                     .padding()
             }.tabItem {
                 Label("Settings", systemImage: "gear")
+                    .imageScale(.large)
             }
         }.tabViewStyle(DefaultTabViewStyle())
     }
