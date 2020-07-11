@@ -114,7 +114,7 @@ public class Account: Codable, Identifiable {
         case note
         case url
         case avatar
-        case avatarStatic = "avatar_staic"
+        case avatarStatic = "avatar_static"
         case header
         case headerStatic = "header_static"
         case emojis

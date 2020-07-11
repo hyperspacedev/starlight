@@ -54,13 +54,22 @@
 		FA48238724B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
 		FA48238924B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
 		FA48238A24B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
-		FA7E988C24B86686002C9476 /* CompactTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988A24B86686002C9476 /* CompactTimelineView.swift */; };
 		FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
 		FA7E989724B8EB27002C9476 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E989624B8EB27002C9476 /* TimelineView.swift */; };
 		FA7E989824B8EB27002C9476 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E989624B8EB27002C9476 /* TimelineView.swift */; };
 		FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
+		FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
+		FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
+		FA7E98A424B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */; };
+		FA7E98A524B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */; };
+		FA7E98A724B9DD3F002C9476 /* CachedRemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A624B9DD3F002C9476 /* CachedRemoteImage.swift */; };
+		FA7E98A824B9DD3F002C9476 /* CachedRemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A624B9DD3F002C9476 /* CachedRemoteImage.swift */; };
+		FA7E98AA24BA5A46002C9476 /* roundNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A924BA5A46002C9476 /* roundNumbers.swift */; };
+		FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A924BA5A46002C9476 /* roundNumbers.swift */; };
+		FA7E98AD24BA5EFA002C9476 /* isoToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* isoToDate.swift */; };
+		FA7E98AE24BA5EFA002C9476 /* isoToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* isoToDate.swift */; };
 		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
@@ -133,9 +142,13 @@
 		FA384B7E24B781EB008E60E3 /* colorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorFunctions.swift; sourceTree = "<group>"; };
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		FA7E988A24B86686002C9476 /* CompactTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactTimelineView.swift; sourceTree = "<group>"; };
 		FA7E988B24B86686002C9476 /* ThreadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		FA7E989624B8EB27002C9476 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageViewModel.swift; sourceTree = "<group>"; };
+		FA7E98A624B9DD3F002C9476 /* CachedRemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRemoteImage.swift; sourceTree = "<group>"; };
+		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
+		FA7E98AC24BA5EFA002C9476 /* isoToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isoToDate.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		FAE4B25E24B4EE83000B5405 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -236,11 +249,12 @@
 		BFBB3C5A24A2D5BF007FEFE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */,
 				FA384B7D24B781D8008E60E3 /* Helpers */,
 				BF455ED824B401830066FB1B /* Models */,
-				BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */,
+				FA7E989F24B9D283002C9476 /* ViewModels */,
 				BF455ED924B401860066FB1B /* Views */,
-				BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */,
+				BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -261,7 +275,6 @@
 			children = (
 				BFBB3C6524A2D5C2007FEFE8 /* Info.plist */,
 				BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */,
-				FA7E988A24B86686002C9476 /* CompactTimelineView.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -297,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				FA384B7E24B781EB008E60E3 /* colorFunctions.swift */,
+				FA7E98A924BA5A46002C9476 /* roundNumbers.swift */,
+				FA7E98AC24BA5EFA002C9476 /* isoToDate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -327,10 +342,20 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		FA7E989F24B9D283002C9476 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */,
+				FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		FAE7E31C24B77A550056463B /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				FA384B7324B77A84008E60E3 /* StatusView.swift */,
+				FA7E98A624B9DD3F002C9476 /* CachedRemoteImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -548,26 +573,30 @@
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
+				FA7E98A424B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
 				BF014B0E24B67CBE002C5812 /* AppTabNavigation.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
-				FA7E988C24B86686002C9476 /* CompactTimelineView.swift in Sources */,
+				FA7E98A724B9DD3F002C9476 /* CachedRemoteImage.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
 				FAE4B26824B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2824B4CF9200A97FF3 /* Context.swift in Sources */,
+				FA7E98AA24BA5A46002C9476 /* roundNumbers.swift in Sources */,
 				FA384B7F24B781EB008E60E3 /* colorFunctions.swift in Sources */,
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
+				FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 				FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */,
 				BF673F2524B4CD6500A97FF3 /* Attachment.swift in Sources */,
+				FA7E98AD24BA5EFA002C9476 /* isoToDate.swift in Sources */,
 				FA7E989724B8EB27002C9476 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,18 +606,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF673F2324B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
+				FA7E98A524B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BF11463F24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAE4B26024B4EE83000B5405 /* Announcement.swift in Sources */,
 				FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */,
+				FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
+				FA7E98AE24BA5EFA002C9476 /* isoToDate.swift in Sources */,
+				FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1A24B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25724B47032000B5405 /* Source.swift in Sources */,
@@ -604,6 +637,7 @@
 				BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1424B4C20200A97FF3 /* Application.swift in Sources */,
 				BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */,
+				FA7E98A824B9DD3F002C9476 /* CachedRemoteImage.swift in Sources */,
 				FA7E989824B8EB27002C9476 /* TimelineView.swift in Sources */,
 				BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */,
 			);

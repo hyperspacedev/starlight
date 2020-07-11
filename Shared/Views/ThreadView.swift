@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ThreadView: View {
+
+    public let mainStatus: Status
+
     var body: some View {
 
         VStack {
@@ -30,7 +33,7 @@ struct ThreadView: View {
                     ToolbarItem(placement: .principal) {
                         VStack {
                             Text("Thread").font(.headline)
-                            Text("79 replies").font(.subheadline)
+                            Text("\(self.mainStatus.repliesCount) replies").font(.subheadline)
                         }
                     }
                 }
@@ -38,7 +41,7 @@ struct ThreadView: View {
             self.view
                 .buttonStyle(PlainButtonStyle())
                 .navigationTitle("Thread")
-                .navigationSubtitle("79 replies")
+                .navigationSubtitle("\(self.mainStatus.repliesCount) replies")
             #endif
 
         }
@@ -49,11 +52,11 @@ struct ThreadView: View {
 
         List {
 
-            StatusView(isPresented: true)
+            StatusView(isPresented: true, status: mainStatus)
 
-            ForEach(0..<3) { _ in
+            ForEach( 0 ..< 5) { _ in
 
-                StatusView()
+                StatusView(status: self.mainStatus)
                     .padding(.vertical, 5)
 
             }
@@ -64,7 +67,10 @@ struct ThreadView: View {
 }
 
 struct ThreadView_Previews: PreviewProvider {
+
+    @ObservedObject static var timeline = TimelineViewModel()
+
     static var previews: some View {
-        ThreadView()
+        ThreadView(mainStatus: self.timeline.statuses[0])
     }
 }

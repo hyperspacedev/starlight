@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a status posted by an account.
-public class Status: Codable {
+public class Status: Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 
@@ -20,7 +20,7 @@ public class Status: Codable {
     public let uri: String
 
     /// The time when the status was created
-    public let createdAt: Date
+    public let createdAt: String
 
     /// The user account that authored this status
     public let account: Account

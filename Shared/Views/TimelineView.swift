@@ -10,6 +10,8 @@ import SwiftUI
 
 struct TimelineView: View {
 
+    @ObservedObject var timeline = TimelineViewModel()
+
     @State var timelineType: String = "public"
 
     private let size: CGFloat = 300
@@ -61,14 +63,17 @@ struct TimelineView: View {
             #endif
 
         }
+        .onAppear {
+            self.timeline.fetchPublicTimeline()
+        }
 
     }
 
     var view: some View {
 
-        List(0 ..< 5) { _ in
+        List(self.timeline.statuses) { status in
 
-            StatusView()
+            StatusView(status: status)
                 .buttonStyle(PlainButtonStyle())
 
         }

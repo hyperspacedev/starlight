@@ -7,19 +7,25 @@
 
 import SwiftUI
 
-/// Displays a status model.
-///
-/// - Parameters:
-///     - isPresented: Whether the status is being shown as the main post (in a thread).
-///     - status: The status data model for loading the data.
+/// A structure that computes statuses on demand from a `Status` data model.
 struct StatusView: View {
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
-    /// Whether the status is being shown as the main post (in a thread).
-    var isPresented: Bool = false
+    /// In Starlight, there are two ways to display mastodon statuses:
+    ///     - Standard: The status is being displayed from the feed.
+    ///     - Focused: The status is the main post of a thread.
+    ///
+    /// The ``StatusView`` instance should know what way it is being
+    /// displayed so that it can display the content properly.
+    /// In order to achieve this, we pass a bool to ``StatusView``, which when true,
+    /// tells it that it's content should be displayed as `Focused`.
+    var isPresented: Bool
+
+    /// The ``Status`` data model whose the data will be displayed.
+    var status: Status
 
     #if os(iOS)
 
@@ -29,40 +35,34 @@ struct StatusView: View {
 
     #endif
 
-    /// The primary view.
+    /// To provide the best experience on multiple platforms,
+    /// we use the `body` view as a container where we load platform-specific
+    /// modifiers.
     var body: some View {
 
-        /*
-        *   We use this vertical stack to load platform specific modifiers,
-        *   or to load specific views when a condition is met.
-        */
+        //  We use this vertical stack to load platform specific modifiers,
+        //  or to load specific views when a condition is met.
         VStack {
 
+            // Whether the post is focused or not.
             if self.isPresented {
 
                 self.presentedView
 
             } else {
 
-                #if os(iOS)
+                // To provide the best experience, we want to allow the user to easily
+                // interact with a post directly from the feed. Because of that, we need
+                // to add a button
                 ZStack {
 
-                    Button(action: {
-                        self.goToThread = 1
-                    }, label: {
-                        self.defaultView
-                    })
+                    self.defaultView
 
-                    NavigationLink(destination: ThreadView(), tag: 1, selection: self.$goToThread, label: {
+                    NavigationLink(destination: ThreadView(mainStatus: self.status), tag: 1, selection: self.$goToThread, label: {
                         EmptyView()
                     })
 
                 }
-                #else
-                NavigationLink(destination: ThreadView(), label: {
-                    self.defaultView
-                })
-                #endif
 
             }
 
@@ -72,7 +72,7 @@ struct StatusView: View {
 
     var presentedView: some View {
 
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading){
 
             HStack(alignment: .center) {
 
@@ -86,10 +86,10 @@ struct StatusView: View {
 
                     VStack(alignment: .leading) {
 
-                        Text("Hello, World!")
+                        Text("\(self.status.account.displayName)")
                             .font(.headline)
 
-                        Text("@amodrono@mastodon.social")
+                        Text("\(self.status.account.acct)")
                             .foregroundColor(.gray)
                             .lineLimit(1)
 
@@ -106,13 +106,13 @@ struct StatusView: View {
 
             }
 
-            Text("This view shows how Mastodon statuses will look on cells. It also has some random text so that I can see how big content looks.")
+            Text("\(self.status.content)")
                 .font(.system(size: 20, weight: .light))
 
             HStack {
-                Text("07:56 · 9/7/2020 · ")
+                Text("\(self.status.createdAt) · ")
                 Button(action: {}, label: {
-                    Text("Starlight for iOS")
+                    Text("\(self.status.application?.name ?? "Mastodon")")
                 })
                     .foregroundColor(.accentColor)
                     .padding(.leading, -5)
@@ -121,15 +121,15 @@ struct StatusView: View {
 
             Divider()
 
-            Text("79 ").bold()
+            Text("\(self.status.repliesCount.roundedWithAbbreviations) ").bold()
             +
             Text("comments, ")
             +
-            Text("20 ").bold()
+            Text("\(self.status.reblogsCount.roundedWithAbbreviations) ").bold()
             +
             Text("boosts, and ")
             +
-            Text("20k ").bold()
+            Text("\(self.status.favouritesCount.roundedWithAbbreviations) ").bold()
             +
             Text("likes.")
 
@@ -140,6 +140,7 @@ struct StatusView: View {
                 .padding(.horizontal)
 
         }
+//            .buttonStyle(PlainButtonStyle())
 
     }
 
@@ -161,10 +162,11 @@ struct StatusView: View {
 
                         HStack(spacing: 5) {
 
-                            Text("Hello, World!")
+                            Text("\(self.status.account.displayName)")
                                 .font(.headline)
+                                .lineLimit(1)
 
-                            Text("@amodrono@mastodon.social")
+                            Text("\(self.status.account.acct)")
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
 
@@ -176,7 +178,7 @@ struct StatusView: View {
 
                     }
 
-                    Text("This view shows how Mastodon statuses will look on cells. It also has some random text so that I can see how big content looks.")
+                    Text("\(self.status.content)")
                         .fontWeight(.light)
 
                     self.actionButtons
@@ -198,7 +200,7 @@ struct StatusView: View {
                 Image(systemName: "text.bubble")
 
                 if !self.isPresented {
-                    Text("79")
+                    Text("\(self.status.repliesCount.roundedWithAbbreviations)")
                 }
 
             }
@@ -214,7 +216,7 @@ struct StatusView: View {
                     Image(systemName: "arrow.2.squarepath")
 
                     if !self.isPresented {
-                        Text("20")
+                        Text("\(self.status.reblogsCount.roundedWithAbbreviations)")
                     }
 
                 }
@@ -235,7 +237,7 @@ struct StatusView: View {
                     Image(systemName: "heart")
 
                     if !self.isPresented {
-                        Text("20k")
+                        Text("\(self.status.favouritesCount.roundedWithAbbreviations)")
                     }
                 }
 
@@ -263,8 +265,33 @@ struct StatusView: View {
 
 }
 
+extension StatusView {
+
+    /// Generates a View that retrieves image data from a remote URL
+    /// (usually decoded from JSON), that automatically changes across updates;
+    /// and caches it.
+    ///
+    /// It's important that `content` makes use of the escaping closure to display the image,
+    /// or else anything will be displayed. If a problem occurs while retrieving the data, an
+    /// error message will be provided. You should log that and maybe show a simple message to the user.
+    ///
+    /// - Parameters:
+    ///     - isPresented: A boolean variable that determines whether
+    ///     the status is being shown as the main post (in a thread).
+    ///     - status: The identified data that the ``StatusView`` instance uses to
+    ///     display posts dynamically.
+    public init(isPresented: Bool = false, status: Status) {
+        self.isPresented = isPresented
+        self.status = status
+    }
+
+}
+
 struct StatusView_Previews: PreviewProvider {
+
+    @ObservedObject static var timeline = TimelineViewModel()
+
     static var previews: some View {
-        StatusView(isPresented: true)
+        StatusView(isPresented: true, status: self.timeline.statuses[0])
     }
 }
