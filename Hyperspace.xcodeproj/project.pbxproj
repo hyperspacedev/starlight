@@ -56,6 +56,11 @@
 		FA48238A24B46E580095E415 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238824B46E580095E415 /* Emoji.swift */; };
 		FA7E988C24B86686002C9476 /* CompactTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988A24B86686002C9476 /* CompactTimelineView.swift */; };
 		FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
+		FA7E989724B8EB27002C9476 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E989624B8EB27002C9476 /* TimelineView.swift */; };
+		FA7E989824B8EB27002C9476 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E989624B8EB27002C9476 /* TimelineView.swift */; };
+		FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
+		FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
+		FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
 		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
@@ -130,6 +135,7 @@
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FA7E988A24B86686002C9476 /* CompactTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactTimelineView.swift; sourceTree = "<group>"; };
 		FA7E988B24B86686002C9476 /* ThreadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
+		FA7E989624B8EB27002C9476 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		FAE4B25E24B4EE83000B5405 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -193,6 +199,8 @@
 				FAE7E31C24B77A550056463B /* Components */,
 				BF11463C24B613CC0040691B /* Navigation */,
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
+				FA7E989624B8EB27002C9476 /* TimelineView.swift */,
+				FA7E988B24B86686002C9476 /* ThreadView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,7 +262,6 @@
 				BFBB3C6524A2D5C2007FEFE8 /* Info.plist */,
 				BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */,
 				FA7E988A24B86686002C9476 /* CompactTimelineView.swift */,
-				FA7E988B24B86686002C9476 /* ThreadView.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -561,6 +568,7 @@
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 				FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */,
 				BF673F2524B4CD6500A97FF3 /* Attachment.swift in Sources */,
+				FA7E989724B8EB27002C9476 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +582,7 @@
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BF673F0E24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAE4B26024B4EE83000B5405 /* Announcement.swift in Sources */,
+				FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
@@ -586,6 +595,8 @@
 				BF673F0B24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0824B4AEBA00A97FF3 /* Notification.swift in Sources */,
 				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
+				FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */,
+				FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */,
 				FAE4B26924B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */,
 				BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */,
@@ -593,6 +604,7 @@
 				BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1424B4C20200A97FF3 /* Application.swift in Sources */,
 				BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */,
+				FA7E989824B8EB27002C9476 /* TimelineView.swift in Sources */,
 				BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

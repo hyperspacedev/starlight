@@ -12,7 +12,7 @@ struct AppTabNavigation: View {
     var body: some View {
         TabView {
             VStack {
-                CompactTimelineView()
+                TimelineView()
             }.tabItem {
                 Label("Home", systemImage: "house")
                     .imageScale(.large)

@@ -52,7 +52,7 @@ struct StandardNavigationLayout: View {
 
                             NavigationLink(
                                 destination:
-                                    Text("Home timeline")
+                                    TimelineView()
                                         .padding()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity),
                                 label: {
@@ -109,9 +109,9 @@ struct StandardNavigationLayout: View {
 
                         }
 
-                        Group {
+                        Divider()
 
-                            Divider()
+                        Group {
 
                             NavigationLink(
                                 destination:

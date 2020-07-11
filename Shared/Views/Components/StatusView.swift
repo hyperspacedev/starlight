@@ -1,40 +1,68 @@
 //
 //  StatusView.swift
-//  iOS
+//  Codename Starlight
 //
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
 
 import SwiftUI
 
+/// Displays a status model.
+///
+/// - Parameters:
+///     - isPresented: Whether the status is being shown as the main post (in a thread).
+///     - status: The status data model for loading the data.
 struct StatusView: View {
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
+    /// Whether the status is being shown as the main post (in a thread).
     var isPresented: Bool = false
+
+    #if os(iOS)
+
+    /// Using for triggering the navigation View **only**when the user taps
+    /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
 
+    #endif
+
+    /// The primary view.
     var body: some View {
 
-        if self.isPresented {
+        /*
+        *   We use this vertical stack to load platform specific modifiers,
+        *   or to load specific views when a condition is met.
+        */
+        VStack {
 
-            self.presentedView
+            if self.isPresented {
 
-        } else {
+                self.presentedView
 
-            ZStack {
+            } else {
 
-                Button(action: {
-                    self.goToThread = 1
-                }, label: {
+                #if os(iOS)
+                ZStack {
+
+                    Button(action: {
+                        self.goToThread = 1
+                    }, label: {
+                        self.defaultView
+                    })
+
+                    NavigationLink(destination: ThreadView(), tag: 1, selection: self.$goToThread, label: {
+                        EmptyView()
+                    })
+
+                }
+                #else
+                NavigationLink(destination: ThreadView(), label: {
                     self.defaultView
                 })
-
-                NavigationLink(destination: ThreadView(), tag: 1, selection: self.$goToThread, label: {
-                    EmptyView()
-                })
+                #endif
 
             }
 
@@ -193,7 +221,7 @@ struct StatusView: View {
 
             })
                 .foregroundColor(
-                    labelColor()
+                    labelColor
                 )
 
             Spacer()
@@ -213,7 +241,7 @@ struct StatusView: View {
 
             })
                 .foregroundColor(
-                    labelColor()
+                    labelColor
                 )
 
             Spacer()
@@ -226,7 +254,7 @@ struct StatusView: View {
 
             })
                 .foregroundColor(
-                    labelColor()
+                    labelColor
                 )
 
         }

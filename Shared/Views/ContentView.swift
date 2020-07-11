@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
 
     #if os(iOS)
-    /// Determines whether the device is compact or standard
+    /// Determines whether the device is compact (iOS) or standard (iPadOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
@@ -21,13 +21,20 @@ struct ContentView: View {
             #if os(macOS)
 
             StandardNavigationLayout()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, idealHeight: 600, maxHeight: .infinity)
+
             #else
+
             if horizontalSizeClass == .compact {
+
                 AppTabNavigation()
+
             } else {
+
                 StandardNavigationLayout()
+
             }
+
             #endif
         }
     }
