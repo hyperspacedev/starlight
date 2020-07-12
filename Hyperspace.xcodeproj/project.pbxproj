@@ -60,8 +60,8 @@
 		FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
-		FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
-		FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
+		FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */; };
+		FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */; };
 		FA7E98A424B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */; };
 		FA7E98A524B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */; };
 		FA7E98A724B9DD3F002C9476 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A624B9DD3F002C9476 /* ProfileImage.swift */; };
@@ -148,7 +148,7 @@
 		FA48238824B46E580095E415 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FA7E988B24B86686002C9476 /* ThreadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		FA7E989624B8EB27002C9476 /* NetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkView.swift; sourceTree = "<group>"; };
-		FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
 		FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageViewModel.swift; sourceTree = "<group>"; };
 		FA7E98A624B9DD3F002C9476 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		FA7E989F24B9D283002C9476 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */,
+				FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */,
 				FAEDC00924BAEA540034EF6F /* ThreadViewModel.swift */,
 				FA7E98A324B9DC32002C9476 /* AsyncImageViewModel.swift */,
 			);
@@ -601,7 +601,7 @@
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
-				FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */,
+				FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 				FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */,
 				BF673F2524B4CD6500A97FF3 /* Attachment.swift in Sources */,
@@ -625,7 +625,7 @@
 				FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */,
 				FAEDC00B24BAEA540034EF6F /* ThreadViewModel.swift in Sources */,
 				FAEDC00E24BB12090034EF6F /* openUrl.swift in Sources */,
-				FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */,
+				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,

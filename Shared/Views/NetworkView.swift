@@ -10,9 +10,7 @@ import SwiftUI
 
 struct NetworkView: View {
 
-    @ObservedObject var timeline = TimelineViewModel()
-
-    @State var timelineType: String = "public"
+    @ObservedObject var timeline = NetworkViewModel()
 
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
@@ -29,7 +27,7 @@ struct NetworkView: View {
 
                     ToolbarItem(placement: .navigationBarLeading, content: {
 
-                        Picker(selection: self.$timelineType, label: Text("Network visibility")) {
+                        Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
                             Text("Public").tag("public")
                             Text("Local").tag("local")
                         }

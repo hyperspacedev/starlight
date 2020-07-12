@@ -325,7 +325,7 @@ extension StatusView {
 
 struct StatusView_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = TimelineViewModel()
+    @ObservedObject static var timeline = NetworkViewModel()
 
     static var previews: some View {
         StatusView(isMain: true, status: self.timeline.statuses[0])
