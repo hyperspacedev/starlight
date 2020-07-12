@@ -12,14 +12,14 @@ struct AppTabNavigation: View {
     var body: some View {
         TabView {
             VStack {
-                TimelineView()
+                Text("Home")
+                    .padding()
             }.tabItem {
                 Label("Home", systemImage: "house")
                     .imageScale(.large)
             }
             VStack {
-                Text("Network View")
-                    .padding()
+                NetworkView()
             }.tabItem {
                 Label("Network", systemImage: "network")
                     .imageScale(.large)

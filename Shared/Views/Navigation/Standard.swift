@@ -10,7 +10,7 @@ import SwiftUI
 /// The navigation layout on bigger devices such as iPads and Macs.
 struct StandardNavigationLayout: View {
 
-    /// An enumeration of the different timeline pages
+    /// An enumeration of the different appplication's pages.
     enum NavigationViews {
         case home
         case local
@@ -52,12 +52,13 @@ struct StandardNavigationLayout: View {
 
                             NavigationLink(
                                 destination:
-                                    TimelineView()
+                                    NetworkView()
                                         .padding()
                                         .frame(maxWidth: .infinity, maxHeight: .infinity),
                                 label: {
                                     Label("Home", systemImage: "house")
                                 })
+                                .help(Text("Home"))
                                 .accessibility(label: Text("Home"))
                                 .tag(NavigationViews.home)
 
@@ -69,6 +70,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Local", systemImage: "building.2")
                                 })
+                                .help(Text("Local timeline"))
                                 .accessibility(label: Text("Local"))
                                 .tag(NavigationViews.local)
 
@@ -80,6 +82,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Public", systemImage: "globe")
                                 })
+                                .help(Text("Public timeline"))
                                 .accessibility(label: Text("Public"))
                                 .tag(NavigationViews.public)
 
@@ -91,6 +94,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Messages", systemImage: "quote.bubble")
                                 })
+                                .help(Text("Messages"))
                                 .accessibility(label: Text("Messages"))
                                 .tag(NavigationViews.messages)
 
@@ -103,6 +107,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Search", systemImage: "magnifyingglass")
                                 })
+                                .help(Text("Search"))
                                 .accessibility(label: Text("Search"))
                                 .tag(NavigationViews.searchResults)
                             #endif
@@ -121,6 +126,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Announcements", systemImage: "megaphone")
                                 })
+                                .help(Text("Announcements"))
                                 .accessibility(label: Text("Announcements"))
                                 .tag(NavigationViews.announcements)
 
@@ -132,6 +138,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Activity", systemImage: "flame")
                                 })
+                                .help(Text("Activity"))
                                 .accessibility(label: Text("Activity"))
                                 .tag(NavigationViews.activity)
 
@@ -143,6 +150,7 @@ struct StandardNavigationLayout: View {
                                 label: {
                                     Label("Recommended", systemImage: "person.2")
                                 })
+                                .help(Text("Recommended"))
                                 .accessibility(label: Text("Recommended"))
                                 .tag(NavigationViews.recommended)
 
@@ -156,22 +164,33 @@ struct StandardNavigationLayout: View {
             .toolbar {
                 #if os(macOS)
                 ToolbarItem(placement: .navigation) {
+
                     Button(action: toggleSidebar) {
                         Image(systemName: "sidebar.left")
-                    }.help("Show or hide the sidebar.")
+                    }
+                        .help("Show or hide the sidebar.")
+                        .accessibility(label: Text("Show or hide the sidebar"))
+
                 }
 
                 ToolbarItem {
+
                     Button(action: selectNotifications) {
                         Image(systemName: "bell")
                     }
-                    .help("View your notifications.")
+                        .help("View your notifications.")
+                        .accessibility(label: Text("View your notifications."))
+
                 }
 
                 ToolbarItem {
+
                     Button(action: selectNotifications) {
                         Image(systemName: "square.and.pencil")
-                    }.help("Write a new post.")
+                    }
+                        .help("Write a new post.")
+                        .accessibility(label: Text("Write a new post"))
+
                 }
                 #endif
             }
@@ -192,10 +211,15 @@ struct StandardNavigationLayout: View {
     private func selectNotifications() {
         self.selection = [.notifications]
     }
+
 }
 
 struct Standard_Previews: PreviewProvider {
+
     static var previews: some View {
+
         StandardNavigationLayout()
+
     }
+
 }

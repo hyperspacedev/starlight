@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct TimelineView: View {
+struct NetworkView: View {
 
     @ObservedObject var timeline = TimelineViewModel()
 
@@ -17,12 +17,6 @@ struct TimelineView: View {
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
 
-    private var columns: [GridItem] {
-        return [
-            .init(.adaptive(minimum: size, maximum: .infinity))
-        ]
-    }
-
     var body: some View {
 
         NavigationView {
@@ -30,12 +24,12 @@ struct TimelineView: View {
             #if os(iOS)
 
             self.view
-                .navigationTitle("Timeline")
+                .navigationTitle("Network")
                 .toolbar {
 
                     ToolbarItem(placement: .navigationBarLeading, content: {
 
-                        Picker(selection: self.$timelineType, label: Text("Timeline type")) {
+                        Picker(selection: self.$timelineType, label: Text("Network visibility")) {
                             Text("Public").tag("public")
                             Text("Local").tag("local")
                         }
@@ -57,15 +51,15 @@ struct TimelineView: View {
             #else
 
             self.view
-                .navigationTitle("Timeline")
+                .navigationTitle("Network")
                 .navigationSubtitle("\(Date())")
 
             #endif
 
         }
-        .onAppear {
-            self.timeline.fetchPublicTimeline()
-        }
+            .onAppear {
+                self.timeline.fetchPublicTimeline()
+            }
 
     }
 
@@ -83,7 +77,7 @@ struct TimelineView: View {
 
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView()
+        NetworkView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

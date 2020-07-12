@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ThreadView: View {
 
+    @ObservedObject var thread = ThreadViewModel()
     public let mainStatus: Status
 
     var body: some View {
@@ -52,16 +53,19 @@ struct ThreadView: View {
 
         List {
 
-            StatusView(isPresented: true, status: mainStatus)
+            StatusView(isMain: true, status: mainStatus)
 
-            ForEach( 0 ..< 5) { _ in
+            ForEach(self.thread.thread) { currentStatus in
 
-                StatusView(status: self.mainStatus)
+                StatusView(status: currentStatus)
                     .padding(.vertical, 5)
 
             }
 
         }
+            .onAppear {
+                self.thread.fetchReplies(from: self.mainStatus.id)
+            }
 
     }
 }

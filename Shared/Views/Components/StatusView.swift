@@ -22,7 +22,7 @@ struct StatusView: View {
     /// displayed so that it can display the content properly.
     /// In order to achieve this, we pass a bool to ``StatusView``, which when true,
     /// tells it that it's content should be displayed as `Focused`.
-    var isPresented: Bool
+    private var isMain: Bool
 
     /// The ``Status`` data model whose the data will be displayed.
     var status: Status
@@ -35,7 +35,7 @@ struct StatusView: View {
 
     #endif
 
-    /// To provide the best experience on multiple platforms,
+    /// To easily use the same view on multiple platforms,
     /// we use the `body` view as a container where we load platform-specific
     /// modifiers.
     var body: some View {
@@ -45,7 +45,7 @@ struct StatusView: View {
         VStack {
 
             // Whether the post is focused or not.
-            if self.isPresented {
+            if self.isMain {
 
                 self.presentedView
 
@@ -58,9 +58,14 @@ struct StatusView: View {
 
                     self.defaultView
 
-                    NavigationLink(destination: ThreadView(mainStatus: self.status), tag: 1, selection: self.$goToThread, label: {
-                        EmptyView()
-                    })
+                    NavigationLink(
+                        destination: ThreadView(mainStatus: self.status),
+                        tag: 1,
+                        selection: self.$goToThread,
+                        label: {
+                            EmptyView()
+                        }
+                    )
 
                 }
 
@@ -70,17 +75,19 @@ struct StatusView: View {
 
     }
 
+    /// The status display mode when it is the thread's main post.
     var presentedView: some View {
 
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
 
             HStack(alignment: .center) {
 
-                Image("amodrono")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 50)
-                    .clipShape(Circle())
+                ProfileImage(from: self.status.account.avatarStatic, placeholder: {
+                    Circle()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.gray)
+                })
 
                 VStack(alignment: .leading, spacing: 5) {
 
@@ -110,12 +117,21 @@ struct StatusView: View {
                 .font(.system(size: 20, weight: .light))
 
             HStack {
-                Text("\(self.status.createdAt) · ")
-                Button(action: {}, label: {
+                Text("\(self.status.createdAt.getDate()!.format(as: "hh:mm · dd/MM/YYYY")) · ")
+                Button(action: {
+
+                    if let application = self.status.application {
+                        if let website = application.website {
+                            openUrl(website)
+                        }
+                    }
+
+                }, label: {
                     Text("\(self.status.application?.name ?? "Mastodon")")
+                        .lineLimit(1)
                 })
                     .foregroundColor(.accentColor)
-                    .padding(.leading, -5)
+                    .padding(.leading, -7)
             }
                 .padding(.top)
 
@@ -140,7 +156,7 @@ struct StatusView: View {
                 .padding(.horizontal)
 
         }
-//            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(PlainButtonStyle())
 
     }
 
@@ -150,11 +166,12 @@ struct StatusView: View {
 
             HStack(alignment: .top) {
 
-                Image("amodrono")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 50)
-                    .clipShape(Circle())
+                ProfileImage(from: self.status.account.avatarStatic, placeholder: {
+                    Circle()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.gray)
+                })
 
                 VStack(alignment: .leading, spacing: 5) {
 
@@ -170,11 +187,9 @@ struct StatusView: View {
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
 
+                            Text("· \(NSDate().timeIntervalSince(self.status.createdAt.getDate()!))")
+
                         }
-
-                        Spacer()
-
-                        Text("· 24s")
 
                     }
 
@@ -189,9 +204,29 @@ struct StatusView: View {
             }
 
         }
+            .contextMenu(
+                ContextMenu(menuItems: {
+
+                    Button(action: {}, label: {
+                        Label("Report post", systemImage: "flag")
+                    })
+
+                    Button(action: {}, label: {
+                        Label("Report \(self.status.account.displayName)", systemImage: "flag")
+                    })
+
+                    Button(action: {}, label: {
+                        Label("Share as Image", systemImage: "square.and.arrow.up")
+                    })
+
+                })
+            )
 
     }
 
+    /// The post's action buttons (favourite and reblog), and also the amount of replies.
+    ///
+    /// If the post is focused (``isMain`` is true), the count is hidden.
     var actionButtons: some View {
         HStack {
 
@@ -199,7 +234,7 @@ struct StatusView: View {
 
                 Image(systemName: "text.bubble")
 
-                if !self.isPresented {
+                if !self.isMain {
                     Text("\(self.status.repliesCount.roundedWithAbbreviations)")
                 }
 
@@ -215,7 +250,7 @@ struct StatusView: View {
 
                     Image(systemName: "arrow.2.squarepath")
 
-                    if !self.isPresented {
+                    if !self.isMain {
                         Text("\(self.status.reblogsCount.roundedWithAbbreviations)")
                     }
 
@@ -236,7 +271,7 @@ struct StatusView: View {
 
                     Image(systemName: "heart")
 
-                    if !self.isPresented {
+                    if !self.isMain {
                         Text("\(self.status.favouritesCount.roundedWithAbbreviations)")
                     }
                 }
@@ -280,8 +315,8 @@ extension StatusView {
     ///     the status is being shown as the main post (in a thread).
     ///     - status: The identified data that the ``StatusView`` instance uses to
     ///     display posts dynamically.
-    public init(isPresented: Bool = false, status: Status) {
-        self.isPresented = isPresented
+    public init(isMain: Bool = false, status: Status) {
+        self.isMain = isMain
         self.status = status
     }
 
@@ -292,6 +327,6 @@ struct StatusView_Previews: PreviewProvider {
     @ObservedObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
-        StatusView(isPresented: true, status: self.timeline.statuses[0])
+        StatusView(isMain: true, status: self.timeline.statuses[0])
     }
 }
