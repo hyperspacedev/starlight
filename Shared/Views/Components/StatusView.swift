@@ -187,7 +187,8 @@ struct StatusView: View {
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
 
-                            Text("· \(NSDate().timeIntervalSince(self.status.createdAt.getDate()!))")
+                            Text("· \(self.status.createdAt.getDate()!.getInterval())")
+                                .lineLimit(1)
 
                         }
 

@@ -19,12 +19,12 @@ public struct ProfileImage<Placeholder>: View where Placeholder: View {
     public let placeholder: Placeholder
 
     /// An ObservableObject that is used to be notified whenever the image data is available.
-    @ObservedObject private var urlImageModel: UrlImageModel
+    @ObservedObject private var remoteImageModel: RemoteImageModel
 
     public var body: some View {
 
         VStack {
-            if let remoteImage = self.urlImageModel.image {
+            if let remoteImage = self.remoteImageModel.image {
 
                 Image(uiImage: remoteImage)
                     .resizable()
@@ -61,7 +61,7 @@ extension ProfileImage where Placeholder: View {
     ///       data is retrieved.
     ///     - image: A function you can use to create content on demand using the underlying data.
     public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder) {
-        urlImageModel = UrlImageModel(urlString: urlString)
+        self.remoteImageModel = RemoteImageModel(urlString)
         self.placeholder = placeholder()
     }
 

@@ -8,23 +8,26 @@
 import Foundation
 import SwiftUI
 
-class UrlImageModel: ObservableObject {
-    @Published var image: UIImage?
-    var urlString: String?
-    var imageCache = ImageCache.getImageCache()
+/// An ``ObservableObject`` that computes and retrieves image data on demand from the fediverse,
+/// using Mastodon's API endpoints.
+public class RemoteImageModel: ObservableObject {
 
-    init(urlString: String?) {
+    /// The image data displayed as a UIImage.
+    @Published public var image: UIImage?
+
+    /// The url from where the data is downloaded.
+    public var urlString: String?
+
+    public var imageCache = ImageCache.getImageCache()
+
+    public init(_ urlString: String?) {
         self.urlString = urlString
         loadImage()
     }
 
     func loadImage() {
-        if loadImageFromCache() {
-            print("Cache hit")
-            return
-        }
+        if loadImageFromCache() { return }
 
-        print("Cache miss, loading from url")
         loadImageFromUrl()
     }
 
@@ -72,7 +75,7 @@ class UrlImageModel: ObservableObject {
     }
 }
 
-class ImageCache {
+public class ImageCache {
     var cache = NSCache<NSString, UIImage>()
 
     func get(forKey: String) -> UIImage? {
