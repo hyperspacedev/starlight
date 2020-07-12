@@ -29,4 +29,16 @@ extension Date {
 
     }
 
+    func getInterval() -> String {
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+
+        return formatter.string(from: TimeInterval(
+            NSDate().timeIntervalSince(self)
+        ))!
+
+    }
+
 }
