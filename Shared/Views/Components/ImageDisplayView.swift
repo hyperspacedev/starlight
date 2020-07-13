@@ -108,7 +108,7 @@ public struct ImageDisplayView<Content>: View where Content: View {
 }
 
 extension ImageDisplayView where Content: View {
-    
+
     /// Creates a view that allows users to see static media (images).
     ///
     /// - Parameters:

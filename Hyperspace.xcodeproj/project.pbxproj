@@ -53,9 +53,12 @@
 		BFD620B924BC078100730632 /* TimelineScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B824BC078100730632 /* TimelineScope.swift */; };
 		BFD620BA24BC078100730632 /* TimelineScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B824BC078100730632 /* TimelineScope.swift */; };
 		BFD620BC24BC09E000730632 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BB24BC09E000730632 /* ExploreView.swift */; };
-		BFD620BD24BC09E000730632 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BB24BC09E000730632 /* ExploreView.swift */; };
 		BFD620BF24BC0D9300730632 /* RecommendedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */; };
 		BFD620C024BC0D9300730632 /* RecommendedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */; };
+		BFE07C8724BCA6F800203706 /* RecommendedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8624BCA6F800203706 /* RecommendedView.swift */; };
+		BFE07C8824BCA6F800203706 /* RecommendedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8624BCA6F800203706 /* RecommendedView.swift */; };
+		BFE07C8A24BCA86B00203706 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8924BCA86B00203706 /* HomeView.swift */; };
+		BFE07C8B24BCA86B00203706 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8924BCA86B00203706 /* HomeView.swift */; };
 		FA384B7424B77A84008E60E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA384B7F24B781EB008E60E3 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
@@ -158,6 +161,8 @@
 		BFD620B824BC078100730632 /* TimelineScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineScope.swift; sourceTree = "<group>"; };
 		BFD620BB24BC09E000730632 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProfile.swift; sourceTree = "<group>"; };
+		BFE07C8624BCA6F800203706 /* RecommendedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedView.swift; sourceTree = "<group>"; };
+		BFE07C8924BCA86B00203706 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA384B7324B77A84008E60E3 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		FA384B7E24B781EB008E60E3 /* colorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorFunctions.swift; sourceTree = "<group>"; };
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
@@ -238,7 +243,8 @@
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 				FA7E989624B8EB27002C9476 /* NetworkView.swift */,
 				FA7E988B24B86686002C9476 /* ThreadView.swift */,
-				BFD620BB24BC09E000730632 /* ExploreView.swift */,
+				BFE07C8624BCA6F800203706 /* RecommendedView.swift */,
+				BFE07C8924BCA86B00203706 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				BFBB3C6524A2D5C2007FEFE8 /* Info.plist */,
+				BFD620BB24BC09E000730632 /* ExploreView.swift */,
 				BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */,
 			);
 			path = iOS;
@@ -604,6 +611,7 @@
 				FA384B7424B77A84008E60E3 /* StatusView.swift in Sources */,
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */,
+				BFE07C8724BCA6F800203706 /* RecommendedView.swift in Sources */,
 				FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BFD620BC24BC09E000730632 /* ExploreView.swift in Sources */,
 				FA7E98A424B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
@@ -614,6 +622,7 @@
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
+				BFE07C8A24BCA86B00203706 /* HomeView.swift in Sources */,
 				FA7E98A724B9DD3F002C9476 /* ProfileImage.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
@@ -650,6 +659,7 @@
 				BF673F2324B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
 				FA7E98A524B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
+				BFE07C8B24BCA86B00203706 /* HomeView.swift in Sources */,
 				FA74999F24BC3FBD002A9E69 /* AttachmentView.swift in Sources */,
 				BF11463F24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
@@ -661,7 +671,6 @@
 				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
-				BFD620BD24BC09E000730632 /* ExploreView.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
@@ -677,6 +686,7 @@
 				BF673F0824B4AEBA00A97FF3 /* Notification.swift in Sources */,
 				BF455EDC24B402120066FB1B /* Visibility.swift in Sources */,
 				FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */,
+				BFE07C8824BCA6F800203706 /* RecommendedView.swift in Sources */,
 				FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */,
 				FAE4B26924B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */,

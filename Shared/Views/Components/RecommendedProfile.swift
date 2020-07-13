@@ -14,7 +14,7 @@ struct RecommendedProfile: View {
     @State var user: String
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .top, spacing: 8) {
             Image(imageName)
                 .resizable()
                 .scaledToFit()

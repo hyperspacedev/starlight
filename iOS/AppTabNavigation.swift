@@ -12,8 +12,7 @@ struct AppTabNavigation: View {
     var body: some View {
         TabView {
             VStack {
-                Text("Home")
-                    .padding()
+                HomeView()
             }.tabItem {
                 Label("Home", systemImage: "house")
                     .imageScale(.large)

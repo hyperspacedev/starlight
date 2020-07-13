@@ -13,26 +13,25 @@ struct ExploreView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack {
                 List {
                     Section {
                         HStack {
-
                             Image(systemName: "magnifyingglass")
-
                             TextField("Search...", text: $searchText)
-
                         }
                     }
-                    Section(header: Text("Trending Hashtags")) {
+                    Section(header: Text("Trending Tags")) {
                         Label("equestria", systemImage: "number")
                         Label("mastodon", systemImage: "number")
                     }
-                    Section(header: Text("Recommended")) {
+                    Section(header: Text("Recommended for You")) {
                         RecommendedProfile(imageName: "amethyst", name: "Amethyst", user: "@amethyst")
                         RecommendedProfile(imageName: "curtis", name: "Curtis Smith", user: "@asalways")
                         RecommendedProfile(imageName: "pointFlash", name: "Point Flash", user: "@iamnotabug")
-                        RecommendedProfile(imageName: "amodrono", name: "amodrono", user: "@amodrono")
+                        NavigationLink(destination: RecommendedView()) {
+                            Label("All Recommendations", systemImage: "person.2")
+                        }
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
