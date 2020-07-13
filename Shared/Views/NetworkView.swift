@@ -90,7 +90,7 @@ struct NetworkView: View {
                             Spacer()
 
                         }
-                        
+
                         Spacer()
 
                     }

@@ -59,7 +59,6 @@ extension ProfileImage where Placeholder: View {
     ///     - from: The ``Account``'s static avatar url ``CachedRemoteImage`` uses to retrieve the data.
     ///     - placeholder: The view builder that generates the placeholder to be shown until the avatar
     ///       data is retrieved.
-    ///     - image: A function you can use to create content on demand using the underlying data.
     public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder) {
         self.remoteImageModel = RemoteImageModel(urlString)
         self.placeholder = placeholder()

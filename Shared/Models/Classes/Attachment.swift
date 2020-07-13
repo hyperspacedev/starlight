@@ -34,6 +34,10 @@ public class Attachment: Codable, Identifiable {
     /// The attachment's description.
     public let description: String?
 
+    /// A hash computed by the BlurHash algorithm,
+    /// for generating colorful preview thumbnails when media has not been downloaded yet.
+    public let blurhash: String?
+
     // MARK: - COMPUTED PROPERTIES
 
     private enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ public class Attachment: Codable, Identifiable {
         case previewURL = "preview_url"
         case textURL = "text_url"
         case description
+        case blurhash
     }
 }
 

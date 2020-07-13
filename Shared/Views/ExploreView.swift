@@ -19,7 +19,6 @@ struct ExploreView: View {
                         HStack {
 
                             Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(.systemGray3))
 
                             TextField("Search...", text: $searchText)
 

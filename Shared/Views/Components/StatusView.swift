@@ -116,6 +116,14 @@ struct StatusView: View {
             Text("\(self.status.content)")
                 .font(.system(size: 20, weight: .light))
 
+            if !self.status.mediaAttachments.isEmpty {
+                AttachmentView(from: self.status.mediaAttachments[0].url) {
+                    Rectangle()
+                        .scaledToFit()
+                        .cornerRadius(10)
+                }
+            }
+
             HStack {
                 Text("\(self.status.createdAt.getDate()!.format(as: "hh:mm · dd/MM/YYYY")) · ")
                 Button(action: {
@@ -196,6 +204,14 @@ struct StatusView: View {
 
                     Text("\(self.status.content)")
                         .fontWeight(.light)
+
+                    if !self.status.mediaAttachments.isEmpty {
+                        AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
+                            Rectangle()
+                                .scaledToFit()
+                                .cornerRadius(10)
+                        }
+                    }
 
                     self.actionButtons
                         .padding(.top)
@@ -328,6 +344,6 @@ struct StatusView_Previews: PreviewProvider {
     @ObservedObject static var timeline = NetworkViewModel()
 
     static var previews: some View {
-        StatusView(isMain: true, status: self.timeline.statuses[0])
+        StatusView(isMain: false, status: self.timeline.statuses[0])
     }
 }
