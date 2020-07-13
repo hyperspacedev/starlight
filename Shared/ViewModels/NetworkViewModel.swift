@@ -59,12 +59,14 @@ public class NetworkViewModel: ObservableObject {
 
             print("resp: \(resp as Any)\n\nerror: \(String(describing: error))\n\ndata: \(String(describing: data))")
 
-            do {
-                let result = try JSONDecoder().decode([Status].self, from: data!)
-                self.statuses = result
-                print("result: \(result)")
-            } catch {
-                print(error)
+            DispatchQueue.main.async {
+                do {
+                    let result = try JSONDecoder().decode([Status].self, from: data!)
+                    self.statuses = result
+                    print("result: \(result)")
+                } catch {
+                    print(error)
+                }
             }
 
         }

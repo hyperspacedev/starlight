@@ -17,8 +17,12 @@ struct ExploreView: View {
                 List {
                     Section {
                         HStack {
+
                             Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color(.systemGray3))
+
                             TextField("Search...", text: $searchText)
+
                         }
                     }
                     Section(header: Text("Trending Hashtags")) {

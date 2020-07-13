@@ -72,20 +72,41 @@ struct NetworkView: View {
                     .padding(.top)
                     .padding(.bottom, 2)) {
 
-                ForEach(self.timeline.statuses) { status in
-                    StatusView(status: status)
-                        .buttonStyle(PlainButtonStyle())
+                if self.timeline.statuses.isEmpty {
+
+                    HStack {
+
+                        Spacer()
+
+                        VStack {
+
+                            Spacer()
+
+                            ProgressView(value: 0.5)
+                                .progressViewStyle(CircularProgressViewStyle())
+
+                            Text("Loading posts...")
+
+                            Spacer()
+
+                        }
+                        
+                        Spacer()
+
+                    }
+
+                } else {
+
+                    ForEach(self.timeline.statuses, id: \.self.id) { status in
+                        StatusView(status: status)
+                            .buttonStyle(PlainButtonStyle())
+                    }
+
                 }
             }
 
-//            List(self.timeline.statuses) { status in
-//
-//                StatusView(status: status)
-//                    .buttonStyle(PlainButtonStyle())
-//
-//            }
         }
-        .listStyle(GroupedListStyle())
+            .listStyle(GroupedListStyle())
 
     }
 }
