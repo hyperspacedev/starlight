@@ -25,8 +25,7 @@ struct AppTabNavigation: View {
                     .imageScale(.large)
             }
             VStack {
-                Text("Explore View")
-                    .padding()
+                ExploreView()
             }.tabItem {
                 Label("Explore", systemImage: "magnifyingglass")
                     .imageScale(.large)

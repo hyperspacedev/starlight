@@ -14,6 +14,7 @@ struct NetworkView: View {
 
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
+    private let displayPublic: Bool = true
 
     var body: some View {
 
@@ -24,17 +25,6 @@ struct NetworkView: View {
             self.view
                 .navigationTitle("Network")
                 .toolbar {
-
-                    ToolbarItem(placement: .navigationBarLeading, content: {
-
-                        Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
-                            Text("Public").tag("public")
-                            Text("Local").tag("local")
-                        }
-                            .pickerStyle(SegmentedPickerStyle())
-
-                    })
-
                     ToolbarItem(placement: .navigationBarTrailing, content: {
 
                         Button(action: {}, label: {
@@ -63,12 +53,39 @@ struct NetworkView: View {
 
     var view: some View {
 
-        List(self.timeline.statuses) { status in
+        List {
+            Section {
+                NavigationLink(destination: Text("F").padding()) {
+                    Label("Announcements", systemImage: "megaphone")
+                }
+                NavigationLink(destination: Text("F").padding()) {
+                    Label("Activity", systemImage: "flame")
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
 
-            StatusView(status: status)
-                .buttonStyle(PlainButtonStyle())
+            Section(header:
+                Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
+                    Text("My community").tag("local")
+                    Text("Public").tag("public")
+                }                        .pickerStyle(SegmentedPickerStyle())
+                    .padding(.top)
+                    .padding(.bottom, 2)) {
 
+                ForEach(self.timeline.statuses) { status in
+                    StatusView(status: status)
+                        .buttonStyle(PlainButtonStyle())
+                }
+            }
+
+//            List(self.timeline.statuses) { status in
+//
+//                StatusView(status: status)
+//                    .buttonStyle(PlainButtonStyle())
+//
+//            }
         }
+        .listStyle(GroupedListStyle())
 
     }
 }

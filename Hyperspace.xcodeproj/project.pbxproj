@@ -48,6 +48,14 @@
 		BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */; };
 		BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
+		BFD620B624BC06AA00730632 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B524BC06AA00730632 /* Client.swift */; };
+		BFD620B724BC06AA00730632 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B524BC06AA00730632 /* Client.swift */; };
+		BFD620B924BC078100730632 /* TimelineScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B824BC078100730632 /* TimelineScope.swift */; };
+		BFD620BA24BC078100730632 /* TimelineScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620B824BC078100730632 /* TimelineScope.swift */; };
+		BFD620BC24BC09E000730632 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BB24BC09E000730632 /* ExploreView.swift */; };
+		BFD620BD24BC09E000730632 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BB24BC09E000730632 /* ExploreView.swift */; };
+		BFD620BF24BC0D9300730632 /* RecommendedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */; };
+		BFD620C024BC0D9300730632 /* RecommendedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */; };
 		FA384B7424B77A84008E60E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA384B7F24B781EB008E60E3 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
@@ -142,6 +150,10 @@
 		BFBB3C9924A2D80D007FEFE8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BFBB3C9B24A2DA30007FEFE8 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
+		BFD620B524BC06AA00730632 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		BFD620B824BC078100730632 /* TimelineScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineScope.swift; sourceTree = "<group>"; };
+		BFD620BB24BC09E000730632 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProfile.swift; sourceTree = "<group>"; };
 		FA384B7324B77A84008E60E3 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		FA384B7E24B781EB008E60E3 /* colorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorFunctions.swift; sourceTree = "<group>"; };
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
@@ -220,6 +232,7 @@
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 				FA7E989624B8EB27002C9476 /* NetworkView.swift */,
 				FA7E988B24B86686002C9476 /* ThreadView.swift */,
+				BFD620BB24BC09E000730632 /* ExploreView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +244,7 @@
 				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
 				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
 				BF455EDA24B402120066FB1B /* Visibility.swift */,
+				BFD620B824BC078100730632 /* TimelineScope.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -327,21 +341,22 @@
 			isa = PBXGroup;
 			children = (
 				BF673F0324B4A51F00A97FF3 /* Account.swift */,
+				FAE4B25E24B4EE83000B5405 /* Announcement.swift */,
+				FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */,
 				BF673F1224B4C20200A97FF3 /* Application.swift */,
 				BF673F2424B4CD6500A97FF3 /* Attachment.swift */,
 				BF673F1824B4C37200A97FF3 /* Card.swift */,
+				BFD620B524BC06AA00730632 /* Client.swift */,
 				BF673F2724B4CF9200A97FF3 /* Context.swift */,
 				FA48238824B46E580095E415 /* Emoji.swift */,
 				FA48238524B46A860095E415 /* Field.swift */,
 				BF673F0F24B4BDA300A97FF3 /* History.swift */,
 				BF673F2A24B4D08F00A97FF3 /* Instance.swift */,
-				FAE4B25E24B4EE83000B5405 /* Announcement.swift */,
-				FAE4B26424B4F532000B5405 /* Relationship.swift */,
-				FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */,
 				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
 				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
 				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
 				FAE4B26724B500DC000B5405 /* PollOption.swift */,
+				FAE4B26424B4F532000B5405 /* Relationship.swift */,
 				FAE4B25524B47032000B5405 /* Source.swift */,
 				FAE4B25B24B4ABFA000B5405 /* Status.swift */,
 				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
@@ -364,6 +379,7 @@
 			children = (
 				FA384B7324B77A84008E60E3 /* StatusView.swift */,
 				FA7E98A624B9DD3F002C9476 /* ProfileImage.swift */,
+				BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -581,10 +597,12 @@
 				BF673F1624B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26524B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26224B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
+				BFD620BC24BC09E000730632 /* ExploreView.swift in Sources */,
 				FA7E98A424B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
 				BF014B0E24B67CBE002C5812 /* AppTabNavigation.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
+				BFD620B924BC078100730632 /* TimelineScope.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
@@ -602,6 +620,8 @@
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
 				FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */,
+				BFD620B624BC06AA00730632 /* Client.swift in Sources */,
+				BFD620BF24BC0D9300730632 /* RecommendedProfile.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
 				FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */,
 				BF673F2524B4CD6500A97FF3 /* Attachment.swift in Sources */,
@@ -615,6 +635,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD620BA24BC078100730632 /* TimelineScope.swift in Sources */,
+				BFD620C024BC0D9300730632 /* RecommendedProfile.swift in Sources */,
 				BF673F2324B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
 				FA7E98A524B9DC32002C9476 /* AsyncImageViewModel.swift in Sources */,
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
@@ -628,9 +650,11 @@
 				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
+				BFD620BD24BC09E000730632 /* ExploreView.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
+				BFD620B724BC06AA00730632 /* Client.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FA7E98AE24BA5EFA002C9476 /* dateFormatter.swift in Sources */,
 				FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */,
