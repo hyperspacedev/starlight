@@ -22,8 +22,38 @@ struct ExploreView: View {
                         }
                     }
                     Section(header: Text("Trending Tags")) {
-                        Label("equestria", systemImage: "number")
-                        Label("mastodon", systemImage: "number")
+                        HStack(spacing: 20) {
+
+                            Image(systemName: "number")
+
+                            VStack(alignment: .leading, spacing: 2) {
+
+                                Text("equestria")
+
+                                Text("12 people talking")
+                                    .font(.caption)
+
+                            }
+
+                        }
+                        .padding(.horizontal, 5)
+
+                        HStack(spacing: 20) {
+
+                            Image(systemName: "number")
+
+                            VStack(alignment: .leading, spacing: 2) {
+
+                                Text("mastodon")
+
+                                Text("19 people talking")
+                                    .font(.caption)
+
+                            }
+
+                        }
+                        .padding(.horizontal, 5)
+
                     }
                     Section(header: Text("Recommended for You")) {
                         RecommendedProfile(imageName: "amethyst", name: "Amethyst", user: "@amethyst")
@@ -44,9 +74,7 @@ struct ExploreView: View {
 struct ExploreView_Previews: PreviewProvider {
     static var previews: some View {
         TabView {
-            NavigationView {
-                ExploreView()
-            }
+            ExploreView()
             .tabItem {
                 Label("Explore", systemImage: "magnifyingglass")
             }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+
+    @State var showComposeButton: Bool = false
+
     var body: some View {
         NavigationView {
             List {
@@ -26,6 +29,37 @@ struct HomeView: View {
                 #endif
             }
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showComposeButton = true
+            }
+        }
+        .onDisappear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showComposeButton = false
+            }
+        }
+        .overlay(
+            self.composeButton
+                .padding()
+                .help("Create a new post."),
+            alignment: .bottomTrailing)
+    }
+
+    var composeButton: some View {
+
+        Button(action: {}, label: {
+            Image(systemName: "square.and.pencil")
+                .padding()
+        })
+            .foregroundColor(.white)
+            .background(
+                Circle()
+                    .foregroundColor(.accentColor)
+            )
+            .offset(x: self.showComposeButton ? 0 : -99999)
+            .animation(.spring())
+
     }
 }
 

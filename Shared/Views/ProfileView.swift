@@ -9,78 +9,188 @@ import SwiftUI
 
 /// The view for displaying profiles.
 struct ProfileView: View {
-    
+
     @State var editable: Bool = false
-    @State var account: Account? = nil
-    
+    @State var account: Account?
+
     var body: some View {
-        VStack(alignment: .leading) {
-            Image("sotogrande")
-                .resizable()
-                .frame(height: 264)
-            
+        ScrollView {
             VStack(alignment: .leading) {
-                Image("pointFlash")
+
+                Image("sotogrande")
                     .resizable()
-                    .clipShape(Circle())
-                    .frame(width: 100, height: 100)
-                    .background(
-                        Circle()
-                            .frame(width: 110, height: 110)
-                            .foregroundColor(.white)
+//                    .scaledToFit()
+                    .overlay(
+                        Image("pointFlash")
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 100, height: 100)
+                            .padding()
+                            .background(
+                                Circle()
+                                    .frame(width: 110, height: 110)
+                                    .foregroundColor(.white)
+                            )
+                            .offset(y: 64),
+                        alignment: .bottomLeading
                     )
-                Text("Point Flash")
-                    .font(.title)
-                    .bold()
-                Text("@iamnotabug")
-                    .font(.callout)
-                    .foregroundColor(.secondary)
-                Text("Photographer for @ScotiaNews.")
-                HStack(spacing: 16.0) {
-                    if editable {
-                        Button(action: {}) {
-                            Label("Edit", systemImage: "square.and.pencil")
-                        }
-                    } else {
-                        Button(action: {}) {
-                            Label("Follow", systemImage: "person.badge.plus")
-                        }
+
+                VStack(alignment: .leading) {
+
+                    HStack {
+
+                        Text("Point Flash")
+                            .font(.title)
+                            .bold()
+
+                        Text("STARLIGHT DEV")
+                            .foregroundColor(.secondary)
+                            .padding(.all, 5)
+                            .font(.caption2)
+                            .background(
+                                Color(.systemGray5)
+                                    .cornerRadius(3)
+                            )
+
+                        Text("BOT")
+                            .foregroundColor(.white)
+                            .padding(.all, 5)
+                            .font(.caption2)
+                            .background(
+                                Color.blue
+                                    .cornerRadius(3)
+                            )
+
                     }
-                    Button(action: {}) {
-                        Label("Mention", systemImage: "bubble.left")
-                    }
-                    Spacer()
-                    Button(action: {}) {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                    .contextMenu {
-                        Button(action: {}) {
-                            Label("Share", systemImage: "square.and.arrow.up")
+
+                    Text("@iamnotabug")
+                        .font(.callout)
+                        .foregroundColor(.secondary)
+
+                    Text("Photographer for @ScotiaNews.")
+                        .padding(.top, 10)
+
+                    self.stats
+                        .padding(.top)
+
+                    HStack(spacing: 16.0) {
+                        if editable {
+                            Button(action: {}, label: {
+                                Label("Edit", systemImage: "square.and.pencil")
+                            })
+                        } else {
+                            Button(action: {}, label: {
+                                Label("Follow", systemImage: "person.badge.plus")
+                            })
                         }
-                        Button(action: {}) {
-                            Label("Show more info", systemImage: "tablecells")
-                        }
-                        
-                        if !editable {
-                            Button(action: {}) {
-                                Label("Block @iamnotabug", systemImage: "person.crop.circle.fill.badge.xmark")
-                            }
-                            Button(action: {}) {
-                                Label("Report @iamnotabug", systemImage: "hand.raised.fill")
+                        Button(action: {}, label: {
+                            Label("Mention", systemImage: "bubble.left")
+                        })
+                        Spacer()
+                        Button(action: {}, label: {
+                            Image(systemName: "ellipsis.circle")
+                        })
+                        .contextMenu {
+
+                            Button(action: {}, label: {
+                                Label("Share", systemImage: "square.and.arrow.up")
+                            })
+
+                            Button(action: {}, label: {
+                                Label("Show more info", systemImage: "tablecells")
+                            })
+
+                            if !editable {
+                                Button(action: {}, label: {
+                                    Label("Block @iamnotabug", systemImage: "person.crop.circle.fill.badge.xmark")
+                                })
+                                Button(action: {}, label: {
+                                    Label("Report @iamnotabug", systemImage: "hand.raised.fill")
+                                })
                             }
                         }
                     }
                 }
+                    .padding(.horizontal)
+                    .padding(.top, 40)
+
+                List {
+                    Text("Statuses for this profile go here.")
+                }
+                .listStyle(PlainListStyle())
             }
-            .padding(.horizontal)
-            .offset(y: -64)
-            
-            List {
-                Text("Statuses for this profile go here.")
-            }
-            .listStyle(PlainListStyle())
         }
-        .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.top)
+    }
+
+    var stats: some View {
+        VStack {
+
+            Divider()
+
+            HStack {
+
+                Group {
+
+                    Divider()
+
+                    Spacer()
+
+                    VStack {
+
+                        Text("80")
+                            .font(.system(size: 20))
+
+                        Text("Followers")
+                            .fontWeight(.semibold)
+
+                    }
+
+                    Spacer()
+
+                    Divider()
+
+                    Spacer()
+
+                    VStack {
+
+                        Text("20")
+                            .font(.system(size: 20))
+
+                        Text("Following")
+                            .fontWeight(.semibold)
+
+                    }
+
+                    Spacer()
+
+                    Divider()
+
+                }
+
+                Spacer()
+
+                VStack {
+
+                    Text("300")
+                        .font(.system(size: 20))
+
+                    Text("Posts")
+                        .fontWeight(.semibold)
+
+                }
+
+                Spacer()
+
+                Divider()
+
+            }
+            .frame(height: 50)
+                .padding(.top, -10)
+
+            Divider()
+                .padding(.top, -10)
+        }
     }
 }
 
