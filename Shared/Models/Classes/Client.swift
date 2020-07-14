@@ -51,6 +51,34 @@ public class AppClient {
         self.token = ""
     }
 
+    // MARK: PRIVATE UTILITIES
+
+    /**
+     Create an authentication request to the server.
+     - Parameter url: The URL to make a request to.
+     - Parameter method: The request method.
+     - Returns: `URLRequest` with the Authorization header from the user's access token.
+     */
+    private func makeAuthenticatedRequest(url: URL, method: String = "GET") -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.addValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+
+    /**
+     Create an authentication request to the server.
+     - Parameter url: The URL to make a request to.
+     - Parameter method: The request method.
+     - Returns: `URLRequest` with the Authorization header from the user's access token.
+     */
+    private func makeAuthenticatedRequest(url: String, method: String = "GET") -> URLRequest {
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = method
+        request.addValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+
     // MARK: GETTER METHODS
     /// A shared version of the AppClient. Limits activity to `mastodon.social` and uses public endpoints.
     class func shared() -> AppClient {
@@ -60,9 +88,9 @@ public class AppClient {
     /**
      Gets the stream of statuses for a specified timeline.
      - Parameter scope: The timeline scope to get.
-     - Parameter after: A closure that utilizes the resulting statuses (`([Status]) -> Void`).
+     - Parameter completion: A closure that utilizes the resulting statuses (`([Status]) -> Void`).
      */
-    public func getTimeline(scope: TimelineScope, after: @escaping ([Status]) -> Void) {
+    public func getTimeline(scope: TimelineScope, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
 
         switch scope {
@@ -87,7 +115,7 @@ public class AppClient {
             DispatchQueue.main.async {
                 do {
                     let results = try JSONDecoder().decode([Status].self, from: data!)
-                    after(results)
+                    completion(results)
                 } catch {
                     print("Error: \(error)")
                 }
@@ -98,36 +126,62 @@ public class AppClient {
 
     /**
      Get the user's notification stream.
-     - Returns: A list of notifications from the server.
+     - Parameter completion: A closure utilizing the notification data `([Notification]) -> Void`.
      */
-    public func getNotifications() -> [Notification] {
-        return []
+    public func getNotifications(completion: @escaping([Notification]) -> Void) {
+        let request = makeAuthenticatedRequest(url: "/api/v1/notifications")
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let results = try JSONDecoder().decode([Notification].self, from: data!)
+                    completion(results)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
     }
 
     /**
      Get the context for a given status.
      - Parameter forStatus: The status to get the contextual data for.
-     - Returns: A context object containing the ancestors and descendants for this status.
+     - Parameter completion: A closure that utilizes the context data (`(Context) -> Void`).
      */
-    public func getContext(forStatus: Status) -> Context? {
-        return getContext(forStatusID: forStatus.id)
+    public func getContext(forStatus: Status, completion: @escaping (Context) -> Void) {
+        getContext(forStatusID: forStatus.id, completion: completion)
     }
 
     /**
      Get the context for a given status from its ID.
      - Parameter forStatusID: The status ID to get the contextual data for.
-     - Returns: A context object containing the ancestors and descendants for this status.
+     - Parameter completion: A closure that utilizes the context data (`(Context) -> Void`).
      */
-    public func getContext(forStatusID: String) -> Context? {
-        return nil
+    public func getContext(forStatusID: String, completion: @escaping (Context) -> Void) {
+        let apiRequest = baseURL.appendingPathComponent("/api/v1/statuses/\(forStatusID)/context")
+        URLSession.shared.dataTask(with: apiRequest) { data, _, error in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let context = try JSONDecoder().decode(Context.self, from: data!)
+                    completion(context)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
     }
 
     /**
      Get the account with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Parameter after: A closure that utilizes the resulting account data (`(Account) -> Void`).
+     - Parameter completion: A closure that utilizes the resulting account data (`(Account) -> Void`).
      */
-    public func getAccount(withID: String, after: @escaping (Account) -> Void) {
+    public func getAccount(withID: String, completion: @escaping (Account) -> Void) {
         var apiURL = baseURL
         apiURL.appendPathComponent("/api/v1/accounts/\(withID)")
         URLSession.shared.dataTask(with: apiURL) { data, _, error in
@@ -137,7 +191,7 @@ public class AppClient {
             DispatchQueue.main.async {
                 do {
                     let accountData = try JSONDecoder().decode(Account.self, from: data!)
-                    after(accountData)
+                    completion(accountData)
                 } catch {
                     print("Error: \(error)")
                 }
@@ -148,9 +202,9 @@ public class AppClient {
     /**
      Get the statuses associated with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Parameter after: A closure that utilizes the resulting data (`([Status]) -> Void`).
+     - Parameter completion: A closure that utilizes the resulting data (`([Status]) -> Void`).
      */
-    public func getStatusesForAccount(withID: String, after: @escaping ([Status]) -> Void) {
+    public func getStatusesForAccount(withID: String, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
         apiURL.appendPathComponent("/api/v1/accounts/\(withID)/statuses")
         URLSession.shared.dataTask(with: apiURL) { data, _, error in
@@ -160,7 +214,7 @@ public class AppClient {
             DispatchQueue.main.async {
                 do {
                     let results = try JSONDecoder().decode([Status].self, from: data!)
-                    after(results)
+                    completion(results)
                 } catch {
                     print("Error: \(error)")
                 }
@@ -171,10 +225,10 @@ public class AppClient {
     /**
      Get the statuses associated with an account.
      - Parameter account: The account object to gather statuses from.
-     - Parameter after: A closure that utilizes the resulting data (`([Status]) -> Void`).
+     - Parameter completion: A closure that utilizes the resulting data (`([Status]) -> Void`).
      */
-    public func getStatusesForAccount(_ account: Account, after: @escaping ([Status]) -> Void) {
-        return getStatusesForAccount(withID: account.id, after: after)
+    public func getStatusesForAccount(_ account: Account, completion: @escaping ([Status]) -> Void) {
+        getStatusesForAccount(withID: account.id, completion: completion)
     }
 
 }
