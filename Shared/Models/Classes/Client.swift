@@ -7,7 +7,12 @@
 
 import Foundation
 
-/// The primary client object that interfaces with fediverse APIs.
+/**
+ The primary client object that handles all fediverse requests.
+ 
+ Most of the getter and setter methods works asynchronously when calling the DispatchQueue and will usually not return
+ data. This model works best in scenarios where data needs to be loaded into a view.
+ */
 public class AppClient {
 
     // MARK: PROPERTIES
@@ -17,6 +22,12 @@ public class AppClient {
 
     /// The user's access token to access the fediverse instance.
     public let token: String
+
+    /// A singleton version of the client. Limited to `mastodon.social` and public use.
+    private static var defaultInstance: AppClient = {
+        let client = AppClient(domain: "https://mastodon.social")
+        return client
+    }()
 
     // MARK: CONSTRUCTORS
 
@@ -41,19 +52,48 @@ public class AppClient {
     }
 
     // MARK: GETTER METHODS
+    /// A shared version of the AppClient. Limits activity to `mastodon.social` and uses public endpoints.
+    class func shared() -> AppClient {
+        return defaultInstance
+    }
 
     /**
      Gets the stream of statuses for a specified timeline.
      - Parameter scope: The timeline scope to get.
-     - Returns: A list of statuses from the requested timeline.
+     - Parameter after: A closure that utilizes the resulting statuses (`([Status]) -> Void`).
      */
-    public func getTimeline(scope: TimelineScope) -> [Status] {
+    public func getTimeline(scope: TimelineScope, after: @escaping ([Status]) -> Void) {
+        var apiURL = baseURL
+
         switch scope {
         case .public:
-            return []
+            apiURL.appendPathComponent("/api/v1/timelines/public")
+        case .local:
+            let originalURL = apiURL.absoluteString
+            var localURL = URLComponents(string: originalURL)
+            localURL?.path = "/api/v1/timelines/public"
+            localURL?.queryItems = [
+                URLQueryItem(name: "local", value: "true")
+            ]
+            apiURL = (localURL?.url)!
         default:
-            return []
+            break
         }
+
+        URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
+            if (error) != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let results = try JSONDecoder().decode([Status].self, from: data!)
+                    after(results)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
+        .resume()
     }
 
     /**
@@ -85,28 +125,56 @@ public class AppClient {
     /**
      Get the account with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Returns: The account object with the account ID.
+     - Parameter after: A closure that utilizes the resulting account data (`(Account) -> Void`).
      */
-    public func getAccount(withID: String) -> Account? {
-        return nil
+    public func getAccount(withID: String, after: @escaping (Account) -> Void) {
+        var apiURL = baseURL
+        apiURL.appendPathComponent("/api/v1/accounts/\(withID)")
+        URLSession.shared.dataTask(with: apiURL) { data, _, error in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let accountData = try JSONDecoder().decode(Account.self, from: data!)
+                    after(accountData)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
     }
 
     /**
      Get the statuses associated with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Returns: A list of statuses created by the account with the account ID.
+     - Parameter after: A closure that utilizes the resulting data (`([Status]) -> Void`).
      */
-    public func getStatusesForAccount(withID: String) -> [Status] {
-        return []
+    public func getStatusesForAccount(withID: String, after: @escaping ([Status]) -> Void) {
+        var apiURL = baseURL
+        apiURL.appendPathComponent("/api/v1/accounts/\(withID)/statuses")
+        URLSession.shared.dataTask(with: apiURL) { data, _, error in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let results = try JSONDecoder().decode([Status].self, from: data!)
+                    after(results)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
     }
 
     /**
      Get the statuses associated with an account.
      - Parameter account: The account object to gather statuses from.
-     - Returns: A list of statuses created by the account.
+     - Parameter after: A closure that utilizes the resulting data (`([Status]) -> Void`).
      */
-    public func getStatusesForAccount(_ account: Account) -> [Status] {
-        return getStatusesForAccount(withID: account.id)
+    public func getStatusesForAccount(_ account: Account, after: @escaping ([Status]) -> Void) {
+        return getStatusesForAccount(withID: account.id, after: after)
     }
 
 }

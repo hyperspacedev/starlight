@@ -10,8 +10,9 @@ import SwiftUI
 /// The view for displaying profiles.
 struct ProfileView: View {
 
+    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
+
     @State var editable: Bool = false
-    @State var account: Account?
 
     var body: some View {
         ScrollView {
@@ -39,7 +40,7 @@ struct ProfileView: View {
 
                     HStack {
 
-                        Text("Point Flash")
+                        Text(accountInfo.data?.displayName ?? "E")
                             .font(.title)
                             .bold()
 
@@ -121,6 +122,9 @@ struct ProfileView: View {
             }
         }
             .edgesIgnoringSafeArea(.top)
+            .onAppear {
+                self.accountInfo.fetchProfile()
+            }
     }
 
     var stats: some View {

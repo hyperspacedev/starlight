@@ -46,7 +46,7 @@ struct NetworkView: View {
 
         }
             .onAppear {
-                self.timeline.fetchPublicTimeline()
+                self.timeline.fetchLocalTimeline()
             }
 
     }
@@ -66,8 +66,8 @@ struct NetworkView: View {
 
             Section(header:
                 Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
-                    Text("My community").tag("local")
-                    Text("Public").tag("public")
+                    Text("My community").tag(TimelineScope.local)
+                    Text("Public").tag(TimelineScope.public)
                 }                        .pickerStyle(SegmentedPickerStyle())
                     .padding(.top)
                     .padding(.bottom, 2)) {

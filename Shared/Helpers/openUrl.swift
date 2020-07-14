@@ -18,7 +18,7 @@ func openUrl(_ url: String) {
         print("default browser was successfully opened")
     }
     #else
-    UIApplication.shared.openURL(URL(string: url)!)
+    UIApplication.shared.open(URL(string: url)!)
     #endif
 }
 
@@ -32,6 +32,6 @@ func openUrl(_ url: URL) {
         print("default browser was successfully opened")
     }
     #else
-    UIApplication.shared.openURL(url)
+    UIApplication.shared.open(url)
     #endif
 }
