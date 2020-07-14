@@ -229,6 +229,32 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		BF315F1624BDF18E00D0118E /* Representables */ = {
+			isa = PBXGroup;
+			children = (
+				BF673F0324B4A51F00A97FF3 /* Account.swift */,
+				FAE4B25E24B4EE83000B5405 /* Announcement.swift */,
+				FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */,
+				BF673F1224B4C20200A97FF3 /* Application.swift */,
+				BF673F2424B4CD6500A97FF3 /* Attachment.swift */,
+				BF673F1824B4C37200A97FF3 /* Card.swift */,
+				BF673F2724B4CF9200A97FF3 /* Context.swift */,
+				FA48238824B46E580095E415 /* Emoji.swift */,
+				FA48238524B46A860095E415 /* Field.swift */,
+				BF673F0F24B4BDA300A97FF3 /* History.swift */,
+				BF673F2A24B4D08F00A97FF3 /* Instance.swift */,
+				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
+				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
+				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
+				FAE4B26724B500DC000B5405 /* PollOption.swift */,
+				FAE4B26424B4F532000B5405 /* Relationship.swift */,
+				FAE4B25524B47032000B5405 /* Source.swift */,
+				FAE4B25B24B4ABFA000B5405 /* Status.swift */,
+				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
+			);
+			path = Representables;
+			sourceTree = "<group>";
+		};
 		BF455ED824B401830066FB1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,26 +383,8 @@
 		FA48238124B45CC30095E415 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BF673F0324B4A51F00A97FF3 /* Account.swift */,
-				FAE4B25E24B4EE83000B5405 /* Announcement.swift */,
-				FAE4B26124B4F1FA000B5405 /* AnnouncementReaction.swift */,
-				BF673F1224B4C20200A97FF3 /* Application.swift */,
-				BF673F2424B4CD6500A97FF3 /* Attachment.swift */,
-				BF673F1824B4C37200A97FF3 /* Card.swift */,
+				BF315F1624BDF18E00D0118E /* Representables */,
 				BFD620B524BC06AA00730632 /* Client.swift */,
-				BF673F2724B4CF9200A97FF3 /* Context.swift */,
-				FA48238824B46E580095E415 /* Emoji.swift */,
-				FA48238524B46A860095E415 /* Field.swift */,
-				BF673F0F24B4BDA300A97FF3 /* History.swift */,
-				BF673F2A24B4D08F00A97FF3 /* Instance.swift */,
-				BF673F1E24B4CB5B00A97FF3 /* Mention.swift */,
-				BF673F0624B4AEBA00A97FF3 /* Notification.swift */,
-				BF673F1B24B4C93000A97FF3 /* Poll.swift */,
-				FAE4B26724B500DC000B5405 /* PollOption.swift */,
-				FAE4B26424B4F532000B5405 /* Relationship.swift */,
-				FAE4B25524B47032000B5405 /* Source.swift */,
-				FAE4B25B24B4ABFA000B5405 /* Status.swift */,
-				BF673F0C24B4BD2800A97FF3 /* Tag.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
