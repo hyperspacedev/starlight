@@ -21,10 +21,11 @@ struct HomeView: View {
             .toolbar {
                 #if os(iOS)
                 ToolbarItem(placement: .primaryAction) {
-                    Button(action: {}) {
-                        Image(systemName: "square.and.pencil")
+                    NavigationLink(
+                        destination: Text("Notifs").padding()) {
+                        Image(systemName: "bell")
                     }
-                    .help("Create a new post.")
+                    .help("View all of your notifications.")
                 }
                 #endif
             }
