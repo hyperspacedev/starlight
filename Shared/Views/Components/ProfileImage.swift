@@ -21,6 +21,9 @@ public struct ProfileImage<Placeholder>: View where Placeholder: View {
     /// An ObservableObject that is used to be notified whenever the image data is available.
     @ObservedObject private var remoteImageModel: RemoteImageModel
 
+    /// The size for the profile image.
+    public var size: CGFloat
+
     public var body: some View {
 
         VStack {
@@ -29,7 +32,7 @@ public struct ProfileImage<Placeholder>: View where Placeholder: View {
                 Image(uiImage: remoteImage)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
+                    .frame(width: size, height: size)
                     .clipShape(Circle())
 
             } else {
@@ -59,9 +62,11 @@ extension ProfileImage where Placeholder: View {
     ///     - from: The ``Account``'s static avatar url ``CachedRemoteImage`` uses to retrieve the data.
     ///     - placeholder: The view builder that generates the placeholder to be shown until the avatar
     ///       data is retrieved.
-    public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder) {
+    ///     - size: The size of the image. Defaults to 50.0.
+    public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder, size: CGFloat = 50) {
         self.remoteImageModel = RemoteImageModel(urlString)
         self.placeholder = placeholder()
+        self.size = size
     }
 
 }

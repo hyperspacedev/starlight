@@ -42,6 +42,7 @@
 		BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2724B4CF9200A97FF3 /* Context.swift */; };
 		BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
 		BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
+		BF8D008724BE38D100F330E5 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D008624BE38D100F330E5 /* ExploreViewModel.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
 		BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */; };
@@ -144,6 +145,7 @@
 		BF673F2424B4CD6500A97FF3 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		BF673F2724B4CF9200A97FF3 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		BF673F2A24B4D08F00A97FF3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		BF8D008624BE38D100F330E5 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		BFBB3C6424A2D5C2007FEFE8 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BF8D008624BE38D100F330E5 /* ExploreViewModel.swift */,
 				BFBB3C6524A2D5C2007FEFE8 /* Info.plist */,
 				BFD620BB24BC09E000730632 /* ExploreView.swift */,
 				BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */,
@@ -644,6 +647,7 @@
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
+				BF8D008724BE38D100F330E5 /* ExploreViewModel.swift in Sources */,
 				FAE4B26824B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2824B4CF9200A97FF3 /* Context.swift in Sources */,
 				FA7E98AA24BA5A46002C9476 /* roundNumbers.swift in Sources */,

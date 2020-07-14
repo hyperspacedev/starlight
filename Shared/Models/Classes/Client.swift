@@ -252,4 +252,25 @@ public class AppClient {
         getStatusesForAccount(withID: account.id, completion: completion)
     }
 
+    /**
+     Get the trending hashtags on a server.
+     - Parameter completion: A closure that utilizes the resulting data (`([Tag]) -> Void`).
+     */
+    public func getFeaturedHashtags(completion: @escaping ([Tag]) -> Void) {
+        let apiURL = baseURL.appendingPathComponent("/api/v1/trends")
+        URLSession.shared.dataTask(with: apiURL) { data, _, error in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let tags = try JSONDecoder().decode([Tag].self, from: data!)
+                    completion(tags)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }.resume()
+    }
+
 }
