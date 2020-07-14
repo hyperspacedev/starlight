@@ -94,6 +94,23 @@ public class AppClient {
         var apiURL = baseURL
 
         switch scope {
+        case .home:
+            let request = makeAuthenticatedRequest(url: "/ap1/v1/timelines/home")
+            URLSession.shared.dataTask(with: request) { (data, _, error) in
+                if (error) != nil {
+                    print("Error: \(error as Any)")
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let results = try JSONDecoder().decode([Status].self, from: data!)
+                        completion(results)
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+            .resume()
+            return
         case .public:
             apiURL.appendPathComponent("/api/v1/timelines/public")
         case .local:
@@ -143,6 +160,7 @@ public class AppClient {
                 }
             }
         }
+        .resume()
     }
 
     /**
@@ -174,6 +192,7 @@ public class AppClient {
                 }
             }
         }
+        .resume()
     }
 
     /**
@@ -197,6 +216,7 @@ public class AppClient {
                 }
             }
         }
+        .resume()
     }
 
     /**
@@ -220,6 +240,7 @@ public class AppClient {
                 }
             }
         }
+        .resume()
     }
 
     /**
