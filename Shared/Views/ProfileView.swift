@@ -14,6 +14,11 @@ struct ProfileView: View {
 
     @State var editable: Bool = false
 
+    let devs = [
+        "alicerunsonfedora@mastodon.social",
+        "amodrono@mastodon.social"
+    ]
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -44,23 +49,35 @@ struct ProfileView: View {
                             .font(.title)
                             .bold()
 
-                        Text("STARLIGHT DEV")
-                            .foregroundColor(.secondary)
-                            .padding(.all, 5)
-                            .font(.caption2)
-                            .background(
-                                Color(.systemGray5)
-                                    .cornerRadius(3)
-                            )
+                        if let username = accountInfo.data?.displayName {
 
-                        Text("BOT")
-                            .foregroundColor(.white)
-                            .padding(.all, 5)
-                            .font(.caption2)
-                            .background(
-                                Color.blue
-                                    .cornerRadius(3)
-                            )
+                            if devs.contains(username) {
+                                Text("STARLIGHT DEV")
+                                    .foregroundColor(.secondary)
+                                    .padding(.all, 5)
+                                    .font(.caption2)
+                                    .background(
+                                        Color(.systemGray5)
+                                            .cornerRadius(3)
+                                    )
+                            }
+
+                        }
+
+                        if let isBot = accountInfo.data?.bot {
+
+                            if isBot {
+                                Text("BOT")
+                                    .foregroundColor(.white)
+                                    .padding(.all, 5)
+                                    .font(.caption2)
+                                    .background(
+                                        Color.blue
+                                            .cornerRadius(3)
+                                    )
+                            }
+
+                        }
 
                     }
 
@@ -70,10 +87,13 @@ struct ProfileView: View {
 
                     Text("Photographer for @ScotiaNews.")
                         .padding(.top, 10)
+                }
+                    .padding(.horizontal)
+                    .padding(.top, 40)
 
-                    self.stats
-                        .padding(.top)
+                self.stats
 
+                VStack(alignment: .leading) {
                     HStack(spacing: 16.0) {
                         if editable {
                             Button(action: {}, label: {
@@ -113,7 +133,6 @@ struct ProfileView: View {
                     }
                 }
                     .padding(.horizontal)
-                    .padding(.top, 40)
 
                 List {
                     Text("Statuses for this profile go here.")
@@ -128,73 +147,76 @@ struct ProfileView: View {
     }
 
     var stats: some View {
-        VStack {
+        HStack {
 
-            Divider()
-
-            HStack {
-
-                Group {
-
-                    Divider()
-
-                    Spacer()
-
-                    VStack {
-
-                        Text("80")
-                            .font(.system(size: 20))
-
-                        Text("Followers")
-                            .fontWeight(.semibold)
-
-                    }
-
-                    Spacer()
-
-                    Divider()
-
-                    Spacer()
-
-                    VStack {
-
-                        Text("20")
-                            .font(.system(size: 20))
-
-                        Text("Following")
-                            .fontWeight(.semibold)
-
-                    }
-
-                    Spacer()
-
-                    Divider()
-
-                }
+            Group {
 
                 Spacer()
 
                 VStack {
 
-                    Text("300")
+                    Text("\(3142.roundedWithAbbreviations)")
                         .font(.system(size: 20))
 
-                    Text("Posts")
+                    Text("Followers")
                         .fontWeight(.semibold)
 
                 }
 
                 Spacer()
 
-                Divider()
+            }
+
+            Rectangle()
+                .foregroundColor(.white)
+                .frame(width: 1, height: 60)
+
+            Group {
+
+                Spacer()
+
+                VStack {
+
+                    Text("\(200.roundedWithAbbreviations)")
+                        .font(.system(size: 20))
+
+                    Text("Following")
+                        .fontWeight(.semibold)
+
+                }
+
+                Spacer()
 
             }
-            .frame(height: 50)
-                .padding(.top, -10)
 
-            Divider()
-                .padding(.top, -10)
+            Rectangle()
+                .foregroundColor(.white)
+                .frame(width: 1, height: 60)
+
+            Group {
+
+                Spacer()
+
+                VStack {
+
+                    Text("\(19360.roundedWithAbbreviations)")
+                        .font(.system(size: 20))
+
+                    Text("Toots")
+                        .fontWeight(.semibold)
+
+                }
+
+                Spacer()
+
+            }
+
         }
+            .background(
+                Color.blue
+                    .opacity(0.2)
+            )
+
     }
 }
 
