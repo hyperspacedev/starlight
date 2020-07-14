@@ -110,7 +110,6 @@ struct StatusView: View {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 })
-
             }
 
             Text("\(self.status.content)")

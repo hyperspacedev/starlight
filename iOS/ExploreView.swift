@@ -10,6 +10,7 @@ import SwiftUI
 struct ExploreView: View {
 
     @State private var searchText: String = ""
+    @ObservedObject private var explored = ExploreViewModel()
 
     var body: some View {
         NavigationView {
@@ -21,40 +22,25 @@ struct ExploreView: View {
                             TextField("Search...", text: $searchText)
                         }
                     }
-                    Section(header: Text("Trending Tags")) {
-                        HStack(spacing: 20) {
 
-                            Image(systemName: "number")
+                    if !self.explored.tags.isEmpty {
+                        Section(header: Text("Trending Tags")) {
 
-                            VStack(alignment: .leading, spacing: 2) {
-
-                                Text("equestria")
-
-                                Text("12 people talking")
-                                    .font(.caption)
-
+                            ForEach(self.explored.tags, id: \.self.id) { (tag: Tag) in
+                                HStack(spacing: 20) {
+                                    Image(systemName: "number")
+                                        .foregroundColor(.accentColor)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("\(tag.name)")
+                                        Text("\(tag.history?.first?.accounts ?? "0") people talking")
+                                            .font(.caption)
+                                    }
+                                }
+                                .padding(.horizontal, 5)
                             }
-
                         }
-                        .padding(.horizontal, 5)
-
-                        HStack(spacing: 20) {
-
-                            Image(systemName: "number")
-
-                            VStack(alignment: .leading, spacing: 2) {
-
-                                Text("mastodon")
-
-                                Text("19 people talking")
-                                    .font(.caption)
-
-                            }
-
-                        }
-                        .padding(.horizontal, 5)
-
                     }
+
                     Section(header: Text("Recommended for You")) {
                         RecommendedProfile(imageName: "amethyst", name: "Amethyst", user: "@amethyst")
                         RecommendedProfile(imageName: "curtis", name: "Curtis Smith", user: "@asalways")
@@ -67,6 +53,9 @@ struct ExploreView: View {
                 .listStyle(InsetGroupedListStyle())
             }
             .navigationTitle("Explore")
+            .onAppear {
+                self.explored.getTags()
+            }
         }
     }
 }

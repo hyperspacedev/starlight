@@ -20,10 +20,10 @@ public class History: Codable, Identifiable {
     public let day: String
 
     /// The number of times a tag was used on this day.
-    public let uses: Int
+    public let uses: String
 
     /// The number of accounts that used this tag on this day.
-    public let accounts: Int
+    public let accounts: String
 
     // MARK: - COMPUTED PROPERTIES
     enum CodingKeys: String, CodingKey {
