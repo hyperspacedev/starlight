@@ -22,7 +22,7 @@ struct HomeView: View {
                 #if os(iOS)
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink(
-                        destination: Text("Notifs").padding()) {
+                        destination: NotificationsView()) {
                         Image(systemName: "bell")
                     }
                     .help("View all of your notifications.")

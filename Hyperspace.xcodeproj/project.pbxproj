@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BF014B0E24B67CBE002C5812 /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */; };
+		BF0391EB24BE9BAA004987D5 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */; };
+		BF0391EC24BE9BAA004987D5 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */; };
 		BF11463E24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF11463F24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF315F1824BE0ACA00D0118E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */; };
@@ -129,6 +131,7 @@
 
 /* Begin PBXFileReference section */
 		BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
+		BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
 		BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 				BFE07C8624BCA6F800203706 /* RecommendedView.swift */,
 				BFE07C8924BCA86B00203706 /* HomeView.swift */,
 				BFE07C8C24BCAF6100203706 /* ProfileView.swift */,
+				BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -641,6 +645,7 @@
 				BFD620BC24BC09E000730632 /* ExploreView.swift in Sources */,
 				FA7E98A424B9DC32002C9476 /* RemoteImageModel.swift in Sources */,
 				BF014B0E24B67CBE002C5812 /* AppTabNavigation.swift in Sources */,
+				BF0391EB24BE9BAA004987D5 /* NotificationsView.swift in Sources */,
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				BFD620B924BC078100730632 /* TimelineScope.swift in Sources */,
@@ -704,6 +709,7 @@
 				BFD620B724BC06AA00730632 /* Client.swift in Sources */,
 				FA48238A24B46E580095E415 /* Emoji.swift in Sources */,
 				FA7E98AE24BA5EFA002C9476 /* dateFormatter.swift in Sources */,
+				BF0391EC24BE9BAA004987D5 /* NotificationsView.swift in Sources */,
 				FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */,
 				FA7499A224BC41D5002A9E69 /* ImageDisplayView.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
@@ -880,7 +886,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -894,7 +900,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "ARCHS_STANDARD x86_64";
+				VALID_ARCHS = "$(ARCHS_STANDARD) x86_64";
 			};
 			name = Debug;
 		};
@@ -904,7 +910,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
