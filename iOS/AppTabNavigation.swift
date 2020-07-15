@@ -42,7 +42,31 @@ struct AppTabNavigation: View {
                 Label("Settings", systemImage: "gear")
                     .imageScale(.large)
             }
-        }.tabViewStyle(DefaultTabViewStyle())
+        }
+            .tabViewStyle(DefaultTabViewStyle())
+            .overlay(noConnectionBanner, alignment: .top)
+    }
+
+    var noConnectionBanner: some View {
+        VStack {
+            if isConnectedToNetwork() {
+                HStack {
+
+                    Spacer()
+
+                    Text("No internet connection was found.")
+
+                    Spacer()
+
+                }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(
+                        Color.red
+                    )
+            }
+        }
     }
 }
 

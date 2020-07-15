@@ -161,7 +161,7 @@ struct ProfileView: View {
 
                 } else {
 
-                    LazyVStack {
+                    VStack {
                         ForEach(self.accountInfo.statuses, id: \.self.id) { status in
 
                             StatusView(status: status)
@@ -196,7 +196,7 @@ struct ProfileView: View {
                 Spacer()
 
                 VStack {
-                    Text("\(accountInfo.data?.followersCount ?? 0)")
+                    Text("\((accountInfo.data?.followersCount ?? 0).roundedWithAbbreviations)")
                         .font(.system(size: 20))
                     Text("Followers")
                         .fontWeight(.semibold)
@@ -216,7 +216,7 @@ struct ProfileView: View {
 
                 VStack {
 
-                    Text("\(accountInfo.data?.followingCount ?? 0)")
+                    Text("\((accountInfo.data?.followingCount ?? 0).roundedWithAbbreviations)")
                         .font(.system(size: 20))
 
                     Text("Following")
@@ -238,7 +238,7 @@ struct ProfileView: View {
 
                 VStack {
 
-                    Text("\(accountInfo.data?.statusesCount ?? 0)")
+                    Text("\((accountInfo.data?.statusesCount ?? 0).roundedWithAbbreviations)")
                         .font(.system(size: 20))
 
                     Text("Toots")
