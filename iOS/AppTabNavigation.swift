@@ -49,7 +49,7 @@ struct AppTabNavigation: View {
 
     var noConnectionBanner: some View {
         VStack {
-            if isConnectedToNetwork() {
+            if !isConnectedToNetwork() {
                 HStack {
 
                     Spacer()
