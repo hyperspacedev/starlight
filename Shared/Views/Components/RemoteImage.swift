@@ -27,7 +27,8 @@ extension Image {
 struct RemoteImage_Previews: PreviewProvider {
     static var previews: some View {
         Image("amodrono")
-            .remote(from: "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg")
+            .remote(
+                from: "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg")
             .resizable()
             .scaledToFit()
     }

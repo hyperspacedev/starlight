@@ -13,35 +13,20 @@ public class ThreadViewModel: ObservableObject {
 
     // MARK: - STORED PROPERTIES
 
-    /// An array composed of several ``Status``, that compose the status' thread.
-    @Published var thread = [Status]()
+    /// An array of several ``Status``es, that compose the status' thread.
+    @Published var context: Context?
 
     // MARK: - FUNCTIONS
 
     /// View statuses above and below this status in the thread.
     ///
     /// - Parameters:
-    ///     - id: The universal identifier of the status whose thread we wish to obtain.
-    func fetchReplies(from: String) {
+    ///     - id: The universal identifier of the status whose context we wish to obtain.
+    func fetchContext(for statusId: String) {
 
-        guard let url = URL(string: "https://mastodon.social/api/v1/statuses/\(from)/context") else { return }
-
-        URLSession.shared.dataTask(with: url) { (data, resp, error) in
-
-            print("resp: \(resp as Any)\n\nerror: \(String(describing: error))\n\ndata: \(String(describing: data))")
-
-            DispatchQueue.main.async {
-                do {
-                        let result = try JSONDecoder().decode([Status].self, from: data!)
-                        self.thread = result
-                        print("result: \(result)")
-                } catch {
-                    print(error)
-                }
-            }
-
-        }
-        .resume()
+        AppClient.shared().getContext(forStatusID: statusId, completion: { context in
+            self.context = context
+        })
 
     }
 

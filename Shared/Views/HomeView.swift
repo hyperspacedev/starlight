@@ -24,6 +24,7 @@ struct HomeView: View {
                     NavigationLink(
                         destination: NotificationsView()) {
                         Image(systemName: "bell")
+                            .imageScale(.large)
                     }
                     .help("View all of your notifications.")
                 }

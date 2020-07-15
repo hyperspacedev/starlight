@@ -190,7 +190,7 @@ struct ProfileView: View {
 
     var stats: some View {
         HStack {
-            
+
             Group {
 
                 Spacer()
@@ -206,7 +206,6 @@ struct ProfileView: View {
 
             }
 
-            
             Rectangle()
                 .foregroundColor(.white)
                 .frame(width: 1, height: 60)

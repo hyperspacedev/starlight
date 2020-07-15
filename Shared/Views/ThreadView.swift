@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ThreadView: View {
 
-    @ObservedObject var thread = ThreadViewModel()
+    @ObservedObject var threadModel = ThreadViewModel()
     public let mainStatus: Status
 
     var body: some View {
@@ -53,18 +53,50 @@ struct ThreadView: View {
 
         List {
 
+            if let context = self.threadModel.context {
+
+                ForEach(context.ancestors) { currentStatus in
+
+                    StatusView(status: currentStatus)
+                        .padding(.vertical, 5)
+
+                }
+
+            }
+
             StatusView(isMain: true, status: mainStatus)
 
-            ForEach(self.thread.thread) { currentStatus in
+            if let context = self.threadModel.context {
 
-                StatusView(status: currentStatus)
-                    .padding(.vertical, 5)
+                ForEach(context.descendants) { currentStatus in
 
+                    StatusView(status: currentStatus)
+                        .padding(.vertical, 5)
+
+                }
+
+            } else {
+
+                HStack {
+
+                    Spacer()
+
+                    VStack {
+                        Spacer()
+                        ProgressView(value: 0.5)
+                            .progressViewStyle(CircularProgressViewStyle())
+                        Text("Loading replies...")
+                        Spacer()
+                    }
+
+                    Spacer()
+
+                }
             }
 
         }
             .onAppear {
-                self.thread.fetchReplies(from: self.mainStatus.id)
+                self.threadModel.fetchContext(for: self.mainStatus.id)
             }
 
     }

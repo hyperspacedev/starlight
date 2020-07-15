@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    
+
     @State var pageSelect: String = "notifs"
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {

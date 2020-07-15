@@ -10,7 +10,7 @@ import Foundation
 /**
  The primary client object that handles all fediverse requests.
  
- Most of the getter and setter methods works asynchronously when calling the DispatchQueue and will usually not return
+ Most of the getter and setter methods work asynchronously when calling the DispatchQueue and will usually not return
  data. This model works best in scenarios where data needs to be loaded into a view.
  */
 public class AppClient {
@@ -88,7 +88,7 @@ public class AppClient {
     /**
      Gets the stream of statuses for a specified timeline.
      - Parameter scope: The timeline scope to get.
-     - Parameter completion: A closure that utilizes the resulting statuses (`([Status]) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the resulting statuses (`([Status]) -> Void`).
      */
     public func getTimeline(scope: TimelineScope, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
@@ -143,7 +143,7 @@ public class AppClient {
 
     /**
      Get the user's notification stream.
-     - Parameter completion: A closure utilizing the notification data `([Notification]) -> Void`.
+     - Parameter completion: An escaping closure utilizing the notification data `([Notification]) -> Void`.
      */
     public func getNotifications(completion: @escaping([Notification]) -> Void) {
         let request = makeAuthenticatedRequest(url: "/api/v1/notifications")
@@ -166,7 +166,7 @@ public class AppClient {
     /**
      Get the context for a given status.
      - Parameter forStatus: The status to get the contextual data for.
-     - Parameter completion: A closure that utilizes the context data (`(Context) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the context data (`(Context) -> Void`).
      */
     public func getContext(forStatus: Status, completion: @escaping (Context) -> Void) {
         getContext(forStatusID: forStatus.id, completion: completion)
@@ -175,7 +175,7 @@ public class AppClient {
     /**
      Get the context for a given status from its ID.
      - Parameter forStatusID: The status ID to get the contextual data for.
-     - Parameter completion: A closure that utilizes the context data (`(Context) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the context data (`(Context) -> Void`).
      */
     public func getContext(forStatusID: String, completion: @escaping (Context) -> Void) {
         let apiRequest = baseURL.appendingPathComponent("/api/v1/statuses/\(forStatusID)/context")
@@ -198,7 +198,7 @@ public class AppClient {
     /**
      Get the account with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Parameter completion: A closure that utilizes the resulting account data (`(Account) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the resulting account data (`(Account) -> Void`).
      */
     public func getAccount(withID: String, completion: @escaping (Account) -> Void) {
         var apiURL = baseURL
@@ -222,7 +222,7 @@ public class AppClient {
     /**
      Get the statuses associated with a given ID.
      - Parameter withID: The ID number associated with the account.
-     - Parameter completion: A closure that utilizes the resulting data (`([Status]) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).
      */
     public func getStatusesForAccount(withID: String, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
@@ -246,7 +246,7 @@ public class AppClient {
     /**
      Get the statuses associated with an account.
      - Parameter account: The account object to gather statuses from.
-     - Parameter completion: A closure that utilizes the resulting data (`([Status]) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).
      */
     public func getStatusesForAccount(_ account: Account, completion: @escaping ([Status]) -> Void) {
         getStatusesForAccount(withID: account.id, completion: completion)
@@ -254,7 +254,7 @@ public class AppClient {
 
     /**
      Get the trending hashtags on a server.
-     - Parameter completion: A closure that utilizes the resulting data (`([Tag]) -> Void`).
+     - Parameter completion: An escaping closure that utilizes the resulting data (`([Tag]) -> Void`).
      */
     public func getFeaturedHashtags(completion: @escaping ([Tag]) -> Void) {
         let apiURL = baseURL.appendingPathComponent("/api/v1/trends")
