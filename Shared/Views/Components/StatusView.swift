@@ -5,6 +5,7 @@
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
 
+import Down
 import SwiftUI
 
 /// A structure that computes statuses on demand from a `Status` data model.
@@ -23,7 +24,7 @@ struct StatusView: View {
     /// In order to achieve this, we pass a bool to ``StatusView``, which when true,
     /// tells it that it's content should be displayed as `Focused`.
     private var isMain: Bool
-
+    
     /// The ``Status`` data model whose the data will be displayed.
     var status: Status
 
@@ -112,7 +113,7 @@ struct StatusView: View {
                 })
             }
 
-            Text("\(self.status.content)")
+            AttributedText(attributedString: NSAttributedString(string: self.status.content))
                 .font(.system(size: 20, weight: .light))
 
             if !self.status.mediaAttachments.isEmpty {
@@ -201,8 +202,8 @@ struct StatusView: View {
 
                     }
 
-                    Text("\(self.status.content)")
-                        .fontWeight(.light)
+                    AttributedText(attributedString: NSAttributedString(string: self.status.content))
+                        .font(.system(size: 12, weight: .light))
 
                     if !self.status.mediaAttachments.isEmpty {
                         AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
