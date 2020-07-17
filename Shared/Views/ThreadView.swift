@@ -51,49 +51,54 @@ struct ThreadView: View {
 
     var view: some View {
 
-        List {
+        ScrollViewReader { scrollview in
+            List {
 
-            if let context = self.threadModel.context {
+                if let context = self.threadModel.context {
 
-                ForEach(context.ancestors) { currentStatus in
+                    ForEach(context.ancestors) { currentStatus in
 
-                    StatusView(status: currentStatus)
-                        .padding(.vertical, 5)
+                        StatusView(status: currentStatus)
+                            .padding(.vertical, 5)
 
-                }
-
-            }
-
-            StatusView(isMain: true, status: mainStatus)
-
-            if let context = self.threadModel.context {
-
-                ForEach(context.descendants) { currentStatus in
-
-                    StatusView(status: currentStatus)
-                        .padding(.vertical, 5)
+                    }
+                        .onAppear {
+                            scrollview.scrollTo(self.mainStatus)
+                        }
 
                 }
 
-            } else {
+                StatusView(isMain: true, status: mainStatus)
 
-                HStack {
+                if let context = self.threadModel.context {
 
-                    Spacer()
+                    ForEach(context.descendants) { currentStatus in
 
-                    VStack {
-                        Spacer()
-                        ProgressView(value: 0.5)
-                            .progressViewStyle(CircularProgressViewStyle())
-                        Text("Loading replies...")
-                        Spacer()
+                        StatusView(status: currentStatus)
+                            .padding(.vertical, 5)
+
                     }
 
-                    Spacer()
+                } else {
 
+                    HStack {
+
+                        Spacer()
+
+                        VStack {
+                            Spacer()
+                            ProgressView(value: 0.5)
+                                .progressViewStyle(CircularProgressViewStyle())
+                            Text("Loading replies...")
+                            Spacer()
+                        }
+
+                        Spacer()
+
+                    }
                 }
-            }
 
+            }
         }
             .onAppear {
                 self.threadModel.fetchContext(for: self.mainStatus.id)
