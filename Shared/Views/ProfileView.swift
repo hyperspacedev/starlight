@@ -313,6 +313,7 @@ struct ProfileView: View {
 
                             }
                                 .padding()
+                                .padding(.top)
 
                         }
                         .clipped()

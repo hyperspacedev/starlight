@@ -72,6 +72,7 @@ struct StatusView: View {
             }
 
         }
+            .buttonStyle(PlainButtonStyle())
 
     }
 
@@ -171,53 +172,57 @@ struct StatusView: View {
 
         VStack(alignment: .leading) {
 
-            HStack(alignment: .top) {
+            Button(action: {
+                self.goToThread = 1
+            }, label: {
+                HStack(alignment: .top) {
 
-                ProfileImage(from: self.status.account.avatarStatic, placeholder: {
-                    Circle()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.gray)
-                })
+                    ProfileImage(from: self.status.account.avatarStatic, placeholder: {
+                        Circle()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.gray)
+                    })
 
-                VStack(alignment: .leading, spacing: 5) {
+                    VStack(alignment: .leading, spacing: 5) {
 
-                    HStack {
+                        HStack {
 
-                        HStack(spacing: 5) {
+                            HStack(spacing: 5) {
 
-                            Text("\(self.status.account.displayName)")
-                                .font(.headline)
-                                .lineLimit(1)
+                                Text("\(self.status.account.displayName)")
+                                    .font(.headline)
+                                    .lineLimit(1)
 
-                            Text("\(self.status.account.acct)")
-                                .foregroundColor(.gray)
-                                .lineLimit(1)
+                                Text("\(self.status.account.acct)")
+                                    .foregroundColor(.gray)
+                                    .lineLimit(1)
 
-                            Text("· \(self.status.createdAt.getDate()!.getInterval())")
-                                .lineLimit(1)
+                                Text("· \(self.status.createdAt.getDate()!.getInterval())")
+                                    .lineLimit(1)
+
+                            }
 
                         }
 
-                    }
+                        Text("\(self.status.content)")
+                            .fontWeight(.light)
 
-                    Text("\(self.status.content)")
-                        .fontWeight(.light)
-
-                    if !self.status.mediaAttachments.isEmpty {
-                        AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
-                            Rectangle()
-                                .scaledToFit()
-                                .cornerRadius(10)
+                        if !self.status.mediaAttachments.isEmpty {
+                            AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
+                                Rectangle()
+                                    .scaledToFit()
+                                    .cornerRadius(10)
+                            }
                         }
-                    }
 
-                    self.actionButtons
-                        .padding(.top)
+                    }
 
                 }
+            })
 
-            }
+            self.actionButtons
+                .padding(.leading, 60)
 
         }
             .contextMenu(
@@ -318,13 +323,7 @@ struct StatusView: View {
 
 extension StatusView {
 
-    /// Generates a View that retrieves image data from a remote URL
-    /// (usually decoded from JSON), that automatically changes across updates;
-    /// and caches it.
-    ///
-    /// It's important that `content` makes use of the escaping closure to display the image,
-    /// or else anything will be displayed. If a problem occurs while retrieving the data, an
-    /// error message will be provided. You should log that and maybe show a simple message to the user.
+    /// Generates a View that displays a post on Mastodon.
     ///
     /// - Parameters:
     ///     - isPresented: A boolean variable that determines whether
@@ -343,6 +342,31 @@ struct StatusView_Previews: PreviewProvider {
     @ObservedObject static var timeline = NetworkViewModel()
 
     static var previews: some View {
-        StatusView(isMain: false, status: self.timeline.statuses[0])
+        VStack {
+            if self.timeline.statuses.isEmpty {
+                HStack {
+
+                    Spacer()
+
+                    VStack {
+                        Spacer()
+                        ProgressView(value: 0.5)
+                            .progressViewStyle(CircularProgressViewStyle())
+                        Text("Loading status...")
+                        Spacer()
+                    }
+
+                    Spacer()
+
+                }
+                    .onAppear {
+                        self.timeline.fetchLocalTimeline()
+                    }
+            } else {
+                StatusView(isMain: false, status: self.timeline.statuses[0])
+            }
+        }
+            .frame(width: 600, height: 300)
+            .previewLayout(.sizeThatFits)
     }
 }
