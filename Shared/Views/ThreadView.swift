@@ -51,8 +51,8 @@ struct ThreadView: View {
 
     var view: some View {
 
-        List {
-            ScrollViewReader { scrollview in
+        ScrollViewReader { scrollview in
+            List {
 
                 if let context = self.threadModel.context {
 
