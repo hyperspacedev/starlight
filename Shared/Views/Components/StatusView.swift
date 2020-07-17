@@ -33,6 +33,10 @@ struct StatusView: View {
     /// Using for triggering the navigation View **only**when the user taps
     /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
+    
+    @State var showMoreActions: Bool = false
+    
+    @State var profileViewActive: Bool = false
 
     #endif
 
@@ -81,7 +85,14 @@ struct StatusView: View {
     var presentedView: some View {
 
         VStack(alignment: .leading) {
-
+            
+            NavigationLink(destination:
+                            ProfileView(isParent: false,
+                                        accountInfo: ProfileViewModel(accountID: self.status.account.id)),
+                           isActive: self.$profileViewActive) {
+                EmptyView()
+            }
+            
             HStack(alignment: .center) {
 
                 ProfileImage(from: self.status.account.avatarStatic, placeholder: {
@@ -108,7 +119,7 @@ struct StatusView: View {
 
                 Spacer()
 
-                Button(action: {}, label: {
+                Button(action: { self.showMoreActions.toggle() }, label: {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 })
@@ -167,6 +178,26 @@ struct StatusView: View {
 
         }
             .buttonStyle(PlainButtonStyle())
+        .navigationBarHidden(self.profileViewActive)
+        .actionSheet(isPresented: self.$showMoreActions) {
+            ActionSheet(title: Text("More Actions"),
+                        buttons: [
+                            .default(Text("View @\(self.status.account.acct)'s profile"), action: {
+                                self.profileViewActive = true
+                            }),
+                            .destructive(Text("Mute @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .destructive(Text("Block @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .destructive(Text("Report @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .cancel(Text("Dismiss"), action: {})
+                        ]
+            )
+        }
 
     }
 
@@ -206,7 +237,6 @@ struct StatusView: View {
                             }
 
                         }
-                        .fontWeight(.light)
                         Text("\(self.status.content)")
                             .fontWeight(.light)
 

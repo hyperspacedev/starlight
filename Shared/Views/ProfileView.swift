@@ -266,11 +266,12 @@ struct ProfileView: View {
                                 VStack {
 
                                     Text(accountInfo.data?.displayName ?? "user")
-                                        .font(.avenirNext(size: 15))
+                                        .font(.system(size: 15))
+                                        .fontWeight(.bold)
                                         .foregroundColor(.white)
 
-                                    Text(accountInfo.data?.acct ?? "user@instance")
-                                        .font(.avenirNext(size: 12))
+                                    Text("@\(accountInfo.data?.acct ?? "user@instance")")
+                                        .font(.system(size: 12))
                                         .foregroundColor(Color(.systemGray3))
 
                                 }
