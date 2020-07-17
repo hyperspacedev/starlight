@@ -116,9 +116,7 @@ struct ProfileView: View {
             } else {
                 ScrollView {
 
-                    VStack(alignment: .leading, spacing: 10) {
-
-                        Spacer()
+                    LazyVStack(alignment: .leading, spacing: 10) {
 
                         VStack(alignment: .leading) {
 
@@ -220,12 +218,14 @@ struct ProfileView: View {
 
                         }
 
-                        ForEach(self.accountInfo.statuses, id: \.self.id) { status in
+                        VStack {
+                            ForEach(self.accountInfo.statuses, id: \.self.id) { status in
 
-                            StatusView(status: status)
+                                StatusView(status: status)
 
-                            Divider()
+                                Divider()
 
+                            }
                         }
 
                     }
