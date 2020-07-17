@@ -93,10 +93,32 @@ struct ProfileView: View {
     var body: some View {
 
         NavigationView {
-            ScrollView {
+            if self.accountInfo.statuses.isEmpty {
+                HStack {
 
-                ScrollViewReader { scrollview in
+                    Spacer()
+
+                    VStack {
+                        Spacer()
+                        ProgressView(value: 0.5)
+                            .progressViewStyle(CircularProgressViewStyle())
+                        Text("Loading posts...")
+                        Spacer()
+                    }
+
+                    Spacer()
+
+                }
+                .onAppear {
+                    self.accountInfo.fetchProfile()
+                    self.accountInfo.fetchProfileStatuses()
+                }
+            } else {
+                ScrollView {
+
                     VStack(alignment: .leading, spacing: 10) {
+
+                        Spacer()
 
                         VStack(alignment: .leading) {
 
@@ -107,18 +129,18 @@ struct ProfileView: View {
                                     .bold()
                                     .background(GeometryGetter(rect: self.$titleRect))
 
-                                if accountInfo.isDev {
-
-                                    Text("STARLIGHT DEV")
-                                        .foregroundColor(.secondary)
-                                        .padding(.all, 5)
-                                        .font(.caption2)
-                                        .background(
-                                            Color(.systemGray5)
-                                                .cornerRadius(3)
-                                        )
-
-                                }
+//                                if accountInfo.isDev {
+//
+//                                    Text("STARLIGHT DEV")
+//                                        .foregroundColor(.secondary)
+//                                        .padding(.all, 5)
+//                                        .font(.caption2)
+//                                        .background(
+//                                            Color(.systemGray5)
+//                                                .cornerRadius(3)
+//                                        )
+//
+//                                }
 
                                 if let isBot = accountInfo.data?.bot {
 
@@ -198,31 +220,11 @@ struct ProfileView: View {
 
                         }
 
-                        if self.accountInfo.statuses.isEmpty {
+                        ForEach(self.accountInfo.statuses, id: \.self.id) { status in
 
-                            HStack {
+                            StatusView(status: status)
 
-                                Spacer()
-
-                                VStack {
-                                    Spacer()
-                                    ProgressView(value: 0.5)
-                                        .progressViewStyle(CircularProgressViewStyle())
-                                    Text("Loading posts...")
-                                    Spacer()
-                                }
-
-                                Spacer()
-
-                            }
-
-                        } else {
-
-                            ForEach(self.accountInfo.statuses, id: \.self.id) { status in
-
-                                StatusView(status: status)
-
-                            }
+                            Divider()
 
                         }
 
@@ -231,107 +233,103 @@ struct ProfileView: View {
                         .padding(.top, 16.0)
                         .offset(y: imageHeight)
                         .background(GeometryGetter(rect: $contentFrame.frame))
-                        .onAppear {
-                            self.accountInfo.fetchProfile()
-                            self.accountInfo.fetchProfileStatuses(scrollview)
-                        }
-                }
 
-                GeometryReader { geometry in
+                    GeometryReader { geometry in
 
-                    ZStack(alignment: .bottom) {
-                        Image("sotogrande")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: geometry.size.width, height: self.getHeightForHeaderImage(geometry))
-                            .blur(radius: self.getBlurRadiusForImage(geometry) - 3)
-                            .clipped()
-                            .background(GeometryGetter(rect: self.$headerImageRect))
-
-                        HStack {
-
-                            if !isParent {
-                                Button(action: {}, label: {
-                                    Image(systemName: "chevron.left")
-                                        .font(.system(size: 25, weight: .semibold))
-                                        .foregroundColor(.white)
-                                })
-                            } else {
-                                Button(action: {}, label: {
-                                    Image(systemName: "pencil")
-                                        .font(.system(size: 25, weight: .semibold))
-                                        .foregroundColor(.white)
-                                })
-                            }
-
-                            Spacer()
-
-                            VStack {
-
-                                Text(accountInfo.data?.displayName ?? "user")
-                                    .font(.avenirNext(size: 15))
-                                    .foregroundColor(.white)
-
-                                Text(accountInfo.data?.acct ?? "user@instance")
-                                    .font(.avenirNext(size: 12))
-                                    .foregroundColor(Color(.systemGray3))
-
-                            }
-
-                            Spacer()
-
-                            Button(action: {}, label: {
-                                Image(systemName: "ellipsis")
-                                    .font(.system(size: 25, weight: .semibold))
-                                    .foregroundColor(.white)
-                            })
-
-                        }
-                            .padding(.horizontal)
-                            .offset(x: 0, y: self.getHeaderTitleOffset())
-
-                        VStack {
+                        ZStack(alignment: .bottom) {
+                            Image("sotogrande")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width, height: self.getHeightForHeaderImage(geometry))
+                                .blur(radius: self.getBlurRadiusForImage(geometry) - 3)
+                                .clipped()
+                                .background(GeometryGetter(rect: self.$headerImageRect))
 
                             HStack {
 
                                 if !isParent {
-                                    Image(systemName: "chevron.left")
-                                        .font(.system(size: 25, weight: .semibold))
+                                    Button(action: {}, label: {
+                                        Image(systemName: "chevron.left")
+                                            .font(.system(size: 25, weight: .semibold))
+                                            .foregroundColor(.white)
+                                    })
+                                } else {
+                                    Button(action: {}, label: {
+                                        Image(systemName: "pencil")
+                                            .font(.system(size: 25, weight: .semibold))
+                                            .foregroundColor(.white)
+                                    })
+                                }
+
+                                Spacer()
+
+                                VStack {
+
+                                    Text(accountInfo.data?.displayName ?? "user")
+                                        .font(.avenirNext(size: 15))
                                         .foregroundColor(.white)
-                                        .padding(10)
+
+                                    Text(accountInfo.data?.acct ?? "user@instance")
+                                        .font(.avenirNext(size: 12))
+                                        .foregroundColor(Color(.systemGray3))
+
                                 }
 
                                 Spacer()
 
                                 Button(action: {}, label: {
-                                    Image(systemName: "pencil")
+                                    Image(systemName: "ellipsis")
                                         .font(.system(size: 25, weight: .semibold))
                                         .foregroundColor(.white)
-                                        .padding(10)
                                 })
 
                             }
+                                .padding(.horizontal)
+                                .offset(x: 0, y: self.getHeaderTitleOffset())
 
-                            Spacer()
+                            VStack {
+
+                                HStack {
+
+                                    if !isParent {
+                                        Image(systemName: "chevron.left")
+                                            .font(.system(size: 25, weight: .semibold))
+                                            .foregroundColor(.white)
+                                            .padding(10)
+                                    }
+
+                                    Spacer()
+
+                                    Button(action: {}, label: {
+                                        Image(systemName: "pencil")
+                                            .font(.system(size: 25, weight: .semibold))
+                                            .foregroundColor(.white)
+                                            .padding(10)
+                                    })
+
+                                }
+
+                                Spacer()
+
+                            }
+                                .padding()
 
                         }
-                            .padding()
-
+                        .clipped()
+                        .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))
                     }
-                    .clipped()
-                    .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))
+                        .frame(height: imageHeight)
+                        .offset(x: 0, y: -(contentFrame.startingRect?.maxY ?? UIScreen.main.bounds.height))
                 }
-                    .frame(height: imageHeight)
-                    .offset(x: 0, y: -(contentFrame.startingRect?.maxY ?? UIScreen.main.bounds.height))
+                    .edgesIgnoringSafeArea(.all)
+                    .navigationBarHidden(true)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("Profile")
             }
-                .edgesIgnoringSafeArea(.all)
-                .navigationBarHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Profile")
+
         }
             .actionSheet(isPresented: self.$showMoreActions) {
                 ActionSheet(title: Text("More Actions"),
-//                            message: Text("Description"),
                             buttons: [
                                 .default(Text("Share \(Image(systemName: "square.and.arrow.up"))"), action: {
 

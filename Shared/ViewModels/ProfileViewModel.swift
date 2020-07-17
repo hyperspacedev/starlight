@@ -24,38 +24,36 @@ public class ProfileViewModel: ObservableObject {
         }
     }
 
-    var isDev: Bool {
-        let devs = [
-            ["alicerunsonfedora", "mastodon.social"],
-            ["amodrono", "mastodon.social"],
-            ["Gargron", "mastodon.social"]
-        ]
+//    var isDev: Bool {
+//        let devs = [
+//            ["alicerunsonfedora", "mastodon.social"],
+//            ["amodrono", "mastodon.social"],
+//            ["Gargron", "mastodon.social"]
+//        ]
+//
+//        if let username = self.data?.acct {
+//            for item in devs {
+//                if AppClient.shared().baseURL == URL(string: "mastodon.social") {
+//                    if item.contains(username) {
+//                        return true
+//                    }
+//                    return false
+//                } else {
+//                    if username == "\(item[0])@\(item[1])" {
+//                        return true
+//                    }
+//                    return false
+//                }
+//            }
+//        }
+//
+//        return false
+//    }
 
-        if let username = self.data?.acct {
-            for item in devs {
-                print(username)
-                print(item)
-                if AppClient.shared().baseURL == URL(string: "mastodon.social") {
-                    if item.contains(username) {
-                        return true
-                    }
-                    return false
-                } else {
-                    if username == "\(item[0])@\(item[1])" {
-                        return true
-                    }
-                    return false
-                }
-            }
-        }
-
-        return false
-    }
-
-    public func fetchProfileStatuses(_ scrollview: ScrollViewProxy) {
+    public func fetchProfileStatuses() {
         AppClient.shared().getStatusesForAccount(withID: accountID) { statuses in
             self.statuses = statuses
-            scrollview.scrollTo(self.statuses[0])
+//            scrollview.scrollTo(self.statuses[0])
         }
     }
 
