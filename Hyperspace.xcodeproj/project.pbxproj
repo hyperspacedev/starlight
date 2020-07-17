@@ -94,6 +94,8 @@
 		FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A924BA5A46002C9476 /* roundNumbers.swift */; };
 		FA7E98AD24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
 		FA7E98AE24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
+		FAE1262C24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
+		FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
 		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25724B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
 		FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25B24B4ABFA000B5405 /* Status.swift */; };
@@ -192,6 +194,7 @@
 		FA7E98A624B9DD3F002C9476 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
 		FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
+		FAE1262B24C03D4D002778FB /* avernirNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avernirNext.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		FAE4B25E24B4EE83000B5405 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -393,6 +396,7 @@
 				FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */,
 				FAEDC00C24BB12090034EF6F /* openUrl.swift */,
 				FA55FA2B24BF0E1100A5EE13 /* Reachability.swift */,
+				FAE1262B24C03D4D002778FB /* avernirNext.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -447,6 +451,8 @@
 			dependencies = (
 			);
 			name = iOS;
+			packageProductDependencies = (
+			);
 			productName = iOS;
 			productReference = BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */;
 			productType = "com.apple.product-type.application";
@@ -633,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF673F2224B4CCEE00A97FF3 /* AttachmentType.swift in Sources */,
+				FAE1262C24C03D4D002778FB /* avernirNext.swift in Sources */,
 				FA48238624B46A860095E415 /* Field.swift in Sources */,
 				BF11463E24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
@@ -737,6 +744,7 @@
 				BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1424B4C20200A97FF3 /* Application.swift in Sources */,
 				BF673F0524B4A51F00A97FF3 /* Account.swift in Sources */,
+				FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */,
 				FA7E98A824B9DD3F002C9476 /* ProfileImage.swift in Sources */,
 				FA7E989824B8EB27002C9476 /* NetworkView.swift in Sources */,
 				BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */,
@@ -892,7 +900,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -916,7 +924,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

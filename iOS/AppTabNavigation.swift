@@ -30,7 +30,8 @@ struct AppTabNavigation: View {
                     .imageScale(.large)
             }
             VStack {
-                ProfileView(editable: true)
+//                ProfileView(editable: true)
+                ProfileView()
             }.tabItem {
                 Label("You", systemImage: "person.circle")
                     .imageScale(.large)
