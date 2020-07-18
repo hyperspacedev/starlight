@@ -88,7 +88,10 @@ struct StatusView: View {
             
             NavigationLink(destination:
                             ProfileView(isParent: false,
-                                        accountInfo: ProfileViewModel(accountID: self.status.account.id)),
+                                        accountInfo: ProfileViewModel(accountID: self.status.account.id),
+                                        onResumeToParent: {
+                                            self.profileViewActive = false
+                                        }),
                            isActive: self.$profileViewActive) {
                 EmptyView()
             }

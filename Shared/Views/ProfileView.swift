@@ -20,6 +20,8 @@ struct ProfileView: View {
     @State private var titleRect: CGRect = .zero
     @State private var headerImageRect: CGRect = .zero
     @State private var showMoreActions: Bool = false
+    
+    public var onResumeToParent: () -> Void = {}
 
     func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
 
@@ -248,7 +250,9 @@ struct ProfileView: View {
                             HStack {
 
                                 if !isParent {
-                                    Button(action: {}, label: {
+                                    Button(action: {
+                                        self.onResumeToParent()
+                                    }, label: {
                                         Image(systemName: "chevron.left")
                                             .font(.system(size: 25, weight: .semibold))
                                             .foregroundColor(.white)
@@ -293,10 +297,14 @@ struct ProfileView: View {
                                 HStack {
 
                                     if !isParent {
-                                        Image(systemName: "chevron.left")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                            .padding(10)
+                                        Button(action: {
+                                            self.onResumeToParent()
+                                        }) {
+                                            Image(systemName: "chevron.left")
+                                                .font(.system(size: 25, weight: .semibold))
+                                                .foregroundColor(.white)
+                                                .padding(10)
+                                        }
                                     }
 
                                     Spacer()
