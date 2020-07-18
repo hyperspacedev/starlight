@@ -360,7 +360,7 @@ struct StatusView_Previews: PreviewProvider {
 
                 }
                     .onAppear {
-                        self.timeline.fetchLocalTimeline()
+                        self.timeline.fetchTimeline()
                     }
             } else {
                 StatusView(isMain: false, status: self.timeline.statuses[0])

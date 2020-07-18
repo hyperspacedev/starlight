@@ -142,6 +142,86 @@ public class AppClient {
     }
 
     /**
+     Gets the stream of statuses older or newer than a specific identifier for a specified timeline.
+     - Parameter action: Whether it should fetch newer statuses or older statuses.
+     - Parameter scope: The timeline scope to get.
+     - Parameter id: The id of the status.
+     - Parameter completion: An escaping closure that utilizes the resulting statuses (`([Status]) -> Void`).
+     */
+    public func updateTimeline(action: TimelineAction, scope: TimelineScope, id identifier: String, completion: @escaping ([Status]) -> Void) {
+        var apiURL = baseURL
+
+        switch scope {
+        case .home:
+            let request = makeAuthenticatedRequest(url: "/ap1/v1/timelines/home")
+            URLSession.shared.dataTask(with: request) { (data, _, error) in
+                if (error) != nil {
+                    print("Error: \(error as Any)")
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let results = try JSONDecoder().decode([Status].self, from: data!)
+                        completion(results)
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+            .resume()
+            return
+        case .public:
+            apiURL.appendPathComponent("/api/v1/timelines/public")
+        case .local:
+            let originalURL = apiURL.absoluteString
+            var localURL = URLComponents(string: originalURL)
+            localURL?.path = "/api/v1/timelines/public"
+            localURL?.queryItems = [
+                URLQueryItem(name: "local", value: "true")
+            ]
+            apiURL = (localURL?.url)!
+        default:
+            break
+        }
+
+        switch action {
+
+        case .refresh:
+            let originalURL = apiURL.absoluteString
+            var localURL = URLComponents(string: originalURL)
+            localURL?.queryItems = [
+                URLQueryItem(name: "min_id", value: identifier),
+                URLQueryItem(name: "limit", value: "9999") // We want all the statuses newer than this id.
+            ]
+            apiURL = (localURL?.url)!
+
+        case .loadPage:
+            let originalURL = apiURL.absoluteString
+
+            var localURL = URLComponents(string: originalURL)
+            localURL?.queryItems?.append(contentsOf: [
+                URLQueryItem(name: "max_id", value: identifier)
+            ])
+            apiURL = (localURL?.url)!
+        }
+
+        URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
+            if (error) != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let results = try JSONDecoder().decode([Status].self, from: data!)
+                    completion(results)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
+        .resume()
+
+    }
+
+    /**
      Get the user's notification stream.
      - Parameter completion: An escaping closure utilizing the notification data `([Notification]) -> Void`.
      */
