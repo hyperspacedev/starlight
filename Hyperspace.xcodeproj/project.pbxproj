@@ -16,8 +16,8 @@
 		BF1A91E924C3DF2D00920C83 /* Atributika in Frameworks */ = {isa = PBXBuildFile; productRef = BF1A91E824C3DF2D00920C83 /* Atributika */; };
 		BF315F1824BE0ACA00D0118E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */; };
 		BF315F1924BE0ACA00D0118E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */; };
-		BF44789524C0A1F20090DF76 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedText.swift */; };
-		BF44789624C0A1F20090DF76 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedText.swift */; };
+		BF44789524C0A1F20090DF76 /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedTextView.swift */; };
+		BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedTextView.swift */; };
 		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BF455EDC24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
 		BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F0324B4A51F00A97FF3 /* Account.swift */; };
@@ -142,7 +142,7 @@
 		BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
 		BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		BF44789424C0A1F20090DF76 /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
+		BF44789424C0A1F20090DF76 /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BF673EFF24B407E400A97FF3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF673F0324B4A51F00A97FF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 				FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */,
 				FA74999D24BC3FBD002A9E69 /* AttachmentView.swift */,
 				BFD620BE24BC0D9300730632 /* RecommendedProfile.swift */,
-				BF44789424C0A1F20090DF76 /* AttributedText.swift */,
+				BF44789424C0A1F20090DF76 /* AttributedTextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -663,7 +663,7 @@
 				BF11463E24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8624A2D5C2007FEFE8 /* ContentView.swift in Sources */,
 				BFE07C8D24BCAF6100203706 /* ProfileView.swift in Sources */,
-				BF44789524C0A1F20090DF76 /* AttributedText.swift in Sources */,
+				BF44789524C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */,
 				BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */,
@@ -736,7 +736,7 @@
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
-				BF44789624C0A1F20090DF76 /* AttributedText.swift in Sources */,
+				BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
 				FAE4B26324B4F1FA000B5405 /* AnnouncementReaction.swift in Sources */,
 				BF673F1124B4BDA300A97FF3 /* History.swift in Sources */,
 				BFD620B724BC06AA00730632 /* Client.swift in Sources */,
