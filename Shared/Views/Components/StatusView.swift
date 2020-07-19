@@ -258,14 +258,16 @@ struct StatusView: View {
 
                         }
 
-                        GeometryReader { (geometry: GeometryProxy) in
-                            AttributedTextView(attributedText:
-                                                "\(self.status.content)"
-                                                    .style(tags: rootStyle),
-                                               configured: { label in configureLabel(label, size: 17) },
-                                               maxWidth: geometry.size.width)
-                                .fixedSize(horizontal: true, vertical: false)
-                        }
+//                        GeometryReader { (geometry: GeometryProxy) in
+//                            AttributedTextView(attributedText:
+//                                                "\(self.status.content)"
+//                                                    .style(tags: rootStyle),
+//                                               configured: { label in configureLabel(label, size: 17) },
+//                                               maxWidth: geometry.size.width)
+//                                .fixedSize(horizontal: true, vertical: false)
+//                        }
+                        Text("\(self.status.content)")
+                            .fontWeight(.light)
 
                         if !self.status.mediaAttachments.isEmpty {
                             AttachmentView(from: self.status.mediaAttachments[0].previewURL) {

@@ -175,20 +175,20 @@ struct ProfileView: View {
                                 .font(.callout)
                                 .foregroundColor(.secondary)
 
-                            GeometryReader { geometry in
-                                AttributedTextView(attributedText:
-                                                    "\(accountInfo.data?.note ??  "No bio provided.")"
-                                                    .style(tags: bioStyle),
-                                                   configured: { label in
-                                                    label.numberOfLines = 0
-                                                    label.textColor = .label
-                                                    label.lineBreakMode = .byWordWrapping
-                                                   }, maxWidth: geometry.size.width)
-                            }
+//                            GeometryReader { geometry in
+//                                AttributedTextView(attributedText:
+//                                                    "\(accountInfo.data?.note ??  "No bio provided.")"
+//                                                    .style(tags: bioStyle),
+//                                                   configured: { label in
+//                                                    label.numberOfLines = 0
+//                                                    label.textColor = .label
+//                                                    label.lineBreakMode = .byWordWrapping
+//                                                   }, maxWidth: geometry.size.width)
+//                            }
 
-//                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
-//                                .padding(.top, 10)
-//                                .fixedSize(horizontal: false, vertical: true)
+                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
+                                .padding(.top, 10)
+                                .fixedSize(horizontal: false, vertical: true)
 
                             Divider()
 
