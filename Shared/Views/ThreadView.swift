@@ -60,7 +60,7 @@ struct ThreadView: View {
 
                         StatusView(status: currentStatus)
                             .padding(.vertical, 5)
-
+ 
                     }
                         .onAppear {
                             scrollview.scrollTo(self.mainStatus)
@@ -74,8 +74,10 @@ struct ThreadView: View {
 
                     ForEach(context.descendants) { currentStatus in
 
-                        StatusView(status: currentStatus)
-                            .padding(.vertical, 5)
+                        if currentStatus.inReplyToID == self.mainStatus.id {
+                            StatusView(status: currentStatus)
+                                .padding(.vertical, 5)
+                        }
 
                     }
 

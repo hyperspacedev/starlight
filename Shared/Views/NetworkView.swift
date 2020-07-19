@@ -45,9 +45,6 @@ struct NetworkView: View {
             #endif
 
         }
-            .onAppear {
-                self.timeline.fetchLocalTimeline()
-            }
 
     }
 
@@ -100,6 +97,9 @@ struct NetworkView: View {
                     ForEach(self.timeline.statuses, id: \.self.id) { status in
                         StatusView(status: status)
                             .buttonStyle(PlainButtonStyle())
+                            .onAppear {
+                                self.timeline.updateTimeline(currentItem: status)
+                            }
                     }
 
                 }
@@ -107,6 +107,9 @@ struct NetworkView: View {
 
         }
             .listStyle(GroupedListStyle())
+            .onAppear {
+                self.timeline.fetchTimeline()
+            }
 
     }
 }

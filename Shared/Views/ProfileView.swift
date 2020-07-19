@@ -238,8 +238,12 @@ struct ProfileView: View {
                             ForEach(self.accountInfo.statuses, id: \.self.id) { status in
 
                                 StatusView(status: status)
+                                    .onAppear {
+                                        self.accountInfo.updateProfileStatuses(currentItem: status)
+                                    }
 
                                 Divider()
+                                    .padding(.leading, 20)
 
                             }
                         }

@@ -18,21 +18,49 @@ public class NetworkViewModel: ObservableObject {
 
     @Published var type: TimelineScope = .local {
         didSet {
-            AppClient.shared().getTimeline(scope: self.type) { statuses in
-                self.statuses = statuses
+            self.fetchTimeline()
+        }
+    }
+
+    subscript(position: Int) -> Status {
+        return statuses[position]
+    }
+
+    func fetchTimeline() {
+        AppClient.shared().getTimeline(scope: self.type) { statuses in
+            self.statuses = statuses
+        }
+    }
+
+    func updateTimeline(currentItem: Status) {
+
+        if !shouldLoadMoreData(currentItem: currentItem) {
+            return
+        }
+
+        AppClient.shared().updateTimeline(action: .loadPage, scope: self.type, id: currentItem.id) { statuses in
+            self.statuses.append(contentsOf: statuses)
+        }
+
+    }
+
+    /// Whether more data should be loaded.
+    ///
+    /// This is required for infinite scrolling to work.
+    /// What it does is check whether the status loaded is the fourth last status
+    /// (in this case the 16th), and if it's the case, it will load more data,
+    /// so that there's an infinite list of statuses.
+    func shouldLoadMoreData(currentItem: Status? = nil) -> Bool {
+        guard let currentItem = currentItem else {
+            return true
+        }
+
+        for index in ( self.statuses.count - 4)...(self.statuses.count - 1) {
+            if index >= 0 && currentItem.id == self.statuses[index].id {
+                return true
             }
         }
+        return false
     }
 
-    func fetchPublicTimeline() {
-        AppClient.shared().getTimeline(scope: .public) { statuses in
-            self.statuses = statuses
-        }
-    }
-
-    func fetchLocalTimeline() {
-        AppClient.shared().getTimeline(scope: .local) { statuses in
-            self.statuses = statuses
-        }
-    }
 }

@@ -24,6 +24,10 @@ public class ProfileViewModel: ObservableObject {
         }
     }
 
+    init(accountID: String) {
+        self.accountID = accountID
+    }
+
 //    var isDev: Bool {
 //        let devs = [
 //            ["alicerunsonfedora", "mastodon.social"],
@@ -63,7 +67,35 @@ public class ProfileViewModel: ObservableObject {
         }
     }
 
-    init(accountID: String) {
-        self.accountID = accountID
+    func updateProfileStatuses(currentItem: Status) {
+
+        if !shouldLoadMoreData(currentItem: currentItem) {
+            return
+        }
+
+        AppClient.shared().getStatusesForAccount(withID: accountID, maxID: currentItem.id) { statuses in
+            self.statuses.append(contentsOf: statuses)
+        }
+
     }
+
+    /// Whether more data should be loaded.
+    ///
+    /// This is required for infinite scrolling to work.
+    /// What it does is check whether the status loaded is the fourth last status
+    /// (in this case the 16th), and if it's the case, it will load more data,
+    /// so that there's an infinite list of statuses.
+    func shouldLoadMoreData(currentItem: Status? = nil) -> Bool {
+        guard let currentItem = currentItem else {
+            return true
+        }
+
+        for index in ( self.statuses.count - 4)...(self.statuses.count - 1) {
+            if index >= 0 && currentItem.id == self.statuses[index].id {
+                return true
+            }
+        }
+        return false
+    }
+
 }
