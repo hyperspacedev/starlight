@@ -12,27 +12,21 @@ struct NotificationsView: View {
     @State var pageSelect: String = "notifs"
 
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
+            VStack {
+                Picker("Notification Types", selection: $pageSelect) {
+                    Text("Announcements").tag("announces")
+                    Text("Activity").tag("notifs")
+                    Text("Messages").tag("messages")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+
                 List {
                     Text("Notifications go here.")
                 }
                 .listStyle(GroupedListStyle())
             }
-            .edgesIgnoringSafeArea(.top)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            #if os(iOS)
-            ToolbarItem(placement: .principal) {
-                Picker("Notification Types", selection: $pageSelect) {
-                    Text("All").tag("notifs")
-                    Text("Messages").tag("messages")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            #endif
-        }
+            .navigationTitle("Notifications")
     }
 }
 
