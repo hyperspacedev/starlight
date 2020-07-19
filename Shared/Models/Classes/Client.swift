@@ -324,6 +324,46 @@ public class AppClient {
     }
 
     /**
+     Get the statuses associated with a given ID.
+     - Parameter withID: The ID number associated with the account.
+     - Parameter maxID: The ID of the statuse whose older statuses we wish to obtain.
+     - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).
+     */
+    public func getStatusesForAccount(withID: String, maxID: String? = nil, minID: String? = nil, completion: @escaping ([Status]) -> Void) {
+        var apiURL = baseURL
+        apiURL.appendPathComponent("/api/v1/accounts/\(withID)/statuses")
+
+        if let identifier = maxID {
+            var localURL = URLComponents(string: apiURL.absoluteString)
+            localURL?.queryItems?.append(contentsOf: [
+                URLQueryItem(name: "max_id", value: identifier)
+            ])
+            apiURL = (localURL?.url)!
+        } else if let identifier = minID {
+            var localURL = URLComponents(string: apiURL.absoluteString)
+            localURL?.queryItems?.append(contentsOf: [
+                URLQueryItem(name: "min_id", value: identifier)
+            ])
+            apiURL = (localURL?.url)!
+        }
+
+        URLSession.shared.dataTask(with: apiURL) { data, _, error in
+            if error != nil {
+                print("Error: \(error as Any)")
+            }
+            DispatchQueue.main.async {
+                do {
+                    let results = try JSONDecoder().decode([Status].self, from: data!)
+                    completion(results)
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
+        .resume()
+    }
+
+    /**
      Get the statuses associated with an account.
      - Parameter account: The account object to gather statuses from.
      - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).

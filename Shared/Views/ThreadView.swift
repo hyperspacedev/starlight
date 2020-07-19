@@ -60,7 +60,7 @@ struct ThreadView: View {
 
                         StatusView(status: currentStatus)
                             .padding(.vertical, 5)
-
+ 
                     }
                         .onAppear {
                             scrollview.scrollTo(self.mainStatus)
