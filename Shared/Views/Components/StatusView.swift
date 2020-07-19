@@ -5,6 +5,10 @@
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
 
+#if os(macOS)
+import AppKit
+#endif
+
 import SwiftUI
 import Atributika
 
@@ -50,12 +54,11 @@ struct StatusView: View {
     private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
         label.numberOfLines = 0
         label.textColor = .label
-        label.font = .systemFont(ofSize: size)
         label.lineBreakMode = .byWordWrapping
     }
 
     // MARK: BODY
-    
+
     /// To easily use the same view on multiple platforms,
     /// we use the `body` view as a container where we load platform-specific
     /// modifiers.
@@ -295,20 +298,30 @@ struct StatusView: View {
             )
 
     }
-    
+
     // MARK: STATUS CONTENT
     /// The post's main content.
     var statusContent: some View {
-        GeometryReader { geometry in
-            AttributedTextView(attributedText:
-                                "\(self.status.content)"
-                                .style(tags: isMain ? rootPresentedStyle : rootStyle),
-                               configured: { label in configureLabel(label, size: isMain ? 20 : 17) },
-                               maxWidth: geometry.size.width)
-                .fixedSize(horizontal: true, vertical: false)
+        #if os(macOS)
+        let bounds: CGFloat = NSScreen.main.frame.width
+        #else
+        let bounds: CGFloat = UIScreen.main.bounds.width
+        #endif
+
+        let padding: CGFloat = 84
+
+        return VStack(alignment: .leading) {
+            AttributedTextView(
+                attributedText: self.status.content
+                    .style(tags: isMain ? rootPresentedStyle: rootStyle),
+                configured: { label in
+                    self.configureLabel(label, size: isMain ? 20 : 17)
+                },
+                maxWidth: bounds - padding)
+            .fixedSize()
         }
     }
-    
+
     // MARK: ACTION BUTTONS
 
     /// The post's action buttons (favourite and reblog), and also the amount of replies.
