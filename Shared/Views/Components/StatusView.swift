@@ -40,11 +40,13 @@ struct StatusView: View {
 
     #endif
 
+    // MARK: STATUS VIEW TEXT STYLES
     private let rootStyle: Style = Style("p")
         .font(.systemFont(ofSize: 17, weight: .light))
     private let rootPresentedStyle: Style = Style("p")
         .font(.systemFont(ofSize: 20, weight: .light))
-    
+
+    /// Configure the label to match the styling for the status.
     private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
         label.numberOfLines = 0
         label.textColor = .label
@@ -52,6 +54,8 @@ struct StatusView: View {
         label.lineBreakMode = .byWordWrapping
     }
 
+    // MARK: BODY
+    
     /// To easily use the same view on multiple platforms,
     /// we use the `body` view as a container where we load platform-specific
     /// modifiers.
@@ -93,6 +97,7 @@ struct StatusView: View {
 
     }
 
+    // MARK: PRESENTED VIEW
     /// The status display mode when it is the thread's main post.
     var presentedView: some View {
 
@@ -140,14 +145,7 @@ struct StatusView: View {
                 })
             }
 
-            GeometryReader { (geometry: GeometryProxy) in
-                AttributedTextView(attributedText:
-                                    "\(self.status.content)"
-                                        .style(tags: rootPresentedStyle),
-                                   configured: { label in configureLabel(label, size: 20) },
-                                   maxWidth: geometry.size.width)
-                    .fixedSize(horizontal: true, vertical: true)
-            }
+            self.statusContent
 
             if !self.status.mediaAttachments.isEmpty {
                 AttachmentView(from: self.status.mediaAttachments[0].url) {
@@ -221,6 +219,7 @@ struct StatusView: View {
 
     }
 
+    // MARK: DEFAULT VIEW
     var defaultView: some View {
 
         VStack(alignment: .leading) {
@@ -258,16 +257,7 @@ struct StatusView: View {
 
                         }
 
-//                        GeometryReader { (geometry: GeometryProxy) in
-//                            AttributedTextView(attributedText:
-//                                                "\(self.status.content)"
-//                                                    .style(tags: rootStyle),
-//                                               configured: { label in configureLabel(label, size: 17) },
-//                                               maxWidth: geometry.size.width)
-//                                .fixedSize(horizontal: true, vertical: false)
-//                        }
-                        Text("\(self.status.content)")
-                            .fontWeight(.light)
+                        self.statusContent
 
                         if !self.status.mediaAttachments.isEmpty {
                             AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
@@ -305,6 +295,21 @@ struct StatusView: View {
             )
 
     }
+    
+    // MARK: STATUS CONTENT
+    /// The post's main content.
+    var statusContent: some View {
+        GeometryReader { geometry in
+            AttributedTextView(attributedText:
+                                "\(self.status.content)"
+                                .style(tags: isMain ? rootPresentedStyle : rootStyle),
+                               configured: { label in configureLabel(label, size: isMain ? 20 : 17) },
+                               maxWidth: geometry.size.width)
+                .fixedSize(horizontal: true, vertical: false)
+        }
+    }
+    
+    // MARK: ACTION BUTTONS
 
     /// The post's action buttons (favourite and reblog), and also the amount of replies.
     ///
@@ -382,6 +387,7 @@ struct StatusView: View {
 
 }
 
+// MARK: EXTENSIONS
 extension StatusView {
 
     /// Generates a View that displays a post on Mastodon.
