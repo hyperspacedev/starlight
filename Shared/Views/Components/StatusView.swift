@@ -303,7 +303,8 @@ struct StatusView: View {
     /// The post's main content.
     var statusContent: some View {
         #if os(macOS)
-        let bounds: CGFloat = NSScreen.main.frame.width
+        // Note: Need to subtract sidebar size here.
+        let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
         #else
         let bounds: CGFloat = UIScreen.main.bounds.width
         #endif
