@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Atributika
 
 /// A structure that computes statuses on demand from a `Status` data model.
 struct StatusView: View {
@@ -32,12 +33,24 @@ struct StatusView: View {
     /// Using for triggering the navigation View **only**when the user taps
     /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
-    
+
     @State var showMoreActions: Bool = false
-    
+
     @State var profileViewActive: Bool = false
 
     #endif
+
+    private let rootStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 17, weight: .light))
+    private let rootPresentedStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 20, weight: .light))
+    
+    private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
+        label.numberOfLines = 0
+        label.textColor = .label
+        label.font = .systemFont(ofSize: size)
+        label.lineBreakMode = .byWordWrapping
+    }
 
     /// To easily use the same view on multiple platforms,
     /// we use the `body` view as a container where we load platform-specific
@@ -84,7 +97,7 @@ struct StatusView: View {
     var presentedView: some View {
 
         VStack(alignment: .leading) {
-            
+
             NavigationLink(destination:
                             ProfileView(isParent: false,
                                         accountInfo: ProfileViewModel(accountID: self.status.account.id),
@@ -94,7 +107,7 @@ struct StatusView: View {
                            isActive: self.$profileViewActive) {
                 EmptyView()
             }
-            
+
             HStack(alignment: .center) {
 
                 ProfileImage(from: self.status.account.avatarStatic, placeholder: {
@@ -127,9 +140,14 @@ struct StatusView: View {
                 })
             }
 
-            Text("\(self.status.content)")
-//            AttributedText(attributedString: NSAttributedString(string: self.status.content))
-                .font(.system(size: 20, weight: .light))
+            GeometryReader { (geometry: GeometryProxy) in
+                AttributedTextView(attributedText:
+                                    "\(self.status.content)"
+                                        .style(tags: rootPresentedStyle),
+                                   configured: { label in configureLabel(label, size: 20) },
+                                   maxWidth: geometry.size.width)
+                    .fixedSize(horizontal: true, vertical: true)
+            }
 
             if !self.status.mediaAttachments.isEmpty {
                 AttachmentView(from: self.status.mediaAttachments[0].url) {
@@ -239,8 +257,15 @@ struct StatusView: View {
                             }
 
                         }
-                        Text("\(self.status.content)")
-                            .fontWeight(.light)
+
+                        GeometryReader { (geometry: GeometryProxy) in
+                            AttributedTextView(attributedText:
+                                                "\(self.status.content)"
+                                                    .style(tags: rootStyle),
+                                               configured: { label in configureLabel(label, size: 17) },
+                                               maxWidth: geometry.size.width)
+                                .fixedSize(horizontal: true, vertical: false)
+                        }
 
                         if !self.status.mediaAttachments.isEmpty {
                             AttachmentView(from: self.status.mediaAttachments[0].previewURL) {

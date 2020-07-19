@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Atributika
 
 struct ProfileView: View {
 
     private let imageHeight: CGFloat = 200
     private let collapsedImageHeight: CGFloat = 95
+
+    private let bioStyle = Style("p").font(.systemFont(ofSize: 17))
 
     public var isParent: Bool = true
 
@@ -20,7 +23,7 @@ struct ProfileView: View {
     @State private var titleRect: CGRect = .zero
     @State private var headerImageRect: CGRect = .zero
     @State private var showMoreActions: Bool = false
-    
+
     public var onResumeToParent: () -> Void = {}
 
     func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
@@ -172,9 +175,20 @@ struct ProfileView: View {
                                 .font(.callout)
                                 .foregroundColor(.secondary)
 
-                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
-                                .padding(.top, 10)
-                                .fixedSize(horizontal: false, vertical: true)
+                            GeometryReader { geometry in
+                                AttributedTextView(attributedText:
+                                                    "\(accountInfo.data?.note ??  "No bio provided.")"
+                                                    .style(tags: bioStyle),
+                                                   configured: { label in
+                                                    label.numberOfLines = 0
+                                                    label.textColor = .label
+                                                    label.lineBreakMode = .byWordWrapping
+                                                   }, maxWidth: geometry.size.width)
+                            }
+
+//                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
+//                                .padding(.top, 10)
+//                                .fixedSize(horizontal: false, vertical: true)
 
                             Divider()
 

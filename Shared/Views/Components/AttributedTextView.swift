@@ -14,8 +14,8 @@ import Atributika
 // Credit to rivera-ernesto for this implementation.
 
 /// A view that displays one or more lines of text with applied styles.
-public struct AttributedTextView: UIViewRepresentable {
-    public typealias UIViewType = AttributedLabel
+struct AttributedTextView: UIViewRepresentable {
+    typealias UIViewType = RestrainedLabel
 
     /// The attributed text for this view.
     var attributedText: AttributedText?
@@ -23,13 +23,25 @@ public struct AttributedTextView: UIViewRepresentable {
     /// The configuration properties for this view.
     var configured: ((AttributedLabel) -> Void)?
 
-    public func makeUIView(context: UIViewRepresentableContext<AttributedTextView>) -> AttributedLabel {
-        let new = AttributedLabel()
+    @State var maxWidth: CGFloat = 300
+
+    public func makeUIView(context: UIViewRepresentableContext<AttributedTextView>) -> RestrainedLabel {
+        let new = RestrainedLabel()
         configured?(new)
         return new
     }
 
-    public func updateUIView(_ uiView: AttributedLabel, context: UIViewRepresentableContext<AttributedTextView>) {
+    public func updateUIView(_ uiView: RestrainedLabel, context: UIViewRepresentableContext<AttributedTextView>) {
         uiView.attributedText = attributedText
+        uiView.maxWidth = maxWidth
     }
+
+    class RestrainedLabel: AttributedLabel {
+        var maxWidth: CGFloat = 0.0
+
+        open override var intrinsicContentSize: CGSize {
+            sizeThatFits(CGSize(width: maxWidth, height: .infinity))
+        }
+    }
+
 }
