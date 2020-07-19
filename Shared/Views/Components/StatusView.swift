@@ -5,7 +5,6 @@
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
 
-import Down
 import SwiftUI
 
 /// A structure that computes statuses on demand from a `Status` data model.
