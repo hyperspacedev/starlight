@@ -109,6 +109,7 @@ struct NetworkView: View {
             }
 
         }
+            .animation(.spring())
             .listStyle(GroupedListStyle())
             .pullToRefresh(isShowing: $isShowing) {
                 self.timeline.refreshTimeline(from: self.timeline.statuses[0])
