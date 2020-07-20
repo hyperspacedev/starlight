@@ -102,7 +102,7 @@ struct ProfileView: View {
                         Spacer()
                         ProgressView(value: 0.5)
                             .progressViewStyle(CircularProgressViewStyle())
-                        Text("Loading posts...")
+                        Text("Loading account data...")
                         Spacer()
                     }
 
@@ -110,8 +110,11 @@ struct ProfileView: View {
 
                 }
                 .onAppear {
-                    self.accountInfo.fetchProfile()
-                    self.accountInfo.fetchProfileStatuses()
+                    // A bit hacky but it works for now
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.accountInfo.fetchProfile()
+                        self.accountInfo.fetchProfileStatuses()
+                    })
                 }
             } else {
                 ScrollView {

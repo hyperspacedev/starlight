@@ -60,10 +60,12 @@ struct ThreadView: View {
 
                         StatusView(status: currentStatus)
                             .padding(.vertical, 5)
- 
+
                     }
                         .onAppear {
-                            scrollview.scrollTo(self.mainStatus)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                scrollview.scrollTo(self.mainStatus)
+                            })
                         }
 
                 }
