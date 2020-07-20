@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Atributika
 
 struct ProfileView: View {
 
     private let imageHeight: CGFloat = 200
     private let collapsedImageHeight: CGFloat = 95
+
+    private let bioStyle = Style("p").font(.systemFont(ofSize: 17))
 
     public var isParent: Bool = true
 
@@ -20,6 +23,8 @@ struct ProfileView: View {
     @State private var titleRect: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State private var headerImageRect: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State private var showMoreActions: Bool = false
+
+    public var onResumeToParent: () -> Void = {}
 
     func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
 
@@ -173,6 +178,17 @@ struct ProfileView: View {
                                 .font(.callout)
                                 .foregroundColor(.secondary)
 
+//                            GeometryReader { geometry in
+//                                AttributedTextView(attributedText:
+//                                                    "\(accountInfo.data?.note ??  "No bio provided.")"
+//                                                    .style(tags: bioStyle),
+//                                                   configured: { label in
+//                                                    label.numberOfLines = 0
+//                                                    label.textColor = .label
+//                                                    label.lineBreakMode = .byWordWrapping
+//                                                   }, maxWidth: geometry.size.width)
+//                            }
+
                             Text("\(accountInfo.data?.note ?? "No bio provided.")")
                                 .padding(.top, 10)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -255,7 +271,9 @@ struct ProfileView: View {
                             HStack {
 
                                 if !isParent {
-                                    Button(action: {}, label: {
+                                    Button(action: {
+                                        self.onResumeToParent()
+                                    }, label: {
                                         Image(systemName: "chevron.left")
                                             .font(.system(size: 25, weight: .semibold))
                                             .foregroundColor(.white)
@@ -273,11 +291,12 @@ struct ProfileView: View {
                                 VStack {
 
                                     Text(accountInfo.data?.displayName ?? "user")
-                                        .font(.avenirNext(size: 15))
+                                        .font(.system(size: 15))
+                                        .fontWeight(.bold)
                                         .foregroundColor(.white)
 
-                                    Text(accountInfo.data?.acct ?? "user@instance")
-                                        .font(.avenirNext(size: 12))
+                                    Text("@\(accountInfo.data?.acct ?? "user@instance")")
+                                        .font(.system(size: 12))
                                         .foregroundColor(Color(.systemGray3))
 
                                 }
@@ -299,10 +318,14 @@ struct ProfileView: View {
                                 HStack {
 
                                     if !isParent {
-                                        Image(systemName: "chevron.left")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                            .padding(10)
+                                        Button(action: {
+                                            self.onResumeToParent()
+                                        }) {
+                                            Image(systemName: "chevron.left")
+                                                .font(.system(size: 25, weight: .semibold))
+                                                .foregroundColor(.white)
+                                                .padding(10)
+                                        }
                                     }
 
                                     Spacer()

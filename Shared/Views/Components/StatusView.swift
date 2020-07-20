@@ -5,7 +5,12 @@
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
 
+#if os(macOS)
+import AppKit
+#endif
+
 import SwiftUI
+import Atributika
 
 /// A structure that computes statuses on demand from a `Status` data model.
 struct StatusView: View {
@@ -33,7 +38,26 @@ struct StatusView: View {
     /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
 
+    @State var showMoreActions: Bool = false
+
+    @State var profileViewActive: Bool = false
+
     #endif
+
+    // MARK: STATUS VIEW TEXT STYLES
+    private let rootStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 17, weight: .light))
+    private let rootPresentedStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 20, weight: .light))
+
+    /// Configure the label to match the styling for the status.
+    private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
+        label.numberOfLines = 0
+        label.textColor = .label
+        label.lineBreakMode = .byWordWrapping
+    }
+
+    // MARK: BODY
 
     /// To easily use the same view on multiple platforms,
     /// we use the `body` view as a container where we load platform-specific
@@ -76,10 +100,21 @@ struct StatusView: View {
 
     }
 
+    // MARK: PRESENTED VIEW
     /// The status display mode when it is the thread's main post.
     var presentedView: some View {
 
         VStack(alignment: .leading) {
+
+            NavigationLink(destination:
+                            ProfileView(isParent: false,
+                                        accountInfo: ProfileViewModel(accountID: self.status.account.id),
+                                        onResumeToParent: {
+                                            self.profileViewActive = false
+                                        }),
+                           isActive: self.$profileViewActive) {
+                EmptyView()
+            }
 
             HStack(alignment: .center) {
 
@@ -107,14 +142,13 @@ struct StatusView: View {
 
                 Spacer()
 
-                Button(action: {}, label: {
+                Button(action: { self.showMoreActions.toggle() }, label: {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 })
             }
 
-            Text("\(self.status.content)")
-                .font(.system(size: 20, weight: .light))
+            self.statusContent
 
             if !self.status.mediaAttachments.isEmpty {
                 AttachmentView(from: self.status.mediaAttachments[0].url) {
@@ -165,9 +199,30 @@ struct StatusView: View {
 
         }
             .buttonStyle(PlainButtonStyle())
+        .navigationBarHidden(self.profileViewActive)
+        .actionSheet(isPresented: self.$showMoreActions) {
+            ActionSheet(title: Text("More Actions"),
+                        buttons: [
+                            .default(Text("View @\(self.status.account.acct)'s profile"), action: {
+                                self.profileViewActive = true
+                            }),
+                            .destructive(Text("Mute @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .destructive(Text("Block @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .destructive(Text("Report @\(self.status.account.acct)"), action: {
+
+                            }),
+                            .cancel(Text("Dismiss"), action: {})
+                        ]
+            )
+        }
 
     }
 
+    // MARK: DEFAULT VIEW
     var defaultView: some View {
 
         VStack(alignment: .leading) {
@@ -205,8 +260,7 @@ struct StatusView: View {
 
                         }
 
-                        Text("\(self.status.content)")
-                            .fontWeight(.light)
+                        self.statusContent
 
                         if !self.status.mediaAttachments.isEmpty {
                             AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
@@ -244,6 +298,32 @@ struct StatusView: View {
             )
 
     }
+
+    // MARK: STATUS CONTENT
+    /// The post's main content.
+    var statusContent: some View {
+        #if os(macOS)
+        // Note: Need to subtract sidebar size here.
+        let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        #else
+        let bounds: CGFloat = UIScreen.main.bounds.width
+        #endif
+
+        let padding: CGFloat = 84
+
+        return VStack(alignment: .leading) {
+            AttributedTextView(
+                attributedText: self.status.content
+                    .style(tags: isMain ? rootPresentedStyle: rootStyle),
+                configured: { label in
+                    self.configureLabel(label, size: isMain ? 20 : 17)
+                },
+                maxWidth: bounds - padding)
+            .fixedSize()
+        }
+    }
+
+    // MARK: ACTION BUTTONS
 
     /// The post's action buttons (favourite and reblog), and also the amount of replies.
     ///
@@ -321,6 +401,7 @@ struct StatusView: View {
 
 }
 
+// MARK: EXTENSIONS
 extension StatusView {
 
     /// Generates a View that displays a post on Mastodon.

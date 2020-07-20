@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Atributika",
+        "repositoryURL": "https://github.com/psharanda/Atributika",
+        "state": {
+          "branch": null,
+          "revision": "a5332ad10002d3696b810c0361212c438c35cea9",
+          "version": "4.9.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
