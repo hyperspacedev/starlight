@@ -50,10 +50,7 @@ public class NetworkViewModel: ObservableObject {
     /// What it does is check whether the status loaded is the fourth last status
     /// (in this case the 16th), and if it's the case, it will load more data,
     /// so that there's an infinite list of statuses.
-    func shouldLoadMoreData(currentItem: Status? = nil) -> Bool {
-        guard let currentItem = currentItem else {
-            return true
-        }
+    func shouldLoadMoreData(currentItem: Status) -> Bool {
 
         for index in ( self.statuses.count - 4)...(self.statuses.count - 1) {
             if index >= 0 && currentItem.id == self.statuses[index].id {

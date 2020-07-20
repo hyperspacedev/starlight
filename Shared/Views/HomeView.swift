@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                Text("Statuses goes here")
+                Text("Statuses go here")
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("Home")
