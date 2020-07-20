@@ -24,6 +24,30 @@ struct ProfileView: View {
     @State private var headerImageRect: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State private var showMoreActions: Bool = false
 
+    var bounds: CGFloat {
+        #if os(macOS)
+        // Note: Need to subtract sidebar size here.
+        let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        #else
+        let bounds: CGFloat = UIScreen.main.bounds.width
+        #endif
+
+        return bounds
+    }
+
+    let padding: CGFloat = 10
+
+    // MARK: USER NOTE TEXT STYLES
+    private let rootStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 17, weight: .regular))
+
+    /// Configure the label to match the styling for the status.
+    private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
+        label.numberOfLines = 0
+        label.textColor = .label
+        label.lineBreakMode = .byWordWrapping
+    }
+
     public var onResumeToParent: () -> Void = {}
 
     func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
@@ -116,7 +140,7 @@ struct ProfileView: View {
                 }
                 .onAppear {
                     // A bit hacky but it works for now
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self.accountInfo.fetchProfile()
                         self.accountInfo.fetchProfileStatuses()
                     })
@@ -152,6 +176,7 @@ struct ProfileView: View {
 
                                     if isBot {
                                         Text("BOT")
+                                            .bold()
                                             .foregroundColor(.white)
                                             .padding(.all, 5)
                                             .font(.caption2)
@@ -189,9 +214,16 @@ struct ProfileView: View {
 //                                                   }, maxWidth: geometry.size.width)
 //                            }
 
-                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
-                                .padding(.top, 10)
-                                .fixedSize(horizontal: false, vertical: true)
+                            VStack(alignment: .leading) {
+                                AttributedTextView(
+                                    attributedText: "\(accountInfo.data?.note ??  "No bio provided.")"
+                                        .style(tags: rootStyle),
+                                    configured: { label in
+                                        self.configureLabel(label, size: 20)
+                                    },
+                                    maxWidth: bounds - padding)
+                                .fixedSize()
+                            }
 
                             Divider()
 
