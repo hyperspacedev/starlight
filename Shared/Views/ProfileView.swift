@@ -224,7 +224,6 @@ struct ProfileView: View {
                                     maxWidth: bounds - padding)
                                 .fixedSize()
                             }
-                                .padding(.top, 10)
 
                             Divider()
 
