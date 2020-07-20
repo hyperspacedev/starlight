@@ -70,6 +70,7 @@
 		BFE07C8B24BCA86B00203706 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8924BCA86B00203706 /* HomeView.swift */; };
 		BFE07C8D24BCAF6100203706 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8C24BCAF6100203706 /* ProfileView.swift */; };
 		BFE07C8E24BCAF6100203706 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8C24BCAF6100203706 /* ProfileView.swift */; };
+		FA0FC62224C62A4E00E936A0 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = FA0FC62124C62A4E00E936A0 /* SwiftUIRefresh */; };
 		FA1ABB5024C2DACA0094938A /* TimelineAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB4F24C2DACA0094938A /* TimelineAction.swift */; };
 		FA1ABB5124C2DACA0094938A /* TimelineAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ABB4F24C2DACA0094938A /* TimelineAction.swift */; };
 		FA384B7424B77A84008E60E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
@@ -219,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0FC62224C62A4E00E936A0 /* SwiftUIRefresh in Frameworks */,
 				BF1A91E724C3DF2400920C83 /* Atributika in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +475,7 @@
 			name = iOS;
 			packageProductDependencies = (
 				BF1A91E624C3DF2400920C83 /* Atributika */,
+				FA0FC62124C62A4E00E936A0 /* SwiftUIRefresh */,
 			);
 			productName = iOS;
 			productReference = BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -571,6 +574,7 @@
 			mainGroup = BFBB3C5524A2D5BE007FEFE8;
 			packageReferences = (
 				BF1A91E524C3DF2400920C83 /* XCRemoteSwiftPackageReference "Atributika" */,
+				FA0FC62024C62A4E00E936A0 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = BFBB3C6324A2D5C2007FEFE8 /* Products */;
 			projectDirPath = "";
@@ -1167,6 +1171,14 @@
 				minimumVersion = 4.9.9;
 			};
 		};
+		FA0FC62024C62A4E00E936A0 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUIRefresh";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1179,6 +1191,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF1A91E524C3DF2400920C83 /* XCRemoteSwiftPackageReference "Atributika" */;
 			productName = Atributika;
+		};
+		FA0FC62124C62A4E00E936A0 /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA0FC62024C62A4E00E936A0 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

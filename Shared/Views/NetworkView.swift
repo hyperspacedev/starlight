@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftUIRefresh
 
 struct NetworkView: View {
 
@@ -15,6 +16,8 @@ struct NetworkView: View {
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
     private let displayPublic: Bool = true
+
+    @State var isShowing: Bool = false
 
     var body: some View {
 
@@ -107,6 +110,12 @@ struct NetworkView: View {
 
         }
             .listStyle(GroupedListStyle())
+            .pullToRefresh(isShowing: $isShowing) {
+                self.timeline.refreshTimeline(from: self.timeline.statuses[0])
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.isShowing = false
+                }
+            }
             .onAppear {
                 self.timeline.fetchTimeline()
             }
