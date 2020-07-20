@@ -20,8 +20,8 @@ struct ProfileView: View {
     @ObservedObject private var contentFrame: ViewFrame = ViewFrame()
     @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
 
-    @State private var titleRect: CGRect = .zero
-    @State private var headerImageRect: CGRect = .zero
+    @State private var titleRect: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
+    @State private var headerImageRect: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State private var showMoreActions: Bool = false
 
     public var onResumeToParent: () -> Void = {}
@@ -409,7 +409,7 @@ class ViewFrame: ObservableObject {
 
     init() {
 
-        self.frame = .zero
+        self.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
     }
 
@@ -438,7 +438,7 @@ struct GeometryGetter: View {
 
 struct RectanglePreferenceKey: PreferenceKey {
 
-    static var defaultValue: CGRect = .zero
+    static var defaultValue: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
 
     static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
 
