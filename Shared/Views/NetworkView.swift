@@ -18,6 +18,7 @@ struct NetworkView: View {
     private let displayPublic: Bool = true
 
     @State var isShowing: Bool = false
+    @State var showTimelineFilterType: Bool = false
 
     var body: some View {
 
@@ -27,17 +28,37 @@ struct NetworkView: View {
 
             self.view
                 .navigationTitle("Network")
+                .navigationBarTitleDisplayMode(.automatic)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing, content: {
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: { self.showTimelineFilterType.toggle() }) {
+                            Label(self.timeline.type == .public ? "Public" : "Community",
+                                  systemImage: self.timeline.type == .public ? "globe": "person.2")
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .primaryAction) {
 
-                        Button(action: {}, label: {
+                        Button(action: {}) {
                             Image(systemName: "line.horizontal.3.decrease")
                                 .imageScale(.large)
-                        })
+                        }
 
-                    })
-
+                    }
                 }
+                .actionSheet(isPresented: $showTimelineFilterType) {
+                    ActionSheet(title: Text("Network Scope"),
+                                buttons: [
+                                    .default(Text("My community"), action: {
+                                        timeline.type = TimelineScope.local
+                                    }),
+                                    .default(Text("Public timeline"), action: {
+                                        timeline.type = TimelineScope.public
+                                    }),
+                                    .cancel(Text("Dismiss"), action: {})
+                                ])
+                    }
 
             #else
 
@@ -52,25 +73,9 @@ struct NetworkView: View {
     }
 
     var view: some View {
-
         List {
-            Section {
-                NavigationLink(destination: Text("F").padding()) {
-                    Label("Announcements", systemImage: "megaphone")
-                }
-                NavigationLink(destination: Text("F").padding()) {
-                    Label("Activity", systemImage: "flame")
-                }
-            }
-            .listStyle(InsetGroupedListStyle())
 
-            Section(header:
-                Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
-                    Text("My community").tag(TimelineScope.local)
-                    Text("Public").tag(TimelineScope.public)
-                }                        .pickerStyle(SegmentedPickerStyle())
-                    .padding(.top)
-                    .padding(.bottom, 2)) {
+            Section {
 
                 if self.timeline.statuses.isEmpty {
 
@@ -108,7 +113,7 @@ struct NetworkView: View {
                 }
             }
 
-        }
+            }
             .animation(.spring())
             .listStyle(GroupedListStyle())
             .pullToRefresh(isShowing: $isShowing) {
@@ -120,7 +125,6 @@ struct NetworkView: View {
             .onAppear {
                 self.timeline.fetchTimeline()
             }
-
     }
 }
 

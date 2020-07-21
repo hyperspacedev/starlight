@@ -132,7 +132,7 @@ public class AppClient {
             DispatchQueue.main.async {
                 do {
                     let results = try JSONDecoder().decode([Status].self, from: data!)
-                    completion(results)
+                    completion(results) 
                 } catch {
                     print("Error: \(error)")
                 }
@@ -169,8 +169,6 @@ public class AppClient {
             }
             .resume()
             return
-        case .public:
-            apiURL.appendPathComponent("/api/v1/timelines/public")
         case .local:
             let originalURL = apiURL.absoluteString
             var localURL = URLComponents(string: originalURL)
@@ -179,6 +177,8 @@ public class AppClient {
                 URLQueryItem(name: "local", value: "true")
             ]
             apiURL = (localURL?.url)!
+        case .public:
+            apiURL.appendPathComponent("/api/v1/timelines/public")
         default:
             break
         }

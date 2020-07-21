@@ -49,12 +49,22 @@ struct StatusView: View {
         .font(.systemFont(ofSize: 17, weight: .light))
     private let rootPresentedStyle: Style = Style("p")
         .font(.systemFont(ofSize: 20, weight: .light))
+    private let linkStyle: Style = Style("a")
+        .foregroundColor(#colorLiteral(red: 0.6050000191, green: 0.3829999864, blue: 1, alpha: 1))
 
     /// Configure the label to match the styling for the status.
     private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
+        label.onClick = { labelClosure, detection in
+            switch detection.type {
+            case .link(let url):
+                openUrl(url)
+            default:
+                break
+            }
+        }
     }
 
     // MARK: BODY
@@ -314,7 +324,10 @@ struct StatusView: View {
         return VStack(alignment: .leading) {
             AttributedTextView(
                 attributedText: self.status.content
-                    .style(tags: isMain ? rootPresentedStyle: rootStyle),
+                    .style(tags: isMain ? rootPresentedStyle: rootStyle)
+                    .styleLinks(linkStyle)
+                    .styleHashtags(linkStyle)
+                    .styleMentions(linkStyle),
                 configured: { label in
                     self.configureLabel(label, size: isMain ? 20 : 17)
                 },
