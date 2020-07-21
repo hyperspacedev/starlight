@@ -192,7 +192,17 @@ public class AppClient {
                 URLQueryItem(name: "min_id", value: identifier),
                 URLQueryItem(name: "limit", value: "9999") // We want all the statuses newer than this id.
             ]
+            
+            // When we get the absoluteString prior and make a localURL from it, it strips the local
+            // parameter. This gets around it, somehow.
+            if scope == .local {
+                localURL?.queryItems?.append(
+                    URLQueryItem(name: "local", value: "true")
+                )
+            }
+            
             apiURL = (localURL?.url)!
+            print(apiURL.absoluteString)
 
         case .loadPage:
             let originalURL = apiURL.absoluteString
