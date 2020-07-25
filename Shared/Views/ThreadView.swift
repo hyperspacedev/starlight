@@ -7,10 +7,18 @@
 
 import SwiftUI
 
+#if canImport(SwiftlySearch)
+import SwiftlySearch
+#endif
+
 struct ThreadView: View {
 
-    @ObservedObject var threadModel = ThreadViewModel()
+    @StateObject var threadModel = ThreadViewModel()
     public let mainStatus: Status
+
+    #if os(iOS)
+    @State var searchText: String = ""
+    #endif
 
     var body: some View {
 
@@ -38,6 +46,7 @@ struct ThreadView: View {
                         }
                     }
                 }
+                .navigationBarSearch(self.$searchText, placeholder: "Search in thread...")
             #else
             self.view
                 .buttonStyle(PlainButtonStyle())
@@ -73,6 +82,15 @@ struct ThreadView: View {
                 StatusView(isMain: true, status: mainStatus)
 
                 if let context = self.threadModel.context {
+
+//                    StatusList(context.descendants,
+//                               condition: { _ in
+//                                    if currentStatus.inReplyToID == self.mainStatus.id {
+//                                        StatusView(status: currentStatus)
+//                                            .padding(.vertical, 5)
+//                                    }
+//                               }
+//                    )
 
                     ForEach(context.descendants) { currentStatus in
 

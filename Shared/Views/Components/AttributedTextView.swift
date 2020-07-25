@@ -5,6 +5,7 @@
 //  Created by Marquis Kurt on 7/16/20.
 //
 
+#if canImport(UIKit)
 import UIKit
 import SwiftUI
 import Foundation
@@ -45,3 +46,4 @@ struct AttributedTextView: UIViewRepresentable {
     }
 
 }
+#endif

@@ -28,31 +28,40 @@ public class ProfileViewModel: ObservableObject {
         self.accountID = accountID
     }
 
-//    var isDev: Bool {
-//        let devs = [
-//            ["alicerunsonfedora", "mastodon.social"],
-//            ["amodrono", "mastodon.social"],
-//            ["Gargron", "mastodon.social"]
-//        ]
-//
-//        if let username = self.data?.acct {
-//            for item in devs {
-//                if AppClient.shared().baseURL == URL(string: "mastodon.social") {
-//                    if item.contains(username) {
-//                        return true
-//                    }
-//                    return false
-//                } else {
-//                    if username == "\(item[0])@\(item[1])" {
-//                        return true
-//                    }
-//                    return false
-//                }
-//            }
-//        }
-//
-//        return false
-//    }
+    var badge: (label: String, labelColor: Color, backgroundColor: Color)? {
+
+        let devs = [
+            "853740", // amodrono
+            "367895" // alicerunsonfedora
+        ]
+
+        let testAccts = [
+            "724754" // Starlight Alpha
+        ]
+
+        if let identifier = self.data?.id {
+
+            if devs.contains(identifier) {
+                #if os(iOS)
+                return (label: "DEV", labelColor: .secondary, backgroundColor: Color(.systemGray5))
+                #else
+                return (label: "DEV", labelColor: .secondary, backgroundColor: .gray)
+                #endif
+            }
+
+            if testAccts.contains(identifier) {
+                return (label: "TEST ACCOUNT", labelColor: .white, backgroundColor: .secondary)
+            }
+
+            if identifier == "1" {
+                return (label: "MASTODON DEV", labelColor: .white, backgroundColor: .purple)
+            }
+
+        }
+
+        return nil
+
+    }
 
     public func fetchProfileStatuses() {
         AppClient.shared().getStatusesForAccount(withID: accountID) { statuses in

@@ -12,8 +12,19 @@ import SwiftUI
 /// using Mastodon's API endpoints.
 public class RemoteImageModel: ObservableObject {
 
-    /// The image data displayed as a UIImage.
+    #if os(iOS)
+    /// The image data displayed as an UIImage.
     @Published public var image: UIImage?
+    #else
+    /// The image data displayed as a NSImage.
+    @Published public var image: NSImage?
+    #endif
+
+    @Published public var error: String? {
+        didSet {
+            print(self.error as Any)
+        }
+    }
 
     /// The url from where the data is downloaded.
     public var urlString: String?
@@ -56,18 +67,24 @@ public class RemoteImageModel: ObservableObject {
 
     func getImageFromResponse(data: Data?, response: URLResponse?, error: Error?) {
         guard error == nil else {
-            print("Error: \(error!)")
+            self.error = "\(error!)"
             return
         }
         guard let data = data else {
-            print("No data found")
+            self.error = "No data found"
             return
         }
 
         DispatchQueue.main.async {
+            #if os(iOS)
             guard let loadedImage = UIImage(data: data) else {
                 return
             }
+            #else
+            guard let loadedImage = NSImage(data: data) else {
+                return
+            }
+            #endif
 
             self.imageCache.set(forKey: self.urlString!, image: loadedImage)
             self.image = loadedImage
@@ -76,6 +93,7 @@ public class RemoteImageModel: ObservableObject {
 }
 
 public class ImageCache {
+    #if os(iOS)
     var cache = NSCache<NSString, UIImage>()
 
     func get(forKey: String) -> UIImage? {
@@ -85,6 +103,18 @@ public class ImageCache {
     func set(forKey: String, image: UIImage) {
         cache.setObject(image, forKey: NSString(string: forKey))
     }
+    #else
+    var cache = NSCache<NSString, NSImage>()
+
+    func get(forKey: String) -> NSImage? {
+        return cache.object(forKey: NSString(string: forKey))
+    }
+
+    func set(forKey: String, image: NSImage) {
+        cache.setObject(image, forKey: NSString(string: forKey))
+    }
+    #endif
+
 }
 
 extension ImageCache {

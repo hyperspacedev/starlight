@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 /// A structure that computes mastodon account avatars on demand
 /// from a remote url, showing a placeholder until the data is retrieved.

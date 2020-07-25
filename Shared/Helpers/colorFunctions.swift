@@ -24,6 +24,6 @@ var backgroundColor: Color {
     #if os(macOS)
     return Color(.textBackgroundColor)
     #else
-    return Color(.secondarySystemBackground)
+    return Color(.systemBackground)
     #endif
 }

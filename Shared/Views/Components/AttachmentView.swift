@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 /// A structure that computes status attachments on demand
 /// from a remote url, showing a placeholder using blurhash (if applicable),
@@ -55,7 +54,6 @@ public struct AttachmentView<Placeholder>: View where Placeholder: View {
 
     }
 
-    var defaultImage = UIImage(named: "NewsIcon")
 }
 
 extension AttachmentView where Placeholder: View {

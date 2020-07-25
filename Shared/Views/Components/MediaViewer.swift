@@ -1,5 +1,5 @@
 //
-//  ImageDisplayView.swift
+//  MediaViewer.swift
 //  Codename Starlight
 //
 //  Created by Alejandro Modroño Vara on 13/07/2020.
@@ -109,7 +109,7 @@ public struct ImageDisplayView<Content>: View where Content: View {
 
 extension ImageDisplayView where Content: View {
 
-    /// Creates a view that allows users to see static media (images).
+    /// Creates a view that allows users to see photos, videos, and GIFs.
     ///
     /// - Parameters:
     ///   - image: The image to be displayed.

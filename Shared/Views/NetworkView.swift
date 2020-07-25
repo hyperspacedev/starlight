@@ -7,7 +7,10 @@
 
 import Foundation
 import SwiftUI
+
+#if canImport(SwiftUIRefresh)
 import SwiftUIRefresh
+#endif
 
 struct NetworkView: View {
 
@@ -27,23 +30,33 @@ struct NetworkView: View {
             #if os(iOS)
 
             self.view
+                .listStyle(GroupedListStyle())
+                .pullToRefresh(isShowing: $isShowing) {
+                    self.timeline.refreshTimeline(from: self.timeline.statuses[0])
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.isShowing = false
+                    }
+                }
                 .navigationTitle("Network")
                 .navigationBarTitleDisplayMode(.automatic)
                 .toolbar {
-                    
+
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: { self.showTimelineFilterType.toggle() }) {
-                            Label(self.timeline.type == .public ? "Public" : "Community",
-                                  systemImage: self.timeline.type == .public ? "globe": "person.2")
-                        }
+                        Button(action: { self.showTimelineFilterType.toggle() }, label: {
+                            HStack {
+                                Label(self.timeline.type == .public ? "Public" : "Community",
+                                      systemImage: self.timeline.type == .public ? "globe": "person.2")
+                                Spacer()
+                            }
+                        })
                     }
-                    
+
                     ToolbarItem(placement: .primaryAction) {
 
-                        Button(action: {}) {
+                        Button(action: {}, label: {
                             Image(systemName: "line.horizontal.3.decrease")
                                 .imageScale(.large)
-                        }
+                        })
 
                     }
                 }
@@ -102,26 +115,15 @@ struct NetworkView: View {
 
                 } else {
 
-                    ForEach(self.timeline.statuses, id: \.self.id) { status in
-                        StatusView(status: status)
-                            .buttonStyle(PlainButtonStyle())
-                            .onAppear {
-                                self.timeline.updateTimeline(currentItem: status)
-                            }
-                    }
+                    StatusList(self.timeline.statuses, action: { currentStatus in
+                        self.timeline.updateTimeline(currentItem: currentStatus)
+                    })
 
                 }
             }
 
             }
             .animation(.spring())
-            .listStyle(GroupedListStyle())
-            .pullToRefresh(isShowing: $isShowing) {
-                self.timeline.refreshTimeline(from: self.timeline.statuses[0])
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.isShowing = false
-                }
-            }
             .onAppear {
                 self.timeline.fetchTimeline()
             }

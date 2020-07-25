@@ -35,9 +35,7 @@ public class NetworkViewModel: ObservableObject {
     func refreshTimeline(from currentItem: Status) {
 
         AppClient.shared().updateTimeline(action: .refresh, scope: self.type, id: currentItem.id) { statuses in
-            let oldStatuses = self.statuses
-            self.statuses = statuses
-            self.statuses.append(contentsOf: oldStatuses)
+            self.statuses.insert(contentsOf: statuses, at: self.statuses.startIndex)
         }
 
     }

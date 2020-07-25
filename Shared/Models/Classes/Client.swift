@@ -132,7 +132,7 @@ public class AppClient {
             DispatchQueue.main.async {
                 do {
                     let results = try JSONDecoder().decode([Status].self, from: data!)
-                    completion(results) 
+                    completion(results)
                 } catch {
                     print("Error: \(error)")
                 }
@@ -164,7 +164,7 @@ public class AppClient {
                         completion(results)
                     } catch {
                         print("Error: \(error)")
-                    }
+                    }   
                 }
             }
             .resume()
@@ -192,7 +192,7 @@ public class AppClient {
                 URLQueryItem(name: "min_id", value: identifier),
                 URLQueryItem(name: "limit", value: "9999") // We want all the statuses newer than this id.
             ]
-            
+
             // When we get the absoluteString prior and make a localURL from it, it strips the local
             // parameter. This gets around it, somehow.
             if scope == .local {
@@ -200,7 +200,7 @@ public class AppClient {
                     URLQueryItem(name: "local", value: "true")
                 )
             }
-            
+
             apiURL = (localURL?.url)!
             print(apiURL.absoluteString)
 

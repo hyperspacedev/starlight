@@ -21,7 +21,7 @@ struct StatusView: View {
 
     /// In Starlight, there are two ways to display mastodon statuses:
     ///     - Standard: The status is being displayed from the feed.
-    ///     - Focused: The status is the main post of a thread.
+    ///     - Focused: The status is the main post in a thread.
     ///
     /// The ``StatusView`` instance should know what way it is being
     /// displayed so that it can display the content properly.
@@ -37,8 +37,6 @@ struct StatusView: View {
     /// Using for triggering the navigation View **only**when the user taps
     /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
-
-    @State var showMoreActions: Bool = false
 
     @State var profileViewActive: Bool = false
 
@@ -117,14 +115,14 @@ struct StatusView: View {
         VStack(alignment: .leading) {
 
             NavigationLink(destination:
-                            ProfileView(isParent: false,
-                                        accountInfo: ProfileViewModel(accountID: self.status.account.id),
-                                        onResumeToParent: {
-                                            self.profileViewActive = false
-                                        }),
+                            ProfileView(
+                                accountInfo: ProfileViewModel(accountID: self.status.account.id),
+                                isParent: false
+                            ),
                            isActive: self.$profileViewActive) {
                 EmptyView()
             }
+                .disabled(self.profileViewActive ? false : true)
 
             HStack(alignment: .center) {
 
@@ -152,10 +150,18 @@ struct StatusView: View {
 
                 Spacer()
 
-                Button(action: { self.showMoreActions.toggle() }, label: {
+                Menu {
+                    Button("View @\(self.status.account.acct)'s profile", action: {
+                        self.profileViewActive = true
+                    })
+                    Button("Mute @\(self.status.account.acct)", action: {})
+                    Button("Block @\(self.status.account.acct)", action: {})
+                    Button("Report @\(self.status.account.acct)", action: {})
+                    Button("Dismiss", action: {})
+                } label: {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
-                })
+                }
             }
 
             self.statusContent
@@ -168,6 +174,16 @@ struct StatusView: View {
                 }
             }
 
+            self.presentedPostFooter
+
+        }
+            .buttonStyle(PlainButtonStyle())
+            .navigationBarHidden(self.profileViewActive)
+
+    }
+
+    var presentedPostFooter: some View {
+        VStack(alignment: .leading) {
             HStack {
                 Text("\(self.status.createdAt.getDate()!.format(as: "hh:mm · dd/MM/YYYY")) · ")
                 Button(action: {
@@ -206,30 +222,7 @@ struct StatusView: View {
             self.actionButtons
                 .padding(.vertical, 5)
                 .padding(.horizontal)
-
         }
-            .buttonStyle(PlainButtonStyle())
-        .navigationBarHidden(self.profileViewActive)
-        .actionSheet(isPresented: self.$showMoreActions) {
-            ActionSheet(title: Text("More Actions"),
-                        buttons: [
-                            .default(Text("View @\(self.status.account.acct)'s profile"), action: {
-                                self.profileViewActive = true
-                            }),
-                            .destructive(Text("Mute @\(self.status.account.acct)"), action: {
-
-                            }),
-                            .destructive(Text("Block @\(self.status.account.acct)"), action: {
-
-                            }),
-                            .destructive(Text("Report @\(self.status.account.acct)"), action: {
-
-                            }),
-                            .cancel(Text("Dismiss"), action: {})
-                        ]
-            )
-        }
-
     }
 
     // MARK: DEFAULT VIEW
@@ -312,14 +305,18 @@ struct StatusView: View {
     // MARK: STATUS CONTENT
     /// The post's main content.
     var statusContent: some View {
+
         #if os(macOS)
-        // Note: Need to subtract sidebar size here.
-        let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        if self.isMain {
+            // Note: Need to subtract sidebar size here.
+            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        } else {
+            // Note: Need to subtract sidebar size here.
+            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        }
         #else
         let bounds: CGFloat = UIScreen.main.bounds.width
         #endif
-
-        let padding: CGFloat = 84
 
         return VStack(alignment: .leading) {
             AttributedTextView(
@@ -331,7 +328,7 @@ struct StatusView: View {
                 configured: { label in
                     self.configureLabel(label, size: isMain ? 20 : 17)
                 },
-                maxWidth: bounds - padding)
+                maxWidth: isMain ? bounds - 30 : bounds  - 84)
             .fixedSize()
         }
     }

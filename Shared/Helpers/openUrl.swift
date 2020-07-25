@@ -6,7 +6,11 @@
 //
 
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#else
+import AppKit
+#endif
 
 /// Opens a URL on the preferred browser on macOS, iPadOS, and iOS.
 ///
