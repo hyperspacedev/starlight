@@ -164,7 +164,7 @@ public class AppClient {
                         completion(results)
                     } catch {
                         print("Error: \(error)")
-                    }   
+                    }
                 }
             }
             .resume()

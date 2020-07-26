@@ -79,7 +79,7 @@ struct ThreadView: View {
 
                 }
 
-                StatusView(isMain: true, status: mainStatus)
+                StatusView(.presented, status: mainStatus)
 
                 if let context = self.threadModel.context {
 

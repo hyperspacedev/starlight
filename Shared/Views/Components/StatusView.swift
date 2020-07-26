@@ -13,6 +13,10 @@ import SwiftUI
 import Atributika
 
 /// A structure that computes statuses on demand from a `Status` data model.
+///
+/// For the sake of having a cleaner code, Starlight's status view is divided
+/// into several sub-components, such as ``CompactStatusView`` and ``PresentedStatusView``,
+/// which then divide themselves into smaller sub-components.
 struct StatusView: View {
 
     #if os(iOS)
@@ -20,27 +24,81 @@ struct StatusView: View {
     #endif
 
     /// In Starlight, there are two ways to display mastodon statuses:
-    ///     - Standard: The status is being displayed from the feed.
-    ///     - Focused: The status is the main post in a thread.
+    ///     - Compact: The status is being displayed from a list.
+    ///     - Presented: The status is the main post in a thread.
     ///
     /// The ``StatusView`` instance should know what way it is being
     /// displayed so that it can display the content properly.
     /// In order to achieve this, we pass a bool to ``StatusView``, which when true,
     /// tells it that it's content should be displayed as `Focused`.
-    private var isMain: Bool
+    ///
+    ///
+    private var displayMode: StatusDisplayMode
 
-    /// The ``Status`` data model whose the data will be displayed.
-    var status: Status
+    /// The ``Status`` data model we're displaying.
+    var status: Status?
 
     #if os(iOS)
 
-    /// Using for triggering the navigation View **only**when the user taps
+    /// Used for triggering the navigation View **only** when the user taps
     /// on the content, and not when it taps on the action buttons.
     @State var goToThread: Int? = 0
 
+    /// Used for redirecting the user to the author's profile.
     @State var profileViewActive: Bool = false
 
     #endif
+
+    var body: some View {
+
+        VStack {
+
+            if let status = self.status {
+
+                if self.displayMode == .presented {
+                    PresentedStatusView(
+                        status: status,
+                        profileViewActive: self.$profileViewActive
+                    )
+                } else { // displayMode is .compact
+                    CompactStatusView(
+                        status: status,
+                        goToThread: self.$goToThread
+                    )
+                }
+
+            } else {
+                PlaceholderStatusView()
+            }
+
+        }
+            .buttonStyle(PlainButtonStyle())
+
+    }
+
+}
+
+// MARK: EXTENSIONS
+extension StatusView {
+
+    /// Generates a View that displays a post on Mastodon.
+    ///
+    /// - Parameters:
+    ///     - displayMode: How should the status be displayed.
+    ///     - status: The identified data that the ``StatusView`` instance uses to
+    ///     display posts dynamically.
+    public init(_ displayMode: StatusDisplayMode = .compact, status: Status? = nil) {
+        self.displayMode = displayMode
+        self.status = status
+    }
+
+}
+
+/// The status' content.
+private struct StatusViewContent: View {
+
+    let isMain: Bool
+    let content: String
 
     // MARK: STATUS VIEW TEXT STYLES
     private let rootStyle: Style = Style("p")
@@ -65,52 +123,160 @@ struct StatusView: View {
         }
     }
 
-    // MARK: BODY
-
-    /// To easily use the same view on multiple platforms,
-    /// we use the `body` view as a container where we load platform-specific
-    /// modifiers.
     var body: some View {
 
-        //  We use this vertical stack to load platform specific modifiers,
-        //  or to load specific views when a condition is met.
-        VStack {
+        #if os(macOS)
+        if self.isMain {
+            // Note: Need to subtract sidebar size here.
+            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        } else {
+            // Note: Need to subtract sidebar size here.
+            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
+        }
+        #else
+        let bounds: CGFloat = UIScreen.main.bounds.width
+        #endif
 
-            // Whether the post is focused or not.
-            if self.isMain {
+        return VStack(alignment: .leading) {
+            AttributedTextView(
+                attributedText: self.content
+                    .style(tags: isMain ? rootPresentedStyle: rootStyle)
+                    .styleLinks(linkStyle)
+                    .styleHashtags(linkStyle)
+                    .styleMentions(linkStyle),
+                configured: { label in
+                    self.configureLabel(label, size: isMain ? 20 : 17)
+                },
+                maxWidth: isMain ? bounds - 30 : bounds  - 84)
+            .fixedSize()
+        }
+    }
 
-                self.presentedView
+}
 
-            } else {
+/// The status is being displayed in a ``StatusList``, so we should make it smaller and more compact.
+private struct CompactStatusView: View {
 
-                // To provide the best experience, we want to allow the user to easily
-                // interact with a post directly from the feed. Because of that, we need
-                // to add a button
-                ZStack {
+    var status: Status
 
-                    self.defaultView
+    @Binding var goToThread: Int?
 
-                    NavigationLink(
-                        destination: ThreadView(mainStatus: self.status),
-                        tag: 1,
-                        selection: self.$goToThread,
-                        label: {
-                            EmptyView()
-                        }
-                    )
+    var body: some View {
 
+        //  We want users to be able to quickly interact with posts without needing to open
+        //  the post.
+        //
+        //  It's a bit hacky, yeah, but it works, so... ¯\_(ツ)_/¯
+        ZStack {
+
+            self.content
+
+            NavigationLink(
+                destination: ThreadView(mainStatus: self.status),
+                tag: 1,
+                selection: self.$goToThread,
+                label: {
+                    EmptyView()
                 }
-
-            }
+            )
 
         }
-            .buttonStyle(PlainButtonStyle())
 
     }
 
-    // MARK: PRESENTED VIEW
-    /// The status display mode when it is the thread's main post.
-    var presentedView: some View {
+    var content: some View {
+
+        VStack(alignment: .leading) {
+
+            Button(action: {
+                self.goToThread = 1
+            }, label: {
+                HStack(alignment: .top) {
+
+                    ProfileImage(from: self.status.account.avatarStatic, placeholder: {
+                        Circle()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.gray)
+                    })
+
+                    VStack(alignment: .leading, spacing: 5) {
+
+                        HStack {
+
+                            HStack(spacing: 5) {
+
+                                Text("\(self.status.account.displayName)")
+                                    .font(.headline)
+                                    .lineLimit(1)
+
+                                Text("\(self.status.account.acct)")
+                                    .foregroundColor(.gray)
+                                    .lineLimit(1)
+
+                                Text("· \(self.status.createdAt.getDate()!.getInterval())")
+                                    .lineLimit(1)
+
+                            }
+
+                        }
+
+                        StatusViewContent(
+                            isMain: false,
+                            content: self.status.content
+                        )
+
+                        if !self.status.mediaAttachments.isEmpty {
+                            AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
+                                Rectangle()
+                                    .scaledToFit()
+                                    .cornerRadius(10)
+                            }
+                        }
+
+                    }
+
+                }
+            })
+
+            StatusActionButtons(
+                isMain: false,
+                repliesCount: self.status.repliesCount,
+                reblogsCount: self.status.reblogsCount,
+                favouritesCount: self.status.favouritesCount
+            )
+                .padding(.leading, 60)
+
+        }
+            .contextMenu(
+                ContextMenu(menuItems: {
+
+                    Button(action: {}, label: {
+                        Label("Report post", systemImage: "flag")
+                    })
+
+                    Button(action: {}, label: {
+                        Label("Report \(self.status.account.displayName)", systemImage: "flag")
+                    })
+
+                    Button(action: {}, label: {
+                        Label("Share as Image", systemImage: "square.and.arrow.up")
+                    })
+
+                })
+            )
+
+    }
+
+}
+
+/// The status is the main post in the thread, so we should make it bigger.
+private struct PresentedStatusView: View {
+
+    var status: Status
+    @Binding var profileViewActive: Bool
+
+    var body: some View {
 
         VStack(alignment: .leading) {
 
@@ -164,7 +330,7 @@ struct StatusView: View {
                 }
             }
 
-            self.statusContent
+            StatusViewContent(isMain: true, content: self.status.content)
 
             if !self.status.mediaAttachments.isEmpty {
                 AttachmentView(from: self.status.mediaAttachments[0].url) {
@@ -174,7 +340,7 @@ struct StatusView: View {
                 }
             }
 
-            self.presentedPostFooter
+            self.footer
 
         }
             .buttonStyle(PlainButtonStyle())
@@ -182,7 +348,7 @@ struct StatusView: View {
 
     }
 
-    var presentedPostFooter: some View {
+    var footer: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("\(self.status.createdAt.getDate()!.format(as: "hh:mm · dd/MM/YYYY")) · ")
@@ -217,128 +383,32 @@ struct StatusView: View {
             +
             Text("likes.")
 
-            Divider()
-
-            self.actionButtons
-                .padding(.vertical, 5)
-                .padding(.horizontal)
+//            Divider()
+//
+//            StatusActionButtons(
+//                isMain: true,
+//                repliesCount: self.status.repliesCount,
+//                reblogsCount: self.status.reblogsCount,
+//                favoritesCount: self.status.favouritesCount
+//            )
+//                .padding(.vertical, 5)
+//                .padding(.horizontal)
         }
     }
 
-    // MARK: DEFAULT VIEW
-    var defaultView: some View {
+}
 
-        VStack(alignment: .leading) {
+/// The post's action buttons (favourite and reblog).
+///
+/// If the post is focused (``isMain`` is set to `true`), the count is hidden.
+private struct StatusActionButtons: View {
 
-            Button(action: {
-                self.goToThread = 1
-            }, label: {
-                HStack(alignment: .top) {
+    let isMain: Bool
+    let repliesCount: Int
+    let reblogsCount: Int
+    let favouritesCount: Int
 
-                    ProfileImage(from: self.status.account.avatarStatic, placeholder: {
-                        Circle()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.gray)
-                    })
-
-                    VStack(alignment: .leading, spacing: 5) {
-
-                        HStack {
-
-                            HStack(spacing: 5) {
-
-                                Text("\(self.status.account.displayName)")
-                                    .font(.headline)
-                                    .lineLimit(1)
-
-                                Text("\(self.status.account.acct)")
-                                    .foregroundColor(.gray)
-                                    .lineLimit(1)
-
-                                Text("· \(self.status.createdAt.getDate()!.getInterval())")
-                                    .lineLimit(1)
-
-                            }
-
-                        }
-
-                        self.statusContent
-
-                        if !self.status.mediaAttachments.isEmpty {
-                            AttachmentView(from: self.status.mediaAttachments[0].previewURL) {
-                                Rectangle()
-                                    .scaledToFit()
-                                    .cornerRadius(10)
-                            }
-                        }
-
-                    }
-
-                }
-            })
-
-            self.actionButtons
-                .padding(.leading, 60)
-
-        }
-            .contextMenu(
-                ContextMenu(menuItems: {
-
-                    Button(action: {}, label: {
-                        Label("Report post", systemImage: "flag")
-                    })
-
-                    Button(action: {}, label: {
-                        Label("Report \(self.status.account.displayName)", systemImage: "flag")
-                    })
-
-                    Button(action: {}, label: {
-                        Label("Share as Image", systemImage: "square.and.arrow.up")
-                    })
-
-                })
-            )
-
-    }
-
-    // MARK: STATUS CONTENT
-    /// The post's main content.
-    var statusContent: some View {
-
-        #if os(macOS)
-        if self.isMain {
-            // Note: Need to subtract sidebar size here.
-            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
-        } else {
-            // Note: Need to subtract sidebar size here.
-            let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width
-        }
-        #else
-        let bounds: CGFloat = UIScreen.main.bounds.width
-        #endif
-
-        return VStack(alignment: .leading) {
-            AttributedTextView(
-                attributedText: self.status.content
-                    .style(tags: isMain ? rootPresentedStyle: rootStyle)
-                    .styleLinks(linkStyle)
-                    .styleHashtags(linkStyle)
-                    .styleMentions(linkStyle),
-                configured: { label in
-                    self.configureLabel(label, size: isMain ? 20 : 17)
-                },
-                maxWidth: isMain ? bounds - 30 : bounds  - 84)
-            .fixedSize()
-        }
-    }
-
-    // MARK: ACTION BUTTONS
-
-    /// The post's action buttons (favourite and reblog), and also the amount of replies.
-    ///
-    /// If the post is focused (``isMain`` is true), the count is hidden.
-    var actionButtons: some View {
+    var body: some View {
         HStack {
 
             HStack {
@@ -346,7 +416,7 @@ struct StatusView: View {
                 Image(systemName: "text.bubble")
 
                 if !self.isMain {
-                    Text("\(self.status.repliesCount.roundedWithAbbreviations)")
+                    Text("\(self.repliesCount.roundedWithAbbreviations)")
                 }
 
             }
@@ -362,7 +432,7 @@ struct StatusView: View {
                     Image(systemName: "arrow.2.squarepath")
 
                     if !self.isMain {
-                        Text("\(self.status.reblogsCount.roundedWithAbbreviations)")
+                        Text("\(self.reblogsCount.roundedWithAbbreviations)")
                     }
 
                 }
@@ -383,7 +453,7 @@ struct StatusView: View {
                     Image(systemName: "heart")
 
                     if !self.isMain {
-                        Text("\(self.status.favouritesCount.roundedWithAbbreviations)")
+                        Text("\(self.favouritesCount.roundedWithAbbreviations)")
                     }
                 }
 
@@ -406,31 +476,54 @@ struct StatusView: View {
                 )
 
         }
-
     }
 
 }
 
-// MARK: EXTENSIONS
-extension StatusView {
+/// A view similar to a compact status view with sample text, and wrapped using `.redacted(reason: .placeholder)`.
+private struct PlaceholderStatusView: View {
 
-    /// Generates a View that displays a post on Mastodon.
-    ///
-    /// - Parameters:
-    ///     - isPresented: A boolean variable that determines whether
-    ///     the status is being shown as the main post (in a thread).
-    ///     - status: The identified data that the ``StatusView`` instance uses to
-    ///     display posts dynamically.
-    public init(isMain: Bool = false, status: Status) {
-        self.isMain = isMain
-        self.status = status
+    var body: some View {
+        HStack(alignment: .top) {
+
+            Circle()
+                .frame(width: 50, height: 50)
+                .foregroundColor(.gray)
+
+            VStack(alignment: .leading, spacing: 5) {
+
+                HStack {
+
+                    HStack(spacing: 5) {
+
+                        Text("Some username")
+                            .font(.headline)
+                            .lineLimit(1)
+
+                        Text("username@instance")
+                            .foregroundColor(.gray)
+                            .lineLimit(1)
+
+                        Text("24s")
+                            .lineLimit(1)
+
+                    }
+
+                }
+
+                Text("This is a sample mastodon status that is being used as a placeholder.")
+
+            }
+
+        }
+            .redacted(reason: .placeholder)
     }
 
 }
 
 struct StatusView_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = NetworkViewModel()
+    @StateObject static var timeline = NetworkViewModel()
 
     static var previews: some View {
         VStack {
@@ -454,7 +547,7 @@ struct StatusView_Previews: PreviewProvider {
                         self.timeline.fetchTimeline()
                     }
             } else {
-                StatusView(isMain: false, status: self.timeline.statuses[0])
+                StatusView(.compact, status: self.timeline.statuses[0])
             }
         }
             .frame(width: 600, height: 300)

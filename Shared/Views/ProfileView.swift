@@ -59,7 +59,7 @@ struct ProfileView: View {
 
             ProfileViewHeader(accountInfo: self.accountInfo)
 
-            StatusList(self.accountInfo.statuses, divider: true, action: {_ in})
+            StatusList(self.accountInfo.statuses, context: .noneWithSeparator, action: {_ in})
                 .padding(.horizontal)
 
         }

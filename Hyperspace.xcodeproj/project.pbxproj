@@ -127,6 +127,10 @@
 		FAF6584224CC1DDC008D9BC8 /* ProfileViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584024CC1DDC008D9BC8 /* ProfileViewInfo.swift */; };
 		FAF6584424CC3404008D9BC8 /* StatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584324CC3404008D9BC8 /* StatusList.swift */; };
 		FAF6584524CC3404008D9BC8 /* StatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584324CC3404008D9BC8 /* StatusList.swift */; };
+		FAF6584724CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */; };
+		FAF6584824CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */; };
+		FAF6584A24CDC15F008D9BC8 /* StatusListContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */; };
+		FAF6584B24CDC15F008D9BC8 /* StatusListContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */; };
 		FAF9CA2124BE1C9700BE09BE /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */; };
 		FAF9CA2224BE1C9700BE09BE /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */; };
 /* End PBXBuildFile section */
@@ -224,6 +228,8 @@
 		FAEE690624C828B6009E684E /* stringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stringExtensions.swift; sourceTree = "<group>"; };
 		FAF6584024CC1DDC008D9BC8 /* ProfileViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewInfo.swift; sourceTree = "<group>"; };
 		FAF6584324CC3404008D9BC8 /* StatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusList.swift; sourceTree = "<group>"; };
+		FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDisplayMode.swift; sourceTree = "<group>"; };
+		FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListContext.swift; sourceTree = "<group>"; };
 		FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,6 +340,8 @@
 			children = (
 				BF673F2124B4CCEE00A97FF3 /* AttachmentType.swift */,
 				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
+				FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */,
+				FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */,
 				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
 				BF455EDA24B402120066FB1B /* Visibility.swift */,
 				BFD620B824BC078100730632 /* TimelineScope.swift */,
@@ -725,6 +733,7 @@
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
 				FAEE690724C828B6009E684E /* stringExtensions.swift in Sources */,
+				FAF6584A24CDC15F008D9BC8 /* StatusListContext.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
 				BF8D008724BE38D100F330E5 /* ExploreViewModel.swift in Sources */,
 				FAE4B26824B500DC000B5405 /* PollOption.swift in Sources */,
@@ -737,6 +746,7 @@
 				FA7499A124BC41D5002A9E69 /* MediaViewer.swift in Sources */,
 				FAEDC00A24BAEA540034EF6F /* ThreadViewModel.swift in Sources */,
 				FA55FA2C24BF0E1100A5EE13 /* Reachability.swift in Sources */,
+				FAF6584724CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */,
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
@@ -764,6 +774,7 @@
 				FA7E98A524B9DC32002C9476 /* RemoteImageModel.swift in Sources */,
 				FA48238724B46A860095E415 /* Field.swift in Sources */,
 				BFE07C8B24BCA86B00203706 /* HomeView.swift in Sources */,
+				FAF6584B24CDC15F008D9BC8 /* StatusListContext.swift in Sources */,
 				FA74999F24BC3FBD002A9E69 /* AttachmentView.swift in Sources */,
 				BF11463F24B613E70040691B /* Standard.swift in Sources */,
 				BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */,
@@ -775,6 +786,7 @@
 				FAEDC00E24BB12090034EF6F /* openUrl.swift in Sources */,
 				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
+				FAF6584824CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */,

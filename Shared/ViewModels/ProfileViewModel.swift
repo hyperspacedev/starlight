@@ -31,8 +31,8 @@ public class ProfileViewModel: ObservableObject {
     var badge: (label: String, labelColor: Color, backgroundColor: Color)? {
 
         let devs = [
-            "853740", // amodrono
-            "367895" // alicerunsonfedora
+            "329742",   // amodrono@mastodon.technology
+            "367895"    // alicerunsonfedora
         ]
 
         let testAccts = [

@@ -35,7 +35,9 @@ public struct RemoteImage<Placeholder, Result>: View where Placeholder: View, Re
                 result(remoteImage)
 
             } else {
+
                 self.placeholder
+
             }
         }
             .onAppear {
@@ -70,26 +72,12 @@ extension RemoteImage where Placeholder: View {
     ///       data is retrieved.
     ///     - error: An optional string of the error that occurred while fetching the image data.
     ///     - result: A function you can use to display the resulting image.
-    public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder, error: String? = nil, @ViewBuilder result: @escaping (Image) -> Result) {
+    public init(from urlString: String?, @ViewBuilder placeholder: () -> Placeholder?, error: String? = nil, @ViewBuilder result: @escaping (Image) -> Result) {
         self.remoteImageModel = RemoteImageModel(urlString)
-        self.placeholder = placeholder()
-        self.result = result
-    }
 
-    /// Generates a View that retrieves image data from a remote URL
-    /// (usually decoded from JSON), that automatically changes across updates;
-    /// and caches it.
-    ///
-    /// It's important that `result` makes use of the escaping closure to display the image,
-    /// or else anything will be displayed. If a problem occurs while retrieving the data, an
-    /// error message will be provided. You should log that and maybe show a simple message to the user.
-    ///
-    /// - Parameters:
-    ///     - from: The ``Account``'s static avatar url ``CachedRemoteImage`` uses to retrieve the data.
-    ///     - error: An optional string of the error that occurred while fetching the image data.
-    ///     - result: A function you can use to display the resulting image.
-    public init(from urlString: String?, error: String? = nil, @ViewBuilder result: @escaping (Image) -> Result) {
-        self.init(from: urlString, placeholder: {}, result: result)
+        // swiftlint:disable:next force_cast
+        self.placeholder = placeholder() ?? EmptyView() as! Placeholder
+        self.result = result
     }
 
 }
