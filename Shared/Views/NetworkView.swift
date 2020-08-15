@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 
-#if canImport(SwiftUIRefresh)
+#if canImport(SwiftUIRefresh) && canImport(SwipeCell)
 import SwiftUIRefresh
+import SwipeCell
 #endif
 
 struct NetworkView: View {
@@ -21,7 +22,6 @@ struct NetworkView: View {
     private let displayPublic: Bool = true
 
     @State var isShowing: Bool = false
-    @State var showTimelineFilterType: Bool = false
 
     var body: some View {
 
@@ -29,7 +29,17 @@ struct NetworkView: View {
 
             #if os(iOS)
 
-            self.view
+            StatusList(
+                self.timeline.statuses,
+                context: .list,
+                action: { currentStatus in
+                    self.timeline.updateTimeline(currentItem: currentStatus)
+                }
+            )
+                .onAppear {
+                    self.timeline.fetchTimeline()
+                }
+                .animation(.spring())
                 .listStyle(GroupedListStyle())
                 .pullToRefresh(isShowing: $isShowing) {
                     self.timeline.refreshTimeline(from: self.timeline.statuses[0])
@@ -42,13 +52,25 @@ struct NetworkView: View {
                 .toolbar {
 
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: { self.showTimelineFilterType.toggle() }, label: {
-                            HStack {
-                                Label(self.timeline.type == .public ? "Public" : "Community",
-                                      systemImage: self.timeline.type == .public ? "globe": "person.2")
-                                Spacer()
-                            }
-                        })
+
+                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                        Menu {
+                            Button("My community", action: {
+                                withAnimation(.spring()) {
+                                    timeline.type = TimelineScope.local
+                                }
+                            })
+                            Button("Public timeline", action: {
+                                withAnimation(.spring()) {
+                                    timeline.type = TimelineScope.public
+                                }
+                            })
+                        } label: {
+                            Label(self.timeline.type == .public ? "Public" : "Community",
+                                  systemImage: self.timeline.type == .public ? "globe": "person.2")
+                        }
+                        // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
+
                     }
 
                     ToolbarItem(placement: .primaryAction) {
@@ -60,22 +82,18 @@ struct NetworkView: View {
 
                     }
                 }
-                .actionSheet(isPresented: $showTimelineFilterType) {
-                    ActionSheet(title: Text("Network Scope"),
-                                buttons: [
-                                    .default(Text("My community"), action: {
-                                        timeline.type = TimelineScope.local
-                                    }),
-                                    .default(Text("Public timeline"), action: {
-                                        timeline.type = TimelineScope.public
-                                    }),
-                                    .cancel(Text("Dismiss"), action: {})
-                                ])
-                    }
 
             #else
 
-            self.view
+            StatusList(self.timeline.statuses,
+                       context: .list,
+                       action: { currentStatus in
+                        self.timeline.updateTimeline(currentItem: currentStatus)
+                       })
+                .onAppear {
+                    self.timeline.fetchTimeline()
+                }
+                .animation(.spring())
                 .navigationTitle("Network")
                 .navigationSubtitle("\(Date())")
 
@@ -83,50 +101,6 @@ struct NetworkView: View {
 
         }
 
-    }
-
-    var view: some View {
-        List {
-
-            Section {
-
-                if self.timeline.statuses.isEmpty {
-
-                    HStack {
-
-                        Spacer()
-
-                        VStack {
-
-                            Spacer()
-
-                            ProgressView(value: 0.5)
-                                .progressViewStyle(CircularProgressViewStyle())
-
-                            Text("Loading posts...")
-
-                            Spacer()
-
-                        }
-
-                        Spacer()
-
-                    }
-
-                } else {
-
-                    StatusList(self.timeline.statuses, action: { currentStatus in
-                        self.timeline.updateTimeline(currentItem: currentStatus)
-                    })
-
-                }
-            }
-
-            }
-            .animation(.spring())
-            .onAppear {
-                self.timeline.fetchTimeline()
-            }
     }
 }
 

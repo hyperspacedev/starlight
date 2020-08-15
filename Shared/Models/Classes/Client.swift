@@ -23,6 +23,9 @@ public class AppClient {
     /// The user's access token to access the fediverse instance.
     public let token: String
 
+    /// The user's account id so that we can distinguish it from other users.
+    public var id: String
+
     /// A singleton version of the client. Limited to `mastodon.social` and public use.
     private static var defaultInstance: AppClient = {
         let client = AppClient(domain: "https://mastodon.social")
@@ -36,9 +39,10 @@ public class AppClient {
      - Parameter domain: The URL object that points to the fediverse instance.
      - Parameter token: The access token to use to authenticate with the server. Defaults to using `UserDefaults`.
      */
-    init(domain: URL, token: String? = UserDefaults.standard.string(forKey: "accessToken")) {
+    init(domain: URL, token: String? = UserDefaults.standard.string(forKey: "accessToken"), id: String? = UserDefaults.standard.string(forKey: "accountID")) {
         self.baseURL = domain
         self.token = token ?? ""
+        self.id = id ?? "1"
     }
 
     /**
@@ -46,9 +50,8 @@ public class AppClient {
      - Parameter domain: A string representing the URL to the fediverse instance.
      - Parameter token: The access token to use to authenticate with the server. Defaults to using `UserDefaults`.
      */
-    init(domain: String, token: String? = UserDefaults.standard.string(forKey: "accessToken")) {
-        self.baseURL = URL(string: domain)!
-        self.token = ""
+    convenience init(domain: String, token: String? = UserDefaults.standard.string(forKey: "accessToken"), id: String? = UserDefaults.standard.string(forKey: "accountID")) {
+        self.init(domain: URL(string: domain)!, token: token, id: id)
     }
 
     // MARK: PRIVATE UTILITIES
@@ -88,9 +91,11 @@ public class AppClient {
     /**
      Gets the stream of statuses for a specified timeline.
      - Parameter scope: The timeline scope to get.
+     - Parameter maxID: The ID of the statuses whose older statuses we wish to obtain.
+     - Parameter minID: The ID of the statuses whose older newer we wish to obtain.
      - Parameter completion: An escaping closure that utilizes the resulting statuses (`([Status]) -> Void`).
      */
-    public func getTimeline(scope: TimelineScope, completion: @escaping ([Status]) -> Void) {
+    public func getTimeline(scope: TimelineScope, maxID: String? = nil, minID: String? = nil, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
 
         switch scope {
@@ -111,19 +116,31 @@ public class AppClient {
             }
             .resume()
             return
-        case .public:
-            apiURL.appendPathComponent("/api/v1/timelines/public")
-        case .local:
+        default:
             let originalURL = apiURL.absoluteString
             var localURL = URLComponents(string: originalURL)
             localURL?.path = "/api/v1/timelines/public"
-            localURL?.queryItems = [
-                URLQueryItem(name: "local", value: "true")
-            ]
+
+            if let identifier = maxID {
+                localURL?.queryItems = [
+                    URLQueryItem(name: "max_id", value: identifier),
+                    URLQueryItem(name: "local", value: "\(scope == .local ? "true" : "false")")
+                ]
+            } else if let identifier = minID {
+                localURL?.queryItems = [
+                    URLQueryItem(name: "min_id", value: identifier),
+                    URLQueryItem(name: "local", value: "\(scope == .local ? "true" : "false")")
+                ]
+            } else {
+                localURL?.queryItems = [
+                    URLQueryItem(name: "local", value: "\(scope == .local ? "true" : "false")")
+                ]
+            }
+
             apiURL = (localURL?.url)!
-        default:
-            break
         }
+
+        print(apiURL)
 
         URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
             if (error) != nil {
@@ -139,96 +156,6 @@ public class AppClient {
             }
         }
         .resume()
-    }
-
-    /**
-     Gets the stream of statuses older or newer than a specific identifier for a specified timeline.
-     - Parameter action: Whether it should fetch newer statuses or older statuses.
-     - Parameter scope: The timeline scope to get.
-     - Parameter id: The id of the status.
-     - Parameter completion: An escaping closure that utilizes the resulting statuses (`([Status]) -> Void`).
-     */
-    public func updateTimeline(action: TimelineAction, scope: TimelineScope, id identifier: String, completion: @escaping ([Status]) -> Void) {
-        var apiURL = baseURL
-
-        switch scope {
-        case .home:
-            let request = makeAuthenticatedRequest(url: "/ap1/v1/timelines/home")
-            URLSession.shared.dataTask(with: request) { (data, _, error) in
-                if (error) != nil {
-                    print("Error: \(error as Any)")
-                }
-                DispatchQueue.main.async {
-                    do {
-                        let results = try JSONDecoder().decode([Status].self, from: data!)
-                        completion(results)
-                    } catch {
-                        print("Error: \(error)")
-                    }
-                }
-            }
-            .resume()
-            return
-        case .local:
-            let originalURL = apiURL.absoluteString
-            var localURL = URLComponents(string: originalURL)
-            localURL?.path = "/api/v1/timelines/public"
-            localURL?.queryItems = [
-                URLQueryItem(name: "local", value: "true")
-            ]
-            apiURL = (localURL?.url)!
-        case .public:
-            apiURL.appendPathComponent("/api/v1/timelines/public")
-        default:
-            break
-        }
-
-        switch action {
-
-        case .refresh:
-            let originalURL = apiURL.absoluteString
-            var localURL = URLComponents(string: originalURL)
-            localURL?.queryItems = [
-                URLQueryItem(name: "min_id", value: identifier),
-                URLQueryItem(name: "limit", value: "9999") // We want all the statuses newer than this id.
-            ]
-
-            // When we get the absoluteString prior and make a localURL from it, it strips the local
-            // parameter. This gets around it, somehow.
-            if scope == .local {
-                localURL?.queryItems?.append(
-                    URLQueryItem(name: "local", value: "true")
-                )
-            }
-
-            apiURL = (localURL?.url)!
-            print(apiURL.absoluteString)
-
-        case .loadPage:
-            let originalURL = apiURL.absoluteString
-
-            var localURL = URLComponents(string: originalURL)
-            localURL?.queryItems?.append(contentsOf: [
-                URLQueryItem(name: "max_id", value: identifier)
-            ])
-            apiURL = (localURL?.url)!
-        }
-
-        URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
-            if (error) != nil {
-                print("Error: \(error as Any)")
-            }
-            DispatchQueue.main.async {
-                do {
-                    let results = try JSONDecoder().decode([Status].self, from: data!)
-                    completion(results)
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-        }
-        .resume()
-
     }
 
     /**
@@ -258,8 +185,8 @@ public class AppClient {
      - Parameter forStatus: The status to get the contextual data for.
      - Parameter completion: An escaping closure that utilizes the context data (`(Context) -> Void`).
      */
-    public func getContext(forStatus: Status, completion: @escaping (Context) -> Void) {
-        getContext(forStatusID: forStatus.id, completion: completion)
+    public func getContext(for forStatus: Status, completion: @escaping (Context) -> Void) {
+        getContext(for: forStatus.id, completion: completion)
     }
 
     /**
@@ -267,7 +194,7 @@ public class AppClient {
      - Parameter forStatusID: The status ID to get the contextual data for.
      - Parameter completion: An escaping closure that utilizes the context data (`(Context) -> Void`).
      */
-    public func getContext(forStatusID: String, completion: @escaping (Context) -> Void) {
+    public func getContext(for forStatusID: String, completion: @escaping (Context) -> Void) {
         let apiRequest = baseURL.appendingPathComponent("/api/v1/statuses/\(forStatusID)/context")
         URLSession.shared.dataTask(with: apiRequest) { data, _, error in
             if error != nil {
@@ -312,50 +239,27 @@ public class AppClient {
     /**
      Get the statuses associated with a given ID.
      - Parameter withID: The ID number associated with the account.
+     - Parameter maxID: The ID of the statuses whose older statuses we wish to obtain.
+     - Parameter minID: The ID of the statuses whose older newer we wish to obtain.
      - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).
      */
-    public func getStatusesForAccount(withID: String, completion: @escaping ([Status]) -> Void) {
+    public func getStatusesForAccount(withID: String, maxID: String? = nil,
+                                      minID: String? = nil, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
         apiURL.appendPathComponent("/api/v1/accounts/\(withID)/statuses")
-        URLSession.shared.dataTask(with: apiURL) { data, _, error in
-            if error != nil {
-                print("Error: \(error as Any)")
-            }
-            DispatchQueue.main.async {
-                do {
-                    let results = try JSONDecoder().decode([Status].self, from: data!)
-                    completion(results)
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-        }
-        .resume()
-    }
-
-    /**
-     Get the statuses associated with a given ID.
-     - Parameter withID: The ID number associated with the account.
-     - Parameter maxID: The ID of the statuse whose older statuses we wish to obtain.
-     - Parameter completion: An escaping closure that utilizes the resulting data (`([Status]) -> Void`).
-     */
-    public func getStatusesForAccount(withID: String, maxID: String? = nil, minID: String? = nil, completion: @escaping ([Status]) -> Void) {
-        var apiURL = baseURL
-        apiURL.appendPathComponent("/api/v1/accounts/\(withID)/statuses")
+        var localURL = URLComponents(string: apiURL.absoluteString)
 
         if let identifier = maxID {
-            var localURL = URLComponents(string: apiURL.absoluteString)
-            localURL?.queryItems?.append(contentsOf: [
+            localURL?.queryItems = [
                 URLQueryItem(name: "max_id", value: identifier)
-            ])
-            apiURL = (localURL?.url)!
+            ]
         } else if let identifier = minID {
-            var localURL = URLComponents(string: apiURL.absoluteString)
-            localURL?.queryItems?.append(contentsOf: [
+            localURL?.queryItems = [
                 URLQueryItem(name: "min_id", value: identifier)
-            ])
-            apiURL = (localURL?.url)!
+            ]
         }
+
+        apiURL = (localURL?.url)!
 
         URLSession.shared.dataTask(with: apiURL) { data, _, error in
             if error != nil {

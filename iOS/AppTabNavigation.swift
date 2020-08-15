@@ -32,7 +32,8 @@ struct AppTabNavigation: View {
             VStack {
 //                ProfileView(editable: true)
                 ProfileView()
-            }.tabItem {
+            }
+            .tabItem {
                 Label("You", systemImage: "person.circle")
                     .imageScale(.large)
             }
@@ -67,7 +68,7 @@ struct AppTabNavigation: View {
                         Color.red
                     )
             }
-        }
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 

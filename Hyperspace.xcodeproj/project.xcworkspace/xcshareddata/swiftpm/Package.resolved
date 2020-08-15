@@ -36,6 +36,24 @@
           "revision": "fa8fac7b5eb5c729983a8bef65f094b5e0d12014",
           "version": "0.0.3"
         }
+      },
+      {
+        "package": "SwipeCell",
+        "repositoryURL": "https://github.com/EnesKaraosman/SwipeCell",
+        "state": {
+          "branch": null,
+          "revision": "3f102fc79516a3300e15a45d9fb69224ed1c97ca",
+          "version": "0.0.6"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
+        "state": {
+          "branch": null,
+          "revision": "22eca5ee4f317e0283da75426849ee23f0516022",
+          "version": "0.9.19"
+        }
       }
     ]
   },

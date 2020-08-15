@@ -24,7 +24,7 @@ public class ThreadViewModel: ObservableObject {
     ///     - id: The universal identifier of the status whose context we wish to obtain.
     func fetchContext(for statusId: String) {
 
-        AppClient.shared().getContext(forStatusID: statusId, completion: { context in
+        AppClient.shared().getContext(for: statusId, completion: { context in
             self.context = context
         })
 

@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Atributika
+import URLImage
 
 struct ProfileView: View {
 
-    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
+    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: AppClient.shared().id)
 
     #if os(iOS)
     @State var isShowing: Bool = false
@@ -25,15 +26,18 @@ struct ProfileView: View {
                 self.view
                     .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
                     .pullToRefresh(isShowing: $isShowing) {
+                        self.accountInfo.refreshProfileStatuses()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             self.isShowing = false
                         }
                     }
             }
+
         } else {
             self.view
                 .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
                 .pullToRefresh(isShowing: $isShowing) {
+                    self.accountInfo.refreshProfileStatuses()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.isShowing = false
                     }
@@ -46,29 +50,50 @@ struct ProfileView: View {
     }
 
     var view: some View {
-        ScrollView {
+        List {
 
-            ProfileViewBanner(
-                header: self.accountInfo.data?.headerStatic,
-                avatar: self.accountInfo.data?.avatarStatic
-            )
+            #if os(iOS)
+            if self.searchText == "" {
+                ProfileViewHeader(accountInfo: self.accountInfo)
 
-//            Image("sotogrande")
-//                .asBanner()
-//
+                StatusList(self.accountInfo.statuses, context: .none,
+                           action: { currentStatus in
+                            self.accountInfo.updateProfileStatuses(currentItem: currentStatus)
+                           }
+                )
+                    .padding(.trailing, 20)
 
+            } else {
+                StatusList(self.accountInfo.statuses.filter { $0.content.localizedStandardContains(searchText)},
+                           context: .none
+                )
+                    .padding(.trailing, 20)
+                    .animation(.spring())
+            }
+
+            #else
             ProfileViewHeader(accountInfo: self.accountInfo)
 
-            StatusList(self.accountInfo.statuses, context: .noneWithSeparator, action: {_ in})
-                .padding(.horizontal)
+            StatusList(self.accountInfo.statuses, context: .none,
+                       action: { currentStatus in
+                        self.accountInfo.updateProfileStatuses(currentItem: currentStatus)
+                       }
+            )
+                .padding(.trailing, 20)
+            #endif
 
         }
+            .listRowInsets(EdgeInsets())
             .onAppear {
                 self.accountInfo.fetchProfile()
-                self.accountInfo.fetchProfileStatuses()
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.accountInfo.fetchProfileStatuses()
+                })
             }
-            .padding(.horizontal)
-            .navigationTitle(self.accountInfo.data?.displayName ?? "Profile")
+
+            // swiftlint:disable:next line_length
+            .navigationTitle("\(self.accountInfo.data?.id == AppClient.shared().id ? "You" : (self.accountInfo.data?.displayName ?? "Profile")) - \((self.accountInfo.data?.statusesCount ?? 0).roundedWithAbbreviations) toots")
             .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -78,44 +103,97 @@ struct ProfileViewBanner: View {
 
     @State var header: String?
     @State var avatar: String?
+    @Binding var isEditing: Bool
 
     var body: some View {
-        RemoteImage(
-            from: self.header,
-            placeholder: {
-                Image("sotogrande")
-                    .asBanner()
-//                    .overlay(
-//                        self.avatarImage.offset(y: 64),
-//                        alignment: .bottomLeading
-//                    )
-                    .redacted(reason: .placeholder)
-            },
-            result: { image in
-                image
-                    .asBanner()
-//                    .overlay(
-//                        self.avatarImage.offset(y: 64),
-//                        alignment: .bottomLeading
-//                    )
-            }
-        )
+
+        if let header = self.header {
+            URLImage(URL(string: header)!,
+                     placeholder: { _ in
+                        Rectangle()
+                            .frame(height: 200)
+                            .foregroundColor(.gray)
+                            .overlay(
+                                self.avatarImage.offset(y: 64),
+                                alignment: .bottomLeading
+                            )
+                     },
+                     content: {
+                        $0.image
+                            .asBanner()
+                            .overlay(isEditing ?
+                                        AnyView(
+                                            ZStack {
+                                                Rectangle().foregroundColor(.black).opacity(0.3)
+                                                Button(action: {}, label: {
+                                                    Image(systemName: "photo.on.rectangle.angled")
+                                                        .imageScale(.large)
+                                                        .foregroundColor(.white)
+                                                })
+                                            }
+                                        ): AnyView(EmptyView()),
+                                     alignment: .center
+                            )
+                            .overlay(
+                                self.avatarImage.offset(y: 64),
+                                alignment: .bottomLeading
+                            )
+                     })
+                .padding(.top, -5)
+                .animation(.spring())
+        } else {
+            Rectangle()
+                .frame(height: 200)
+                .foregroundColor(.gray)
+                .overlay(
+                    Image("amodrono")
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 100, height: 100)
+                        .redacted(reason: .placeholder)
+                        .padding()
+                        .background(
+                            Circle()
+                                .frame(width: 110, height: 110)
+                                .foregroundColor(backgroundColor)
+                        )
+                        .offset(y: 64),
+                    alignment: .bottomLeading
+                )
+        }
+
     }
 
     var avatarImage: some View {
-        RemoteImage(
-            from: self.avatar,
-            placeholder: {
-                Image("sotogrande")
+        URLImage(URL(string: self.avatar!)!,
+            placeholder: { _ in
+                Image("amodrono")
+                    .resizable()
                     .scaledToFit()
+                    .clipShape(Circle())
                     .frame(width: 100, height: 100)
                     .redacted(reason: .placeholder)
             },
-            result: { image in
-                image
+            content: {
+                $0.image
+                    .resizable()
                     .scaledToFit()
+                    .clipShape(Circle())
                     .frame(width: 100, height: 100)
-                    .redacted(reason: .placeholder)
+                    .overlay(isEditing ?
+                            AnyView(
+                                ZStack {
+                                    Circle().foregroundColor(.black).opacity(0.3)
+                                    Button(action: {}, label: {
+                                            Image(systemName: "photo.on.rectangle.angled")
+                                                .imageScale(.large)
+                                                .foregroundColor(.white)
+                                    })
+                                }
+                            ): AnyView(EmptyView()),
+                        alignment: .center
+                    )
             }
         )
             .frame(width: 100, height: 100)
@@ -133,7 +211,9 @@ struct ProfileViewHeader: View {
 
     @ObservedObject var accountInfo: ProfileViewModel
 
-    @State var infoShown: [ProfileViewInfo] = []
+    @State var infoShown: [ProfileViewInfo] = [.fields, .dateCreated]
+    @State var isEditing: Bool = false
+    @State var userNote: String = ""
 
     // MARK: USER NOTE TEXT STYLES
     private let rootStyle: Style = Style("p")
@@ -171,6 +251,14 @@ struct ProfileViewHeader: View {
 
     var body: some View {
         VStack {
+
+            ProfileViewBanner(
+                header: self.accountInfo.data?.headerStatic,
+                avatar: self.accountInfo.data?.avatarStatic,
+                isEditing: self.$isEditing
+            )
+                .padding(.horizontal, -20)
+
             if self.accountInfo.data != nil {
                 header
             } else {
@@ -178,10 +266,49 @@ struct ProfileViewHeader: View {
                     .redacted(reason: .placeholder)
             }
         }
+            .buttonStyle(PlainButtonStyle())
     }
 
     var header: some View {
         VStack(alignment: .leading) {
+
+            HStack {
+                Spacer()
+                if self.accountInfo.accountID == AppClient.shared().id {
+                    Button(action: {
+                        self.userNote = self.accountInfo.data!.note
+                        withAnimation(.spring()) {
+                            self.isEditing.toggle()
+                        }
+                    }, label: {
+                        Text(isEditing ? "Stop editing \(Image(systemName: "xmark"))" : "Edit \(Image(systemName: "pencil"))")
+                            .font(.callout)
+                            .foregroundColor(.purple)
+                            .bold()
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.purple, lineWidth: 2)
+                            )
+                    })
+                } else {
+
+                    Button(action: {
+                        print("tapped!")
+                    }, label: {
+                        Text("Follow \(Image(systemName: "person.fill.badge.plus"))")
+                            .font(.callout)
+                            .foregroundColor(.white)
+                            .bold()
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .background(Color.blue.cornerRadius(5))
+                    })
+
+                }
+            }
+                .padding(.top, 10)
 
             HStack {
 
@@ -220,14 +347,15 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable:next no_space_in_method_call
+                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     if let data = accountInfo.data {
-                        Text("Date created: \(data.createdAt.getDate()!)")
+                        Text("Date created: \(data.createdAt.getDate()!.format(as: "EEEE, dd MMMM YYYY")) at \(data.createdAt.getDate()!.format(time: .medium))")
                     }
                     Divider()
-                    Button(action: {}, label: {Text("Share \(Image(systemName: "square.and.arrow.up"))")})
-                    Button(action: {}, label: {Text("Show more info")})
+                    Button(action: {
+                        openShareSheet(url: URL(string: self.accountInfo.data!.url)!)
+                    }, label: {Text("Share \(Image(systemName: "square.and.arrow.up"))")})
                     Menu("Show more info") {
                         Button(action: {
                             if self.infoShown.contains(.dateCreated) {
@@ -275,6 +403,8 @@ struct ProfileViewHeader: View {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 }
+                    .padding(.trailing)
+                // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
 
             }
 
@@ -282,26 +412,50 @@ struct ProfileViewHeader: View {
                 .font(.callout)
                 .foregroundColor(.secondary)
 
-            VStack(alignment: .leading) {
-                AttributedTextView(
-                    attributedText: "\((accountInfo.data?.note)!)"
-                        .style(tags: rootStyle),
-                    configured: { label in
-                        self.configureLabel(label, size: 20)
-                    },
-                    maxWidth: bounds - padding)
-                .fixedSize()
+            VStack {
+                if self.isEditing {
+                    TextField("", text: self.$userNote)
+                } else {
+                    if self.accountInfo.data!.note.isEmpty || self.accountInfo.data!.note == "" {
+                        Text("Apparently, this user prefers to keep an air of mystery about them... 👻")
+                            .fixedSize()
+                    } else {
+                        VStack(alignment: .leading) {
+                            AttributedTextView(
+                                attributedText: "\((accountInfo.data?.note)!)"
+                                    .style(tags: rootStyle)
+                                    .styleLinks(linkStyle)
+                                    .styleHashtags(linkStyle)
+                                    .styleMentions(linkStyle),
+                                configured: { label in
+                                    self.configureLabel(label, size: 20)
+                                },
+                                maxWidth: bounds - padding)
+                            .fixedSize()
+                        }
+                    }
+                }
+
+            }
+                .animation(.spring())
+
+            if infoShown.contains(.dateCreated) {
+                Text("Joined \(self.accountInfo.data!.createdAt.getDate()!.format(as: "MMMM YYYY"))")
+                    .foregroundColor(.gray)
+                    .font(.callout)
             }
 
-            Divider()
+            if infoShown.contains(.fields) {
+                FieldList(fields: self.accountInfo.data?.fields ?? [])
+                    .frame(width: bounds - 40)
+            } else {
+                Divider()
+            }
 
             self.stats
-
-            Divider()
+                .padding(.horizontal, -20)
 
         }
-            .padding(.horizontal)
-            .padding(.top, 40)
     }
 
     var placeholder: some View {
@@ -336,7 +490,7 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable:next no_space_in_method_call
+                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     Text("Date crated: 00/00/0000")
                         .redacted(reason: .placeholder)
@@ -390,6 +544,7 @@ struct ProfileViewHeader: View {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 }
+                // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
 
             }
 
@@ -397,21 +552,27 @@ struct ProfileViewHeader: View {
                 .font(.callout)
                 .foregroundColor(.secondary)
 
-            Text("This is an example bioghraphy that will be displayed as a placeholder until the actual biography is fetched.")
+            Text("""
+                This is an example bio/note that will be displayed as a placeholder until the actual bio/note is loaded.
+                """)
+
+            Text("Joined Mar 2016")
+                .foregroundColor(.gray)
+                .font(.callout)
 
             Divider()
 
             self.statsPlaceholder
-
-            Divider()
+                .padding(.leading, -5)
 
         }
-            .padding(.horizontal)
             .padding(.top, 40)
     }
 
     var stats: some View {
         HStack {
+
+            Spacer()
 
             VStack {
 
@@ -437,56 +598,50 @@ struct ProfileViewHeader: View {
 
             Spacer()
 
-            VStack {
-
-                Text("\((accountInfo.data?.statusesCount.roundedWithAbbreviations)!)")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-
-                Text("Toots \(Image(systemName: "doc.richtext"))")
-                    .fontWeight(.semibold)
-
-            }
+//            VStack {
+//
+//                Text("\((accountInfo.data?.statusesCount.roundedWithAbbreviations)!)")
+//                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+//
+//                Text("Toots \(Image(systemName: "doc.richtext"))")
+//                    .fontWeight(.semibold)
+//
+//            }
 
         }
     }
-    
+
     var statsPlaceholder: some View {
-        HStack {
+        VStack {
+            HStack {
 
-            VStack {
+                Spacer()
 
-                Text("\(1000000.roundedWithAbbreviations)")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                VStack {
 
-                Text("Followers \(Image(systemName: "person.3"))")
-                    .fontWeight(.semibold)
-            }
+                    Text("\(1000000.roundedWithAbbreviations)")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
 
-            Spacer()
+                    Text("Followers \(Image(systemName: "person.3"))")
+                        .fontWeight(.semibold)
+                }
 
-            VStack {
+                Spacer()
 
-                Text("\(1000000.roundedWithAbbreviations)")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                VStack {
 
-                Text("Following  \(Image(systemName: "person.2"))")
-                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-                    .fontWeight(.semibold)
+                    Text("\(1000000.roundedWithAbbreviations)")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
 
-            }
+                    Text("Following  \(Image(systemName: "person.2"))")
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .fontWeight(.semibold)
 
-            Spacer()
+                }
 
-            VStack {
-
-                Text("\(1000000.roundedWithAbbreviations)")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-
-                Text("Toots \(Image(systemName: "doc.richtext"))")
-                    .fontWeight(.semibold)
+                Spacer()
 
             }
-
         }
     }
 }

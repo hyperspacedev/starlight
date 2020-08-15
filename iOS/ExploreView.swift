@@ -28,21 +28,20 @@ struct ExploreView: View {
                 List {
 
                     if searchText == "" {
-                        if !self.explored.tags.isEmpty {
-                            Section(header: Text("Trending Tags")) {
+                        Section(header: Text("Trending Tags")) {
+                            if self.explored.tags.isEmpty {
+                                ForEach(0 ..< 3) { index in
+                                    TrendingTag(name: "Text tag \(index)", peopleTalking: "\(index)")
+                                        .padding(.horizontal, 5)
+                                        .redacted(reason: .placeholder)
+                                }
+                            } else {
 
                                 ForEach(self.explored.tags, id: \.self.id) { (tag: Tag) in
-                                    HStack(spacing: 20) {
-                                        Image(systemName: "number")
-                                            .foregroundColor(.accentColor)
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text("\(tag.name)")
-                                            Text("\(tag.history?.first?.accounts ?? "0") people talking")
-                                                .font(.caption)
-                                        }
-                                    }
-                                    .padding(.horizontal, 5)
+                                    TrendingTag(name: tag.name, peopleTalking: tag.history?.first?.accounts)
+                                        .padding(.horizontal, 5)
                                 }
+
                             }
                         }
 
@@ -90,6 +89,25 @@ struct ExploreView: View {
             }
         }
     }
+}
+
+struct TrendingTag: View {
+
+    let name: String
+    let peopleTalking: String?
+
+    var body: some View {
+        HStack(spacing: 20) {
+            Image(systemName: "number")
+                .foregroundColor(.accentColor)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("\(self.name)")
+                Text("\(self.peopleTalking ?? "0") people talking")
+                    .font(.caption)
+            }
+        }
+    }
+
 }
 
 struct ExploreView_Previews: PreviewProvider {

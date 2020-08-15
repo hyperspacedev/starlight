@@ -15,6 +15,8 @@ struct StatusList: View {
     /// ``StatusView``s dynamically.
     var statuses: [Status]
 
+//    @Binding var selection: Set<SelectionValue>
+
     /// ``StatusList`` renders statuses in a manner appropriate for the context.
     /// If `context` equals to ``StatusListContext.list``, statuses will be
     /// displayed inside a SwiftUI ``List``. In the other hand, if context is none
@@ -43,7 +45,6 @@ struct StatusList: View {
     ///     print(currentStatus.id)
     /// })
     /// ```
-    ///
     var action: (Status) -> Void
 
     /// There might be some moments where you might only want to display an status
@@ -62,60 +63,84 @@ struct StatusList: View {
     ///     return false
     /// })
     /// ```
-    ///
     var condition: (Status) -> Bool
+
+    /// The amount of placeholder statuses to display until the data is resolved.
+    var placeholderCount: Int
 
     // MARK: VIEWS
 
     var body: some View {
-        LazyVStack {
-            if self.statuses.isEmpty {
+        if self.statuses.isEmpty {
 
-                //  Why 20, you may ask. Well, it's because when you fetch Mastodon statuses,
-                //  the default amount of statuses retrieved is 20
-                ForEach(0 ..< 20) { _ in
-                    StatusView() // if we don't pass a status data model, StatusView will show PlaceholderStatusView()
+            if self.context == .list {
+
+                List(0 ..< placeholderCount) { _ in
+                    self.placeholder
                 }
+                    .animation(.spring())
 
             } else {
 
-                if self.context == .list {
+                ForEach(0 ..< placeholderCount) { _ in
 
-                    List(self.statuses, id: \.self.id) { status in
-                        if condition(status) {
-                            StatusView(status: status)
-                                .onAppear {
-                                    self.action(status)
-                                }
-                        }
+                    self.placeholder
+
+                }
+                    .animation(.spring())
+
+            }
+
+        } else {
+
+            if self.context == .list {
+
+                List(self.statuses, id: \.self.id) { status in
+                    if condition(status) {
+                        StatusView(status: status)
+                            .onAppear {
+                                self.action(status)
+                            }
                     }
+                }
+                    .animation(.spring())
 
-                } else {
+            } else {
 
-                    ForEach(self.statuses, id: \.self.id) { status in
+                ForEach(self.statuses, id: \.self.id) { status in
 
-                        if condition(status) {
-
-                            if condition(status) {
-                                StatusView(status: status)
-                                    .onAppear {
-                                        self.action(status)
-                                    }
-
-                                if self.context == .noneWithSeparator {
-                                    Divider()
-                                }
+                    if condition(status) {
+                        StatusView(status: status)
+                            .onAppear {
+                                self.action(status)
                             }
 
+                        if self.context == .noneWithSeparator {
+                            Divider()
+                                .padding(.trailing, -20)
                         }
-
                     }
 
                 }
+                    .animation(.spring())
 
+            }
+
+        }
+
+    }
+
+    var placeholder: some View {
+        VStack {
+            StatusView() // if we don't pass a status data model, StatusView will show PlaceholderStatusView()
+
+            if self.context == .noneWithSeparator {
+                Divider()
+                    .padding(.trailing, -20)
             }
         }
     }
+
 }
 
 extension StatusList {
@@ -127,14 +152,24 @@ extension StatusList {
     /// - Parameters:
     ///   - data: The data that the ``StatusList`` instance uses to create the ``StatusView``s.
     ///     dynamically.
+    ///   - selection: A binding to a selected row.
+    ///   - context: The list context.
+    ///   - action: The function to run each time a new status is loaded.
     ///   - content: The view builder that creates views dynamically.
-    public init(_ data: [Status], context: StatusListContext = .none,
+    public init(_ data: [Status],
+//                selection: Binding<Set<SelectionValue>>?,
+                context: StatusListContext = .none,
                 action: @escaping (Status) -> Void = {_ in},
-                condition: @escaping (Status) -> Bool = {_ in return true}) {
+                condition: @escaping (Status) -> Bool = {_ in return true}, placeholderCount: Int = 20) {
         self.statuses = data
         self.context = context
         self.action = action
         self.condition = condition
+
+        //  Why default it to 20, you may ask. Well, it's because when you fetch
+        //  Mastodon statuses, the default amount of statuses retrieved is 20.
+        self.placeholderCount = placeholderCount
+
     }
 
 }

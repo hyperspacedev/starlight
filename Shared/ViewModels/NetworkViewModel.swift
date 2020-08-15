@@ -34,7 +34,7 @@ public class NetworkViewModel: ObservableObject {
 
     func refreshTimeline(from currentItem: Status) {
 
-        AppClient.shared().updateTimeline(action: .refresh, scope: self.type, id: currentItem.id) { statuses in
+        AppClient.shared().getTimeline(scope: self.type, minID: currentItem.id) { statuses in
             self.statuses.insert(contentsOf: statuses, at: self.statuses.startIndex)
         }
 
@@ -46,7 +46,7 @@ public class NetworkViewModel: ObservableObject {
             return
         }
 
-        AppClient.shared().updateTimeline(action: .loadPage, scope: self.type, id: currentItem.id) { statuses in
+        AppClient.shared().getTimeline(scope: self.type, maxID: currentItem.id) { statuses in
             self.statuses.append(contentsOf: statuses)
         }
 
@@ -55,17 +55,16 @@ public class NetworkViewModel: ObservableObject {
     /// Whether more data should be loaded.
     ///
     /// This is required for infinite scrolling to work.
-    /// What it does is check whether the status loaded is the fourth last status
-    /// (in this case the 16th), and if it's the case, it will load more data,
-    /// so that there's an infinite list of statuses.
+    /// What it does is check whether the status loaded is the second last status,
+    /// and if it's the case, it will load more data, so that there's an
+    /// infinite list of statuses.
     func shouldLoadMoreData(currentItem: Status) -> Bool {
 
-        for index in ( self.statuses.count - 4)...(self.statuses.count - 1) {
-            if index >= 0 && currentItem.id == self.statuses[index].id {
-                return true
-            }
+        if currentItem.id == self.statuses[self.statuses.count - 2].id {
+            return true
         }
         return false
+
     }
 
 }

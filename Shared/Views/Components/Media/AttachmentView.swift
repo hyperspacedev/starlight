@@ -101,9 +101,12 @@ struct AttachmentView_Previews: PreviewProvider {
 
     @State static var image: UIImage = UIImage.init()
 
+    // swiftlint:disable:next line_length
+    static let url = "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg"
+
     static var previews: some View {
         AttachmentView(
-            from: "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg",
+            from: url,
             placeholder: {
                 Rectangle()
                     .scaledToFit()
