@@ -8,6 +8,11 @@
 import SwiftUI
 import URLImage
 
+/// A view that displays non-environment-dependent images, on demand, from a remote
+/// url, as a gallery, that allow to show multiple images in a fancy way, taking advantage
+/// of the space.
+///
+/// - NOTE: ``URLImage`` only shows up to 3 images max.
 struct RemoteGalleryView: View {
 
     var data = [Attachment]()
@@ -26,7 +31,11 @@ struct RemoteGalleryView: View {
                             Rectangle()
                                 .cornerRadius(
                                     15,
-                                    corners: self.data.count > 2 ? [.topLeft, .bottomLeft] : [.topLeft, .topRight, .bottomLeft, .bottomRight]
+                                    corners: self.data.count > 2 ? [
+                                        .topLeft, .bottomLeft
+                                    ] : [
+                                        .topLeft, .topRight, .bottomLeft, .bottomRight
+                                    ]
                                 )
                         )
                         .redacted(reason: .placeholder)
@@ -40,7 +49,11 @@ struct RemoteGalleryView: View {
                         .mask(Rectangle()
                                 .cornerRadius(
                                     15,
-                                    corners: self.data.count > 2 ? [.topLeft, .bottomLeft] : [.topLeft, .topRight, .bottomLeft, .bottomRight]
+                                    corners: self.data.count > 2 ? [
+                                        .topLeft, .bottomLeft
+                                    ] : [
+                                        .topLeft, .topRight, .bottomLeft, .bottomRight
+                                    ]
                                 )
                         )
                         .help(self.data[0].description ?? "Image")
@@ -63,7 +76,11 @@ struct RemoteGalleryView: View {
                                     Rectangle()
                                         .cornerRadius(
                                             15,
-                                            corners: self.data.count > 3 ? [.topRight] : [.topRight, .bottomRight]
+                                            corners: self.data.count > 3 ? [
+                                                .topRight
+                                            ] : [
+                                                .topRight, .bottomRight
+                                            ]
                                         )
                                 )
                                 .redacted(reason: .placeholder)
@@ -75,7 +92,11 @@ struct RemoteGalleryView: View {
                                     Rectangle()
                                         .cornerRadius(
                                             15,
-                                            corners: self.data.count > 3 ? [.topRight] : [.topRight, .bottomRight]
+                                            corners: self.data.count > 3 ? [
+                                                .topRight
+                                            ] : [
+                                                .topRight, .bottomRight
+                                            ]
                                         )
                                 )
                                 .help(self.data[0].description ?? "Image")
