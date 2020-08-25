@@ -95,7 +95,8 @@ public class AppClient {
      - Parameter minID: The ID of the statuses whose older newer we wish to obtain.
      - Parameter completion: An escaping closure that utilizes the resulting statuses (`([Status]) -> Void`).
      */
-    public func getTimeline(scope: TimelineScope, maxID: String? = nil, minID: String? = nil, completion: @escaping ([Status]) -> Void) {
+    public func getTimeline(scope: TimelineScope, maxID: String? = nil,
+                            minID: String? = nil, completion: @escaping ([Status]) -> Void) {
         var apiURL = baseURL
 
         switch scope {

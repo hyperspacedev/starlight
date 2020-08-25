@@ -71,6 +71,8 @@
 		BFE07C8D24BCAF6100203706 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8C24BCAF6100203706 /* ProfileView.swift */; };
 		BFE07C8E24BCAF6100203706 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE07C8C24BCAF6100203706 /* ProfileView.swift */; };
 		FA0FC62224C62A4E00E936A0 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = FA0FC62124C62A4E00E936A0 /* SwiftUIRefresh */; };
+		FA304FD524F4EF7700889211 /* imageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA304FD424F4EF7700889211 /* imageExtensions.swift */; };
+		FA304FD624F4EF7700889211 /* imageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA304FD424F4EF7700889211 /* imageExtensions.swift */; };
 		FA384B7424B77A84008E60E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA384B7F24B781EB008E60E3 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA48238624B46A860095E415 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48238524B46A860095E415 /* Field.swift */; };
@@ -116,8 +118,6 @@
 		FA7E98AD24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
 		FA7E98AE24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
 		FA8AFFE324C704E7006928CB /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AFFE224C704E7006928CB /* SearchTextField.swift */; };
-		FAD966F624D16D4400E195BC /* StatusViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD966F524D16D4400E195BC /* StatusViewContext.swift */; };
-		FAD966F724D16D4400E195BC /* StatusViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD966F524D16D4400E195BC /* StatusViewContext.swift */; };
 		FAE1262C24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
 		FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
 		FAE4B25624B47032000B5405 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4B25524B47032000B5405 /* Source.swift */; };
@@ -143,8 +143,8 @@
 		FAF6584224CC1DDC008D9BC8 /* ProfileViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584024CC1DDC008D9BC8 /* ProfileViewInfo.swift */; };
 		FAF6584424CC3404008D9BC8 /* StatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584324CC3404008D9BC8 /* StatusList.swift */; };
 		FAF6584524CC3404008D9BC8 /* StatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584324CC3404008D9BC8 /* StatusList.swift */; };
-		FAF6584724CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */; };
-		FAF6584824CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */; };
+		FAF6584724CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusConfiguration.swift */; };
+		FAF6584824CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584624CD5F2B008D9BC8 /* StatusConfiguration.swift */; };
 		FAF6584A24CDC15F008D9BC8 /* StatusListContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */; };
 		FAF6584B24CDC15F008D9BC8 /* StatusListContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */; };
 		FAF9CA2124BE1C9700BE09BE /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */; };
@@ -216,6 +216,7 @@
 		BFE07C8624BCA6F800203706 /* RecommendedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedView.swift; sourceTree = "<group>"; };
 		BFE07C8924BCA86B00203706 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BFE07C8C24BCAF6100203706 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FA304FD424F4EF7700889211 /* imageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageExtensions.swift; sourceTree = "<group>"; };
 		FA384B7324B77A84008E60E3 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		FA384B7E24B781EB008E60E3 /* colorFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorFunctions.swift; sourceTree = "<group>"; };
 		FA48238524B46A860095E415 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
@@ -238,7 +239,6 @@
 		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
 		FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
 		FA8AFFE224C704E7006928CB /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		FAD966F524D16D4400E195BC /* StatusViewContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewContext.swift; sourceTree = "<group>"; };
 		FAE1262B24C03D4D002778FB /* avernirNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avernirNext.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		FAE4B25B24B4ABFA000B5405 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		FAEE690624C828B6009E684E /* stringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stringExtensions.swift; sourceTree = "<group>"; };
 		FAF6584024CC1DDC008D9BC8 /* ProfileViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewInfo.swift; sourceTree = "<group>"; };
 		FAF6584324CC3404008D9BC8 /* StatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusList.swift; sourceTree = "<group>"; };
-		FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDisplayMode.swift; sourceTree = "<group>"; };
+		FAF6584624CD5F2B008D9BC8 /* StatusConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusConfiguration.swift; sourceTree = "<group>"; };
 		FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListContext.swift; sourceTree = "<group>"; };
 		FAF9CA2024BE1C9700BE09BE /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -365,9 +365,8 @@
 			children = (
 				BF673F2124B4CCEE00A97FF3 /* AttachmentType.swift */,
 				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
-				FAF6584624CD5F2B008D9BC8 /* StatusDisplayMode.swift */,
+				FAF6584624CD5F2B008D9BC8 /* StatusConfiguration.swift */,
 				FAF6584924CDC15F008D9BC8 /* StatusListContext.swift */,
-				FAD966F524D16D4400E195BC /* StatusViewContext.swift */,
 				BF673F0924B4AF2D00A97FF3 /* NotificationType.swift */,
 				BF455EDA24B402120066FB1B /* Visibility.swift */,
 				FAF6584024CC1DDC008D9BC8 /* ProfileViewInfo.swift */,
@@ -471,6 +470,7 @@
 				FAE1262B24C03D4D002778FB /* avernirNext.swift */,
 				FAEE690624C828B6009E684E /* stringExtensions.swift */,
 				FA5D957624D827AB00A6598B /* cornerRadius.swift */,
+				FA304FD424F4EF7700889211 /* imageExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -787,6 +787,7 @@
 				BF673F1024B4BDA300A97FF3 /* History.swift in Sources */,
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FA5D958424DAAC0000A6598B /* screenAndWindowSize.swift in Sources */,
+				FA304FD524F4EF7700889211 /* imageExtensions.swift in Sources */,
 				BFD620B924BC078100730632 /* TimelineScope.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
@@ -794,7 +795,6 @@
 				BFE07C8A24BCA86B00203706 /* HomeView.swift in Sources */,
 				BF673F0A24B4AF2D00A97FF3 /* NotificationType.swift in Sources */,
 				BF673F0724B4AEBA00A97FF3 /* Notification.swift in Sources */,
-				FAD966F624D16D4400E195BC /* StatusViewContext.swift in Sources */,
 				FAEE690724C828B6009E684E /* stringExtensions.swift in Sources */,
 				FAF6584A24CDC15F008D9BC8 /* StatusListContext.swift in Sources */,
 				BF455EDB24B402120066FB1B /* Visibility.swift in Sources */,
@@ -812,7 +812,7 @@
 				FA5D957424D7432800A6598B /* CardView.swift in Sources */,
 				FAEDC00A24BAEA540034EF6F /* ThreadViewModel.swift in Sources */,
 				FA55FA2C24BF0E1100A5EE13 /* Reachability.swift in Sources */,
-				FAF6584724CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */,
+				FAF6584724CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */,
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
@@ -855,7 +855,7 @@
 				FA5D957B24D8428B00A6598B /* conditionalModifiers.swift in Sources */,
 				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
-				FAF6584824CD5F2B008D9BC8 /* StatusDisplayMode.swift in Sources */,
+				FAF6584824CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
@@ -870,6 +870,7 @@
 				FA5D957524D7432800A6598B /* CardView.swift in Sources */,
 				FA7499A224BC41D5002A9E69 /* MediaViewer.swift in Sources */,
 				FAE4B25D24B4ABFA000B5405 /* Status.swift in Sources */,
+				FA304FD624F4EF7700889211 /* imageExtensions.swift in Sources */,
 				BF673F1A24B4C37200A97FF3 /* Card.swift in Sources */,
 				FA55FA2D24BF0E1100A5EE13 /* Reachability.swift in Sources */,
 				FAF9CA2224BE1C9700BE09BE /* RemoteImage.swift in Sources */,
@@ -884,7 +885,6 @@
 				BFE07C8824BCA6F800203706 /* RecommendedView.swift in Sources */,
 				FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */,
 				FAE4B26924B500DC000B5405 /* PollOption.swift in Sources */,
-				FAD966F724D16D4400E195BC /* StatusViewContext.swift in Sources */,
 				FAF6584224CC1DDC008D9BC8 /* ProfileViewInfo.swift in Sources */,
 				BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */,
 				BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */,

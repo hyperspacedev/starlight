@@ -12,7 +12,7 @@ import URLImage
 /// url, as a gallery, that allow to show multiple images in a fancy way, taking advantage
 /// of the space.
 ///
-/// - NOTE: ``URLImage`` only shows up to 3 images max.
+/// - NOTE: ``RemoteGalleryView`` only shows up to 3 images max.
 struct RemoteGalleryView: View {
 
     var data = [Attachment]()

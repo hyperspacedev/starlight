@@ -72,7 +72,7 @@ struct ThreadView: View {
 
             }
 
-            StatusView(.presented, status: mainStatus)
+            StatusView(StatusConfiguration.DisplayMode.presented, status: mainStatus)
                 .buttonStyle(PlainButtonStyle())
 
             if let context = self.threadModel.context {

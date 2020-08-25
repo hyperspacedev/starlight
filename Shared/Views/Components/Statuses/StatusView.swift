@@ -35,23 +35,14 @@ struct StatusView: View {
     /// In order to achieve this, we pass a bool to ``StatusView``, which when true,
     /// tells it that it's content should be displayed as `Focused`.
     ///
-    private var displayMode: StatusDisplayMode
+    private var displayMode: StatusConfiguration.DisplayMode
 
     /// The ``Status`` data model we're displaying.
     var status: Status?
 
-//    var context: StatusViewContext
+//    @State var context: StatusViewConfiguration.Context
 
-    #if os(iOS)
-
-    /// Used for triggering the navigation View **only** when the user taps
-    /// on the content, and not when it taps on the action buttons.
-    @State var goToThread: Bool = false
-
-    /// Used for redirecting the user to the author's profile.
-    @State var profileViewActive: Bool = false
-
-    #endif
+    @StateObject var manager = StatusConfiguration.BindingManager()
 
     var body: some View {
 
@@ -62,13 +53,12 @@ struct StatusView: View {
                 if self.displayMode == .presented {
                     PresentedStatusView(
                         status: status,
-                        profileViewActive: self.$profileViewActive
+                        manager: self.manager
                     )
                 } else { // displayMode is .compact
                     CompactStatusView(
                         status: status,
-                        goToThread: self.$goToThread,
-                        profileViewActive: self.$profileViewActive
+                        manager: self.manager
                     )
                 }
 
@@ -92,7 +82,7 @@ extension StatusView {
     ///     - displayMode: How should the status be displayed.
     ///     - status: The identified data that the ``StatusView`` instance uses to
     ///     display posts dynamically.
-    public init(_ displayMode: StatusDisplayMode = .compact, status: Status? = nil) {
+    public init(_ displayMode: StatusConfiguration.DisplayMode = .compact, status: Status? = nil) {
         self.displayMode = displayMode
         self.status = status
     }
@@ -108,11 +98,12 @@ private struct StatusViewContent: View {
     let attachments: [Attachment]
 
     @State var redraw: Bool = false
-    @Binding var goToProfile: Bool
+
+    @Binding var page: StatusConfiguration.BindingManager.Page
 
     // MARK: STATUS VIEW TEXT STYLES
     private let rootStyle: Style = Style("p")
-        .font(.systemFont(ofSize: 17, weight: .light))
+        .font(.systemFont(ofSize: 16, weight: .regular))
     private let rootPresentedStyle: Style = Style("p")
         .font(.systemFont(ofSize: 20, weight: .light))
     private let linkStyle: Style = Style("a")
@@ -177,105 +168,102 @@ private struct CompactStatusView: View {
     /// The ``Status`` data model from where we obtain all the data.
     var status: Status
 
-    /// Used to trigger the navectigationLink to redirect the user to the thread.
-    @Binding var goToThread: Bool
-
-    /// Used to redirect the user to a specific profile.
-    @Binding var profileViewActive: Bool
+    @ObservedObject var manager: StatusConfiguration.BindingManager
 
     var body: some View {
-        ZStack {
+        self.content
+            .padding(.vertical, 5)
+            .contextMenu(
+                ContextMenu(menuItems: {
 
-            self.content
-                .contextMenu(
-                    ContextMenu(menuItems: {
-
-                        Button(action: {}, label: {
-                            Label("Report post", systemImage: "flag")
-                        })
-
-                        Button(action: {}, label: {
-                            Label("Report \(self.status.account.displayName)", systemImage: "flag")
-                        })
-
-                        Button(action: {}, label: {
-                            Label("Share as Image", systemImage: "square.and.arrow.up")
-                        })
-
+                    Button(action: {}, label: {
+                        Label("Report post", systemImage: "flag")
                     })
-                )
 
-        }
+                    Button(action: {}, label: {
+                        Label("Report \(self.status.account.displayName)", systemImage: "flag")
+                    })
+
+                    Button(action: {}, label: {
+                        Label("Share as Image", systemImage: "square.and.arrow.up")
+                    })
+
+                })
+            )
             .buttonStyle(PlainButtonStyle())
-            .navigationBarHidden(self.profileViewActive)
+            .background(
+                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+            )
+    }
+
+    @ViewBuilder
+    public func destination() -> some View {
+
+        switch self.manager.currentPage {
+        case .thread(identifier: let identifier, status: let status):
+            ThreadView(mainStatus: status!)
+        case .profile(identifier: let identifier, account: let account):
+            ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
+        case .none:
+            EmptyView()
+        }
+
     }
 
     var content: some View {
         HStack(alignment: .top, spacing: 12) {
 
-            URLImage(URL(string: self.status.account.avatarStatic)!,
-                placeholder: { _ in
-                    Image("amodrono")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                        .redacted(reason: .placeholder)
-                },
-                content: {
-                    $0.image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                }
-            )
-                .onTapGesture {
-                    self.profileViewActive.toggle()
-                }
-                .background(
-                    NavigationLink(
-                        destination: ProfileView(
-                            accountInfo: ProfileViewModel(
-                                accountID: self.status.account.id
-                            ),
-                            isParent: false
-                        ),
-                        isActive: self.$profileViewActive
-                    ) {
-                        Text("")
+            Button(action: {
+                self.manager.currentPage = .profile(identifier: self.status.id)
+            }, label: {
+                URLImage(URL(string: self.status.account.avatarStatic)!,
+                    placeholder: { _ in
+                        Image("amodrono")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                            .redacted(reason: .placeholder)
+                    },
+                    content: {
+                        $0.image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
                     }
-                        .frame(width: 0, height: 0)
                 )
+            })
 
             VStack(alignment: .leading, spacing: 2) {
                 HStack(alignment: .firstTextBaseline) {
 
-                    if !self.status.account.displayName.isEmpty {
-                        Text("\(self.status.account.displayName)")
-                            .font(.headline)
+                    Group {
+                        if !self.status.account.displayName.isEmpty {
+                            Text("\(self.status.account.displayName)")
+                                .font(.headline)
+                                .lineLimit(1)
+                        }
+
+                        Text("@\(self.status.account.acct)")
+                            .foregroundColor(.secondary)
                             .lineLimit(1)
                     }
-
-                    Text("@\(self.status.account.acct)")
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+                        .onTapGesture {
+                            self.manager.currentPage = .profile(account: self.status.account)
+                        }
 
                     Text("· \(self.status.createdAt.getDate()!.getInterval())")
                         .foregroundColor(.secondary)
                         .lineLimit(1)
                 }
 
-//                Text("text")
-//                    .font(.title3)
-//                    .foregroundColor(.primary)
-
                 StatusViewContent(
                     isMain: false,
                     content: self.status.content,
                     card: self.status.card,
                     attachments: self.status.mediaAttachments,
-                    goToProfile: self.$profileViewActive
+                    page: self.$manager.currentPage
                 )
 
                 StatusActionButtons(
@@ -288,18 +276,8 @@ private struct CompactStatusView: View {
 
             }
                 .onTapGesture {
-                    self.goToThread.toggle()
+                    self.manager.currentPage = .thread(status: self.status)
                 }
-                .background(
-                    NavigationLink(
-                        destination: ThreadView(
-                            mainStatus: self.status
-                        ),
-                        isActive: self.$goToThread
-                    ) {
-                        EmptyView()
-                    }
-                )
 
             Spacer()
         }
@@ -311,101 +289,104 @@ private struct CompactStatusView: View {
 private struct PresentedStatusView: View {
 
     var status: Status
-    @Binding var profileViewActive: Bool
+
+    @ObservedObject var manager: StatusConfiguration.BindingManager
+
     @State var redraw: Bool = false
 
     var body: some View {
 
-        ZStack {
+        VStack(alignment: .leading) {
 
-            NavigationLink(
-                destination: ProfileView(
-                    accountInfo: ProfileViewModel(
-                        accountID: self.status.account.id
-                    ),
-                    isParent: false
-                ),
-                isActive: self.$profileViewActive
-            ) {
-                EmptyView()
-            }
+            HStack(alignment: .top) {
 
-            VStack(alignment: .leading) {
+                Button(action: {
+                    self.manager.currentPage = .profile(identifier: self.status.id)
+                }, label: {
+                    URLImage(URL(string: self.status.account.avatarStatic)!,
+                        placeholder: { _ in
+                            Image("amodrono")
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 50, height: 50)
+                                .redacted(reason: .placeholder)
+                        },
+                        content: {
+                            $0.image
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 50, height: 50)
+                        }
+                    )
+                })
 
-                HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 5) {
 
-                    Button(action: { self.profileViewActive.toggle() }, label: {
-                        RemoteImage(
-                            from: self.status.account.avatarStatic,
-                            redraw: self.$redraw,
-                            placeholder: {
-                                Circle()
-                                    .scaledToFit()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.gray)
-                            },
-                            result: { image in
-                                image
-                                    .resizable()
-                                    .clipShape(Circle())
-                                    .scaledToFit()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.gray)
-                            }
-                        )
-                    })
+                    VStack(alignment: .leading) {
 
-                    VStack(alignment: .leading, spacing: 5) {
-
-                        VStack(alignment: .leading) {
-
-                            if !self.status.account.displayName.isEmpty {
-                                Text("\(self.status.account.displayName)")
-                                    .loadUsernameColor(identifier: self.status.account.id)
-                                    .font(.headline)
-                            }
-
-                            Text("@\(self.status.account.acct)")
-                                .foregroundColor(.gray)
-                                .lineLimit(1)
-
+                        if !self.status.account.displayName.isEmpty {
+                            Text("\(self.status.account.displayName)")
+                                .loadUsernameColor(identifier: self.status.account.id)
+                                .font(.headline)
                         }
 
+                        Text("@\(self.status.account.acct)")
+                            .foregroundColor(.gray)
+                            .lineLimit(1)
+
                     }
 
-                    Spacer()
-
-                    // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
-                    Menu {
-                        Button("View @\(self.status.account.acct)'s profile", action: {
-                            self.profileViewActive = true
-                        })
-                        Button("Mute @\(self.status.account.acct)", action: {})
-                        Button("Block @\(self.status.account.acct)", action: {})
-                        Button("Report @\(self.status.account.acct)", action: {})
-                        Button("Dismiss", action: {})
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .imageScale(.large)
-                    }
-                    // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
                 }
 
-                StatusViewContent(
-                    isMain: true,
-                    content: self.status.content,
-                    card: self.status.card,
-                    attachments: self.status.mediaAttachments,
-                    goToProfile: self.$profileViewActive
-                )
+                Spacer()
 
-                self.footer
-
+                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                Menu {
+                    Button("View @\(self.status.account.acct)'s profile", action: {
+                        self.manager.currentPage = .profile(identifier: self.status.id)
+                    })
+                    Button("Mute @\(self.status.account.acct)", action: {})
+                    Button("Block @\(self.status.account.acct)", action: {})
+                    Button("Report @\(self.status.account.acct)", action: {})
+                    Button("Dismiss", action: {})
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .imageScale(.large)
+                }
+                // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
             }
-                .buttonStyle(PlainButtonStyle())
+
+            StatusViewContent(
+                isMain: true,
+                content: self.status.content,
+                card: self.status.card,
+                attachments: self.status.mediaAttachments,
+                page: self.$manager.currentPage
+            )
+
+            self.footer
 
         }
-            .navigationBarHidden(self.profileViewActive)
+            .buttonStyle(PlainButtonStyle())
+            .background(
+                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+            )
+
+    }
+
+    @ViewBuilder
+    public func destination() -> some View {
+
+        switch self.manager.currentPage {
+        case .thread(identifier: let identifier, status: let status):
+            ThreadView(mainStatus: status!)
+        case .profile(identifier: let identifier, account: let account):
+            ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
+        case .none:
+            EmptyView()
+        }
 
     }
 
@@ -617,7 +598,7 @@ struct StatusView_Previews: PreviewProvider {
                         self.timeline.fetchTimeline()
                     }
             } else {
-                StatusView(.compact, status: self.timeline.statuses[0])
+                StatusView(StatusConfiguration.DisplayMode.compact, status: self.timeline.statuses[0])
             }
         }
             .frame(width: 600, height: 300)
