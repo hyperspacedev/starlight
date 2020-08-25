@@ -214,7 +214,7 @@ private struct CompactStatusView: View {
         HStack(alignment: .top, spacing: 12) {
 
             Button(action: {
-                self.manager.currentPage = .profile(identifier: self.status.id)
+                self.manager.currentPage = .profile(identifier: self.status.account.id)
             }, label: {
                 URLImage(URL(string: self.status.account.avatarStatic)!,
                     placeholder: { _ in
@@ -250,7 +250,7 @@ private struct CompactStatusView: View {
                             .lineLimit(1)
                     }
                         .onTapGesture {
-                            self.manager.currentPage = .profile(account: self.status.account)
+                            self.manager.currentPage = .profile(identifier: self.status.account.id)
                         }
 
                     Text("· \(self.status.createdAt.getDate()!.getInterval())")
