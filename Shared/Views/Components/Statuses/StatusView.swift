@@ -161,7 +161,7 @@ private struct StatusViewContent: View {
     }
 
 }
-
+ 
 /// The status is being displayed in a ``StatusList``, so we should make it smaller and more compact.
 private struct CompactStatusView: View {
 
@@ -192,20 +192,25 @@ private struct CompactStatusView: View {
             )
             .buttonStyle(PlainButtonStyle())
             .background(
-                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+                NavigationLink(
+                    destination: self.destination(status: self.status),
+                    isActive: self.$manager.navLinkActive
+                ) {
+                    EmptyView()
+                }
             )
     }
 
     @ViewBuilder
-    public func destination() -> some View {
+    public func destination(status: Status) -> some View {
 
         switch self.manager.currentPage {
-        case .thread(identifier: let identifier, status: let status):
+        case .thread(identifier: _, status: let status):
             ThreadView(mainStatus: status!)
-        case .profile(identifier: let identifier, account: let account):
+        case .profile(identifier: let identifier, account: _):
             ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
-        case .none:
-            EmptyView()
+        case .default:
+            ThreadView(mainStatus: status)
         }
 
     }
@@ -213,27 +218,27 @@ private struct CompactStatusView: View {
     var content: some View {
         HStack(alignment: .top, spacing: 12) {
 
-            Button(action: {
-                self.manager.currentPage = .profile(identifier: self.status.account.id)
-            }, label: {
-                URLImage(URL(string: self.status.account.avatarStatic)!,
-                    placeholder: { _ in
-                        Image("amodrono")
+            URLImage(URL(string: self.status.account.avatarStatic)!,
+                placeholder: { _ in
+                    Image("amodrono")
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                        .redacted(reason: .placeholder)
+                },
+                content: { proxy in
+                    Button(action: {
+                        self.manager.currentPage = .profile(identifier: self.status.account.id)
+                    }, label: {
+                        proxy.image
                             .resizable()
                             .scaledToFit()
                             .clipShape(Circle())
                             .frame(width: 50, height: 50)
-                            .redacted(reason: .placeholder)
-                    },
-                    content: {
-                        $0.image
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 50, height: 50)
-                    }
-                )
-            })
+                    })
+                }
+            )
 
             VStack(alignment: .leading, spacing: 2) {
                 HStack(alignment: .firstTextBaseline) {
@@ -242,6 +247,7 @@ private struct CompactStatusView: View {
                         if !self.status.account.displayName.isEmpty {
                             Text("\(self.status.account.displayName)")
                                 .font(.headline)
+                                .loadUsernameColor(identifier: self.status.account.id)
                                 .lineLimit(1)
                         }
 
@@ -275,9 +281,6 @@ private struct CompactStatusView: View {
                 )
 
             }
-                .onTapGesture {
-                    self.manager.currentPage = .thread(status: self.status)
-                }
 
             Spacer()
         }
@@ -300,27 +303,30 @@ private struct PresentedStatusView: View {
 
             HStack(alignment: .top) {
 
-                Button(action: {
-                    self.manager.currentPage = .profile(identifier: self.status.id)
-                }, label: {
-                    URLImage(URL(string: self.status.account.avatarStatic)!,
-                        placeholder: { _ in
-                            Image("amodrono")
+                URLImage(URL(string: self.status.account.avatarStatic)!,
+                    placeholder: { _ in
+                        Image("amodrono")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                            .redacted(reason: .placeholder)
+                    },
+                    content: { proxy in
+                        Button(action: {
+                            self.manager.currentPage = .profile(identifier: self.status.account.id)
+                        }, label: {
+                            proxy.image
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(Circle())
                                 .frame(width: 50, height: 50)
-                                .redacted(reason: .placeholder)
-                        },
-                        content: {
-                            $0.image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .frame(width: 50, height: 50)
-                        }
-                    )
-                })
+                        })
+                            .background(
+                                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+                            )
+                    }
+                )
 
                 VStack(alignment: .leading, spacing: 5) {
 
@@ -345,7 +351,7 @@ private struct PresentedStatusView: View {
                 // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     Button("View @\(self.status.account.acct)'s profile", action: {
-                        self.manager.currentPage = .profile(identifier: self.status.id)
+                        self.manager.currentPage = .profile(identifier: self.status.account.id)
                     })
                     Button("Mute @\(self.status.account.acct)", action: {})
                     Button("Block @\(self.status.account.acct)", action: {})
@@ -355,6 +361,7 @@ private struct PresentedStatusView: View {
                     Image(systemName: "ellipsis")
                         .imageScale(.large)
                 }
+                    .padding()
                 // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
             }
 
@@ -370,9 +377,6 @@ private struct PresentedStatusView: View {
 
         }
             .buttonStyle(PlainButtonStyle())
-            .background(
-                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
-            )
 
     }
 
@@ -380,11 +384,11 @@ private struct PresentedStatusView: View {
     public func destination() -> some View {
 
         switch self.manager.currentPage {
-        case .thread(identifier: let identifier, status: let status):
+        case .thread(identifier: _, status: let status):
             ThreadView(mainStatus: status!)
-        case .profile(identifier: let identifier, account: let account):
+        case .profile(identifier: let identifier, account: _):
             ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
-        case .none:
+        case .default:
             EmptyView()
         }
 
@@ -565,6 +569,8 @@ extension Text {
             return self.foregroundColor(.red)
         } else if testAccts.contains(identifier) {
             return self.foregroundColor(.orange)
+        } else if identifier == "1" {
+            return self.foregroundColor(.purple)
         } else {
             return self.foregroundColor(labelColor)
         }

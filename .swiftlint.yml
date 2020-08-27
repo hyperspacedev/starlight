@@ -5,7 +5,7 @@ excluded:
 opt_in_rules:
   - empty_count
 
-type_body_lenght:
+type_body_length:
     - 250
 
 # Custom rules used in this project.
