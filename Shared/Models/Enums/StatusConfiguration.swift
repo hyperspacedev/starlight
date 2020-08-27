@@ -45,7 +45,7 @@ public enum StatusConfiguration {
 
         public enum Page {
 
-            case none
+            case `default`
             case profile(identifier: String? = nil, account: Account? = nil)
             case thread(identifier: String? = nil, status: Status? = nil)
 
@@ -53,7 +53,7 @@ public enum StatusConfiguration {
 
         @Published public var navLinkActive: Bool = false
 
-        @Published public var currentPage: Page = .none {
+        @Published public var currentPage: Page = .default {
             didSet {
                 self.navLinkActive.toggle()
             }
