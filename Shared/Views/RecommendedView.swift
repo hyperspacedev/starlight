@@ -13,7 +13,7 @@ struct RecommendedView: View {
             RecommendedProfile(imageName: "amethyst", name: "Amethyst", user: "@amethyst")
             RecommendedProfile(imageName: "curtis", name: "Curtis Smith", user: "@asalways")
             RecommendedProfile(imageName: "pointFlash", name: "Point Flash", user: "@iamnotabug")
-            RecommendedProfile(imageName: "amodrono", name: "amodrono", user: "@amodrono")
+            RecommendedProfile(imageName: "amodrono", name: "amodrono", user: "@amodrono@mastodon.technology")
         }
         .navigationTitle("Recommended")
         .listStyle(InsetGroupedListStyle())

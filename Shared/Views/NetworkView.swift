@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+#if canImport(SwiftUIRefresh) && canImport(SwipeCell)
+import SwiftUIRefresh
+import SwipeCell
+#endif
+
 struct NetworkView: View {
 
     @ObservedObject var timeline = NetworkViewModel()
@@ -16,97 +21,85 @@ struct NetworkView: View {
     private let padding: CGFloat = 10
     private let displayPublic: Bool = true
 
+    @State var isShowing: Bool = false
+
     var body: some View {
 
         NavigationView {
 
             #if os(iOS)
 
-            self.view
+            StatusList(
+                self.timeline.statuses,
+                context: .list,
+                action: { currentStatus in
+                    self.timeline.updateTimeline(currentItem: currentStatus)
+                }
+            )
+                .onAppear {
+                    self.timeline.fetchTimeline()
+                }
+                .animation(.spring())
+                .listStyle(GroupedListStyle())
+                .pullToRefresh(isShowing: $isShowing) {
+                    self.timeline.refreshTimeline(from: self.timeline.statuses[0])
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.isShowing = false
+                    }
+                }
                 .navigationTitle("Network")
+                .navigationBarTitleDisplayMode(.automatic)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing, content: {
+
+                    ToolbarItem(placement: .navigationBarLeading) {
+
+                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                        Menu {
+                            Button("My community", action: {
+                                withAnimation(.spring()) {
+                                    timeline.type = TimelineScope.local
+                                }
+                            })
+                            Button("Public timeline", action: {
+                                withAnimation(.spring()) {
+                                    timeline.type = TimelineScope.public
+                                }
+                            })
+                        } label: {
+                            Label(self.timeline.type == .public ? "Public" : "Community",
+                                  systemImage: self.timeline.type == .public ? "globe": "person.2")
+                        }
+                        // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
+
+                    }
+
+                    ToolbarItem(placement: .primaryAction) {
 
                         Button(action: {}, label: {
                             Image(systemName: "line.horizontal.3.decrease")
                                 .imageScale(.large)
                         })
 
-                    })
-
+                    }
                 }
 
             #else
 
-            self.view
+            StatusList(self.timeline.statuses,
+                       context: .list,
+                       action: { currentStatus in
+                        self.timeline.updateTimeline(currentItem: currentStatus)
+                       })
+                .onAppear {
+                    self.timeline.fetchTimeline()
+                }
+                .animation(.spring())
                 .navigationTitle("Network")
                 .navigationSubtitle("\(Date())")
 
             #endif
 
         }
-            .onAppear {
-                self.timeline.fetchLocalTimeline()
-            }
-
-    }
-
-    var view: some View {
-
-        List {
-            Section {
-                NavigationLink(destination: Text("F").padding()) {
-                    Label("Announcements", systemImage: "megaphone")
-                }
-                NavigationLink(destination: Text("F").padding()) {
-                    Label("Activity", systemImage: "flame")
-                }
-            }
-            .listStyle(InsetGroupedListStyle())
-
-            Section(header:
-                Picker(selection: self.$timeline.type, label: Text("Network visibility")) {
-                    Text("My community").tag(TimelineScope.local)
-                    Text("Public").tag(TimelineScope.public)
-                }                        .pickerStyle(SegmentedPickerStyle())
-                    .padding(.top)
-                    .padding(.bottom, 2)) {
-
-                if self.timeline.statuses.isEmpty {
-
-                    HStack {
-
-                        Spacer()
-
-                        VStack {
-
-                            Spacer()
-
-                            ProgressView(value: 0.5)
-                                .progressViewStyle(CircularProgressViewStyle())
-
-                            Text("Loading posts...")
-
-                            Spacer()
-
-                        }
-
-                        Spacer()
-
-                    }
-
-                } else {
-
-                    ForEach(self.timeline.statuses, id: \.self.id) { status in
-                        StatusView(status: status)
-                            .buttonStyle(PlainButtonStyle())
-                    }
-
-                }
-            }
-
-        }
-            .listStyle(GroupedListStyle())
 
     }
 }

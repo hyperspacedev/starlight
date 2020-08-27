@@ -1,5 +1,5 @@
 //
-//  ImageDisplayView.swift
+//  MediaViewer.swift
 //  Codename Starlight
 //
 //  Created by Alejandro Modroño Vara on 13/07/2020.
@@ -109,7 +109,7 @@ public struct ImageDisplayView<Content>: View where Content: View {
 
 extension ImageDisplayView where Content: View {
 
-    /// Creates a view that allows users to see static media (images).
+    /// Creates a view that allows users to see photos, videos, and GIFs.
     ///
     /// - Parameters:
     ///   - image: The image to be displayed.
@@ -129,8 +129,12 @@ struct ImageDisplayView_Previews: PreviewProvider {
 
     @State static var shouldOpen: Bool = true
 
+    // swiftlint:disable:next line_length
+    static let url = "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg"
+
     static var previews: some View {
-        ImageDisplayView(image: Image("sotogrande"), description: "Sotogrande seen from above.", shouldOpen: self.$shouldOpen) {
+        ImageDisplayView(
+            image: Image("sotogrande"), description: "Sotogrande seen from above.", shouldOpen: self.$shouldOpen) {
 
             VStack {
                 Spacer()
@@ -139,7 +143,7 @@ struct ImageDisplayView_Previews: PreviewProvider {
                 }, label: {
 
                     AttachmentView(
-                        from: "https://files.mastodon.social/cache/media_attachments/files/104/496/498/501/770/612/original/b9c7a301dd755f73.jpeg",
+                        from: url,
                         placeholder: {
                             Rectangle()
                                 .scaledToFit()

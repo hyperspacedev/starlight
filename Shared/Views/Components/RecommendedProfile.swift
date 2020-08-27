@@ -24,9 +24,12 @@ struct RecommendedProfile: View {
                 Text(name)
                     .font(.title2)
                     .bold()
+                    .lineLimit(1)
                 Text(user)
+                    .lineLimit(1)
                 Text("No bio provided.")
                     .foregroundColor(.secondary)
+                    .lineLimit(2)
             }
 
         }

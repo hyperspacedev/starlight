@@ -6,417 +6,656 @@
 //
 
 import SwiftUI
+import Atributika
+import URLImage
 
 struct ProfileView: View {
 
-    private let imageHeight: CGFloat = 200
-    private let collapsedImageHeight: CGFloat = 95
+    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: AppClient.shared().id)
 
-    public var isParent: Bool = true
-
-    @ObservedObject private var contentFrame: ViewFrame = ViewFrame()
-    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
-
-    @State private var titleRect: CGRect = .zero
-    @State private var headerImageRect: CGRect = .zero
-    @State private var showMoreActions: Bool = false
-
-    func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
-
-        geometry.frame(in: .global).minY
-
-    }
-
-    func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-
-        let offset = getScrollOffset(geometry)
-        let sizeOffScreen = imageHeight - collapsedImageHeight
-
-        if offset < -sizeOffScreen {
-
-            let imageOffset = abs(min(-sizeOffScreen, offset))
-
-            return imageOffset - sizeOffScreen
-        }
-
-        if offset > 0 {
-
-            return -offset
-
-        }
-
-        return 0
-
-    }
-
-    func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-
-        let offset = getScrollOffset(geometry)
-        let imageHeight = geometry.size.height
-        if offset > 0 {
-            return imageHeight + offset
-        }
-        return imageHeight
-
-    }
-
-    func getBlurRadiusForImage(_ geometry: GeometryProxy) -> CGFloat {
-
-        let offset = geometry.frame(in: .global).maxY
-        let height = geometry.size.height
-        let blur = (height - max(offset, 0)) / height
-
-        return blur * 6
-
-    }
-
-    private func getHeaderTitleOffset() -> CGFloat {
-        let currentYPos = titleRect.midY
-
-        if currentYPos < headerImageRect.maxY {
-
-            let minYValue: CGFloat = 50.0
-            let maxYValue: CGFloat = collapsedImageHeight
-            let currentYValue = currentYPos
-            let percentage = max(-1, (currentYValue - maxYValue) / (maxYValue - minYValue))
-
-            let finalOffset: CGFloat = -30.0
-
-            return 20 - (percentage * finalOffset)
-
-        }
-
-        return .infinity
-
-    }
+    #if os(iOS)
+    @State var isShowing: Bool = false
+    @State var searchText: String = ""
+    @State var isParent: Bool = true
+    #endif
 
     var body: some View {
-
-        NavigationView {
-            if self.accountInfo.statuses.isEmpty {
-                HStack {
-
-                    Spacer()
-
-                    VStack {
-                        Spacer()
-                        ProgressView(value: 0.5)
-                            .progressViewStyle(CircularProgressViewStyle())
-                        Text("Loading posts...")
-                        Spacer()
-                    }
-
-                    Spacer()
-
-                }
-                .onAppear {
-                    self.accountInfo.fetchProfile()
-                    self.accountInfo.fetchProfileStatuses()
-                }
-            } else {
-                ScrollView {
-
-                    LazyVStack(alignment: .leading, spacing: 10) {
-
-                        VStack(alignment: .leading) {
-
-                            HStack {
-
-                                Text(accountInfo.data?.displayName ?? "User")
-                                    .font(.title)
-                                    .bold()
-                                    .background(GeometryGetter(rect: self.$titleRect))
-
-//                                if accountInfo.isDev {
-//
-//                                    Text("STARLIGHT DEV")
-//                                        .foregroundColor(.secondary)
-//                                        .padding(.all, 5)
-//                                        .font(.caption2)
-//                                        .background(
-//                                            Color(.systemGray5)
-//                                                .cornerRadius(3)
-//                                        )
-//
-//                                }
-
-                                if let isBot = accountInfo.data?.bot {
-
-                                    if isBot {
-                                        Text("BOT")
-                                            .foregroundColor(.white)
-                                            .padding(.all, 5)
-                                            .font(.caption2)
-                                            .background(
-                                                Color.blue
-                                                    .cornerRadius(3)
-                                            )
-                                    }
-
-                                }
-
-                                Spacer()
-
-                                Button(action: {
-                                    self.showMoreActions.toggle()
-                                }, label: {
-                                    Image(systemName: "ellipsis")
-                                        .imageScale(.large)
-                                })
-
-                            }
-
-                            Text("@\(accountInfo.data?.acct ?? "user")")
-                                .font(.callout)
-                                .foregroundColor(.secondary)
-
-                            Text("\(accountInfo.data?.note ?? "No bio provided.")")
-                                .padding(.top, 10)
-                                .fixedSize(horizontal: false, vertical: true)
-
-                            Divider()
-
-                            HStack {
-
-                                VStack {
-
-                                    Text("\((accountInfo.data?.followersCount ?? 0).roundedWithAbbreviations)")
-                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-
-                                    Text("Followers \(Image(systemName: "person.3"))")
-                                        .fontWeight(.semibold)
-                                }
-
-                                Spacer()
-
-                                VStack {
-
-                                    Text("\((accountInfo.data?.followingCount ?? 0).roundedWithAbbreviations)")
-                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-
-                                    Text("Following  \(Image(systemName: "person.2"))")
-                                        .font(.system(size: 17, weight: .semibold, design: .rounded))
-                                        .fontWeight(.semibold)
-
-                                }
-
-                                Spacer()
-
-                                VStack {
-
-                                    Text("\((accountInfo.data?.statusesCount ?? 0).roundedWithAbbreviations)")
-                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-
-                                    Text("Toots \(Image(systemName: "doc.richtext"))")
-                                        .fontWeight(.semibold)
-
-                                }
-
-                            }
-
-                            Divider()
-
+        #if os(iOS)
+        if self.isParent {
+            NavigationView {
+                self.view
+                    .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
+                    .pullToRefresh(isShowing: $isShowing) {
+                        self.accountInfo.refreshProfileStatuses()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.isShowing = false
                         }
-
-                        VStack {
-                            ForEach(self.accountInfo.statuses, id: \.self.id) { status in
-
-                                StatusView(status: status)
-
-                                Divider()
-
-                            }
-                        }
-
                     }
-                        .padding(.horizontal)
-                        .padding(.top, 16.0)
-                        .offset(y: imageHeight)
-                        .background(GeometryGetter(rect: $contentFrame.frame))
-
-                    GeometryReader { geometry in
-
-                        ZStack(alignment: .bottom) {
-                            Image("sotogrande")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: geometry.size.width, height: self.getHeightForHeaderImage(geometry))
-                                .blur(radius: self.getBlurRadiusForImage(geometry) - 3)
-                                .clipped()
-                                .background(GeometryGetter(rect: self.$headerImageRect))
-
-                            HStack {
-
-                                if !isParent {
-                                    Button(action: {}, label: {
-                                        Image(systemName: "chevron.left")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                    })
-                                } else {
-                                    Button(action: {}, label: {
-                                        Image(systemName: "pencil")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                    })
-                                }
-
-                                Spacer()
-
-                                VStack {
-
-                                    Text(accountInfo.data?.displayName ?? "user")
-                                        .font(.avenirNext(size: 15))
-                                        .foregroundColor(.white)
-
-                                    Text(accountInfo.data?.acct ?? "user@instance")
-                                        .font(.avenirNext(size: 12))
-                                        .foregroundColor(Color(.systemGray3))
-
-                                }
-
-                                Spacer()
-
-                                Button(action: {}, label: {
-                                    Image(systemName: "ellipsis")
-                                        .font(.system(size: 25, weight: .semibold))
-                                        .foregroundColor(.white)
-                                })
-
-                            }
-                                .padding(.horizontal)
-                                .offset(x: 0, y: self.getHeaderTitleOffset())
-
-                            VStack {
-
-                                HStack {
-
-                                    if !isParent {
-                                        Image(systemName: "chevron.left")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                            .padding(10)
-                                    }
-
-                                    Spacer()
-
-                                    Button(action: {}, label: {
-                                        Image(systemName: "pencil")
-                                            .font(.system(size: 25, weight: .semibold))
-                                            .foregroundColor(.white)
-                                            .padding(10)
-                                    })
-
-                                }
-
-                                Spacer()
-
-                            }
-                                .padding()
-                                .padding(.top)
-
-                        }
-                        .clipped()
-                        .offset(x: 0, y: self.getOffsetForHeaderImage(geometry))
-                    }
-                        .frame(height: imageHeight)
-                        .offset(x: 0, y: -(contentFrame.startingRect?.maxY ?? UIScreen.main.bounds.height))
-                }
-                    .edgesIgnoringSafeArea(.all)
-                    .navigationBarHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("Profile")
             }
 
+        } else {
+            self.view
+                .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
+                .pullToRefresh(isShowing: $isShowing) {
+                    self.accountInfo.refreshProfileStatuses()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.isShowing = false
+                    }
+                }
         }
-            .actionSheet(isPresented: self.$showMoreActions) {
-                ActionSheet(title: Text("More Actions"),
-                            buttons: [
-                                .default(Text("Share \(Image(systemName: "square.and.arrow.up"))"), action: {
 
-                                }),
-                                .default(Text("Show more info"), action: {
+        #else
+        self.view
+        #endif
+    }
 
-                                }),
-                                .destructive(Text("Block @\(accountInfo.data?.acct ?? "user")"), action: {
+    var view: some View {
+        List {
 
-                                }),
-                                .destructive(Text("Report @\(accountInfo.data?.acct ?? "user")"), action: {
+            #if os(iOS)
+            if self.searchText == "" {
+                ProfileViewHeader(accountInfo: self.accountInfo)
 
-                                }),
-                                .cancel(Text("Dismiss"), action: {})
-                            ]
+                StatusList(self.accountInfo.statuses, context: .none,
+                           action: { currentStatus in
+                            self.accountInfo.updateProfileStatuses(currentItem: currentStatus)
+                           }
                 )
+                    .padding(.trailing, 20)
+
+            } else {
+                StatusList(self.accountInfo.statuses.filter { $0.content.localizedStandardContains(searchText)},
+                           context: .none
+                )
+                    .padding(.trailing, 20)
+                    .animation(.spring())
             }
-    }
 
-}
+            #else
+            ProfileViewHeader(accountInfo: self.accountInfo)
 
-struct AccountView_Previews: PreviewProvider {
-
-    static var previews: some View {
-
-        ProfileView()
-
-    }
-
-}
-
-class ViewFrame: ObservableObject {
-
-    var startingRect: CGRect?
-
-    @Published var frame: CGRect {
-
-        willSet {
-
-            if startingRect == nil {
-
-                startingRect = newValue
-
-            }
+            StatusList(self.accountInfo.statuses, context: .none,
+                       action: { currentStatus in
+                        self.accountInfo.updateProfileStatuses(currentItem: currentStatus)
+                       }
+            )
+                .padding(.trailing, 20)
+            #endif
 
         }
+            .listRowInsets(EdgeInsets())
+            .onAppear {
+                self.accountInfo.fetchProfile()
 
-    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.accountInfo.fetchProfileStatuses()
+                })
+            }
 
-    init() {
-
-        self.frame = .zero
-
+            // swiftlint:disable:next line_length
+            .navigationTitle("\(self.accountInfo.data?.id == AppClient.shared().id ? "You" : (self.accountInfo.data?.displayName ?? "Profile")) - \((self.accountInfo.data?.statusesCount ?? 0).roundedWithAbbreviations) toots")
+            .navigationBarTitleDisplayMode(.inline)
     }
 
 }
 
-struct GeometryGetter: View {
+struct ProfileViewBanner: View {
 
-    @Binding var rect: CGRect
+    @State var header: String?
+    @State var avatar: String?
+    @Binding var isEditing: Bool
 
     var body: some View {
 
-        GeometryReader { geometry in
-
-            AnyView(Color.clear)
-                .preference(key: RectanglePreferenceKey.self, value: geometry.frame(in: .global))
-
-        }.onPreferenceChange(RectanglePreferenceKey.self) { (value) in
-
-            self.rect = value
-
+        if let header = self.header {
+            URLImage(URL(string: header)!,
+                     placeholder: { _ in
+                        Rectangle()
+                            .frame(height: 200)
+                            .foregroundColor(.gray)
+                            .overlay(
+                                self.avatarImage.offset(y: 64),
+                                alignment: .bottomLeading
+                            )
+                     },
+                     content: {
+                        $0.image
+                            .asBanner()
+                            .overlay(isEditing ?
+                                        AnyView(
+                                            ZStack {
+                                                Rectangle().foregroundColor(.black).opacity(0.3)
+                                                Button(action: {}, label: {
+                                                    Image(systemName: "photo.on.rectangle.angled")
+                                                        .imageScale(.large)
+                                                        .foregroundColor(.white)
+                                                })
+                                            }
+                                        ): AnyView(EmptyView()),
+                                     alignment: .center
+                            )
+                            .overlay(
+                                self.avatarImage.offset(y: 64),
+                                alignment: .bottomLeading
+                            )
+                     })
+                .padding(.top, -5)
+                .animation(.spring())
+        } else {
+            Rectangle()
+                .frame(height: 200)
+                .foregroundColor(.gray)
+                .overlay(
+                    Image("amodrono")
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 100, height: 100)
+                        .redacted(reason: .placeholder)
+                        .padding()
+                        .background(
+                            Circle()
+                                .frame(width: 110, height: 110)
+                                .foregroundColor(backgroundColor)
+                        )
+                        .offset(y: 64),
+                    alignment: .bottomLeading
+                )
         }
 
     }
 
-}
-
-struct RectanglePreferenceKey: PreferenceKey {
-
-    static var defaultValue: CGRect = .zero
-
-    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
-
-        value = nextValue()
-
+    var avatarImage: some View {
+        URLImage(URL(string: self.avatar!)!,
+            placeholder: { _ in
+                Image("amodrono")
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 100, height: 100)
+                    .redacted(reason: .placeholder)
+            },
+            content: {
+                $0.image
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 100, height: 100)
+                    .overlay(isEditing ?
+                            AnyView(
+                                ZStack {
+                                    Circle().foregroundColor(.black).opacity(0.3)
+                                    Button(action: {}, label: {
+                                            Image(systemName: "photo.on.rectangle.angled")
+                                                .imageScale(.large)
+                                                .foregroundColor(.white)
+                                    })
+                                }
+                            ): AnyView(EmptyView()),
+                        alignment: .center
+                    )
+            }
+        )
+            .frame(width: 100, height: 100)
+            .padding()
+            .background(
+                Circle()
+                    .frame(width: 110, height: 110)
+                    .foregroundColor(backgroundColor)
+            )
     }
 
+}
+
+struct ProfileViewHeader: View {
+
+    @ObservedObject var accountInfo: ProfileViewModel
+
+    @State var infoShown: [ProfileViewInfo] = [.fields, .dateCreated]
+    @State var isEditing: Bool = false
+    @State var userNote: String = ""
+
+    // MARK: USER NOTE TEXT STYLES
+    private let rootStyle: Style = Style("p")
+        .font(.systemFont(ofSize: 17, weight: .regular))
+    private let linkStyle: Style = Style("a")
+        .foregroundColor(#colorLiteral(red: 0.6050000191, green: 0.3829999864, blue: 1, alpha: 1))
+
+    /// Configure the label to match the styling for the status.
+    private func configureLabel(_ label: AttributedLabel, size: CGFloat = 17) {
+        label.numberOfLines = 0
+        label.textColor = .label
+        label.lineBreakMode = .byWordWrapping
+        label.onClick = { labelClosure, detection in
+            switch detection.type {
+            case .link(let url):
+                openUrl(url)
+            default:
+                break
+            }
+        }
+    }
+
+    var bounds: CGFloat {
+        #if os(macOS)
+        // Note: Need to subtract sidebar size here.
+        let bounds: CGFloat = NSApplication.shared.mainWindow?.frame.width ?? 0
+        #else
+        let bounds: CGFloat = UIScreen.main.bounds.width
+        #endif
+
+        return bounds
+    }
+
+    var padding: CGFloat = 84
+
+    var body: some View {
+        VStack {
+
+            ProfileViewBanner(
+                header: self.accountInfo.data?.headerStatic,
+                avatar: self.accountInfo.data?.avatarStatic,
+                isEditing: self.$isEditing
+            )
+                .padding(.horizontal, -20)
+
+            if self.accountInfo.data != nil {
+                header
+            } else {
+                placeholder
+                    .redacted(reason: .placeholder)
+            }
+        }
+            .buttonStyle(PlainButtonStyle())
+    }
+
+    var header: some View {
+        VStack(alignment: .leading) {
+
+            HStack {
+                Spacer()
+                if self.accountInfo.accountID == AppClient.shared().id {
+                    Button(action: {
+                        self.userNote = self.accountInfo.data!.note
+                        withAnimation(.spring()) {
+                            self.isEditing.toggle()
+                        }
+                    }, label: {
+                        Text(isEditing ? "Stop editing \(Image(systemName: "xmark"))" : "Edit \(Image(systemName: "pencil"))")
+                            .font(.callout)
+                            .foregroundColor(.purple)
+                            .bold()
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.purple, lineWidth: 2)
+                            )
+                    })
+                } else {
+
+                    Button(action: {
+                        print("tapped!")
+                    }, label: {
+                        Text("Follow \(Image(systemName: "person.fill.badge.plus"))")
+                            .font(.callout)
+                            .foregroundColor(.white)
+                            .bold()
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .background(Color.blue.cornerRadius(5))
+                    })
+
+                }
+            }
+                .padding(.top, 10)
+
+            HStack {
+
+                Text((accountInfo.data?.displayName)!)
+                    .font(.title)
+                    .bold()
+
+                if let badge = accountInfo.badge {
+                    Text(badge.label)
+                            .fontWeight(.semibold)
+                            .foregroundColor(badge.labelColor)
+                            .padding(.all, 5)
+                            .font(.caption2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 3.0)
+                                    .foregroundColor(badge.backgroundColor)
+                                    .cornerRadius(3)
+                            )
+                }
+
+                if let isBot = accountInfo.data?.bot {
+
+                    if isBot {
+                        Text("BOT")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.all, 5)
+                            .font(.caption2)
+                            .background(
+                                Color.blue
+                                    .cornerRadius(3)
+                            )
+                    }
+
+                }
+
+                Spacer()
+
+                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                Menu {
+                    if let data = accountInfo.data {
+                        Text("Date created: \(data.createdAt.getDate()!.format(as: "EEEE, dd MMMM YYYY")) at \(data.createdAt.getDate()!.format(time: .medium))")
+                    }
+                    Divider()
+                    Button(action: {
+                        openShareSheet(url: URL(string: self.accountInfo.data!.url)!)
+                    }, label: {Text("Share \(Image(systemName: "square.and.arrow.up"))")})
+                    Menu("Show more info") {
+                        Button(action: {
+                            if self.infoShown.contains(.dateCreated) {
+                                self.infoShown = infoShown.filter { $0 != .dateCreated }
+                            } else {
+                                self.infoShown.append(.dateCreated)
+                            }
+                        }, label: {
+                            if infoShown.contains(.dateCreated) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Date created")
+                        })
+                        Button(action: {
+                            if self.infoShown.contains(.location) {
+                                self.infoShown = infoShown.filter { $0 != .location }
+                            } else {
+                                print("added location")
+                                self.infoShown.append(.location)
+                            }
+                        }, label: {
+                            if infoShown.contains(.location) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Location")
+                        })
+                        Button(action: {
+                            if self.infoShown.contains(.fields) {
+                                self.infoShown = infoShown.filter { $0 != .fields }
+                            } else {
+                                self.infoShown.append(.fields)
+                            }
+                        }, label: {
+                            if infoShown.contains(.fields) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Fields")
+                        })
+                    }
+                    Button(action: {}, label: {Text("Block @\((accountInfo.data?.acct)!)")})
+                    Button(action: {}, label: {Text("Report @\((accountInfo.data?.acct)!)")})
+                        .foregroundColor(.red)
+                    Button("Dismiss", action: {})
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .imageScale(.large)
+                }
+                    .padding(.trailing)
+                // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
+
+            }
+
+            Text("@\((accountInfo.data?.acct)!)")
+                .font(.callout)
+                .foregroundColor(.secondary)
+
+            VStack {
+                if self.isEditing {
+                    TextField("", text: self.$userNote)
+                } else {
+                    if self.accountInfo.data!.note.isEmpty || self.accountInfo.data!.note == "" {
+                        Text("Apparently, this user prefers to keep an air of mystery about them... 👻")
+                            .fixedSize()
+                    } else {
+                        VStack(alignment: .leading) {
+                            AttributedTextView(
+                                attributedText: "\((accountInfo.data?.note)!)"
+                                    .style(tags: rootStyle)
+                                    .styleLinks(linkStyle)
+                                    .styleHashtags(linkStyle)
+                                    .styleMentions(linkStyle),
+                                configured: { label in
+                                    self.configureLabel(label, size: 20)
+                                },
+                                maxWidth: bounds - padding)
+                            .fixedSize()
+                        }
+                    }
+                }
+
+            }
+                .animation(.spring())
+
+            if infoShown.contains(.dateCreated) {
+                Text("Joined \(self.accountInfo.data!.createdAt.getDate()!.format(as: "MMMM YYYY"))")
+                    .foregroundColor(.gray)
+                    .font(.callout)
+            }
+
+            if infoShown.contains(.fields) {
+                FieldList(fields: self.accountInfo.data?.fields ?? [])
+                    .frame(width: bounds - 40)
+            } else {
+                Divider()
+            }
+
+            self.stats
+                .padding(.horizontal, -20)
+
+        }
+    }
+
+    var placeholder: some View {
+        VStack(alignment: .leading) {
+
+            HStack {
+
+                Text("User")
+                    .font(.title)
+                    .bold()
+
+                Text("Badge")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.all, 5)
+                        .font(.caption2)
+                        .background(
+                            RoundedRectangle(cornerRadius: 3.0)
+                                .foregroundColor(.red)
+                                .cornerRadius(3)
+                        )
+
+                Text("BOT")
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding(.all, 5)
+                    .font(.caption2)
+                    .background(
+                        Color.blue
+                            .cornerRadius(3)
+                    )
+
+                Spacer()
+
+                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                Menu {
+                    Text("Date crated: 00/00/0000")
+                        .redacted(reason: .placeholder)
+                    Divider()
+                    Button(action: {}, label: {Text("Share \(Image(systemName: "square.and.arrow.up"))")})
+                    Button(action: {}, label: {Text("Show more info")})
+                    Menu("Show more info") {
+                        Button(action: {
+                            if self.infoShown.contains(.dateCreated) {
+                                self.infoShown = infoShown.filter { $0 != .dateCreated }
+                            } else {
+                                self.infoShown.append(.dateCreated)
+                            }
+                        }, label: {
+                            if infoShown.contains(.dateCreated) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Date created")
+                        })
+                        Button(action: {
+                            if self.infoShown.contains(.location) {
+                                self.infoShown = infoShown.filter { $0 != .location }
+                            } else {
+                                print("added location")
+                                self.infoShown.append(.location)
+                            }
+                        }, label: {
+                            if infoShown.contains(.location) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Location")
+                        })
+                        Button(action: {
+                            if self.infoShown.contains(.fields) {
+                                self.infoShown = infoShown.filter { $0 != .fields }
+                            } else {
+                                self.infoShown.append(.fields)
+                            }
+                        }, label: {
+                            if infoShown.contains(.fields) {
+                                Image(systemName: "checkmark")
+                            }
+                            Text("Fields")
+                        })
+                    }
+                    Button(action: {}, label: {Text("Block @\(accountInfo.data?.acct ?? "user")")})
+                    Button(action: {}, label: {Text("Report @\(accountInfo.data?.acct ?? "user")")})
+                        .foregroundColor(.red)
+                    Button("Dismiss", action: {})
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .imageScale(.large)
+                }
+                // swiftlint:enable no_space_in_method_call multiple_closures_with_trailing_closure
+
+            }
+
+            Text("@\(accountInfo.data?.acct ?? "user")")
+                .font(.callout)
+                .foregroundColor(.secondary)
+
+            Text("""
+                This is an example bio/note that will be displayed as a placeholder until the actual bio/note is loaded.
+                """)
+
+            Text("Joined Mar 2016")
+                .foregroundColor(.gray)
+                .font(.callout)
+
+            Divider()
+
+            self.statsPlaceholder
+                .padding(.leading, -5)
+
+        }
+            .padding(.top, 40)
+    }
+
+    var stats: some View {
+        HStack {
+
+            Spacer()
+
+            VStack {
+
+                Text("\((accountInfo.data?.followersCount.roundedWithAbbreviations)!)")
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+
+                Text("Followers \(Image(systemName: "person.3"))")
+                    .fontWeight(.semibold)
+            }
+
+            Spacer()
+
+            VStack {
+
+                Text("\((accountInfo.data?.followingCount.roundedWithAbbreviations)!)")
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+
+                Text("Following  \(Image(systemName: "person.2"))")
+                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                    .fontWeight(.semibold)
+
+            }
+
+            Spacer()
+
+//            VStack {
+//
+//                Text("\((accountInfo.data?.statusesCount.roundedWithAbbreviations)!)")
+//                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+//
+//                Text("Toots \(Image(systemName: "doc.richtext"))")
+//                    .fontWeight(.semibold)
+//
+//            }
+
+        }
+    }
+
+    var statsPlaceholder: some View {
+        VStack {
+            HStack {
+
+                Spacer()
+
+                VStack {
+
+                    Text("\(1000000.roundedWithAbbreviations)")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+
+                    Text("Followers \(Image(systemName: "person.3"))")
+                        .fontWeight(.semibold)
+                }
+
+                Spacer()
+
+                VStack {
+
+                    Text("\(1000000.roundedWithAbbreviations)")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+
+                    Text("Following  \(Image(systemName: "person.2"))")
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .fontWeight(.semibold)
+
+                }
+
+                Spacer()
+
+            }
+        }
+    }
+}
+
+extension Image {
+    func asBanner() -> some View {
+        resizable()
+            .scaledToFit()
+            .frame(width: UIScreen.main.bounds.width)
+    }
+}
+
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
+    }
 }

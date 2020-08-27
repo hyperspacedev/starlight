@@ -16,6 +16,9 @@ public class Card: Codable, Identifiable {
     // swiftlint:disable:next identifier_name
     public let id = UUID()
 
+    /// Location of linked resource.
+    public let url: String
+
     /// The title for this card.
     public let title: String
 
@@ -52,6 +55,7 @@ public class Card: Codable, Identifiable {
     // MARK: - COMPUTED PROPERTIES
 
     private enum CodingKeys: String, CodingKey {
+        case url
         case title
         case description
         case image

@@ -8,6 +8,10 @@
 import Foundation
 
 /// An enumerated representation of an attachment's type.
+///
+/// - Version:
+///     - Added in 1-0
+///
 public enum AttachmentType: String, Codable {
     /// When the attachment's type is unknown to the server.
     case unknown

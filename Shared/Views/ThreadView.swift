@@ -7,101 +7,103 @@
 
 import SwiftUI
 
+#if canImport(SwiftlySearch)
+import SwiftlySearch
+#endif
+
 struct ThreadView: View {
 
-    @ObservedObject var threadModel = ThreadViewModel()
+    @StateObject var threadModel = ThreadViewModel()
     public let mainStatus: Status
+
+    #if os(iOS)
+    @State var searchText: String = ""
+    @State var isShowing: Bool = false
+    #endif
 
     var body: some View {
 
-        VStack {
-
-            #if os(iOS)
-            self.view
-                .listStyle(GroupedListStyle())
-                .onAppear {
-                    UITableView.appearance().tableHeaderView = UIView(
-                        frame: CGRect(
-                            x: 0,
-                            y: 0,
-                            width: 0,
-                            height: Double.leastNonzeroMagnitude)
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        VStack {
-                            Text("Thread").font(.headline)
-                            Text("\(self.mainStatus.repliesCount) replies").font(.subheadline)
-                        }
+        #if os(iOS)
+        self.view
+            .listStyle(GroupedListStyle())
+            .onAppear {
+                UITableView.appearance().tableHeaderView = UIView(
+                    frame: CGRect(
+                        x: 0,
+                        y: 0,
+                        width: 0,
+                        height: Double.leastNonzeroMagnitude)
+                )
+            }
+            .buttonStyle(PlainButtonStyle())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Thread").font(.headline)
+                        Text("\(self.mainStatus.repliesCount) replies").font(.subheadline)
                     }
                 }
-            #else
-            self.view
-                .buttonStyle(PlainButtonStyle())
-                .navigationTitle("Thread")
-                .navigationSubtitle("\(self.mainStatus.repliesCount) replies")
-            #endif
-
-        }
+            }
+            .navigationBarSearch(self.$searchText, placeholder: "Search in thread...")
+            .pullToRefresh(isShowing: $isShowing) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.isShowing = false
+                }
+            }
+        #else
+        self.view
+            .buttonStyle(PlainButtonStyle())
+            .navigationTitle("Thread")
+            .navigationSubtitle("\(self.mainStatus.repliesCount) replies")
+        #endif
 
     }
 
     var view: some View {
 
-        ScrollViewReader { scrollview in
-            List {
+        List {
+            if let context = self.threadModel.context {
 
-                if let context = self.threadModel.context {
-
-                    ForEach(context.ancestors) { currentStatus in
-
-                        StatusView(status: currentStatus)
-                            .padding(.vertical, 5)
-
-                    }
-                        .onAppear {
-                            scrollview.scrollTo(self.mainStatus)
-                        }
-
-                }
-
-                StatusView(isMain: true, status: mainStatus)
-
-                if let context = self.threadModel.context {
-
-                    ForEach(context.descendants) { currentStatus in
-
-                        StatusView(status: currentStatus)
-                            .padding(.vertical, 5)
-
-                    }
-
-                } else {
-
-                    HStack {
-
-                        Spacer()
-
-                        VStack {
-                            Spacer()
-                            ProgressView(value: 0.5)
-                                .progressViewStyle(CircularProgressViewStyle())
-                            Text("Loading replies...")
-                            Spacer()
-                        }
-
-                        Spacer()
-
-                    }
+                if !context.ancestors.isEmpty {
+                    StatusList(context.ancestors, placeholderCount: context.ancestors.count)
+                        .animation(.spring())
                 }
 
             }
+
+            StatusView(StatusConfiguration.DisplayMode.presented, status: mainStatus)
+                .buttonStyle(PlainButtonStyle())
+
+            if let context = self.threadModel.context {
+
+                if !context.descendants.isEmpty {
+                    StatusList(context.descendants,
+                               condition: { currentStatus in
+                                    if currentStatus.inReplyToID == self.mainStatus.id {
+                                        return true
+                                    }
+                                    return false
+                               },
+                               placeholderCount: context.descendants.count
+                    )
+                }
+
+//                ForEach(context.descendants) { currentStatus in
+//
+//                    if currentStatus.inReplyToID == self.mainStatus.id {
+//                        StatusView(status: currentStatus)
+//                            .padding(.vertical, 5)
+//                    }
+//
+//                }
+            }
         }
+            .animation(.spring())
             .onAppear {
-                self.threadModel.fetchContext(for: self.mainStatus.id)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.threadModel.fetchContext(for: self.mainStatus.id)
+                })
             }
 
     }

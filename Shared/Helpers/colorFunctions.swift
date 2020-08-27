@@ -24,6 +24,16 @@ var backgroundColor: Color {
     #if os(macOS)
     return Color(.textBackgroundColor)
     #else
-    return Color(.secondarySystemBackground)
+    return Color(.systemBackground)
     #endif
 }
+
+#if os(iOS)
+func customColor(_ named: String) -> Color {
+    return Color(UIColor(named: named)!)
+}
+#else
+func customColor(_ named: String) -> Color {
+    return Color(NSColor(named: named)!)
+}
+#endif

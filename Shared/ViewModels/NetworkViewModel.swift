@@ -18,21 +18,53 @@ public class NetworkViewModel: ObservableObject {
 
     @Published var type: TimelineScope = .local {
         didSet {
-            AppClient.shared().getTimeline(scope: self.type) { statuses in
-                self.statuses = statuses
-            }
+            self.fetchTimeline()
         }
     }
 
-    func fetchPublicTimeline() {
-        AppClient.shared().getTimeline(scope: .public) { statuses in
+    subscript(position: Int) -> Status {
+        return statuses[position]
+    }
+
+    func fetchTimeline() {
+        AppClient.shared().getTimeline(scope: self.type) { statuses in
             self.statuses = statuses
         }
     }
 
-    func fetchLocalTimeline() {
-        AppClient.shared().getTimeline(scope: .local) { statuses in
-            self.statuses = statuses
+    func refreshTimeline(from currentItem: Status) {
+
+        AppClient.shared().getTimeline(scope: self.type, minID: currentItem.id) { statuses in
+            self.statuses.insert(contentsOf: statuses, at: self.statuses.startIndex)
         }
+
     }
+
+    func updateTimeline(currentItem: Status) {
+
+        if !shouldLoadMoreData(currentItem: currentItem) {
+            return
+        }
+
+        AppClient.shared().getTimeline(scope: self.type, maxID: currentItem.id) { statuses in
+            self.statuses.append(contentsOf: statuses)
+        }
+
+    }
+
+    /// Whether more data should be loaded.
+    ///
+    /// This is required for infinite scrolling to work.
+    /// What it does is check whether the status loaded is the second last status,
+    /// and if it's the case, it will load more data, so that there's an
+    /// infinite list of statuses.
+    func shouldLoadMoreData(currentItem: Status) -> Bool {
+
+        if currentItem.id == self.statuses[self.statuses.count - 2].id {
+            return true
+        }
+        return false
+
+    }
+
 }
