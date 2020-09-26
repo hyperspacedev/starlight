@@ -48,6 +48,8 @@
 		BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2724B4CF9200A97FF3 /* Context.swift */; };
 		BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
 		BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF673F2A24B4D08F00A97FF3 /* Instance.swift */; };
+		BF7C5717251FA82500B5E12C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C5716251FA82500B5E12C /* LoginView.swift */; };
+		BF7C5718251FA82500B5E12C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C5716251FA82500B5E12C /* LoginView.swift */; };
 		BF8D008724BE38D100F330E5 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D008624BE38D100F330E5 /* ExploreViewModel.swift */; };
 		BFBB3C7724A2D5C2007FEFE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C7624A2D5C2007FEFE8 /* Tests_iOS.swift */; };
 		BFBB3C8224A2D5C2007FEFE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C8124A2D5C2007FEFE8 /* Tests_macOS.swift */; };
@@ -188,6 +190,7 @@
 		BF673F2424B4CD6500A97FF3 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		BF673F2724B4CF9200A97FF3 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		BF673F2A24B4D08F00A97FF3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		BF7C5716251FA82500B5E12C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BF8D008624BE38D100F330E5 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 				BFE07C8924BCA86B00203706 /* HomeView.swift */,
 				BFE07C8C24BCAF6100203706 /* ProfileView.swift */,
 				BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */,
+				BF7C5716251FA82500B5E12C /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -766,6 +770,7 @@
 				FA656EE324D187390056922A /* openShareSheet.swift in Sources */,
 				BF44789524C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
+				BF7C5717251FA82500B5E12C /* LoginView.swift in Sources */,
 				FAF6584424CC3404008D9BC8 /* StatusList.swift in Sources */,
 				FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */,
 				BF673F2B24B4D08F00A97FF3 /* Instance.swift in Sources */,
@@ -892,6 +897,7 @@
 				FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */,
 				FA7E989824B8EB27002C9476 /* NetworkView.swift in Sources */,
 				FA656EE724D1CA730056922A /* FieldList.swift in Sources */,
+				BF7C5718251FA82500B5E12C /* LoginView.swift in Sources */,
 				BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,7 +1051,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1069,7 +1075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1097,7 +1103,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -1122,7 +1128,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
