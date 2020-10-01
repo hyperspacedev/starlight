@@ -24,7 +24,7 @@ struct HomeView: View {
                 } else {
                     loginPrompt
                         .sheet(isPresented: $showingLogin) {
-                            LoginView()
+                            ManagedAccountView()
                         }
                 }
             }
@@ -92,10 +92,9 @@ struct HomeView: View {
                     }
                 }
                 Button(action: { self.showingLogin.toggle() }) {
-                    Text("Sign in")
+                    Text("Get started")
                 }
             }
-            .background(Color.init(.white))
             .padding(4)
         }
         .listStyle(InsetGroupedListStyle())

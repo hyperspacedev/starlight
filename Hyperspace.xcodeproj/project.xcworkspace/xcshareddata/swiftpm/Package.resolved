@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "Magnetic",
+        "repositoryURL": "https://github.com/efremidze/Magnetic",
+        "state": {
+          "branch": null,
+          "revision": "84ab0de02f24041f774b95fb0810a793e6e31899",
+          "version": "3.2.1"
+        }
+      },
+      {
         "package": "SwiftlySearch",
         "repositoryURL": "https://github.com/thislooksfun/SwiftlySearch",
         "state": {

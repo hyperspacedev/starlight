@@ -161,7 +161,7 @@ private struct StatusViewContent: View {
     }
 
 }
- 
+
 /// The status is being displayed in a ``StatusList``, so we should make it smaller and more compact.
 private struct CompactStatusView: View {
 
