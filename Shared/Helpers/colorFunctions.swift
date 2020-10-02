@@ -8,6 +8,14 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
+extension UIColor {
+    class var accent: UIColor {
+        return UIColor(named: "AccentColor") ?? .systemBlue
+    }
+}
+#endif
+
 /// Returns the color used for text (`.black` when light mode is enabled, `.white` when dark mode is enabled).
 /// Works for macOS, iPadOS, and iOS
 var labelColor: Color {

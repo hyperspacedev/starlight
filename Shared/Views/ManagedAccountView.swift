@@ -35,7 +35,7 @@ struct ManagedAccountView: View {
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color(.systemIndigo))
+                                    .background(Color(.accent))
                                     .cornerRadius(8.0)
                             }
                         NavigationLink(destination: RegisterView()) {

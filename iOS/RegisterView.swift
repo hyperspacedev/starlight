@@ -31,6 +31,7 @@ struct RegisterView: View {
 
     func getMagneticView(size: CGSize) -> Magnetic {
         let magnet = Magnetic(size: size)
+        magnet.backgroundColor = .systemBackground
         let defaultSize = CGFloat(40)
         let nodes = [
             Node(text: "Tech", image: UIImage(named: "tech"), color: .systemRed, radius: defaultSize),
