@@ -8,6 +8,10 @@ opt_in_rules:
 type_body_length:
     - 250
 
+disabled_rules:
+  # Swift 5.3 supports multiple trailing closures with a new syntax.
+  - multiple_closures_with_trailing_closure
+
 # Custom rules used in this project.
 custom_rules:
     

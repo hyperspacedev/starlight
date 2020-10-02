@@ -40,15 +40,25 @@ struct ManagedAccountView: View {
                             }
                         NavigationLink(destination: RegisterView()) {
                             Text("Sign Up")
+                                .foregroundColor(.primary)
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color(.secondarySystemFill))
+                                .background(Color(.tertiarySystemFill))
                                 .cornerRadius(8.0)
                         }
                     }
                 }
                 .padding()
             }
+            .colorScheme(.dark)
+            .frame(maxHeight: .infinity)
+            .navigationBarHidden(true)
+            .navigationTitle("")
+            .background(
+                Image("spaceBg")
+                    .resizable()
+                    .scaledToFill()
+            )
         }
     }
 }

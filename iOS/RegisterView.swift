@@ -13,20 +13,20 @@ struct RegisterView: View {
 
     var body: some View {
         VStack {
-            Text("What are your interests?")
-                .font(.title)
-                .bold()
-            Text("Tap on the topics that interest you.")
+            VStack(alignment: .leading) {
+                Text("Tap on topics that you find interesting. We'll use this to help find an instance for you.")
+            }
+            .padding()
             GeometryReader { geometry in
                 SpriteView(scene: self.getMagneticView(size: geometry.size))
             }
-            Spacer()
             NavigationLink(destination: Text("Big Chungus")) {
                 Text("Next")
                     .bold()
                     .padding()
             }
         }
+        .navigationTitle("What interests you?")
     }
 
     func getMagneticView(size: CGSize) -> Magnetic {
@@ -46,6 +46,7 @@ struct RegisterView: View {
         ]
 
         for node in nodes {
+            node.strokeColor = .systemBackground
             magnet.addChild(node)
         }
         return magnet
