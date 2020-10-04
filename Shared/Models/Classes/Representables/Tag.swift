@@ -8,7 +8,7 @@
 import Foundation
 
 /// A class representation of a hashtag.
-public class Tag: Codable, Identifiable {
+public class Tag: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

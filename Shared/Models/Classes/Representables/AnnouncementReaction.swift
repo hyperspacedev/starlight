@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents an emoji reaction to an Announcement.
-public class AnnouncementReaction: Codable, Identifiable {
+public class AnnouncementReaction: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

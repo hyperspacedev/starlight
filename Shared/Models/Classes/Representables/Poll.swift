@@ -8,7 +8,7 @@
 import Foundation
 
 /// A class representation of a poll.
-public class Poll: Codable, Identifiable {
+public class Poll: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

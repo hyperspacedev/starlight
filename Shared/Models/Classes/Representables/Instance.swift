@@ -13,7 +13,7 @@ import Foundation
  A fediverse instance is the server that the user lives on. The following class gives information
  about the instance and who can be contacted.
  */
-public class Instance: Codable, Identifiable {
+public class Instance: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

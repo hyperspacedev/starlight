@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents an announcement set by an administrator.
-public class Announcement: Codable, Identifiable {
+public class Announcement: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 
