@@ -12,4 +12,5 @@ public enum TimelineScope {
     case local
     case `public`
     case direct
+    case account(id: String)
 }

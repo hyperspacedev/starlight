@@ -117,6 +117,15 @@
 		FA7E98AB24BA5A46002C9476 /* roundNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A924BA5A46002C9476 /* roundNumbers.swift */; };
 		FA7E98AD24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
 		FA7E98AE24BA5EFA002C9476 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */; };
+		FA89FA66259759DF00827520 /* customStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA65259759DF00827520 /* customStringConvertible.swift */; };
+		FA89FA67259759DF00827520 /* customStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA65259759DF00827520 /* customStringConvertible.swift */; };
+		FA89FA6E25975A3F00827520 /* CombineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA6D25975A3F00827520 /* CombineAPI.swift */; };
+		FA89FA6F25975A3F00827520 /* CombineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA6D25975A3F00827520 /* CombineAPI.swift */; };
+		FA89FA7525975A7200827520 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA7425975A7200827520 /* APIError.swift */; };
+		FA89FA7625975A7200827520 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA7425975A7200827520 /* APIError.swift */; };
+		FA89FA7C25975ACC00827520 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA7B25975ACC00827520 /* Endpoint.swift */; };
+		FA89FA7D25975ACC00827520 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89FA7B25975ACC00827520 /* Endpoint.swift */; };
+		FA89FA932597683000827520 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA89FA922597683000827520 /* KeychainSwift */; };
 		FA8AFFE324C704E7006928CB /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AFFE224C704E7006928CB /* SearchTextField.swift */; };
 		FAE1262C24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
 		FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1262B24C03D4D002778FB /* avernirNext.swift */; };
@@ -238,6 +247,10 @@
 		FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageModel.swift; sourceTree = "<group>"; };
 		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
 		FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
+		FA89FA65259759DF00827520 /* customStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customStringConvertible.swift; sourceTree = "<group>"; };
+		FA89FA6D25975A3F00827520 /* CombineAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAPI.swift; sourceTree = "<group>"; };
+		FA89FA7425975A7200827520 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		FA89FA7B25975ACC00827520 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FA8AFFE224C704E7006928CB /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		FAE1262B24C03D4D002778FB /* avernirNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = avernirNext.swift; sourceTree = "<group>"; };
 		FAE4B25524B47032000B5405 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
@@ -261,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA89FA932597683000827520 /* KeychainSwift in Frameworks */,
 				FAEE690524C7A10C009E684E /* SwiftlySearch in Frameworks */,
 				FA656EED24D223170056922A /* SwipeCell in Frameworks */,
 				FA0FC62224C62A4E00E936A0 /* SwiftUIRefresh in Frameworks */,
@@ -462,6 +476,7 @@
 			children = (
 				FA384B7E24B781EB008E60E3 /* colorFunctions.swift */,
 				FA5D957924D8428B00A6598B /* conditionalModifiers.swift */,
+				FA89FA65259759DF00827520 /* customStringConvertible.swift */,
 				FA656EE224D187390056922A /* openShareSheet.swift */,
 				FA7E98A924BA5A46002C9476 /* roundNumbers.swift */,
 				FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */,
@@ -478,8 +493,8 @@
 		FA48238124B45CC30095E415 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA89FA6C25975A2200827520 /* Client */,
 				BF315F1624BDF18E00D0118E /* Representables */,
-				BFD620B524BC06AA00730632 /* Client.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -502,6 +517,17 @@
 				BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FA89FA6C25975A2200827520 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				BFD620B524BC06AA00730632 /* Client.swift */,
+				FA89FA6D25975A3F00827520 /* CombineAPI.swift */,
+				FA89FA7B25975ACC00827520 /* Endpoint.swift */,
+				FA89FA7425975A7200827520 /* APIError.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		FA8AFFDD24C70491006928CB /* SearchBar */ = {
@@ -568,6 +594,7 @@
 				FAEE690424C7A10C009E684E /* SwiftlySearch */,
 				FA656EEC24D223170056922A /* SwipeCell */,
 				FA5D958124DAA58000A6598B /* URLImage */,
+				FA89FA922597683000827520 /* KeychainSwift */,
 			);
 			productName = iOS;
 			productReference = BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -670,6 +697,7 @@
 				FAEE690324C7A10C009E684E /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 				FA656EEB24D223170056922A /* XCRemoteSwiftPackageReference "SwipeCell" */,
 				FA5D958024DAA58000A6598B /* XCRemoteSwiftPackageReference "url-image" */,
+				FA89FA912597683000827520 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = BFBB3C6324A2D5C2007FEFE8 /* Products */;
 			projectDirPath = "";
@@ -770,6 +798,7 @@
 				FA656EE324D187390056922A /* openShareSheet.swift in Sources */,
 				BF78F59D252A57B3007B2A46 /* StateRepresentable.swift in Sources */,
 				BF44789524C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
+				FA89FA7C25975ACC00827520 /* Endpoint.swift in Sources */,
 				BF673F0D24B4BD2800A97FF3 /* Tag.swift in Sources */,
 				FAF6584424CC3404008D9BC8 /* StatusList.swift in Sources */,
 				FAE4B25F24B4EE83000B5405 /* Announcement.swift in Sources */,
@@ -789,6 +818,7 @@
 				FA48238924B46E580095E415 /* Emoji.swift in Sources */,
 				FA5D958424DAAC0000A6598B /* screenAndWindowSize.swift in Sources */,
 				BFD620B924BC078100730632 /* TimelineScope.swift in Sources */,
+				FA89FA7525975A7200827520 /* APIError.swift in Sources */,
 				FAE4B25C24B4ABFA000B5405 /* Status.swift in Sources */,
 				BF673F1924B4C37200A97FF3 /* Card.swift in Sources */,
 				FAE4B25624B47032000B5405 /* Source.swift in Sources */,
@@ -816,11 +846,13 @@
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
+				FA89FA6E25975A3F00827520 /* CombineAPI.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
 				FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BFD620B624BC06AA00730632 /* Client.swift in Sources */,
 				BFD620BF24BC0D9300730632 /* RecommendedProfile.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
+				FA89FA66259759DF00827520 /* customStringConvertible.swift in Sources */,
 				FA7E988D24B86686002C9476 /* ThreadView.swift in Sources */,
 				BF673F2524B4CD6500A97FF3 /* Attachment.swift in Sources */,
 				FA8AFFE324C704E7006928CB /* SearchTextField.swift in Sources */,
@@ -851,12 +883,14 @@
 				FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */,
 				FAEE690824C828B6009E684E /* stringExtensions.swift in Sources */,
 				FAEDC00B24BAEA540034EF6F /* ThreadViewModel.swift in Sources */,
+				FA89FA7625975A7200827520 /* APIError.swift in Sources */,
 				FAEDC00E24BB12090034EF6F /* openUrl.swift in Sources */,
 				FA6359BD24CEC48C001BA7AB /* RemoteGalleryView.swift in Sources */,
 				FA5D957B24D8428B00A6598B /* conditionalModifiers.swift in Sources */,
 				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				FAF6584824CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */,
+				FA89FA6F25975A3F00827520 /* CombineAPI.swift in Sources */,
 				BF673F1724B4C30A00A97FF3 /* CardType.swift in Sources */,
 				FAE4B26624B4F532000B5405 /* Relationship.swift in Sources */,
 				BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */,
@@ -888,6 +922,7 @@
 				FAF6584224CC1DDC008D9BC8 /* ProfileViewInfo.swift in Sources */,
 				BF673F2924B4CF9200A97FF3 /* Context.swift in Sources */,
 				BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */,
+				FA89FA67259759DF00827520 /* customStringConvertible.swift in Sources */,
 				BFE07C8E24BCAF6100203706 /* ProfileView.swift in Sources */,
 				BF315F1924BE0ACA00D0118E /* ProfileViewModel.swift in Sources */,
 				BFBB3C8524A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
@@ -898,6 +933,7 @@
 				FAE1262D24C03D4D002778FB /* avernirNext.swift in Sources */,
 				FA7E989824B8EB27002C9476 /* NetworkView.swift in Sources */,
 				FA656EE724D1CA730056922A /* FieldList.swift in Sources */,
+				FA89FA7D25975ACC00827520 /* Endpoint.swift in Sources */,
 				BF673F2624B4CD6500A97FF3 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1316,6 +1352,14 @@
 				minimumVersion = 0.0.6;
 			};
 		};
+		FA89FA912597683000827520 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
 		FAEE690324C7A10C009E684E /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/thislooksfun/SwiftlySearch";
@@ -1351,6 +1395,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FA656EEB24D223170056922A /* XCRemoteSwiftPackageReference "SwipeCell" */;
 			productName = SwipeCell;
+		};
+		FA89FA922597683000827520 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA89FA912597683000827520 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		FAEE690424C7A10C009E684E /* SwiftlySearch */ = {
 			isa = XCSwiftPackageProductDependency;
