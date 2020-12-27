@@ -84,7 +84,7 @@ public class TimelineViewModel: StateRepresentable {
 
     /// Adds new content to the timeline retrieved.
     ///
-    /// - Parameter from: The last status loaded, so that are sure we are only loading newer statuses.
+    /// - Parameter from: The last status loaded, so that we are sure we are only loading newer statuses.
     ///
     func refreshTimeline(from statusID: String) {
 
@@ -110,7 +110,7 @@ public class TimelineViewModel: StateRepresentable {
     /// Whether more data should be loaded.
     ///
     /// This is required for infinite scrolling to work.
-    /// What it does is check whether the status loaded is the second last status,
+    /// What it does is check whether the status loaded is the second to last status,
     /// and if it's the case, it will load more data, so that there's an
     /// infinite list of statuses.
     func shouldLoadMoreData(currentItem: String) -> Bool {

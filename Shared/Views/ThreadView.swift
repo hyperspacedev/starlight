@@ -13,7 +13,7 @@ import SwiftlySearch
 
 struct ThreadView: View {
 
-    @StateObject var threadModel = ThreadViewModel()
+    @StateObject var threadModel = ContextViewModel()
     public let mainStatus: Status
 
     #if os(iOS)
