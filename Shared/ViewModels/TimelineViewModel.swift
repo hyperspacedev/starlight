@@ -123,6 +123,12 @@ public class TimelineViewModel: StateRepresentable {
     }
 
     // MARK: - CONSTRUCTORS
+    init(scope: TimelineScope) {
+        super.init()
+
+        self.type = scope
+    }
+
     override init() {
         super.init()
 

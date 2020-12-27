@@ -14,8 +14,8 @@
 		BF11463F24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
 		BF1A91E724C3DF2400920C83 /* Atributika in Frameworks */ = {isa = PBXBuildFile; productRef = BF1A91E624C3DF2400920C83 /* Atributika */; };
 		BF1A91E924C3DF2D00920C83 /* Atributika in Frameworks */ = {isa = PBXBuildFile; productRef = BF1A91E824C3DF2D00920C83 /* Atributika */; };
-		BF315F1824BE0ACA00D0118E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */; };
-		BF315F1924BE0ACA00D0118E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */; };
+		BF315F1824BE0ACA00D0118E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* AccountViewModel.swift */; };
+		BF315F1924BE0ACA00D0118E /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF315F1724BE0ACA00D0118E /* AccountViewModel.swift */; };
 		BF44789524C0A1F20090DF76 /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedTextView.swift */; };
 		BF44789624C0A1F20090DF76 /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44789424C0A1F20090DF76 /* AttributedTextView.swift */; };
 		BF455EDB24B402120066FB1B /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455EDA24B402120066FB1B /* Visibility.swift */; };
@@ -181,7 +181,7 @@
 		BF014B0D24B67CBE002C5812 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
 		BF0391EA24BE9BAA004987D5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
-		BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		BF315F1724BE0ACA00D0118E /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		BF44789424C0A1F20090DF76 /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		BF673EFF24B407E400A97FF3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */,
 				FAEDC00924BAEA540034EF6F /* ContextViewModel.swift */,
 				FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */,
-				BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */,
+				BF315F1724BE0ACA00D0118E /* AccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -832,7 +832,7 @@
 				FAE4B26824B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2824B4CF9200A97FF3 /* Context.swift in Sources */,
 				FA7E98AA24BA5A46002C9476 /* roundNumbers.swift in Sources */,
-				BF315F1824BE0ACA00D0118E /* ProfileViewModel.swift in Sources */,
+				BF315F1824BE0ACA00D0118E /* AccountViewModel.swift in Sources */,
 				FA656EE624D1CA730056922A /* FieldList.swift in Sources */,
 				FA384B7F24B781EB008E60E3 /* colorFunctions.swift in Sources */,
 				FA5D957A24D8428B00A6598B /* conditionalModifiers.swift in Sources */,
@@ -924,7 +924,7 @@
 				BF673F1D24B4C93000A97FF3 /* Poll.swift in Sources */,
 				FA89FA67259759DF00827520 /* customStringConvertible.swift in Sources */,
 				BFE07C8E24BCAF6100203706 /* ProfileView.swift in Sources */,
-				BF315F1924BE0ACA00D0118E /* ProfileViewModel.swift in Sources */,
+				BF315F1924BE0ACA00D0118E /* AccountViewModel.swift in Sources */,
 				BFBB3C8524A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F2024B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				FA5D957F24D958CA00A6598B /* InAppSafari.swift in Sources */,

@@ -93,7 +93,7 @@ struct FieldList: View {
 
 struct FieldList_Previews: PreviewProvider {
 
-    @StateObject static var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
+    @StateObject static var accountInfo: AccountViewModel = AccountViewModel(accountID: "1")
 
     static var previews: some View {
 
