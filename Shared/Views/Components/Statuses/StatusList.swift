@@ -176,7 +176,7 @@ extension StatusList {
 
 struct StatusList_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = NetworkViewModel()
+    @ObservedObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
         StatusList(

@@ -109,8 +109,8 @@
 		FA7E989924B8EB6C002C9476 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7324B77A84008E60E3 /* StatusView.swift */; };
 		FA7E989A24B8EB79002C9476 /* colorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA384B7E24B781EB008E60E3 /* colorFunctions.swift */; };
 		FA7E989E24B9A827002C9476 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E988B24B86686002C9476 /* ThreadView.swift */; };
-		FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */; };
-		FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */; };
+		FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
+		FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */; };
 		FA7E98A424B9DC32002C9476 /* RemoteImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */; };
 		FA7E98A524B9DC32002C9476 /* RemoteImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */; };
 		FA7E98AA24BA5A46002C9476 /* roundNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E98A924BA5A46002C9476 /* roundNumbers.swift */; };
@@ -243,7 +243,7 @@
 		FA7499A024BC41D5002A9E69 /* MediaViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewer.swift; sourceTree = "<group>"; };
 		FA7E988B24B86686002C9476 /* ThreadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		FA7E989624B8EB27002C9476 /* NetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkView.swift; sourceTree = "<group>"; };
-		FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
+		FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
 		FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageModel.swift; sourceTree = "<group>"; };
 		FA7E98A924BA5A46002C9476 /* roundNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumbers.swift; sourceTree = "<group>"; };
 		FA7E98AC24BA5EFA002C9476 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
@@ -378,6 +378,7 @@
 		BF455EDE24B4021E0066FB1B /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				FA89FA7425975A7200827520 /* APIError.swift */,
 				BF673F2124B4CCEE00A97FF3 /* AttachmentType.swift */,
 				BF673F1524B4C30A00A97FF3 /* CardType.swift */,
 				FAF6584624CD5F2B008D9BC8 /* StatusConfiguration.swift */,
@@ -511,7 +512,7 @@
 		FA7E989F24B9D283002C9476 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E98A024B9D677002C9476 /* NetworkViewModel.swift */,
+				FA7E98A024B9D677002C9476 /* TimelineViewModel.swift */,
 				FAEDC00924BAEA540034EF6F /* ThreadViewModel.swift */,
 				FA7E98A324B9DC32002C9476 /* RemoteImageModel.swift */,
 				BF315F1724BE0ACA00D0118E /* ProfileViewModel.swift */,
@@ -525,7 +526,6 @@
 				BFD620B524BC06AA00730632 /* Client.swift */,
 				FA89FA6D25975A3F00827520 /* CombineAPI.swift */,
 				FA89FA7B25975ACC00827520 /* Endpoint.swift */,
-				FA89FA7425975A7200827520 /* APIError.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -848,7 +848,7 @@
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				FA89FA6E25975A3F00827520 /* CombineAPI.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
-				FA7E98A124B9D677002C9476 /* NetworkViewModel.swift in Sources */,
+				FA7E98A124B9D677002C9476 /* TimelineViewModel.swift in Sources */,
 				BFD620B624BC06AA00730632 /* Client.swift in Sources */,
 				BFD620BF24BC0D9300730632 /* RecommendedProfile.swift in Sources */,
 				BF673F0424B4A51F00A97FF3 /* Account.swift in Sources */,
@@ -887,7 +887,7 @@
 				FAEDC00E24BB12090034EF6F /* openUrl.swift in Sources */,
 				FA6359BD24CEC48C001BA7AB /* RemoteGalleryView.swift in Sources */,
 				FA5D957B24D8428B00A6598B /* conditionalModifiers.swift in Sources */,
-				FA7E98A224B9D677002C9476 /* NetworkViewModel.swift in Sources */,
+				FA7E98A224B9D677002C9476 /* TimelineViewModel.swift in Sources */,
 				BF673F2C24B4D08F00A97FF3 /* Instance.swift in Sources */,
 				FAF6584824CD5F2B008D9BC8 /* StatusConfiguration.swift in Sources */,
 				FA89FA6F25975A3F00827520 /* CombineAPI.swift in Sources */,

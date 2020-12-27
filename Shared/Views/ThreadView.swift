@@ -111,7 +111,7 @@ struct ThreadView: View {
 
 struct ThreadView_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = NetworkViewModel()
+    @ObservedObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
         ThreadView(mainStatus: self.timeline.statuses[0])

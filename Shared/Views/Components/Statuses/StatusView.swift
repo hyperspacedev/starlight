@@ -580,7 +580,7 @@ extension Text {
 
 struct StatusView_Previews: PreviewProvider {
 
-    @StateObject static var timeline = NetworkViewModel()
+    @StateObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
         VStack {

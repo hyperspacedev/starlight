@@ -15,7 +15,7 @@ import SwipeCell
 
 struct NetworkView: View {
 
-    @ObservedObject var timeline = NetworkViewModel()
+    @ObservedObject var timeline = TimelineViewModel()
 
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
