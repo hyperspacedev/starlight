@@ -182,7 +182,7 @@ struct StatusList_Previews: PreviewProvider {
         StatusList(
             self.timeline.statuses,
             action: { currentStatus in
-                self.timeline.updateTimeline(currentItem: currentStatus)
+                self.timeline.updateTimeline(from: currentStatus.id)
             }
         )
     }

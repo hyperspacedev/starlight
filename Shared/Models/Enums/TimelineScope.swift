@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TimelineScope {
+public enum TimelineScope: Equatable {
     case home
     case local
     case `public`

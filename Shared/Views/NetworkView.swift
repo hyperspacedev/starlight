@@ -33,16 +33,13 @@ struct NetworkView: View {
                 self.timeline.statuses,
                 context: .list,
                 action: { currentStatus in
-                    self.timeline.updateTimeline(currentItem: currentStatus)
+                    self.timeline.updateTimeline(from: currentStatus.id)
                 }
             )
-                .onAppear {
-                    self.timeline.fetchTimeline()
-                }
                 .animation(.spring())
                 .listStyle(GroupedListStyle())
                 .pullToRefresh(isShowing: $isShowing) {
-                    self.timeline.refreshTimeline(from: self.timeline.statuses[0])
+                    self.timeline.refreshTimeline(from: self.timeline.statuses[0].id)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.isShowing = false
                     }

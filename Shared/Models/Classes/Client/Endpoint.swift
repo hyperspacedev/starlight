@@ -15,7 +15,7 @@ public struct Endpoint: CustomStringConvertible {
     public var baseURL: String
     public var headers = [String: Any]()
 
-    init(_ baseURL: String, _ path: String, queryItems: [URLQueryItem], headers: [String: Any] = [:]) {
+    init(_ baseURL: String, _ path: String, queryItems: [URLQueryItem] = [], headers: [String: Any] = [:]) {
         self.baseURL = baseURL
         self.headers = headers
         self.path = path

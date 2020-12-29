@@ -100,11 +100,6 @@ struct ThreadView: View {
             }
         }
             .animation(.spring())
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.threadModel.fetchContext(for: self.mainStatus.id)
-                })
-            }
 
     }
 }

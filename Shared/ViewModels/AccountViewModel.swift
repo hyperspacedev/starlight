@@ -109,11 +109,7 @@ public class AccountViewModel: StateRepresentable {
     }
 
     //  MARK: - CONSTRUCTORS
-
-    init(accountID: String) {
-
-        //  We fetch the account
-        self.fetch(for: accountID)
+    public init(accountID: String) {
 
         //  We fetch the account's statuses as if it were a timeline
         //  Now, if we want to access the account's data we would simply do: viewModel.timeline.statuses
@@ -122,6 +118,16 @@ public class AccountViewModel: StateRepresentable {
         //  This way we can now interact with the account's timeline easily, and we don't need to implement all the
         //  functions such as `fetchAccountStatuses`, because we will already be using the ones implemented in TimelineViewModel,
         //  so our code is cleaner, and easier to maintain.
+
+        //  A designated initializer must ensure that all of the “properties introduced by its class are initialized before it
+        //  delegates up to a superclass initializer, so once we've initialized the timeline, we can now call the original
+        //  class' init function.
+        //
+        //  Reference: https://stackoverflow.com/a/24021346
+        super.init()
+
+        //  Once we've done all that, we fetch the account.
+        self.fetch(for: accountID)
 
     }
 

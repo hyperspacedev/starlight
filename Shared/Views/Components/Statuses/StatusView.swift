@@ -208,7 +208,7 @@ private struct CompactStatusView: View {
         case .thread(identifier: _, status: let status):
             ThreadView(mainStatus: status!)
         case .profile(identifier: let identifier, account: _):
-            ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
+            ProfileView(viewModel: AccountViewModel(accountID: identifier!), isParent: false)
         case .default:
             ThreadView(mainStatus: status)
         }
@@ -387,7 +387,7 @@ private struct PresentedStatusView: View {
         case .thread(identifier: _, status: let status):
             ThreadView(mainStatus: status!)
         case .profile(identifier: let identifier, account: _):
-            ProfileView(accountInfo: ProfileViewModel(accountID: identifier!), isParent: false)
+            ProfileView(viewModel: AccountViewModel(accountID: identifier!), isParent: false)
         case .default:
             EmptyView()
         }
@@ -600,9 +600,6 @@ struct StatusView_Previews: PreviewProvider {
                     Spacer()
 
                 }
-                    .onAppear {
-                        self.timeline.fetchTimeline()
-                    }
             } else {
                 StatusView(StatusConfiguration.DisplayMode.compact, status: self.timeline.statuses[0])
             }

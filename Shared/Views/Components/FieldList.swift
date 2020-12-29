@@ -98,14 +98,10 @@ struct FieldList_Previews: PreviewProvider {
     static var previews: some View {
 
         VStack {
-            if let data = self.accountInfo.data {
+            if let data = self.accountInfo.account {
                 FieldList(fields: data.fields)
             } else {
                 Text("Hello")
-                    .onAppear {
-                        self.accountInfo.fetchProfile()
-                        self.accountInfo.fetchProfileStatuses()
-                    }
             }
         }
     }

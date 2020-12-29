@@ -40,7 +40,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         self.session = URLSession(configuration: configuration)
 
         let keychain = KeychainSwift()
-        self.baseURL = keychain.get("baseURL")
+        self.baseURL = keychain.get("baseURL") ?? "mastodon.social"
         self.token = keychain.get("token")
         self.userID = keychain.get("userID")
     }
@@ -67,7 +67,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         var queryItems = [URLQueryItem]()
 
         /// The request's headers, such as the user token, for example.
-        var headers: [String: Any]
+        var headers = [String: Any]()
 
         //  Here we check the timeline scope, so that we just retrieve the posts we want.
         switch scope {
@@ -150,7 +150,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
     public func getNotifications() -> AnyPublisher<[Notification], Error> {
 
         /// The path to the API request
-        var path = "/notifications"
+        let path = "/notifications"
 
         //  We will always need the token, so let's make sure that the token is not nil.
         //  If everything goes fine, this should always be true, because a login screen is supposed
@@ -158,7 +158,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         assert(self.token != nil, "Retrieving the notifications requires the user token.")
 
         /// The request's headers.
-        var headers: [String: Any] = [
+        let headers: [String: Any] = [
             "token": self.token! // Since we already made sure that the token was not nil above, we can now safely force-unwrap the value.
         ]
 
@@ -188,7 +188,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
     public func getContext(for statusID: String) -> AnyPublisher<Context, Error> {
 
         /// The path to the API request
-        var path = "/statuses/\(statusID)/context"
+        let path = "/statuses/\(statusID)/context"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
         let endpoint = Endpoint(self.baseURL, path)
@@ -216,7 +216,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
     public func getAccount(withID: String) -> AnyPublisher<Account, Error> {
 
         /// The path to the API request
-        var path = "/accounts/\(withID)"
+        let path = "/accounts/\(withID)"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
         let endpoint = Endpoint(self.baseURL, path)
@@ -243,7 +243,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
     public func getTrends() -> AnyPublisher<[Tag], Error> {
 
         /// The path to the API request
-        var path = "/trends"
+        let path = "/trends"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
         let endpoint = Endpoint(self.baseURL, path)
