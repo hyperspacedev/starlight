@@ -61,7 +61,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
                   minID: String? = nil) -> AnyPublisher<[Status], Error> {
 
         /// The path to the API request
-        var path = "/timelines"
+        var path: String
 
         /// The URL's query items (e.g. `local`, `maxID`, et al.)
         var queryItems = [URLQueryItem]()
@@ -85,17 +85,18 @@ public class AppClient: CombineAPI, CustomStringConvertible {
                 "token": self.token! // Since we already made sure that the token was not nil above, we can now safely force-unwrap the value.
             ]
 
-            path += "/home"
+            path = "/timelines/home"
 
         case .direct:
-            path += "/direct"
+            path = "/timelines/direct"
 
         case .account(let accountID):
-            path += "/accounts/\(accountID)/statuses"
+            path = "/accounts/\(accountID)/statuses"
+            print("Path is now \(path)")
 
         // If scope is either public or local, we just use the default clause.
         default:
-            path += "/public"
+            path = "/timelines/public"
             queryItems.append(
                 URLQueryItem(
                     name: "local",

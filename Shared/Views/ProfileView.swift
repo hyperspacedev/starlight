@@ -14,8 +14,7 @@ struct ProfileView: View {
     /// The account to show.
     @ObservedObject var viewModel: AccountViewModel = AccountViewModel(accountID: AppClient().userID ?? "1")
 
-    //  Just for testing purposes, if the userID is nil, it will default to 1, which is Eugen's (mastodon owner)
-    //  id.
+    //  Just for testing purposes, if the userID is nil, it will default to 1, which is Eugen's (mastodon owner) id.
 
     #if os(iOS)
     @State var isShowing: Bool = false

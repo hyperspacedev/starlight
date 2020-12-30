@@ -127,6 +127,7 @@ public class TimelineViewModel: StateRepresentable {
         super.init()
 
         self.type = scope
+
     }
 
     override init() {
