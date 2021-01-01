@@ -447,19 +447,11 @@ struct ProfileViewHeader: View {
                         Text("Apparently, this user prefers to keep an air of mystery about them... 👻")
                             .fixedSize()
                     } else {
-                        VStack(alignment: .leading) {
-                            AttributedTextView(
-                                attributedText: "\((viewModel.account?.note)!)"
-                                    .style(tags: rootStyle)
-                                    .styleLinks(linkStyle)
-                                    .styleHashtags(linkStyle)
-                                    .styleMentions(linkStyle),
-                                configured: { label in
-                                    self.configureLabel(label, size: 20)
-                                },
-                                maxWidth: bounds - padding)
-                            .fixedSize()
-                        }
+                        RenderedText(
+                            text: viewModel.account!.note,
+                            fontSize: 16,
+                            negativePadding: 84
+                        )
                     }
                 }
 

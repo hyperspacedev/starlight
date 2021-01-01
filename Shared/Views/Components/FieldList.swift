@@ -64,21 +64,12 @@ struct FieldList: View {
 
                     Divider()
 
-                    ZStack {
-                        AttributedTextView(
-                            attributedText: "\(field.value)"
-                                .style(tags: [rootStyle, linkStyle]),
-                            configured: { label in
-                                self.configureLabel(label, size: 20)
-                            },
-                            maxWidth: bounds - padding)
-                        .fixedSize()
-
-                        if field.verifiedAt != nil {
-                            Color.green.opacity(0.3)
-                                .frame(width: bounds - padding)
-                        }
+                    if field.verifiedAt != nil {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green)
                     }
+
+                    RenderedText(text: field.value, fontSize: 16, negativePadding: 140)
 
                 }
 

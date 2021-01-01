@@ -15,54 +15,52 @@ struct StatusList: View {
     /// ``StatusView``s dynamically.
     var statuses: [Status]
 
-//    @Binding var selection: Set<SelectionValue>
+    /**
+     ``StatusList`` renders statuses in a manner appropriate for the context.
+     
+     If `context` equals to ``StatusListContext.list``, statuses will be displayed inside a SwiftUI ``List``. In the other hand, if context is none (equals to ``StatusListContext.none``), statuses will be displayed inside a SwiftUI ``ForEach``.
 
-    /// ``StatusList`` renders statuses in a manner appropriate for the context.
-    /// If `context` equals to ``StatusListContext.list``, statuses will be
-    /// displayed inside a SwiftUI ``List``. In the other hand, if context is none
-    /// (equals to ``StatusListContext.none``), statuses will be displayed
-    /// inside a SwiftUI ``ForEach``.
-    ///
-    /// This is mostly used when you have a parent ``ScrollView`` and don't want
-    /// your List to scroll as a different component.
-    ///
-    /// The way context works may differ in a manner appropriate for the platform.
-    /// For example, on iOS, if context equals to ``StatusListContext.list``,
-    /// a new closure will be provided, that will be useful for providing custom swipe actions.
-    ///
-    /// It is important to take in mind that context **won't** affect the ``StatusView`` style,
-    /// that's up to ``StatusView.displayMode``.
+     This is mostly used when you have a parent ``ScrollView`` and don't want your List to scroll as a different component.
+
+     The way context works may differ in a manner appropriate for the platform.
+
+     For example, on iOS, if context equals to ``StatusListContext.list``, a new closure will be provided, that will be useful for providing custom swipe actions.
+
+     It is important to take in mind that context **won't** affect the ``StatusView`` style, since that's up to ``StatusView.displayMode``.
+    */
     var context: StatusListContext
 
-    /// An escaping closure ran everytime a status is loaded.
-    ///
-    /// - Returns: The status that is currently being displayed.
-    ///
-    /// This is useful for infinite scrolling, where you need to check each status' id.
-    ///
-    /// ```
-    /// StatusList(statusesArray, action: { currentStatus in
-    ///     print(currentStatus.id)
-    /// })
-    /// ```
+    /**
+     An escaping closure ran everytime a status is loaded.
+
+     - Returns: The status that is currently being displayed.
+
+     This is useful for infinite scrolling, where you need to check each status' id.
+
+     ```
+     StatusList(statusesArray, action: { currentStatus in
+         print(currentStatus.id)
+     })
+     ```
+    */
     var action: (Status) -> Void
 
-    /// There might be some moments where you might only want to display an status
-    /// if a specific condition is met. You can use this escaping closure to do that.
-    ///
-    /// Let's say you only want to display statuses posted by a specific account.
-    /// You could check the status' author account id, so that only when it is equal
-    /// to a hardcoded id, you display them. This can be easily done as follows:
-    ///
-    /// ```
-    /// StatusList(statusesArray, condition: { currentStatus in
-    ///     if currentStatus.account.id == "329742" { // amodrono@mastodon.technology
-    ///         return true
-    ///     }
-    ///
-    ///     return false
-    /// })
-    /// ```
+    /**
+     There might be some moments where you might only want to display an status if a specific condition is met. You can use this escaping closure to do that.
+
+     Let's say you only want to display statuses posted by a specific account.
+     You could check the status' author account id, so that only when it is equal to a hardcoded id, you display them. This can be easily done as follows:
+
+     ```
+     StatusList(statusesArray, condition: { currentStatus in
+         if currentStatus.account.id == "329742" { // amodrono@mastodon.technology
+             return true
+         }
+
+         return false
+     })
+     ```
+    */
     var condition: (Status) -> Bool
 
     /// The amount of placeholder statuses to display until the data is resolved.
@@ -97,7 +95,9 @@ struct StatusList: View {
 
                 List(self.statuses, id: \.self.id) { status in
                     if condition(status) {
-                        StatusView(status: status)
+                        StatusView.view(
+                            status: status
+                        )
                             .onAppear {
                                 self.action(status)
                             }
@@ -110,7 +110,9 @@ struct StatusList: View {
                 ForEach(self.statuses, id: \.self.id) { status in
 
                     if condition(status) {
-                        StatusView(status: status)
+                        StatusView.view(
+                            status: status
+                        )
                             .onAppear {
                                 self.action(status)
                             }
@@ -132,7 +134,7 @@ struct StatusList: View {
 
     var placeholder: some View {
         VStack {
-            StatusView() // if we don't pass a status data model, StatusView will show PlaceholderStatusView()
+            StatusView.view() // if we don't pass a status data model, StatusView will show PlaceholderStatusView()
 
             if self.context == .noneWithSeparator {
                 Divider()
