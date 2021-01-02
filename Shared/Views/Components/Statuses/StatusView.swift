@@ -4,6 +4,7 @@
 //
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
+//  swiftlint:disable type_name file_length
 
 #if os(macOS)
 import AppKit
@@ -15,12 +16,13 @@ import URLImage
 import SwipeCell
 import Introspect
 
-//  MARK: – NAMESPACES
+// MARK: – NAMESPACES
 
 /// A namespace that englobes all the views that represent a status in a timeline or thread.
+// swiftlint:disable:next type_body_length
 public enum StatusView {
 
-    //  MARK: – VIEWS
+    // MARK: – VIEWS
 
     /**
      A structure that computes statuses on demand from a `Status` data model.
@@ -39,7 +41,9 @@ public enum StatusView {
              - Compact: The status is being displayed from a list.
              - Presented: The status is the main post in a thread.
 
-         The ``StatusView`` instance should know what way it is being displayed so that it can display the content properly. In order to achieve this, we pass a bool to ``StatusView``, which when true, tells it that it's content should be displayed as `Focused`.
+         The ``StatusView`` instance should know what way it is being displayed so that it can display
+         the content properly. In order to achieve this, we pass a bool to ``StatusView``, which when true,
+         tells it that it's content should be displayed as `Focused`.
         */
         private var displayMode: StatusConfiguration.DisplayMode
 
@@ -125,7 +129,7 @@ public enum StatusView {
 
             HStack {
 
-                Button(
+                Button( // swiftlint:disable:next line_length
                     "\(self.isMain ? Image(systemName: "arrowshape.turn.up.left") : Image(systemName: "bubble.right")) \(self.isMain ? "" : self.repliesCount.roundedWithAbbreviations)",
                     action: {
                         if self.isMain {
@@ -136,7 +140,7 @@ public enum StatusView {
 
                 Spacer()
 
-                Button(
+                Button( // swiftlint:disable:next line_length
                     "\(Image(systemName: "arrow.2.squarepath")) \(self.isMain ? "" : self.reblogsCount.roundedWithAbbreviations)",
                     action: {}
                 )
@@ -347,7 +351,12 @@ public enum StatusView {
                                     .frame(width: 50, height: 50)
                             })
                                 .background(
-                                    NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+                                    NavigationLink(
+                                        destination: self.destination(),
+                                        isActive: self.$manager.navLinkActive
+                                    ) {
+                                        EmptyView()
+                                    }
                                         .disabled(self.manager.navLinkActive)
                                 )
                         }
@@ -373,7 +382,6 @@ public enum StatusView {
 
                     Spacer()
 
-                    // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                     Menu {
                         Button("View @\(self.status.account.acct)'s profile", action: {
                             self.manager.currentPage = .profile(identifier: self.status.account.id)
@@ -422,6 +430,7 @@ public enum StatusView {
         var footer: some View {
             VStack(alignment: .leading) {
                 HStack {
+                    // swiftlint:disable:next line_length
                     Text("\(self.status.createdAt.getDate()!.format(time: .short)) · \(self.status.createdAt.getDate()!.format(date: .short)) · ")
                     Button(action: {
 
@@ -560,7 +569,7 @@ extension Text {
     }
 }
 
-//  MARK: – PREVIEWS
+// MARK: – PREVIEWS
 struct StatusView_Previews: PreviewProvider {
 
     @ObservedObject static var timeline = TimelineViewModel()

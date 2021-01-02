@@ -18,15 +18,20 @@ struct StatusList: View {
     /**
      ``StatusList`` renders statuses in a manner appropriate for the context.
      
-     If `context` equals to ``StatusListContext.list``, statuses will be displayed inside a SwiftUI ``List``. In the other hand, if context is none (equals to ``StatusListContext.none``), statuses will be displayed inside a SwiftUI ``ForEach``.
+     If `context` equals to ``StatusListContext.list``, statuses will be displayed inside a SwiftUI
+     ``List``. In the other hand, if context is none (equals to ``StatusListContext.none``), statuses will be
+     displayed inside a SwiftUI ``ForEach``.
 
-     This is mostly used when you have a parent ``ScrollView`` and don't want your List to scroll as a different component.
+     This is mostly used when you have a parent ``ScrollView`` and don't
+     want your List to scroll as a different component.
 
      The way context works may differ in a manner appropriate for the platform.
 
-     For example, on iOS, if context equals to ``StatusListContext.list``, a new closure will be provided, that will be useful for providing custom swipe actions.
+     For example, on iOS, if context equals to ``StatusListContext.list``, a new closure will be
+     provided, that will be useful for providing custom swipe actions.
 
-     It is important to take in mind that context **won't** affect the ``StatusView`` style, since that's up to ``StatusView.displayMode``.
+     It is important to take in mind that context **won't** affect the ``StatusView`` style, since that's
+     up to ``StatusView.displayMode``.
     */
     var context: StatusListContext
 
@@ -46,10 +51,12 @@ struct StatusList: View {
     var action: (Status) -> Void
 
     /**
-     There might be some moments where you might only want to display an status if a specific condition is met. You can use this escaping closure to do that.
+     There might be some moments where you might only want to display an status if a specific condition is
+     met. You can use this escaping closure to do that.
 
      Let's say you only want to display statuses posted by a specific account.
-     You could check the status' author account id, so that only when it is equal to a hardcoded id, you display them. This can be easily done as follows:
+     You could check the status' author account id, so that only when it is equal to a hardcoded id, you
+     display them. This can be easily done as follows:
 
      ```
      StatusList(statusesArray, condition: { currentStatus in
