@@ -1,6 +1,6 @@
 //
 //  CombineAPI.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Alejandro Modroño Vara on 26/12/20.
 //
@@ -23,7 +23,7 @@ extension CombineAPI {
                     decodingType: T.Type,
                     queue: DispatchQueue = .main,
                     retries: Int = 0) -> AnyPublisher<T, Error> where T: Decodable {
-        
+
         return session.dataTaskPublisher(for: request)
             .tryMap {
                 guard let response = $0.response as? HTTPURLResponse, response.statusCode == 200 else {

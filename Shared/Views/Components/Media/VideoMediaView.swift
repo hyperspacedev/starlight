@@ -1,6 +1,6 @@
 //
 //  VideoMediaView.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Alejandro Modroño Vara on 31/10/20.
 //
@@ -64,6 +64,7 @@ struct VideoMediaView: View {
                         if self.type == .gifv {
 
                             // Replay the video when finished
+                            // swiftlint:disable:next discarded_notification_center_observer
                             NotificationCenter.default.addObserver(
                                 forName: .AVPlayerItemDidPlayToEndTime,
                                 object: nil,

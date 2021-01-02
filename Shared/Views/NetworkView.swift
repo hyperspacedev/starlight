@@ -50,7 +50,6 @@ struct NetworkView: View {
 
                     ToolbarItem(placement: .navigationBarLeading) {
 
-                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                         Menu {
                             Button("My community", action: {
                                 withAnimation(.spring()) {

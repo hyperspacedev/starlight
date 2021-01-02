@@ -578,10 +578,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFBB3C8C24A2D5C2007FEFE8 /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
+				BF673EFD24B4072700A97FF3 /* Run SwiftLint */,
 				BFBB3C5E24A2D5C2007FEFE8 /* Sources */,
 				BFBB3C5F24A2D5C2007FEFE8 /* Frameworks */,
 				BFBB3C6024A2D5C2007FEFE8 /* Resources */,
-				BF673EFD24B4072700A97FF3 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -760,8 +760,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellPath = /bin/zsh;
+			shellScript = "/opt/homebrew/bin/swiftlint\n";
 		};
 		BF673EFE24B4074200A97FF3 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

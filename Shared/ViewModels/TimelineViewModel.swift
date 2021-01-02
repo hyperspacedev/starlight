@@ -42,7 +42,10 @@ public class TimelineViewModel: StateRepresentable {
                 case .failure:
 
                     if isConnectedToNetwork() {
-                        self.state = .error(message: "There is no internet connection available, please try again later...", icon: "wifi.slash")
+                        self.state = .error(
+                            message: "There is no internet connection available, please try again later...",
+                            icon: "wifi.slash"
+                        )
                     } else {
 
                         self.state = .error(message: "Something went wrong, try again later...", icon: "xmark.fill")
@@ -51,7 +54,9 @@ public class TimelineViewModel: StateRepresentable {
 
                 case .finished: break
                 }
-                // Here the actual subscriber is created. The sink-subscriber comes with a closure, that lets us handle the received value when it’s ready from the publisher.
+                //  Here the actual subscriber is created.
+                //  The sink-subscriber comes with a closure, that lets us handle
+                //  the received value when it’s ready from the publisher.
             },
             receiveValue: { statuses in
                 print("""
@@ -77,7 +82,7 @@ public class TimelineViewModel: StateRepresentable {
 
         self.state = .loading(message: "Loading timeline...")
 
-        self.fetch() {
+        self.fetch {
             self.statuses = $0
         }
     }

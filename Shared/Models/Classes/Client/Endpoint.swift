@@ -1,6 +1,6 @@
 //
 //  Endpoint.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Alejandro Modroño Vara on 26/12/20.
 //
@@ -46,27 +46,3 @@ extension Endpoint {
     }
 
 }
-
-/// Dummy API endpoints
-//extension Endpoint {
-//    static var posts: Self {
-//        return self(path: "/posts")
-//    }
-//
-//    static var categories: Self {
-//        return Endpoint(path: "/posts")
-//    }
-//
-//    static func users(count: Int) -> Self {
-//        return Endpoint(path: "/user",
-//                        queryItems: [
-//                            URLQueryItem(name: "limit",
-//                                         value: "\(count)")
-//            ]
-//        )
-//    }
-//
-//    static func user(identifier: String) -> Self {
-//        return Endpoint(path: "/user/\(identifier)")
-//    }
-//}

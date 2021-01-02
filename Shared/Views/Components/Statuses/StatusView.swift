@@ -4,6 +4,7 @@
 //
 //  Created by Alejandro Modroño Vara on 09/07/2020.
 //
+// swiftlint:disable file_length
 
 #if os(macOS)
 import AppKit
@@ -114,7 +115,7 @@ private struct StatusViewContent: View {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
-        label.onClick = { labelClosure, detection in
+        label.onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 openUrl(url)
@@ -161,7 +162,7 @@ private struct StatusViewContent: View {
     }
 
 }
- 
+
 /// The status is being displayed in a ``StatusList``, so we should make it smaller and more compact.
 private struct CompactStatusView: View {
 
@@ -323,7 +324,12 @@ private struct PresentedStatusView: View {
                                 .frame(width: 50, height: 50)
                         })
                             .background(
-                                NavigationLink(destination: self.destination(), isActive: self.$manager.navLinkActive) { EmptyView() }
+                                NavigationLink(
+                                    destination: self.destination(),
+                                    isActive: self.$manager.navLinkActive
+                                ) {
+                                    EmptyView()
+                                }
                             )
                     }
                 )
@@ -348,7 +354,6 @@ private struct PresentedStatusView: View {
 
                 Spacer()
 
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     Button("View @\(self.status.account.acct)'s profile", action: {
                         self.manager.currentPage = .profile(identifier: self.status.account.id)
@@ -397,6 +402,7 @@ private struct PresentedStatusView: View {
     var footer: some View {
         VStack(alignment: .leading) {
             HStack {
+                // swiftlint:disable:next line_length
                 Text("\(self.status.createdAt.getDate()!.format(time: .short)) · \(self.status.createdAt.getDate()!.format(date: .short)) · ")
                 Button(action: {
 
@@ -462,7 +468,7 @@ private struct StatusActionButtons: View {
 
         HStack {
 
-            Button(
+            Button(  // swiftlint:disable:next line_length
                 "\(self.isMain ? Image(systemName: "arrowshape.turn.up.left") : Image(systemName: "bubble.right")) \(self.isMain ? "" : self.repliesCount.roundedWithAbbreviations)",
                 action: {
                     if self.isMain {
@@ -473,7 +479,7 @@ private struct StatusActionButtons: View {
 
             Spacer()
 
-            Button(
+            Button(  // swiftlint:disable:next line_length
                 "\(Image(systemName: "arrow.2.squarepath")) \(self.isMain ? "" : self.reblogsCount.roundedWithAbbreviations)",
                 action: {}
             )

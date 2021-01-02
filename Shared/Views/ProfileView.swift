@@ -4,6 +4,7 @@
 //
 //  Created by Marquis Kurt on 7/13/20.
 //
+// swiftlint:disable file_length
 
 import SwiftUI
 import Atributika
@@ -100,7 +101,6 @@ struct ProfileView: View {
         }
             .listRowInsets(EdgeInsets())
 
-            // swiftlint:disable:next line_length
             .navigationTitle(self.navigationTitle)
 
             .navigationBarTitleDisplayMode(.inline)
@@ -234,6 +234,7 @@ struct ProfileViewBanner: View {
 
 }
 
+// swiftlint:disable:next type_body_length
 struct ProfileViewHeader: View {
 
     @ObservedObject var viewModel: AccountViewModel
@@ -253,7 +254,7 @@ struct ProfileViewHeader: View {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
-        label.onClick = { labelClosure, detection in
+        label.onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 openUrl(url)
@@ -308,6 +309,7 @@ struct ProfileViewHeader: View {
                             self.isEditing.toggle()
                         }
                     }, label: {
+                        // swiftlint:disable:next line_length
                         Text(isEditing ? "Stop editing \(Image(systemName: "xmark"))" : "Edit \(Image(systemName: "pencil"))")
                             .font(.callout)
                             .foregroundColor(.purple)
@@ -374,9 +376,9 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     if let data = viewModel.account {
+                        // swiftlint:disable:next line_length
                         Text("Date created: \(data.createdAt.getDate()!.format(as: "EEEE, dd MMMM YYYY")) at \(data.createdAt.getDate()!.format(time: .medium))")
                     }
                     Divider()
@@ -517,7 +519,6 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     Text("Date crated: 00/00/0000")
                         .redacted(reason: .placeholder)
