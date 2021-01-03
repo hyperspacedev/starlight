@@ -12,5 +12,5 @@ public enum TimelineScope: Equatable {
     case local
     case `public`
     case direct
-    case account(id: String)
+    case account(identifier: String)
 }

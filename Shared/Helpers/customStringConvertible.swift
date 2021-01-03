@@ -1,6 +1,6 @@
 //
 //  customStringConvertible.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Alejandro Modroño Vara on 26/12/20.
 //

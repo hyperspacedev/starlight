@@ -40,7 +40,10 @@ public class ContextViewModel: StateRepresentable {
                 case .failure:
 
                     if isConnectedToNetwork() {
-                        self.state = .error(message: "There is no internet connection available, please try again later...", icon: "wifi.slash")
+                        self.state = .error(
+                            message: "There is no internet connection available, please try again later...",
+                            icon: "wifi.slash"
+                        )
                     } else {
 
                         self.state = .error(message: "Something went wrong, try again later...", icon: "xmark.fill")
@@ -49,7 +52,9 @@ public class ContextViewModel: StateRepresentable {
 
                 case .finished: break
                 }
-                // Here the actual subscriber is created. As mentioned earlier, the sink-subscriber comes with a closure, that lets us handle the received value when it’s ready from the publisher.
+                //  Here the actual subscriber is created. As mentioned earlier,
+                //  the sink-subscriber comes with a closure, that lets us handle the received value
+                //  when it’s ready from the publisher.
             },
             receiveValue: { context in
                 print("""

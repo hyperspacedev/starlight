@@ -23,7 +23,7 @@ struct FieldList: View {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
-        label.onClick = { labelClosure, detection in
+        label.onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 openUrl(url)

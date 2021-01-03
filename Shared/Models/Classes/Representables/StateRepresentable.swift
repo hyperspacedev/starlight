@@ -1,6 +1,6 @@
 //
 //  StateRepresentable.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Marquis Kurt on 10/4/20.
 //

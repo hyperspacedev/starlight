@@ -33,8 +33,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
     /// The user's account id so that we can distinguish it from other users.
     public var userID: String?
 
-
-    // MARK: CONSTRUCTORS
+    // MARK: – CONSTRUCTORS
 
     init(configuration: URLSessionConfiguration) {
         self.session = URLSession(configuration: configuration)
@@ -57,6 +56,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
      - Parameter maxID: The ID of the statuses whose older statuses we wish to obtain.
      - Parameter minID: The ID of the statuses whose older newer we wish to obtain.
      */
+    // swiftlint:disable:next function_body_length
     func getPosts(scope: TimelineScope, maxID: String? = nil,
                   minID: String? = nil) -> AnyPublisher<[Status], Error> {
 
@@ -82,7 +82,9 @@ public class AppClient: CombineAPI, CustomStringConvertible {
             assert(self.token != nil, "Retrieving the home timeline requires the user token.")
 
             headers = [
-                "token": self.token! // Since we already made sure that the token was not nil above, we can now safely force-unwrap the value.
+                "token": self.token!
+                //  Since we already made sure that the token was not nil above, we can now
+                //  safely force-unwrap the value.
             ]
 
             path = "/timelines/home"
@@ -100,11 +102,12 @@ public class AppClient: CombineAPI, CustomStringConvertible {
             queryItems.append(
                 URLQueryItem(
                     name: "local",
-                    value: "\(scope == .local ? "true" : "false")" // Here we add whether we want the local or public statuses to the query items.
+                    value: "\(scope == .local ? "true" : "false")"
+                    // Here we add whether we want the local or public statuses to the query items.
                 )
             )
         }
-        
+
         //  There is going to be times when we will only want to retrive statuses older than a specific id
         if let identifier = maxID {
             queryItems.append(
@@ -160,7 +163,9 @@ public class AppClient: CombineAPI, CustomStringConvertible {
 
         /// The request's headers.
         let headers: [String: Any] = [
-            "token": self.token! // Since we already made sure that the token was not nil above, we can now safely force-unwrap the value.
+            "token": self.token!
+            //  Since we already made sure that the token was not nil above,
+            //  we can now safely force-unwrap the value.
         ]
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
