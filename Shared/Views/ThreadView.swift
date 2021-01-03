@@ -72,8 +72,13 @@ struct ThreadView: View {
 
             }
 
-            StatusView(StatusConfiguration.DisplayMode.presented, status: mainStatus)
-                .buttonStyle(PlainButtonStyle())
+            StatusView.view(
+                StatusConfiguration.DisplayMode.presented,
+                status: mainStatus
+            )
+                .buttonStyle(
+                    PlainButtonStyle()
+                )
 
             if let context = self.viewModel.context {
 
@@ -101,6 +106,8 @@ struct ThreadView: View {
         }
             .animation(.spring())
             .onAppear(perform: {
+
+                //  We fetch the context
                 self.viewModel.fetch(for: self.mainStatus.id)
             })
 
