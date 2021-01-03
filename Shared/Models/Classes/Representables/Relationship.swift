@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents the relationship between accounts, such as following / blocking / muting / etc.
-public class Relationship: Codable, Identifiable {
+public class Relationship: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

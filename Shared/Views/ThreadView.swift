@@ -13,7 +13,7 @@ import SwiftlySearch
 
 struct ThreadView: View {
 
-    @StateObject var threadModel = ThreadViewModel()
+    @StateObject var viewModel = ContextViewModel()
     public let mainStatus: Status
 
     #if os(iOS)
@@ -63,7 +63,7 @@ struct ThreadView: View {
     var view: some View {
 
         List {
-            if let context = self.threadModel.context {
+            if let context = self.viewModel.context {
 
                 if !context.ancestors.isEmpty {
                     StatusList(context.ancestors, placeholderCount: context.ancestors.count)
@@ -75,7 +75,7 @@ struct ThreadView: View {
             StatusView(StatusConfiguration.DisplayMode.presented, status: mainStatus)
                 .buttonStyle(PlainButtonStyle())
 
-            if let context = self.threadModel.context {
+            if let context = self.viewModel.context {
 
                 if !context.descendants.isEmpty {
                     StatusList(context.descendants,
@@ -100,18 +100,16 @@ struct ThreadView: View {
             }
         }
             .animation(.spring())
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.threadModel.fetchContext(for: self.mainStatus.id)
-                })
-            }
+            .onAppear(perform: {
+                self.viewModel.fetch(for: self.mainStatus.id)
+            })
 
     }
 }
 
 struct ThreadView_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = NetworkViewModel()
+    @ObservedObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
         ThreadView(mainStatus: self.timeline.statuses[0])

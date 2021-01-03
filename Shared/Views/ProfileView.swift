@@ -4,6 +4,7 @@
 //
 //  Created by Marquis Kurt on 7/13/20.
 //
+// swiftlint:disable file_length
 
 import SwiftUI
 import Atributika
@@ -11,7 +12,10 @@ import URLImage
 
 struct ProfileView: View {
 
-    @ObservedObject var accountInfo: ProfileViewModel = ProfileViewModel(accountID: AppClient.shared().id)
+    /// The account to show.
+    @ObservedObject var viewModel: AccountViewModel = AccountViewModel(accountID: AppClient().userID ?? "1")
+
+    //  Just for testing purposes, if the userID is nil, it will default to 1, which is Eugen's (mastodon owner) id.
 
     #if os(iOS)
     @State var isShowing: Bool = false
@@ -26,10 +30,16 @@ struct ProfileView: View {
                 self.view
                     .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
                     .pullToRefresh(isShowing: $isShowing) {
-                        self.accountInfo.refreshProfileStatuses()
+
+                        //  We want to only obtain statuses newer than the latest status loaded, so in
+                        //  order to obtain the id of the latest stautus, we use timeline.statuses[0].id
+
+                        self.viewModel.timeline.refreshTimeline(from: self.viewModel.timeline.statuses[0].id)
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             self.isShowing = false
                         }
+
                     }
             }
 
@@ -37,10 +47,16 @@ struct ProfileView: View {
             self.view
                 .navigationBarSearch(self.$searchText, placeholder: "Search for content in this profile...")
                 .pullToRefresh(isShowing: $isShowing) {
-                    self.accountInfo.refreshProfileStatuses()
+
+                    //  We want to only obtain statuses newer than the latest status loaded, so in
+                    //  order to obtain the id of the latest stautus, we use timeline.statuses[0].id
+
+                    self.viewModel.timeline.refreshTimeline(from: self.viewModel.timeline.statuses[0].id)
+
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.isShowing = false
                     }
+
                 }
         }
 
@@ -54,17 +70,17 @@ struct ProfileView: View {
 
             #if os(iOS)
             if self.searchText == "" {
-                ProfileViewHeader(accountInfo: self.accountInfo)
+                ProfileViewHeader(viewModel: self.viewModel)
 
-                StatusList(self.accountInfo.statuses, context: .none,
+                StatusList(self.viewModel.timeline.statuses, context: .none,
                            action: { currentStatus in
-                            self.accountInfo.updateProfileStatuses(currentItem: currentStatus)
-                           }
+                            self.viewModel.timeline.updateTimeline(from: currentStatus.id)
+                    }
                 )
                     .padding(.trailing, 20)
 
             } else {
-                StatusList(self.accountInfo.statuses.filter { $0.content.localizedStandardContains(searchText)},
+                StatusList(self.viewModel.timeline.statuses.filter { $0.content.localizedStandardContains(searchText)},
                            context: .none
                 )
                     .padding(.trailing, 20)
@@ -84,17 +100,28 @@ struct ProfileView: View {
 
         }
             .listRowInsets(EdgeInsets())
-            .onAppear {
-                self.accountInfo.fetchProfile()
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.accountInfo.fetchProfileStatuses()
-                })
-            }
+            .navigationTitle(self.navigationTitle)
 
-            // swiftlint:disable:next line_length
-            .navigationTitle("\(self.accountInfo.data?.id == AppClient.shared().id ? "You" : (self.accountInfo.data?.displayName ?? "Profile")) - \((self.accountInfo.data?.statusesCount ?? 0).roundedWithAbbreviations) toots")
             .navigationBarTitleDisplayMode(.inline)
+    }
+
+    var navigationTitle: String {
+
+        var profileName: String = "Profile"
+        var tootCount: Int = 0
+
+        if self.viewModel.account?.id == AppClient().userID ?? "1" {
+            profileName = "You"
+        } else if let displayName = self.viewModel.account?.displayName {
+            profileName = displayName
+        }
+
+        if let count = self.viewModel.account?.statusesCount {
+            tootCount = count
+        }
+
+        return "\(profileName) – \(tootCount) toots"
     }
 
 }
@@ -207,9 +234,10 @@ struct ProfileViewBanner: View {
 
 }
 
+// swiftlint:disable:next type_body_length
 struct ProfileViewHeader: View {
 
-    @ObservedObject var accountInfo: ProfileViewModel
+    @ObservedObject var viewModel: AccountViewModel
 
     @State var infoShown: [ProfileViewInfo] = [.fields, .dateCreated]
     @State var isEditing: Bool = false
@@ -226,7 +254,7 @@ struct ProfileViewHeader: View {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
-        label.onClick = { labelClosure, detection in
+        label.onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 openUrl(url)
@@ -253,13 +281,13 @@ struct ProfileViewHeader: View {
         VStack {
 
             ProfileViewBanner(
-                header: self.accountInfo.data?.headerStatic,
-                avatar: self.accountInfo.data?.avatarStatic,
+                header: self.viewModel.account?.headerStatic,
+                avatar: self.viewModel.account?.avatarStatic,
                 isEditing: self.$isEditing
             )
                 .padding(.horizontal, -20)
 
-            if self.accountInfo.data != nil {
+            if self.viewModel.account != nil {
                 header
             } else {
                 placeholder
@@ -274,13 +302,14 @@ struct ProfileViewHeader: View {
 
             HStack {
                 Spacer()
-                if self.accountInfo.accountID == AppClient.shared().id {
+                if self.viewModel.account?.id == AppClient().userID {
                     Button(action: {
-                        self.userNote = self.accountInfo.data!.note
+                        self.userNote = self.viewModel.account!.note
                         withAnimation(.spring()) {
                             self.isEditing.toggle()
                         }
                     }, label: {
+                        // swiftlint:disable:next line_length
                         Text(isEditing ? "Stop editing \(Image(systemName: "xmark"))" : "Edit \(Image(systemName: "pencil"))")
                             .font(.callout)
                             .foregroundColor(.purple)
@@ -312,11 +341,11 @@ struct ProfileViewHeader: View {
 
             HStack {
 
-                Text((accountInfo.data?.displayName)!)
+                Text((viewModel.account?.displayName)!)
                     .font(.title)
                     .bold()
 
-                if let badge = accountInfo.badge {
+                if let badge = viewModel.badge {
                     Text(badge.label)
                             .fontWeight(.semibold)
                             .foregroundColor(badge.labelColor)
@@ -329,7 +358,7 @@ struct ProfileViewHeader: View {
                             )
                 }
 
-                if let isBot = accountInfo.data?.bot {
+                if let isBot = viewModel.account?.bot {
 
                     if isBot {
                         Text("BOT")
@@ -347,14 +376,14 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
-                    if let data = accountInfo.data {
+                    if let data = viewModel.account {
+                        // swiftlint:disable:next line_length
                         Text("Date created: \(data.createdAt.getDate()!.format(as: "EEEE, dd MMMM YYYY")) at \(data.createdAt.getDate()!.format(time: .medium))")
                     }
                     Divider()
                     Button(action: {
-                        openShareSheet(url: URL(string: self.accountInfo.data!.url)!)
+                        openShareSheet(url: URL(string: self.viewModel.account!.url)!)
                     }, label: {Text("Share \(Image(systemName: "square.and.arrow.up"))")})
                     Menu("Show more info") {
                         Button(action: {
@@ -395,8 +424,8 @@ struct ProfileViewHeader: View {
                             Text("Fields")
                         })
                     }
-                    Button(action: {}, label: {Text("Block @\((accountInfo.data?.acct)!)")})
-                    Button(action: {}, label: {Text("Report @\((accountInfo.data?.acct)!)")})
+                    Button(action: {}, label: {Text("Block @\((viewModel.account?.acct)!)")})
+                    Button(action: {}, label: {Text("Report @\((viewModel.account?.acct)!)")})
                         .foregroundColor(.red)
                     Button("Dismiss", action: {})
                 } label: {
@@ -408,7 +437,7 @@ struct ProfileViewHeader: View {
 
             }
 
-            Text("@\((accountInfo.data?.acct)!)")
+            Text("@\((viewModel.account?.acct)!)")
                 .font(.callout)
                 .foregroundColor(.secondary)
 
@@ -416,13 +445,13 @@ struct ProfileViewHeader: View {
                 if self.isEditing {
                     TextField("", text: self.$userNote)
                 } else {
-                    if self.accountInfo.data!.note.isEmpty || self.accountInfo.data!.note == "" {
+                    if self.viewModel.account!.note.isEmpty || self.viewModel.account!.note == "" {
                         Text("Apparently, this user prefers to keep an air of mystery about them... 👻")
                             .fixedSize()
                     } else {
                         VStack(alignment: .leading) {
                             AttributedTextView(
-                                attributedText: "\((accountInfo.data?.note)!)"
+                                attributedText: "\((viewModel.account?.note)!)"
                                     .style(tags: rootStyle)
                                     .styleLinks(linkStyle)
                                     .styleHashtags(linkStyle)
@@ -440,13 +469,13 @@ struct ProfileViewHeader: View {
                 .animation(.spring())
 
             if infoShown.contains(.dateCreated) {
-                Text("Joined \(self.accountInfo.data!.createdAt.getDate()!.format(as: "MMMM YYYY"))")
+                Text("Joined \(self.viewModel.account!.createdAt.getDate()!.format(as: "MMMM YYYY"))")
                     .foregroundColor(.gray)
                     .font(.callout)
             }
 
             if infoShown.contains(.fields) {
-                FieldList(fields: self.accountInfo.data?.fields ?? [])
+                FieldList(fields: self.viewModel.account?.fields ?? [])
                     .frame(width: bounds - 40)
             } else {
                 Divider()
@@ -490,7 +519,6 @@ struct ProfileViewHeader: View {
 
                 Spacer()
 
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Menu {
                     Text("Date crated: 00/00/0000")
                         .redacted(reason: .placeholder)
@@ -536,8 +564,8 @@ struct ProfileViewHeader: View {
                             Text("Fields")
                         })
                     }
-                    Button(action: {}, label: {Text("Block @\(accountInfo.data?.acct ?? "user")")})
-                    Button(action: {}, label: {Text("Report @\(accountInfo.data?.acct ?? "user")")})
+                    Button(action: {}, label: {Text("Block @\(viewModel.account?.acct ?? "user")")})
+                    Button(action: {}, label: {Text("Report @\(viewModel.account?.acct ?? "user")")})
                         .foregroundColor(.red)
                     Button("Dismiss", action: {})
                 } label: {
@@ -548,7 +576,7 @@ struct ProfileViewHeader: View {
 
             }
 
-            Text("@\(accountInfo.data?.acct ?? "user")")
+            Text("@\(viewModel.account?.acct ?? "user")")
                 .font(.callout)
                 .foregroundColor(.secondary)
 
@@ -576,7 +604,7 @@ struct ProfileViewHeader: View {
 
             VStack {
 
-                Text("\((accountInfo.data?.followersCount.roundedWithAbbreviations)!)")
+                Text("\((viewModel.account?.followersCount.roundedWithAbbreviations)!)")
                     .font(.system(size: 20, weight: .semibold, design: .rounded))
 
                 Text("Followers \(Image(systemName: "person.3"))")
@@ -587,7 +615,7 @@ struct ProfileViewHeader: View {
 
             VStack {
 
-                Text("\((accountInfo.data?.followingCount.roundedWithAbbreviations)!)")
+                Text("\((viewModel.account?.followingCount.roundedWithAbbreviations)!)")
                     .font(.system(size: 20, weight: .semibold, design: .rounded))
 
                 Text("Following  \(Image(systemName: "person.2"))")

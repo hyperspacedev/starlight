@@ -12,7 +12,7 @@ import Foundation
  
  An application is a registered service or app with the instance the user interacts with.
  */
-public class Application: Codable, Identifiable {
+public class Application: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

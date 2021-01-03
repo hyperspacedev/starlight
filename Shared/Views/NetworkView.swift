@@ -15,7 +15,7 @@ import SwipeCell
 
 struct NetworkView: View {
 
-    @ObservedObject var timeline = NetworkViewModel()
+    @ObservedObject var timeline = TimelineViewModel()
 
     private let size: CGFloat = 300
     private let padding: CGFloat = 10
@@ -33,16 +33,13 @@ struct NetworkView: View {
                 self.timeline.statuses,
                 context: .list,
                 action: { currentStatus in
-                    self.timeline.updateTimeline(currentItem: currentStatus)
+                    self.timeline.updateTimeline(from: currentStatus.id)
                 }
             )
-                .onAppear {
-                    self.timeline.fetchTimeline()
-                }
                 .animation(.spring())
                 .listStyle(GroupedListStyle())
                 .pullToRefresh(isShowing: $isShowing) {
-                    self.timeline.refreshTimeline(from: self.timeline.statuses[0])
+                    self.timeline.refreshTimeline(from: self.timeline.statuses[0].id)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.isShowing = false
                     }
@@ -53,7 +50,6 @@ struct NetworkView: View {
 
                     ToolbarItem(placement: .navigationBarLeading) {
 
-                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                         Menu {
                             Button("My community", action: {
                                 withAnimation(.spring()) {

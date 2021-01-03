@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a custom emoji.
-public class Emoji: Codable, Identifiable {
+public class Emoji: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

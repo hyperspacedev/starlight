@@ -176,13 +176,13 @@ extension StatusList {
 
 struct StatusList_Previews: PreviewProvider {
 
-    @ObservedObject static var timeline = NetworkViewModel()
+    @ObservedObject static var timeline = TimelineViewModel()
 
     static var previews: some View {
         StatusList(
             self.timeline.statuses,
             action: { currentStatus in
-                self.timeline.updateTimeline(currentItem: currentStatus)
+                self.timeline.updateTimeline(from: currentStatus.id)
             }
         )
     }

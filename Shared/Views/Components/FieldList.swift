@@ -23,7 +23,7 @@ struct FieldList: View {
         label.numberOfLines = 0
         label.textColor = .label
         label.lineBreakMode = .byWordWrapping
-        label.onClick = { labelClosure, detection in
+        label.onClick = { _, detection in
             switch detection.type {
             case .link(let url):
                 openUrl(url)
@@ -93,19 +93,15 @@ struct FieldList: View {
 
 struct FieldList_Previews: PreviewProvider {
 
-    @StateObject static var accountInfo: ProfileViewModel = ProfileViewModel(accountID: "1")
+    @StateObject static var accountInfo: AccountViewModel = AccountViewModel(accountID: "1")
 
     static var previews: some View {
 
         VStack {
-            if let data = self.accountInfo.data {
+            if let data = self.accountInfo.account {
                 FieldList(fields: data.fields)
             } else {
                 Text("Hello")
-                    .onAppear {
-                        self.accountInfo.fetchProfile()
-                        self.accountInfo.fetchProfileStatuses()
-                    }
             }
         }
     }

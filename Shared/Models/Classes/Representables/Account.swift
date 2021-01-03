@@ -13,7 +13,7 @@ import Foundation
  An account is registered as a user on the fediverse. This class is used to identify a user in profile pages,
  searches, etc.
  */
-public class Account: Codable, Identifiable {
+public class Account: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

@@ -12,7 +12,7 @@ import Foundation
  
  A mention model contains the data for an account that is mentioned in a given post.
  */
-public class Mention: Codable, Identifiable {
+public class Mention: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 
