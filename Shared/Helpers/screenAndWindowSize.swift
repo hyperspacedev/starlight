@@ -1,6 +1,6 @@
 //
 //  screenAndWindowSize.swift
-//  Hyperspace
+//  Starlight
 //
 //  Created by Alejandro Modroño Vara on 5/8/20.
 //

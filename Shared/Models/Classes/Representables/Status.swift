@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a status posted by an account.
-public class Status: Codable, Identifiable {
+public class Status: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

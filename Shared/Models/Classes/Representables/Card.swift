@@ -8,7 +8,7 @@
 import Foundation
 
 /// A class representation of a content card.
-public class Card: Codable, Identifiable {
+public class Card: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

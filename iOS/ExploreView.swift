@@ -11,7 +11,7 @@ import SwiftlySearch
 struct ExploreView: View {
 
     @State private var searchText: String = ""
-    @ObservedObject private var explored = ExploreViewModel()
+    @ObservedObject private var viewModel = ExploreViewModel()
 
     let results = [
         "amodrono",
@@ -29,7 +29,7 @@ struct ExploreView: View {
 
                     if searchText == "" {
                         Section(header: Text("Trending Tags")) {
-                            if self.explored.tags.isEmpty {
+                            if self.viewModel.tags.isEmpty {
                                 ForEach(0 ..< 3) { index in
                                     TrendingTag(name: "Text tag \(index)", peopleTalking: "\(index)")
                                         .padding(.horizontal, 5)
@@ -37,7 +37,7 @@ struct ExploreView: View {
                                 }
                             } else {
 
-                                ForEach(self.explored.tags, id: \.self.id) { (tag: Tag) in
+                                ForEach(self.viewModel.tags, id: \.self.id) { (tag: Tag) in
                                     TrendingTag(name: tag.name, peopleTalking: tag.history?.first?.accounts)
                                         .padding(.horizontal, 5)
                                 }
@@ -84,9 +84,6 @@ struct ExploreView: View {
             .navigationBarHidden(self.isSearching)
             .navigationBarSearch(self.$searchText,
                                  placeholder: "Surf the fediverse")
-            .onAppear {
-                self.explored.getTags()
-            }
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 /**
  A class representation of a notification.
  */
-public class Notification: Codable, Identifiable {
+public class Notification: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

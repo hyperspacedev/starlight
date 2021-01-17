@@ -43,6 +43,7 @@ public enum StatusConfiguration {
 
     public class BindingManager: ObservableObject {
 
+        // swiftlint:disable:next nesting
         public enum Page {
 
             case `default`

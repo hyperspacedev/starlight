@@ -8,7 +8,7 @@
 import Foundation
 
 /// A class representation of a tag's history.
-public class History: Codable, Identifiable {
+public class History: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

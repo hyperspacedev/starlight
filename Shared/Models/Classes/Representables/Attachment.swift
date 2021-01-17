@@ -8,7 +8,7 @@
 import Foundation
 
 /// A class representation of a post attachment.
-public class Attachment: Codable, Identifiable {
+public class Attachment: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

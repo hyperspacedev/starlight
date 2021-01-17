@@ -13,7 +13,7 @@ import Foundation
  A context for a post contains all of the preceding posts that led to the post, as well as any posts that respond
  to a given post.
  */
-public class Context: Codable, Identifiable {
+public class Context: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

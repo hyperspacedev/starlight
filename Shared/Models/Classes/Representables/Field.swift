@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a profile field as a name-value pair with optional verification.
-public class Field: Codable, Identifiable {
+public class Field: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 

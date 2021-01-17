@@ -11,7 +11,7 @@ import Foundation
 *   Represents display or publishing preferences of user's own account.
 *   Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
 */
-public class Source: Codable, Identifiable {
+public class Source: StateRepresentable, Codable, Identifiable {
 
     // MARK: - STORED PROPERTIES
 
