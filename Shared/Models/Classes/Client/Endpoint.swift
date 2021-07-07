@@ -10,12 +10,14 @@ import Foundation
 /// Reusable base Endpoint struct. It is used everytime we try to interact with the fediverse.
 public struct Endpoint: CustomStringConvertible {
 
+    public var api: String
     public var path: String
     public var queryItems: [URLQueryItem] = []
     public var baseURL: String
     public var headers = [String: Any]()
 
-    init(_ baseURL: String, _ path: String, queryItems: [URLQueryItem] = [], headers: [String: Any] = [:]) {
+    init(api: String = "/api/v1", _ baseURL: String, _ path: String, queryItems: [URLQueryItem] = [], headers: [String: Any] = [:]) {
+        self.api = api
         self.baseURL = baseURL
         self.headers = headers
         self.path = path
@@ -31,7 +33,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL
-        components.path = "/api/v1" + self.path
+        components.path = self.api + self.path
         components.queryItems = queryItems
 
         guard let url = components.url else {

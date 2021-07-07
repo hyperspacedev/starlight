@@ -13,7 +13,7 @@ import URLImage
 struct ProfileView: View {
 
     /// The account to show.
-    @ObservedObject var viewModel: AccountViewModel = AccountViewModel(accountID: AppClient().userID ?? "1")
+    @ObservedObject var viewModel: AccountViewModel = AccountViewModel(accountID: AppClient.account!.userID!)
 
     //  Just for testing purposes, if the userID is nil, it will default to 1, which is Eugen's (mastodon owner) id.
 
@@ -111,7 +111,7 @@ struct ProfileView: View {
         var profileName: String = "Profile"
         var tootCount: Int = 0
 
-        if self.viewModel.account?.id == AppClient().userID ?? "1" {
+        if self.viewModel.account?.id == AppClient.account?.userID ?? "1" {
             profileName = "You"
         } else if let displayName = self.viewModel.account?.displayName {
             profileName = displayName
@@ -302,7 +302,7 @@ struct ProfileViewHeader: View {
 
             HStack {
                 Spacer()
-                if self.viewModel.account?.id == AppClient().userID {
+                if self.viewModel.account?.id == AppClient.account?.userID {
                     Button(action: {
                         self.userNote = self.viewModel.account!.note
                         withAnimation(.spring()) {

@@ -9,44 +9,56 @@ import SwiftUI
 
 /// This navigation layout will be used when the device is running on iOS with compact mode (i.e. iPhones and iPods).
 struct AppTabNavigation: View {
+
+    @State var shouldLogIn: Bool = true
+
     var body: some View {
-        TabView {
-            VStack {
-                HomeView()
-            }.tabItem {
-                Label("Home", systemImage: "house")
-                    .imageScale(.large)
+
+        if self.shouldLogIn {
+            WelcomeView()
+        } else {
+            TabView {
+                VStack {
+                    HomeView()
+                }.tabItem {
+                    Label("Home", systemImage: "house")
+                        .imageScale(.large)
+                }
+                VStack {
+                    NetworkView()
+                }.tabItem {
+                    Label("Network", systemImage: "network")
+                        .imageScale(.large)
+                }
+                VStack {
+                    ExploreView()
+                }.tabItem {
+                    Label("Explore", systemImage: "magnifyingglass")
+                        .imageScale(.large)
+                }
+                VStack {
+    //                ProfileView(editable: true)
+                    ProfileView()
+                }
+                .tabItem {
+                    Label("You", systemImage: "person.circle")
+                        .imageScale(.large)
+                }
+                VStack {
+                    Text("Settings View")
+                        .padding()
+                }.tabItem {
+                    Label("Settings", systemImage: "gear")
+                        .imageScale(.large)
+                }
             }
-            VStack {
-                NetworkView()
-            }.tabItem {
-                Label("Network", systemImage: "network")
-                    .imageScale(.large)
-            }
-            VStack {
-                ExploreView()
-            }.tabItem {
-                Label("Explore", systemImage: "magnifyingglass")
-                    .imageScale(.large)
-            }
-            VStack {
-//                ProfileView(editable: true)
-                ProfileView()
-            }
-            .tabItem {
-                Label("You", systemImage: "person.circle")
-                    .imageScale(.large)
-            }
-            VStack {
-                Text("Settings View")
-                    .padding()
-            }.tabItem {
-                Label("Settings", systemImage: "gear")
-                    .imageScale(.large)
-            }
+                .tabViewStyle(DefaultTabViewStyle())
+                .overlay(noConnectionBanner, alignment: .top)
+                .onAppear() {
+                    self.shouldLogIn = !AppClient.isLoggedIn
+                }
         }
-            .tabViewStyle(DefaultTabViewStyle())
-            .overlay(noConnectionBanner, alignment: .top)
+        
     }
 
     var noConnectionBanner: some View {

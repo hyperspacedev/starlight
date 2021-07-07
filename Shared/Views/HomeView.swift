@@ -10,24 +10,14 @@ import SwiftUI
 struct HomeView: View {
 
     @State var showComposeButton: Bool = false
-    @State var loggedIn: Bool = false
     @State var showingLogin: Bool = false
 
     var body: some View {
         NavigationView {
-            Group {
-                if loggedIn {
-                    List {
-                        Text("Statuses go here.")
-                    }
-                    .listStyle(GroupedListStyle())
-                } else {
-                    loginPrompt
-                        .sheet(isPresented: $showingLogin) {
-                            ManagedAccountView()
-                        }
-                }
+            List {
+                Text("Statuses go here.")
             }
+            .listStyle(GroupedListStyle())
             .navigationTitle("Home")
             .toolbar {
                 #if os(iOS)
@@ -73,31 +63,6 @@ struct HomeView: View {
             .offset(x: self.showComposeButton ? 0 : -99999)
             .animation(.spring())
 
-    }
-
-    var loginPrompt: some View {
-        List {
-            VStack {
-                HStack {
-                    Image(systemName: "person.crop.circle.fill.badge.plus")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 56)
-                    VStack(spacing: 4) {
-                        VStack(alignment: .leading) {
-                            Text("It's lonely here...")
-                                .bold()
-                            Text("Sign in to view your personal feed.")
-                        }
-                    }
-                }
-                Button(action: { self.showingLogin.toggle() }) {
-                    Text("Get started")
-                }
-            }
-            .padding(4)
-        }
-        .listStyle(InsetGroupedListStyle())
     }
 }
 

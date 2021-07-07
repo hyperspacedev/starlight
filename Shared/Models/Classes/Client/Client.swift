@@ -22,16 +22,32 @@ public class AppClient: CombineAPI, CustomStringConvertible {
 
     // MARK: PROPERTIES
 
+    public struct AccountStruct {
+
+        /// The user's access token to access the fediverse instance.
+        public var token: String?
+
+        /// The user's account id so that we can distinguish it from other users.
+        public var userID: String?
+
+    }
+
+    public struct ClientSecrets {
+
+        /// The client's identifier.
+        public var clientId: String
+
+        /// Client secret key, to be used for obtaining OAuth tokens
+        public var clientSecret: String
+
+    }
+
     internal let session: URLSession
 
-    /// The domain where the fediverse instance for the client lives.
-    public let baseURL: String
-
-    /// The user's access token to access the fediverse instance.
-    public let token: String?
-
-    /// The user's account id so that we can distinguish it from other users.
-    public var userID: String?
+    /// The URL of the instance where both the application and the user's account live.
+    public static var baseURL: String?
+    public static var account: AccountStruct?
+    public static var secrets: ClientSecrets?
 
     // MARK: – CONSTRUCTORS
 
@@ -39,9 +55,26 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         self.session = URLSession(configuration: configuration)
 
         let keychain = KeychainSwift()
-        self.baseURL = keychain.get("baseURL") ?? "mastodon.social"
-        self.token = keychain.get("token")
-        self.userID = keychain.get("userID")
+
+        // User is logged in
+        if let token = keychain.get("token") {
+
+            //  We ensure the app was created successfully and that
+            //  the user id was stored.
+            guard keychain.get("userID") != nil else { return }
+            guard keychain.get("clientID") != nil else { return }
+            guard keychain.get("clientSecret") != nil else { return }
+            
+            AppClient.baseURL? = keychain.get("baseURL")!
+            AppClient.account?.token = token
+            AppClient.account?.userID = keychain.get("userID")!
+
+            AppClient.secrets?.clientId = keychain.get("clientID")!
+            AppClient.secrets?.clientSecret = keychain.get("clientSecret")!
+        }
+
+        return
+
     }
 
     convenience init() {
@@ -79,10 +112,10 @@ public class AppClient: CombineAPI, CustomStringConvertible {
             //  We will always need the token, so let's make sure that the token is not nil.
             //  If everything goes fine, this should always be true, because a login screen is supposed
             //  to be shown before loading the home page, but let's just ensure no weird things happen.
-            assert(self.token != nil, "Retrieving the home timeline requires the user token.")
+            assert(AppClient.account?.token != nil, "Retrieving the home timeline requires the user token.")
 
             headers = [
-                "token": self.token!
+                "token": AppClient.account?.token!
                 //  Since we already made sure that the token was not nil above, we can now
                 //  safely force-unwrap the value.
             ]
@@ -129,7 +162,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         }
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
-        let endpoint = Endpoint(self.baseURL, path, queryItems: queryItems, headers: headers)
+        let endpoint = Endpoint(AppClient.baseURL!, path, queryItems: queryItems, headers: headers)
 
         print("""
         ======== APPCLIENT ========
@@ -156,20 +189,21 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         /// The path to the API request
         let path = "/notifications"
 
+        
         //  We will always need the token, so let's make sure that the token is not nil.
         //  If everything goes fine, this should always be true, because a login screen is supposed
         //  to be shown before loading the home page, but let's just ensure no weird things happen.
-        assert(self.token != nil, "Retrieving the notifications requires the user token.")
+        assert(AppClient.account?.token != nil, "Retrieving the notifications requires the user token.")
 
         /// The request's headers.
         let headers: [String: Any] = [
-            "token": self.token!
+            "token": AppClient.account?.token!
             //  Since we already made sure that the token was not nil above,
             //  we can now safely force-unwrap the value.
         ]
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
-        let endpoint = Endpoint(self.baseURL, path, headers: headers)
+        let endpoint = Endpoint(AppClient.baseURL!, path, headers: headers)
 
         print("""
         ======== APPCLIENT ========
@@ -197,7 +231,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         let path = "/statuses/\(statusID)/context"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
-        let endpoint = Endpoint(self.baseURL, path)
+        let endpoint = Endpoint(AppClient.baseURL!, path)
 
         print("""
         ======== APPCLIENT ========
@@ -225,7 +259,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         let path = "/accounts/\(withID)"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
-        let endpoint = Endpoint(self.baseURL, path)
+        let endpoint = Endpoint(AppClient.baseURL!, path)
 
         print("""
         ======== APPCLIENT ========
@@ -252,7 +286,7 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         let path = "/trends"
 
         //  We declare the endpoint we are going to use, with all the elements specified above.
-        let endpoint = Endpoint(self.baseURL, path)
+        let endpoint = Endpoint(AppClient.baseURL!, path)
 
         print("""
         ======== APPCLIENT ========
@@ -268,6 +302,167 @@ public class AppClient: CombineAPI, CustomStringConvertible {
         """)
 
         return execute(endpoint.request, decodingType: [Tag].self, retries: 2)
+
+    }
+
+    // MARK: – LOG IN
+
+    /**
+     *  Login and get the access token of an account.
+     */
+    public func logIn(baseURL: String) -> AnyPublisher<Account, Error> {
+        
+        AppClient.baseURL = baseURL
+
+        //  We first create our app.
+        self.createApp()
+            .sink(receiveCompletion: { _ in
+                //  Here the actual subscriber is created. As mentioned earlier,
+                //  the sink-subscriber comes with a closure, that lets us handle
+                //  the received value when it’s ready from the publisher.
+            },
+            receiveValue: { app in
+                AppClient.secrets?.clientId = app.clientId!
+                AppClient.secrets?.clientSecret = app.clientSecret!
+            })
+
+        //  We then ensure it works
+        self.verifyAppWorks()
+            .sink(receiveCompletion: { _ in
+                //  Here the actual subscriber is created. As mentioned earlier,
+                //  the sink-subscriber comes with a closure, that lets us handle
+                //  the received value when it’s ready from the publisher.
+            },
+            receiveValue: { app in
+                assert(app.clientId != AppClient.secrets?.clientId, "Application failed registering.")
+            })
+
+        //  We now create the account
+
+        /// The path to the API request
+        let path = "/authorize"
+
+        /// The URL's query items (e.g. `local`, `maxID`, et al.)
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: AppClient.secrets?.clientId),
+            URLQueryItem(name: "redirect_uri", value: "urn:ietf:wg:oauth:2.0:oob")
+        ]
+
+        //  We declare the endpoint we are going to use, with all the elements specified above.
+        //  In this case, we are working with Mastodon's OAuth, so we need to tell that to our endpoints.
+        let endpoint = Endpoint(api: "/oauth", AppClient.baseURL!, path)
+
+        print("""
+        ======== APPCLIENT ========
+        Starting to authorize the account...
+
+        Endpoint:
+        \(endpoint)
+
+        Base url: \(endpoint.url)
+        QueryItems: \(endpoint.queryItems)
+        Headers: \(endpoint.headers)
+        ===== END OF APPCLIENT =====
+        """)
+
+        return execute(endpoint.request, decodingType: Account.self, retries: 2)
+
+    }
+
+    /**
+     *  Create an application in the specified instance that will be used for
+     *  interacting with the fediverse.
+     */
+    public func createApp() -> AnyPublisher<Application, Error> {
+        
+        /// The path to the API request
+        let path = "/apps"
+        
+        /// The app's client name
+        #if os(iOS)
+        let clientName: String = "Starlight (iOS & iPadOS)"
+        #else
+        let clientName: String = "Starlight (macOS)"
+        #endif
+
+        /// The URL's query items (e.g. `local`, `maxID`, et al.)
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "client_name", value: clientName),
+            URLQueryItem(name: "redirect_uris", value: "urn:ietf:wg:oauth:2.0:oob"),
+            URLQueryItem(name: "scopes", value: "read write"),
+            URLQueryItem(name: "website", value: "https://hyperspace.marquiskurt.com")
+        ]
+
+        //  We declare the endpoint we are going to use, with all the elements specified above.
+        let endpoint = Endpoint(AppClient.baseURL!, path, queryItems: queryItems)
+
+        print("""
+        ======== APPCLIENT ========
+        Starting to create the application in the chosen instance...
+
+        Endpoint:
+        \(endpoint)
+
+        Base url: \(endpoint.url)
+        QueryItems: \(endpoint.queryItems)
+        Headers: \(endpoint.headers)
+        ===== END OF APPCLIENT =====
+        """)
+
+        return execute(endpoint.request, decodingType: Application.self, retries: 2)
+
+    }
+
+    /**
+     *  Create an application in the specified instance that will be used for
+     *  interacting with the fediverse.
+     */
+    public func verifyAppWorks() -> AnyPublisher<Application, Error> {
+        
+        /// The path to the API request
+        let path = "/apps/verify_credentials"
+        
+        /// The app's client name
+        #if os(iOS)
+        let clientName: String = "Starlight (iOS & iPadOS)"
+        #else
+        let clientName: String = "Starlight (macOS)"
+        #endif
+
+        /// The request's headers, such as the user token, for example.
+        var headers: [String: Any] = [
+            "token": AppClient.secrets?.clientSecret
+            //  Since we already made sure that the token was not nil above, we can now
+            //  safely force-unwrap the value.
+        ]
+
+        //  We declare the endpoint we are going to use, with all the elements specified above.
+        let endpoint = Endpoint(AppClient.baseURL!, path, headers: headers)
+
+        print("""
+        ======== APPCLIENT ========
+        Starting to create the application in the chosen instance...
+
+        Endpoint:
+        \(endpoint)
+
+        Base url: \(endpoint.url)
+        QueryItems: \(endpoint.queryItems)
+        Headers: \(endpoint.headers)
+        ===== END OF APPCLIENT =====
+        """)
+
+        return execute(endpoint.request, decodingType: Application.self, retries: 2)
+
+    }
+
+
+    // MARK: – PROPERTIES
+    public static var isLoggedIn: Bool {
+
+        //  Logically, if we are logged in, the account token shouldn't be nil.
+        return AppClient.account?.token != nil
 
     }
 

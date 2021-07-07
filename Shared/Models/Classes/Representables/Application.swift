@@ -19,7 +19,7 @@ public class Application: StateRepresentable, Codable, Identifiable {
     /// The ID for this application.
     // swiftlint:disable:next identifier_name
     public let id = UUID()
-
+    
     /// The name of the application.
     public let name: String
 
@@ -29,12 +29,22 @@ public class Application: StateRepresentable, Codable, Identifiable {
     /// The application's API key for push streaming, if applicable.
     public let vapidKey: String?
 
+    // MARK: - CLIENT
+
+    /// The client's identifier.
+    public let clientId: String?
+
+    /// Client secret key, to be used for obtaining OAuth tokens
+    public let clientSecret: String?
+
     // MARK: - COMPUTED PROPERTIES
 
     private enum CodingKeys: String, CodingKey {
         case name
         case website
         case vapidKey = "vapid_key"
+        case clientId = "client_id"
+        case clientSecret = "client_secret"
     }
 }
 

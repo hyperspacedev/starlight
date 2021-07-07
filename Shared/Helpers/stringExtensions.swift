@@ -16,6 +16,22 @@ extension String {
       self = self.capitalizingFirstLetter()
     }
 
+    func htmlToMarkdown() -> String {
+
+        var content = self.replacingOccurrences(
+            of: "</b><b>", with: "**",
+            options: NSString.CompareOptions.regularExpression,
+            range: nil)
+
+        content = self.replacingOccurrences(
+            of: "</strong><strong>", with: "**",
+            options: NSString.CompareOptions.regularExpression,
+            range: nil)
+
+        return content
+
+    }
+
 //    func stripHTML() -> String {
 //
 //        var content = self

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <base target="_blank">
+        <style>
+
+<!--            :root {-->
+<!--              color-scheme: light dark;-->
+<!--            }-->
+        
+            body {
+              background-color: #1C1B1E;
+              color: white;
+            }
+            @media screen and (prefers-color-scheme: light) {
+              body {
+                background-color: white;
+                color: black;
+              }
+            }
+
+            body {
+                font-size: 20;
+                font: -apple-system-body;
+            }
+
+            a {
+                color: #FF5E57;
+            }
+
+            img {
+              border-radius: 5pt;
+            }
+
+        </style>
+        <script>
+            function setBody(newValue) {
+                var bodyDiv = document.getElementById("container");
+                bodyDiv.innerHTML = newValue;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="content"></div>
+    </body>
+</html>
+
+
