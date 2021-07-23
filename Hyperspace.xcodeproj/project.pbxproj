@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95B11B4526AB1BFA00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4426AB1BFA00EADBF4 /* Chica */; };
+		95B11B4826AB1C0A00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4726AB1C0A00EADBF4 /* Chica */; };
 		BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF014B0F24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF11463E24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
@@ -136,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B11B4826AB1C0A00EADBF4 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B11B4526AB1BFA00EADBF4 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95B11B4626AB1C0A00EADBF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BF11463C24B613CC0040691B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +226,7 @@
 				BFBB3C6324A2D5C2007FEFE8 /* Products */,
 				BFBB3C9824A2D631007FEFE8 /* .gitignore */,
 				BFBB3C9A24A2D8D0007FEFE8 /* LICENSE.txt */,
+				95B11B4626AB1C0A00EADBF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,6 +330,9 @@
 			dependencies = (
 			);
 			name = iOS;
+			packageProductDependencies = (
+				95B11B4726AB1C0A00EADBF4 /* Chica */,
+			);
 			productName = iOS;
 			productReference = BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */;
 			productType = "com.apple.product-type.application";
@@ -337,6 +352,7 @@
 			);
 			name = macOS;
 			packageProductDependencies = (
+				95B11B4426AB1BFA00EADBF4 /* Chica */,
 			);
 			productName = macOS;
 			productReference = BFBB3C6A24A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -413,6 +429,7 @@
 			);
 			mainGroup = BFBB3C5524A2D5BE007FEFE8;
 			packageReferences = (
+				95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */,
 			);
 			productRefGroup = BFBB3C6324A2D5C2007FEFE8 /* Products */;
 			projectDirPath = "";
@@ -948,6 +965,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperspacedev/chica";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95B11B4426AB1BFA00EADBF4 /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */;
+			productName = Chica;
+		};
+		95B11B4726AB1C0A00EADBF4 /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */;
+			productName = Chica;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFBB3C5624A2D5BE007FEFE8 /* Project object */;
 }
