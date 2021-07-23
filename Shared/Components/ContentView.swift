@@ -5,10 +5,13 @@
 //  Created by Marquis Kurt on 6/23/20.
 //
 
+import Chica
 import SwiftUI
 
 /// The structured view for the app
 struct ContentView: View {
+    
+    @State private var authState: Chica.OAuth.State = Chica.OAuth.shared.authState
 
     #if os(iOS)
     /// Determines whether the device is compact or standard
@@ -21,12 +24,15 @@ struct ContentView: View {
             StandardNavigationLayout()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             #else
-            LoginView()
-//            if horizontalSizeClass == .compact {
-//                CompactNavigationLayout()
-//            } else {
-//                StandardNavigationLayout()
-//            }
+            if authState == .signedOut {
+                LoginView()
+            } else {
+                if horizontalSizeClass == .compact {
+                    CompactNavigationLayout()
+                } else {
+                    StandardNavigationLayout()
+                }
+            }
             #endif
         }
     }

@@ -14,7 +14,9 @@ struct StarlightApp: App {
         WindowGroup {
             ContentView()
                 .onOpenURL { url in
-                    Chica.handleURL(url: url)
+                    // TODO: Add different URL endpoints here for deep linking.
+                    // Maybe like Apollo?
+                    Chica.handleURL(url: url, actions: [:])
                 }
         }
     }

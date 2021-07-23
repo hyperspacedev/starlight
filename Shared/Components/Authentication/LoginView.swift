@@ -17,22 +17,13 @@ struct LoginView: View {
     var body: some View {
         VStack(spacing: 16.0) {
             header
-            if loggedIn {
-                loginTest
-            }
             Spacer()
             fediverseLogin
             Text("or")
             twitterLogin
             Spacer()
-            Button(action: {
-                Task.init {
-                    await startAuthFlow()
-                }
-            }) {
-                Text("Log in")
-            }
-            .buttonStyle(.bordered)
+            Text("Don't have an account? **[Sign up &rsaquo;](starlight://register)**")
+            loginButton
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .font(.system(.body, design: .rounded))
@@ -46,18 +37,12 @@ struct LoginView: View {
                     .font(.system(.largeTitle, design: .rounded))
                     .bold()
                 Text(
-                    "Log in to a Twitter or Mastodon account to access feeds, post content, and more."
+                    "Log in to a Mastodon or Twitter account to view posts from the world, create posts, follow others, and more."
                 )
                     .foregroundColor(.gray)
             }
             Image(systemName: "star")
                 .font(.largeTitle)
-        }
-    }
-    
-    var loginTest: some View {
-        VStack {
-            Text("Logged in!")
         }
     }
 
@@ -105,6 +90,22 @@ struct LoginView: View {
             print("An unknown error occurred.")
         }
 
+    }
+    
+    var loginButton: some View {
+        Button(action: {
+            Task.init {
+                await startAuthFlow()
+            }
+        }) {
+            Text("Log in")
+                .bold()
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color.accentColor)
+        .foregroundColor(.white)
+        .cornerRadius(6.0)
     }
 }
 
