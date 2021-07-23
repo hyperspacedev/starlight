@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9597527926AB816E00798BDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9597527826AB816E00798BDB /* Localizable.strings */; };
+		9597527A26AB816E00798BDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9597527826AB816E00798BDB /* Localizable.strings */; };
 		95AB351B26AB2241004B1860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AB351A26AB2241004B1860 /* LoginView.swift */; };
 		BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF014B0F24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
@@ -41,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9597527826AB816E00798BDB /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		95AB351A26AB2241004B1860 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = ../../../../Starlight/Shared/Components/Authentication/LoginView.swift; sourceTree = "<group>"; };
 		BF014B0D24B67CBE002C5812 /* Compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compact.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 				BF455ED924B401860066FB1B /* Components */,
 				BFBB3C5B24A2D5BF007FEFE8 /* StarlightApp.swift */,
 				BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */,
+				9597527826AB816E00798BDB /* Localizable.strings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -341,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */,
+				9597527926AB816E00798BDB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */,
+				9597527A26AB816E00798BDB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +593,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -611,7 +617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

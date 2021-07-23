@@ -14,31 +14,31 @@ struct CompactNavigationLayout: View {
                 Text("Home Feed View")
                     .padding()
             }.tabItem {
-                Label("Home", systemImage: "house")
+                Label("tabs.home", systemImage: "house")
             }
             VStack {
                 Text("Network View")
                     .padding()
             }.tabItem {
-                Label("Network", systemImage: "network")
+                Label("tabs.network", systemImage: "network")
             }
             VStack {
                 Text("Explore View")
                     .padding()
             }.tabItem {
-                Label("Explore", systemImage: "magnifyingglass")
+                Label("tabs.explore", systemImage: "magnifyingglass")
             }
             VStack {
                 Text("Personal View")
                     .padding()
             }.tabItem {
-                Label("You", systemImage: "person.circle")
+                Label("tabs.profile", systemImage: "person.circle")
             }
             VStack {
                 Text("Settings View")
                     .padding()
             }.tabItem {
-                Label("Settings", systemImage: "gear")
+                Label("tabs.prefs", systemImage: "gear")
             }
         }.tabViewStyle(DefaultTabViewStyle())
     }

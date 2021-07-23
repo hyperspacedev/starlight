@@ -33,12 +33,10 @@ struct LoginView: View {
     var header: some View {
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading) {
-                Text("Log In")
+                Text("login.header")
                     .font(.system(.largeTitle, design: .rounded))
                     .bold()
-                Text(
-                    "Log in to a Mastodon or Twitter account to view posts from the world, create posts, follow others, and more."
-                )
+                Text("login.info")
                     .foregroundColor(.gray)
             }
             Image(systemName: "star")
@@ -51,7 +49,12 @@ struct LoginView: View {
             Section("Mastodon") {
                 TextField("example@mastodon.online", text: $fediverseName)
                     .textFieldStyle(.roundedBorder)
-                Text("Not from **mastodon.online**? Log in with your full username.")
+                Text(
+                    String(
+                        format: NSLocalizedString("login.fullname", comment: "Full username sign in"),
+                        "mastodon.online"
+                    )
+                )
                     .font(.caption)
                     .foregroundColor(.gray)
             }
@@ -83,7 +86,7 @@ struct LoginView: View {
                 await Chica.OAuth.shared.startOauthFlow(for: getUserDomain())
             }
         }) {
-            Text("Log in")
+            Text("login.button")
                 .bold()
         }
         .padding()
