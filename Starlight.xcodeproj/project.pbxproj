@@ -1,0 +1,827 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
+		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
+		95C7118826AB89290014D6B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C7117E26AB89290014D6B7 /* Localizable.strings */; };
+		95C7118926AB89290014D6B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C7117E26AB89290014D6B7 /* Localizable.strings */; };
+		95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
+		95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
+		95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7118026AB89290014D6B7 /* Assets.xcassets */; };
+		95C7118D26AB89290014D6B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7118026AB89290014D6B7 /* Assets.xcassets */; };
+		95C7118E26AB89290014D6B7 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118326AB89290014D6B7 /* Standard.swift */; };
+		95C7118F26AB89290014D6B7 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118326AB89290014D6B7 /* Standard.swift */; };
+		95C7119026AB89290014D6B7 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118426AB89290014D6B7 /* Compact.swift */; };
+		95C7119126AB89290014D6B7 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118426AB89290014D6B7 /* Compact.swift */; };
+		95C7119226AB89290014D6B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118626AB89290014D6B7 /* LoginView.swift */; };
+		95C7119326AB89290014D6B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118626AB89290014D6B7 /* LoginView.swift */; };
+		95C7119426AB89290014D6B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118726AB89290014D6B7 /* ContentView.swift */; };
+		95C7119526AB89290014D6B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118726AB89290014D6B7 /* ContentView.swift */; };
+		95C7119826AB89540014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119726AB89540014D6B7 /* Chica */; };
+		95C7119B26AB89780014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119A26AB89780014D6B7 /* Chica */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		957F126226AB88E400386F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 957F124A26AB88E200386F35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 957F125526AB88E400386F35;
+			remoteInfo = "Starlight (iOS)";
+		};
+		957F126C26AB88E400386F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 957F124A26AB88E200386F35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 957F125B26AB88E400386F35;
+			remoteInfo = "Starlight (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		957F125626AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		957F125C26AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		957F126126AB88E400386F35 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		957F126526AB88E400386F35 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		957F126B26AB88E400386F35 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		957F126F26AB88E400386F35 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		95C7117E26AB89290014D6B7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		95C7117F26AB89290014D6B7 /* StarlightApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
+		95C7118026AB89290014D6B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		95C7118326AB89290014D6B7 /* Standard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
+		95C7118426AB89290014D6B7 /* Compact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compact.swift; sourceTree = "<group>"; };
+		95C7118626AB89290014D6B7 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		95C7118726AB89290014D6B7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--iOS--Info.plist"; sourceTree = "<group>"; };
+		95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--macOS--Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		957F125326AB88E400386F35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7119826AB89540014D6B7 /* Chica in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125926AB88E400386F35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7119B26AB89780014D6B7 /* Chica in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125E26AB88E400386F35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F126826AB88E400386F35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		957F124926AB88E200386F35 = {
+			isa = PBXGroup;
+			children = (
+				95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */,
+				95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */,
+				957F124E26AB88E300386F35 /* Shared */,
+				957F126426AB88E400386F35 /* Tests iOS */,
+				957F126E26AB88E400386F35 /* Tests macOS */,
+				957F125726AB88E400386F35 /* Products */,
+				95C7119926AB89780014D6B7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		957F124E26AB88E300386F35 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				95C7118026AB89290014D6B7 /* Assets.xcassets */,
+				95C7118126AB89290014D6B7 /* Components */,
+				95C7117E26AB89290014D6B7 /* Localizable.strings */,
+				95C7117F26AB89290014D6B7 /* StarlightApp.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		957F125726AB88E400386F35 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				957F125626AB88E400386F35 /* Starlight.app */,
+				957F125C26AB88E400386F35 /* Starlight.app */,
+				957F126126AB88E400386F35 /* Tests iOS.xctest */,
+				957F126B26AB88E400386F35 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		957F126426AB88E400386F35 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				957F126526AB88E400386F35 /* Tests_iOS.swift */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		957F126E26AB88E400386F35 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				957F126F26AB88E400386F35 /* Tests_macOS.swift */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		95C7118126AB89290014D6B7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				95C7118226AB89290014D6B7 /* Navigation */,
+				95C7118526AB89290014D6B7 /* Authentication */,
+				95C7118726AB89290014D6B7 /* ContentView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		95C7118226AB89290014D6B7 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				95C7118326AB89290014D6B7 /* Standard.swift */,
+				95C7118426AB89290014D6B7 /* Compact.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		95C7118526AB89290014D6B7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				95C7118626AB89290014D6B7 /* LoginView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		95C7119926AB89780014D6B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		957F125526AB88E400386F35 /* Starlight (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 957F127926AB88E400386F35 /* Build configuration list for PBXNativeTarget "Starlight (iOS)" */;
+			buildPhases = (
+				957F125226AB88E400386F35 /* Sources */,
+				957F125326AB88E400386F35 /* Frameworks */,
+				957F125426AB88E400386F35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Starlight (iOS)";
+			packageProductDependencies = (
+				95C7119726AB89540014D6B7 /* Chica */,
+			);
+			productName = "Starlight (iOS)";
+			productReference = 957F125626AB88E400386F35 /* Starlight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		957F125B26AB88E400386F35 /* Starlight (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 957F127C26AB88E400386F35 /* Build configuration list for PBXNativeTarget "Starlight (macOS)" */;
+			buildPhases = (
+				957F125826AB88E400386F35 /* Sources */,
+				957F125926AB88E400386F35 /* Frameworks */,
+				957F125A26AB88E400386F35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Starlight (macOS)";
+			packageProductDependencies = (
+				95C7119A26AB89780014D6B7 /* Chica */,
+			);
+			productName = "Starlight (macOS)";
+			productReference = 957F125C26AB88E400386F35 /* Starlight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		957F126026AB88E400386F35 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 957F127F26AB88E400386F35 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				957F125D26AB88E400386F35 /* Sources */,
+				957F125E26AB88E400386F35 /* Frameworks */,
+				957F125F26AB88E400386F35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				957F126326AB88E400386F35 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 957F126126AB88E400386F35 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		957F126A26AB88E400386F35 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 957F128226AB88E400386F35 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				957F126726AB88E400386F35 /* Sources */,
+				957F126826AB88E400386F35 /* Frameworks */,
+				957F126926AB88E400386F35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				957F126D26AB88E400386F35 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 957F126B26AB88E400386F35 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		957F124A26AB88E200386F35 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					957F125526AB88E400386F35 = {
+						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
+					};
+					957F125B26AB88E400386F35 = {
+						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
+					};
+					957F126026AB88E400386F35 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 957F125526AB88E400386F35;
+					};
+					957F126A26AB88E400386F35 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 957F125B26AB88E400386F35;
+					};
+				};
+			};
+			buildConfigurationList = 957F124D26AB88E200386F35 /* Build configuration list for PBXProject "Starlight" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 957F124926AB88E200386F35;
+			packageReferences = (
+				95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */,
+			);
+			productRefGroup = 957F125726AB88E400386F35 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				957F125526AB88E400386F35 /* Starlight (iOS) */,
+				957F125B26AB88E400386F35 /* Starlight (macOS) */,
+				957F126026AB88E400386F35 /* Tests iOS */,
+				957F126A26AB88E400386F35 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		957F125426AB88E400386F35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */,
+				95C7118826AB89290014D6B7 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125A26AB88E400386F35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7118D26AB89290014D6B7 /* Assets.xcassets in Resources */,
+				95C7118926AB89290014D6B7 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125F26AB88E400386F35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F126926AB88E400386F35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		957F125226AB88E400386F35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7118E26AB89290014D6B7 /* Standard.swift in Sources */,
+				95C7119426AB89290014D6B7 /* ContentView.swift in Sources */,
+				95C7119026AB89290014D6B7 /* Compact.swift in Sources */,
+				95C7119226AB89290014D6B7 /* LoginView.swift in Sources */,
+				95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125826AB88E400386F35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C7118F26AB89290014D6B7 /* Standard.swift in Sources */,
+				95C7119526AB89290014D6B7 /* ContentView.swift in Sources */,
+				95C7119126AB89290014D6B7 /* Compact.swift in Sources */,
+				95C7119326AB89290014D6B7 /* LoginView.swift in Sources */,
+				95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F125D26AB88E400386F35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957F126726AB88E400386F35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		957F126326AB88E400386F35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 957F125526AB88E400386F35 /* Starlight (iOS) */;
+			targetProxy = 957F126226AB88E400386F35 /* PBXContainerItemProxy */;
+		};
+		957F126D26AB88E400386F35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 957F125B26AB88E400386F35 /* Starlight (macOS) */;
+			targetProxy = 957F126C26AB88E400386F35 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		957F127726AB88E400386F35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		957F127826AB88E400386F35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		957F127A26AB88E400386F35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
+				PRODUCT_NAME = Starlight;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		957F127B26AB88E400386F35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
+				PRODUCT_NAME = Starlight;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		957F127D26AB88E400386F35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Starlight--macOS--Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
+				PRODUCT_NAME = Starlight;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		957F127E26AB88E400386F35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Starlight--macOS--Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.hyperspace-swiftui";
+				PRODUCT_NAME = Starlight;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		957F128026AB88E400386F35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Starlight (iOS)";
+			};
+			name = Debug;
+		};
+		957F128126AB88E400386F35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Starlight (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		957F128326AB88E400386F35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Starlight (macOS)";
+			};
+			name = Debug;
+		};
+		957F128426AB88E400386F35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.marquiskurt.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Starlight (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		957F124D26AB88E200386F35 /* Build configuration list for PBXProject "Starlight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				957F127726AB88E400386F35 /* Debug */,
+				957F127826AB88E400386F35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		957F127926AB88E400386F35 /* Build configuration list for PBXNativeTarget "Starlight (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				957F127A26AB88E400386F35 /* Debug */,
+				957F127B26AB88E400386F35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		957F127C26AB88E400386F35 /* Build configuration list for PBXNativeTarget "Starlight (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				957F127D26AB88E400386F35 /* Debug */,
+				957F127E26AB88E400386F35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		957F127F26AB88E400386F35 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				957F128026AB88E400386F35 /* Debug */,
+				957F128126AB88E400386F35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		957F128226AB88E400386F35 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				957F128326AB88E400386F35 /* Debug */,
+				957F128426AB88E400386F35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperspacedev/chica";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95C7119726AB89540014D6B7 /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */;
+			productName = Chica;
+		};
+		95C7119A26AB89780014D6B7 /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */;
+			productName = Chica;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 957F124A26AB88E200386F35 /* Project object */;
+}
