@@ -9,7 +9,7 @@
 // - MARK: Login and Registration
 "login.button" = "Iniciar sesión";
 "login.header" = "Iniciar sesión";
-"login.info" = "Inicia sesión con una cuenta de Mastodon o de Twitter para ver publicaciones de cualquier lugar del mundo, así como crear publicaciones, seguir a otras personas, y mucho más!"
+"login.info" = "Inicia sesión con una cuenta de Mastodon o de Twitter para ver publicaciones de cualquier lugar del mundo, así como crear publicaciones, seguir a otras personas, y mucho más!";
 
 // - MARK: Tabs
 "tabs.home" = "Inicio";
