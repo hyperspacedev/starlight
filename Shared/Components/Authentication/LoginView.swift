@@ -77,25 +77,10 @@ struct LoginView: View {
         return "mastodon.online"
     }
 
-    func startAuthFlow() async {
-        do {
-            let _: Application? = try await Chica.shared.request(.post, for: .apps, params: [
-                "client_name": "Starlight",
-                "redirect_uris": "starlight://oauth",
-                "scopes": "read write follow",
-                "website": "https://hyperspace.marquiskurt.net"
-            ])
-            await Chica.OAuth.shared.startOauthFlow(for: getUserDomain())
-        } catch {
-            print("An unknown error occurred.")
-        }
-
-    }
-    
     var loginButton: some View {
         Button(action: {
             Task.init {
-                await startAuthFlow()
+                await Chica.OAuth.shared.startOauthFlow(for: getUserDomain())
             }
         }) {
             Text("Log in")
