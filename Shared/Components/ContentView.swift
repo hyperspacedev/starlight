@@ -21,11 +21,12 @@ struct ContentView: View {
             StandardNavigationLayout()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             #else
-            if horizontalSizeClass == .compact {
-                CompactNavigationLayout()
-            } else {
-                StandardNavigationLayout()
-            }
+            LoginView()
+//            if horizontalSizeClass == .compact {
+//                CompactNavigationLayout()
+//            } else {
+//                StandardNavigationLayout()
+//            }
             #endif
         }
     }

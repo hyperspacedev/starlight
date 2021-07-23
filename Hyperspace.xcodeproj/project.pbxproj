@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95AB351B26AB2241004B1860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AB351A26AB2241004B1860 /* LoginView.swift */; };
 		95B11B4526AB1BFA00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4426AB1BFA00EADBF4 /* Chica */; };
 		95B11B4826AB1C0A00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4726AB1C0A00EADBF4 /* Chica */; };
 		BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
@@ -87,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		95AB351A26AB2241004B1860 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = ../../../../Starlight/Shared/Components/Authentication/LoginView.swift; sourceTree = "<group>"; };
 		BF014B0D24B67CBE002C5812 /* Compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compact.swift; sourceTree = "<group>"; };
 		BF11463D24B613E70040691B /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
 		BF455EDA24B402120066FB1B /* Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
@@ -167,6 +169,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95AB351926AB2223004B1860 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				95AB351A26AB2241004B1860 /* LoginView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		95B11B4626AB1C0A00EADBF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +205,7 @@
 		BF455ED924B401860066FB1B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				95AB351926AB2223004B1860 /* Authentication */,
 				BF11463C24B613CC0040691B /* Navigation */,
 				BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */,
 			);
@@ -542,6 +553,7 @@
 				FAE4B26824B500DC000B5405 /* PollOption.swift in Sources */,
 				BF673F2824B4CF9200A97FF3 /* Context.swift in Sources */,
 				BF673F1C24B4C93000A97FF3 /* Poll.swift in Sources */,
+				95AB351B26AB2241004B1860 /* LoginView.swift in Sources */,
 				BFBB3C8424A2D5C2007FEFE8 /* StarlightApp.swift in Sources */,
 				BF673F1F24B4CB5B00A97FF3 /* Mention.swift in Sources */,
 				BF673F1324B4C20200A97FF3 /* Application.swift in Sources */,
