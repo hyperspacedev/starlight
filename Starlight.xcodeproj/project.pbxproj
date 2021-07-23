@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
-		95C7118826AB89290014D6B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C7117E26AB89290014D6B7 /* Localizable.strings */; };
-		95C7118926AB89290014D6B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C7117E26AB89290014D6B7 /* Localizable.strings */; };
 		95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7118026AB89290014D6B7 /* Assets.xcassets */; };
@@ -25,6 +23,8 @@
 		95C7119526AB89290014D6B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118726AB89290014D6B7 /* ContentView.swift */; };
 		95C7119826AB89540014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119726AB89540014D6B7 /* Chica */; };
 		95C7119B26AB89780014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119A26AB89780014D6B7 /* Chica */; };
+		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
+		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,6 @@
 		957F126526AB88E400386F35 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		957F126B26AB88E400386F35 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957F126F26AB88E400386F35 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		95C7117E26AB89290014D6B7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		95C7117F26AB89290014D6B7 /* StarlightApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		95C7118026AB89290014D6B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95C7118326AB89290014D6B7 /* Standard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
@@ -60,6 +59,8 @@
 		95C7118726AB89290014D6B7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--iOS--Info.plist"; sourceTree = "<group>"; };
 		95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--macOS--Info.plist"; sourceTree = "<group>"; };
+		FA18195E26AB8BF20041560E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FA18196026AB8BF40041560E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +115,7 @@
 			children = (
 				95C7118026AB89290014D6B7 /* Assets.xcassets */,
 				95C7118126AB89290014D6B7 /* Components */,
-				95C7117E26AB89290014D6B7 /* Localizable.strings */,
+				FA18195F26AB8BF20041560E /* Localizable.strings */,
 				95C7117F26AB89290014D6B7 /* StarlightApp.swift */,
 			);
 			path = Shared;
@@ -295,6 +296,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 957F124926AB88E200386F35;
 			packageReferences = (
@@ -318,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */,
-				95C7118826AB89290014D6B7 /* Localizable.strings in Resources */,
+				FA18195C26AB8BF20041560E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95C7118D26AB89290014D6B7 /* Assets.xcassets in Resources */,
-				95C7118926AB89290014D6B7 /* Localizable.strings in Resources */,
+				FA18195D26AB8BF20041560E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +404,18 @@
 			targetProxy = 957F126C26AB88E400386F35 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FA18195F26AB8BF20041560E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA18195E26AB8BF20041560E /* en */,
+				FA18196026AB8BF40041560E /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		957F127726AB88E400386F35 /* Debug */ = {
