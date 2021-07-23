@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		95AB351B26AB2241004B1860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AB351A26AB2241004B1860 /* LoginView.swift */; };
-		95B11B4526AB1BFA00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4426AB1BFA00EADBF4 /* Chica */; };
-		95B11B4826AB1C0A00EADBF4 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95B11B4726AB1C0A00EADBF4 /* Chica */; };
 		BF014B0E24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF014B0F24B67CBE002C5812 /* Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF014B0D24B67CBE002C5812 /* Compact.swift */; };
 		BF11463E24B613E70040691B /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11463D24B613E70040691B /* Standard.swift */; };
@@ -22,6 +20,7 @@
 		BFBB3C8724A2D5C2007FEFE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB3C5C24A2D5BF007FEFE8 /* ContentView.swift */; };
 		BFBB3C8824A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
 		BFBB3C8924A2D5C2007FEFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFBB3C5D24A2D5C2007FEFE8 /* Assets.xcassets */; };
+		FA3B187826AB7EA500A8534E /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = FA3B187726AB7EA500A8534E /* Chica */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B11B4826AB1C0A00EADBF4 /* Chica in Frameworks */,
+				FA3B187826AB7EA500A8534E /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B11B4526AB1BFA00EADBF4 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +224,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
-				95B11B4726AB1C0A00EADBF4 /* Chica */,
+				FA3B187726AB7EA500A8534E /* Chica */,
 			);
 			productName = iOS;
 			productReference = BFBB3C6224A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -247,7 +245,6 @@
 			);
 			name = macOS;
 			packageProductDependencies = (
-				95B11B4426AB1BFA00EADBF4 /* Chica */,
 			);
 			productName = macOS;
 			productReference = BFBB3C6A24A2D5C2007FEFE8 /* Hyperspace.app */;
@@ -296,7 +293,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					BFBB3C6124A2D5C2007FEFE8 = {
 						CreatedOnToolsVersion = 12.0;
@@ -324,7 +321,7 @@
 			);
 			mainGroup = BFBB3C5524A2D5BE007FEFE8;
 			packageReferences = (
-				95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */,
+				FA3B187626AB7EA500A8534E /* XCRemoteSwiftPackageReference "chica" */,
 			);
 			productRefGroup = BFBB3C6324A2D5C2007FEFE8 /* Products */;
 			projectDirPath = "";
@@ -524,6 +521,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -576,8 +574,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
@@ -587,7 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -601,7 +601,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -611,7 +611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -625,7 +625,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -635,6 +635,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -650,6 +651,7 @@
 				PRODUCT_NAME = Hyperspace;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -659,6 +661,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -817,7 +820,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */ = {
+		FA3B187626AB7EA500A8534E /* XCRemoteSwiftPackageReference "chica" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperspacedev/chica";
 			requirement = {
@@ -828,14 +831,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		95B11B4426AB1BFA00EADBF4 /* Chica */ = {
+		FA3B187726AB7EA500A8534E /* Chica */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */;
-			productName = Chica;
-		};
-		95B11B4726AB1C0A00EADBF4 /* Chica */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 95B11B4326AB1BFA00EADBF4 /* XCRemoteSwiftPackageReference "chica" */;
+			package = FA3B187626AB7EA500A8534E /* XCRemoteSwiftPackageReference "chica" */;
 			productName = Chica;
 		};
 /* End XCSwiftPackageProductDependency section */
