@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
 		95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		954A102326AC5A5A00E6F70B /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		957F125626AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957F125C26AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957F126126AB88E400386F35 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		954A102226AC5A4E00E6F70B /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				954A102326AC5A5A00E6F70B /* ProfileCard.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
 		957F124926AB88E200386F35 = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				95C7118026AB89290014D6B7 /* Assets.xcassets */,
-				95C7118126AB89290014D6B7 /* Components */,
-				FA18195F26AB8BF20041560E /* Localizable.strings */,
 				95C7117F26AB89290014D6B7 /* StarlightApp.swift */,
+				FA18195F26AB8BF20041560E /* Localizable.strings */,
+				95C7118126AB89290014D6B7 /* Components */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -151,6 +161,7 @@
 		95C7118126AB89290014D6B7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				954A102226AC5A4E00E6F70B /* Atoms */,
 				95C7118226AB89290014D6B7 /* Navigation */,
 				95C7118526AB89290014D6B7 /* Authentication */,
 				95C7118726AB89290014D6B7 /* ContentView.swift */,
@@ -354,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */,
 				95C7118E26AB89290014D6B7 /* Standard.swift in Sources */,
 				95C7119426AB89290014D6B7 /* ContentView.swift in Sources */,
 				95C7119026AB89290014D6B7 /* Compact.swift in Sources */,

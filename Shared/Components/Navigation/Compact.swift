@@ -35,8 +35,10 @@ struct CompactNavigationLayout: View {
                 Label("tabs.profile", systemImage: "person.circle")
             }
             VStack {
-                Text("Settings View")
-                    .padding()
+                List {
+                    ProfileCard()
+                }
+                .listStyle(.insetGrouped)
             }.tabItem {
                 Label("tabs.prefs", systemImage: "gear")
             }
