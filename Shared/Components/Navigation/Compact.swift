@@ -28,21 +28,33 @@ struct CompactNavigationLayout: View {
             }.tabItem {
                 Label("tabs.explore", systemImage: "magnifyingglass")
             }
-            VStack {
-                Text("Personal View")
-                    .padding()
-            }.tabItem {
-                Label("tabs.profile", systemImage: "person.circle")
-            }
-            VStack {
+            NavigationView {
                 List {
-                    ProfileCard()
+                    Section {
+                        ProfileCard()
+                        NavigationLink("Add Twitter account...") {
+                            Text("Twitter Integration")
+                        }
+                    }
+                    
+                    Section {
+                        NavigationLink("General") {
+                            Text("General")
+                        }
+                        NavigationLink("Appearance") {
+                            Text("Appearance")
+                        }
+                    }
                 }
                 .listStyle(.insetGrouped)
-            }.tabItem {
+                .navigationBarTitle("tabs.prefs")
+            }
+            .tabItem {
                 Label("tabs.prefs", systemImage: "gear")
             }
-        }.tabViewStyle(DefaultTabViewStyle())
+        }
+        .tabViewStyle(DefaultTabViewStyle())
+        .font(.system(.body, design: .rounded))
     }
 }
 

@@ -13,46 +13,16 @@ struct ProfileCard: View {
     
     var body: some View {
         HStack {
-            avatar
+            ProfileImage()
             VStack(alignment: .leading) {
-                Text(profile?.displayName ?? "Sign In")
+                Text(profile?.displayName.emojified() ?? "Fediverse Account")
                     .font(.system(.title, design: .rounded))
                     .bold()
-                Text(profile?.acct ?? "Account name")
+                Text("@\(profile?.acct ?? "account")")
             }
         }
         .font(.system(.body, design: .rounded))
         .onAppear { Task.init { try await fetchProfile() } }
-    }
-    
-    var avatar: some View {
-        AsyncImage(url: URL(string: profile?.avatarStatic ?? "")) { phase in
-            switch(phase) {
-            case .empty:
-                ProgressView()
-                    .padding()
-                    .background(
-                        Color.gray
-                            .clipShape(Circle())
-                    )
-                    .frame(maxWidth: 76)
-            case .failure:
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 76)
-            case .success(let image):
-                image.resizable()
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .frame(maxWidth: 76)
-            @unknown default:
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 76)
-            }
-        }
     }
     
     func fetchProfile() async throws {
