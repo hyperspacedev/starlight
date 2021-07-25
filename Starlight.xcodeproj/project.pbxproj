@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		951FB2E726ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
 		951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
+		951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
+		951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
 		954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
@@ -53,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		951FB2E626ADADB500E20654 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		951FB2E926ADB0FF00E20654 /* TrendingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingList.swift; sourceTree = "<group>"; };
 		954A102326AC5A5A00E6F70B /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		957F125626AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957F125C26AB88E400386F35 /* Starlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +124,7 @@
 			children = (
 				954A102326AC5A5A00E6F70B /* ProfileCard.swift */,
 				95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */,
+				951FB2E926ADB0FF00E20654 /* TrendingList.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -395,6 +399,7 @@
 			files = (
 				954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */,
 				95A5197126ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */,
+				951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */,
 				95C7118E26AB89290014D6B7 /* Standard.swift in Sources */,
 				951FB2E726ADADB500E20654 /* SettingsView.swift in Sources */,
 				95C7119426AB89290014D6B7 /* ContentView.swift in Sources */,
@@ -412,6 +417,7 @@
 				95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */,
 				951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */,
 				95C7118F26AB89290014D6B7 /* Standard.swift in Sources */,
+				951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */,
 				95A5197226ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */,
 				95C7119526AB89290014D6B7 /* ContentView.swift in Sources */,
 				95C7119126AB89290014D6B7 /* Compact.swift in Sources */,

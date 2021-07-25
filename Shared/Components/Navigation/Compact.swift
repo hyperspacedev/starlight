@@ -22,10 +22,13 @@ struct CompactNavigationLayout: View {
             }.tabItem {
                 Label("tabs.network", systemImage: "network")
             }
-            VStack {
-                Text("Explore View")
-                    .padding()
-            }.tabItem {
+            NavigationView {
+                Group {
+                    TrendingList()
+                }
+                .navigationBarTitle("tabs.explore")
+            }
+            .tabItem {
                 Label("tabs.explore", systemImage: "magnifyingglass")
             }
             SettingsView()

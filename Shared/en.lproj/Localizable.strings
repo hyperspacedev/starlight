@@ -6,15 +6,18 @@
   
 */
 
-// - MARK: Login and Registration
+// MARK: - Login and Registration
 "login.button" = "Log in";
 "login.header" = "Log In";
 "login.info" = "Log in to a Mastodon or Twitter account to view posts from the world, create posts, follow others, and more.";
 "login.fullname" = "Not from %@? Sign in with your full username.";
 
-// - MARK: Tabs
+// MARK: - Tabs
 "tabs.home" = "Home";
 "tabs.network" = "Network";
 "tabs.explore" = "Explore";
 "tabs.profile" = "You";
 "tabs.prefs" = "Settings";
+
+// MARK: - Explore
+"explore.trends" = "Trending Tags";
