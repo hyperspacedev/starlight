@@ -18,10 +18,6 @@ struct ProfileImage: View {
             case .empty:
                 ProgressView()
                     .padding()
-                    .background(
-                        Color.gray
-                            .clipShape(Circle())
-                    )
                     .frame(maxWidth: 64)
             case .failure:
                 Image(systemName: "person.circle")

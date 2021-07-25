@@ -28,27 +28,7 @@ struct CompactNavigationLayout: View {
             }.tabItem {
                 Label("tabs.explore", systemImage: "magnifyingglass")
             }
-            NavigationView {
-                List {
-                    Section {
-                        ProfileCard()
-                        NavigationLink("Add Twitter account...") {
-                            Text("Twitter Integration")
-                        }
-                    }
-                    
-                    Section {
-                        NavigationLink("General") {
-                            Text("General")
-                        }
-                        NavigationLink("Appearance") {
-                            Text("Appearance")
-                        }
-                    }
-                }
-                .listStyle(.insetGrouped)
-                .navigationBarTitle("tabs.prefs")
-            }
+            SettingsView()
             .tabItem {
                 Label("tabs.prefs", systemImage: "gear")
             }

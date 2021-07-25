@@ -10,23 +10,32 @@ import Chica
 
 struct ProfileCard: View {
     @State var profile: Account?
+    @State var profileName: String = "Fediverse Account"
     
     var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             ProfileImage()
+                .frame(maxWidth: 56)
             VStack(alignment: .leading) {
-                Text(profile?.displayName.emojified() ?? "Fediverse Account")
+                Text(profileName)
                     .font(.system(.title, design: .rounded))
                     .bold()
                 Text("@\(profile?.acct ?? "account")")
             }
         }
         .font(.system(.body, design: .rounded))
-        .onAppear { Task.init { try await fetchProfile() } }
+        .onAppear { Task.init {
+            try await fetchProfile()
+            try await emojifyProfileName()
+        } }
     }
     
     func fetchProfile() async throws {
         profile = try await Chica.shared.request(.get, for: .verifyAccountCredentials)
+    }
+    
+    func emojifyProfileName() async throws {
+        profileName = await profile?.displayName.emojified() ?? profile?.username ?? "Fediverse Account"
     }
 }
 
