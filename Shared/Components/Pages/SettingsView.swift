@@ -8,26 +8,47 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    private enum SettingsKeys {
+        case account
+        case general
+        case appearance
+    }
+    
+    @State private var selection: Set<SettingsKeys> = [.general]
+    
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    NavigationLink(destination: Text("Fediverse account settings")) {
-                        ProfileCard()
-                    }
+            List(selection: $selection) {
+                NavigationLink(destination: Text("Fediverse account settings").navigationTitle("Fediverse Account")) {
+                    #if os(iOS)
+                    ProfileCard(imageSize: .medium)
+                    #else
+                    ProfileCard(imageSize: .small)
+                    #endif
                 }
+                .tag(SettingsKeys.account)
                 
                 Section {
-                    NavigationLink("General") {
-                        Text("General")
+                    NavigationLink(destination: Text("General").navigationTitle("General")) {
+                        Label("General", systemImage: "gear")
                     }
-                    NavigationLink("Appearance") {
-                        Text("Appearance")
+                    .tag(SettingsKeys.general)
+                    NavigationLink(destination: Text("Appearance").navigationTitle("Appearance")) {
+                        Label("Appearance", systemImage: "paintbrush")
                     }
+                    .tag(SettingsKeys.appearance)
                 }
+                #if os(macOS)
+                .collapsible(false)
+                #endif
             }
+            #if os(iOS)
             .listStyle(.insetGrouped)
             .navigationBarTitle("tabs.prefs")
+            #elseif os(macOS)
+            .listStyle(.sidebar)
+            #endif
         }
     }
 }

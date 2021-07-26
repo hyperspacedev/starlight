@@ -15,7 +15,7 @@ struct ExploreView: View {
     var body: some View {
         NavigationView {
             List {
-                TrendingList(trends: trendingTags)
+                TrendingList(trends: trendingTags ?? [])
             }
             .navigationTitle("tabs.explore")
         }
@@ -27,25 +27,11 @@ struct ExploreView: View {
                     .searchCompletion("#\(query)")
             }
         })
+        #if os(iOS)
         .autocapitalization(.none)
+        #endif
         .onAppear(perform: loadData)
         .refreshable(action: loadData)
-    }
-    
-    var searchBar: some View {
-        HStack {
-            TextField("explore.search", text: $query)
-                .autocapitalization(.none)
-                .textFieldStyle(.roundedBorder)
-            if !query.isEmpty {
-                Button(action: {
-                    query = ""
-                }) {
-                    Image(systemName: "delete.left")
-                        .foregroundColor(.secondary)
-                }
-            }
-        }
     }
     
     func loadData() {

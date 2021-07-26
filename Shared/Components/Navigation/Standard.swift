@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Chica
 
 /// The navigation layout on bigger devices such as iPads and Macs.
 struct StandardNavigationLayout: View {
@@ -13,9 +14,9 @@ struct StandardNavigationLayout: View {
     /// An enumeration of the different timeline pages
     enum NavigationViews {
         case home
-        case local
-        case `public`
+        case network
         case messages
+        case explore
         case announcements
         case activity
         case recommended
@@ -28,118 +29,56 @@ struct StandardNavigationLayout: View {
 
     /// The current navigation selection
     @State private var selection: Set<NavigationViews> = [.home]
+    
+    /// Whether the user is logged out or not.
+    @State private var loggedOut = Chica.OAuth.shared.authState == .signedOut
+    
+    @State private var trends: [Tag]?
 
     /// The primary view.
     var body: some View {
         HStack {
             NavigationView {
                 VStack {
-                    #if os(macOS)
-                    HStack {
-                        TextField("Search...", text: self.$searchText)
-                            .cornerRadius(4)
-                    }
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onTapGesture {
-                            self.selection = [.searchResults]
-                        }
-                    #endif
-
                     List(selection: $selection) {
                         Section {
-                            NavigationLink(
-                                destination:
-                                    Text("Home timeline")
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Home", systemImage: "house")
-                                })
-                                .accessibility(label: Text("Home"))
-                                .tag(NavigationViews.home)
-                            NavigationLink(
-                                destination:
-                                    Text("Local timeline")
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Local", systemImage: "building.2")
-                                })
-                                .accessibility(label: Text("Local"))
-                                .tag(NavigationViews.local)
-                            NavigationLink(
-                                destination:
-                                    Text("Public timeline")
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Public", systemImage: "globe")
-                                })
-                                .accessibility(label: Text("Public"))
-                                .tag(NavigationViews.public)
-                            NavigationLink(
-                                destination:
-                                    Text("Messages")
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Messages", systemImage: "quote.bubble")
-                                })
-                                .accessibility(label: Text("Messages"))
-                                .tag(NavigationViews.messages)
-                            #if os(iOS)
-                            NavigationLink(
-                                destination:
-                                    Text("Search")
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Search", systemImage: "magnifyingglass")
-                                })
-                                .accessibility(label: Text("Search"))
-                                .tag(NavigationViews.searchResults)
-                            #endif
+                            NavigationLink(destination: Text("tabs.home").navigationTitle("tabs.home")) {
+                                Label("tabs.home", systemImage: "house")
+                            }
+                            .tag(NavigationViews.home)
+                            NavigationLink(destination: Text("tabs.network").navigationTitle("tabs.network")) {
+                                Label("tabs.network", systemImage: "network")
+                            }
+                            .tag(NavigationViews.network)
+                            NavigationLink(destination: Text("Messages").navigationTitle("Messages")) {
+                                Label("Messages", systemImage: "bubble.left")
+                            }
+                            .tag(NavigationViews.messages)
                         }
-
-                        Section {
-                            NavigationLink(
-                                destination:
-                                    Text("Announcements")
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Announcements", systemImage: "megaphone")
-                                })
-                                .accessibility(label: Text("Announcements"))
-                                .tag(NavigationViews.announcements)
-                            NavigationLink(
-                                destination:
-                                    Text("Activity")
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Activity", systemImage: "flame")
-                                })
-                                .accessibility(label: Text("Activity"))
-                                .tag(NavigationViews.activity)
-                            NavigationLink(
-                                destination:
-                                    Text("Recommended")
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity),
-                                label: {
-                                    Label("Recommended", systemImage: "person.2")
-                                })
-                                .accessibility(label: Text("Recommended"))
-                                .tag(NavigationViews.recommended)
+                        TrendingList(trends: trends ?? [], limit: 5)
+                        
+                        #if os(iOS)
+                        NavigationLink(destination: SettingsView()) {
+                            Label("tabs.prefs", systemImage: "gear")
                         }
+                        #endif
                     }
-                    .listStyle(SidebarListStyle())
+                    .listStyle(.sidebar)
                     .frame(minWidth: 170, maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .frame(minWidth: 170, idealWidth: 180, maxWidth: .infinity, maxHeight: .infinity)
             }
+            .onAppear(perform: loadData)
+            .refreshable(action: loadData)
+            .sheet(isPresented: $loggedOut) { LoginView() }
+            .searchable(text: $searchText, prompt: "explore.search", suggestions: {
+                if !searchText.isEmpty {
+                    Text("@\(searchText)")
+                        .searchCompletion("@\(searchText)")
+                    Text("#\(searchText)")
+                        .searchCompletion("#\(searchText)")
+                }
+            })
             .toolbar {
                 #if os(macOS)
                 ToolbarItem(placement: .navigation) {
@@ -178,6 +117,12 @@ struct StandardNavigationLayout: View {
     /// Change the current view selection to the notifications view.
     private func selectNotifications() {
         self.selection = [.notifications]
+    }
+    
+    private func loadData() {
+        Task.init {
+            trends = try await Chica.shared.request(.get, for: .trending)
+        }
     }
 }
 

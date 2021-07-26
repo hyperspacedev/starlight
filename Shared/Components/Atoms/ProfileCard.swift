@@ -9,13 +9,21 @@ import SwiftUI
 import Chica
 
 struct ProfileCard: View {
-    @State var profile: Account?
-    @State var profileName: String = "Fediverse Account"
+    @State private var profile: Account?
+    @State private var profileName: String = "Fediverse Account"
+    
+    public enum ProfileImageSize: CGFloat {
+        case small = 32
+        case medium = 56
+        case large = 64
+    }
+    
+    var imageSize: ProfileImageSize = .large
     
     var body: some View {
         HStack(spacing: 8) {
             ProfileImage()
-                .frame(maxWidth: 56)
+                .frame(maxWidth: imageSize.rawValue)
             VStack(alignment: .leading) {
                 Text(profileName)
                     .font(.system(.title, design: .rounded))

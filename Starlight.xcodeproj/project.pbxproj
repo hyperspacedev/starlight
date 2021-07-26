@@ -34,6 +34,7 @@
 		95C7119B26AB89780014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119A26AB89780014D6B7 /* Chica */; };
 		95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2E26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
+		95CB6E2F26AF19E700B011AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
 		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--iOS--Info.plist"; sourceTree = "<group>"; };
 		95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--macOS--Info.plist"; sourceTree = "<group>"; };
 		95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		95CB6E3026AF1E6100B011AC /* Starlight (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Starlight (macOS).entitlements"; sourceTree = "<group>"; };
 		FA18195E26AB8BF20041560E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FA18196026AB8BF40041560E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +138,7 @@
 		957F124926AB88E200386F35 = {
 			isa = PBXGroup;
 			children = (
+				95CB6E3026AF1E6100B011AC /* Starlight (macOS).entitlements */,
 				95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */,
 				95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */,
 				957F124E26AB88E300386F35 /* Shared */,
@@ -420,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */,
+				95CB6E2F26AF19E700B011AC /* String.swift in Sources */,
 				951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */,
 				95C7118F26AB89290014D6B7 /* Standard.swift in Sources */,
 				951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */,
@@ -663,6 +667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Starlight (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -695,6 +700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Starlight (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

@@ -19,5 +19,11 @@ struct StarlightApp: App {
                     Chica.handleURL(url: url, actions: [:])
                 }
         }
+        
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
     }
 }

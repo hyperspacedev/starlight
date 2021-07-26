@@ -22,7 +22,7 @@ struct LoginView: View {
             Text("or")
             twitterLogin
             Spacer()
-            Text("Don't have an account? **[Sign up &rsaquo;](starlight://register)**")
+            Text("login.register.prompt")
             loginButton
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

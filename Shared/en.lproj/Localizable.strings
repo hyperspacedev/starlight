@@ -11,14 +11,22 @@
 "login.header" = "Log In";
 "login.info" = "Log in to a Mastodon or Twitter account to view posts from the world, create posts, follow others, and more.";
 "login.fullname" = "Not from %@? Sign in with your full username.";
+"login.register.prompt" = "Don't have an account? [Create an account &rsaquo;](starlight://register)";
 
 // MARK: - Tabs
 "tabs.home" = "Home";
 "tabs.network" = "Network";
 "tabs.explore" = "Explore";
 "tabs.profile" = "You";
+"tabs.messages" = "Messages";
 "tabs.prefs" = "Settings";
 
 // MARK: - Explore
-"explore.trends" = "Trending Tags";
 "explore.search" = "Search for Users, Posts, and Tags";
+"explore.trends" = "Trending Tags";
+"explore.trends.tagline" = "%1$@ people talking, %2$@ posts about this topic today";
+"explore.trends.tagline.accounts" = "%@ people talking";
+"explore.trends.tagline.uses" = "%@ posts about this topic today";
+
+// MARK: - Misc.
+"misc.placeholder" = "Content goes here";
