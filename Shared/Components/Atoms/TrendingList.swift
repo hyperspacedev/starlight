@@ -10,11 +10,16 @@ import Chica
 
 struct TrendingList: View {
     
-    @State private var trends: [Tag]?
+    var trends: [Tag]?
     
     var body: some View {
-        List {
-            Section("explore.trends") {
+        Section(header: Text("explore.trends")) {
+            if trends == nil {
+                ForEach(1..<6) { _ in
+                    Label("Tag goes here", systemImage: "number")
+                        .redacted(reason: .placeholder)
+                }
+            } else {
                 ForEach(trends ?? []) { tag in
                     NavigationLink(destination:
                                     Text("Posts with #\(tag.name)").padding()
@@ -24,20 +29,6 @@ struct TrendingList: View {
                 }
             }
         }
-        .refreshable {
-            Task.init {
-                try await getTrends()
-            }
-        }
-        .onAppear {
-            Task.init {
-                try await getTrends()
-            }
-        }
-    }
-    
-    func getTrends() async throws {
-        trends = try await Chica.shared.request(.get, for: .trending)
     }
 }
 

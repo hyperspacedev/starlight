@@ -22,12 +22,7 @@ struct CompactNavigationLayout: View {
             }.tabItem {
                 Label("tabs.network", systemImage: "network")
             }
-            NavigationView {
-                Group {
-                    TrendingList()
-                }
-                .navigationBarTitle("tabs.explore")
-            }
+            ExploreView()
             .tabItem {
                 Label("tabs.explore", systemImage: "magnifyingglass")
             }
