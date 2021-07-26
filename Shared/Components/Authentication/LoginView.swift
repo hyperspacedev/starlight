@@ -48,7 +48,7 @@ struct LoginView: View {
         VStack(alignment: .leading) {
             Section("Mastodon") {
                 TextField("example@mastodon.online", text: $fediverseName)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.paddedRoundedBorder)
                 Text(
                     String(
                         format: NSLocalizedString("login.fullname", comment: "Full username sign in"),
@@ -66,7 +66,7 @@ struct LoginView: View {
         VStack(alignment: .leading) {
             Section("Twitter") {
                 TextField("@twitter", text: $twitterName)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.paddedRoundedBorder)
             }
 
         }
@@ -89,6 +89,7 @@ struct LoginView: View {
             Text("login.button")
                 .bold()
         }
+        .buttonStyle(.plain)
         .padding()
         .frame(maxWidth: .infinity)
         .background(Color.accentColor)

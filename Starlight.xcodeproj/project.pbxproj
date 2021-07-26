@@ -35,6 +35,8 @@
 		95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2E26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2F26AF19E700B011AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
+		95F20B4D26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */; };
+		95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */; };
 		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -78,6 +80,7 @@
 		95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--macOS--Info.plist"; sourceTree = "<group>"; };
 		95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		95CB6E3026AF1E6100B011AC /* Starlight (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Starlight (macOS).entitlements"; sourceTree = "<group>"; };
+		95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedRoundedBorderTextFieldStyle.swift; sourceTree = "<group>"; };
 		FA18195E26AB8BF20041560E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FA18196026AB8BF40041560E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				954A102226AC5A4E00E6F70B /* Atoms */,
+				95F20B4B26AF4FE200E8CA55 /* Styles */,
 				95C7118226AB89290014D6B7 /* Navigation */,
 				95C7118526AB89290014D6B7 /* Authentication */,
 				951FB2E526ADADA400E20654 /* Pages */,
@@ -230,6 +234,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95F20B4B26AF4FE200E8CA55 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */,
+				95F20B4D26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */,
 				95A5197126ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */,
 				951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */,
@@ -423,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */,
+				95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				95CB6E2F26AF19E700B011AC /* String.swift in Sources */,
 				951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */,
 				95C7118F26AB89290014D6B7 /* Standard.swift in Sources */,

@@ -70,7 +70,12 @@ struct StandardNavigationLayout: View {
             }
             .onAppear(perform: loadData)
             .refreshable(action: loadData)
-            .sheet(isPresented: $loggedOut) { LoginView() }
+            .sheet(isPresented: $loggedOut) {
+                LoginView()
+                #if os(macOS)
+                    .frame(width: 350, height: 500)
+                #endif
+            }
             .searchable(text: $searchText, prompt: "explore.search", suggestions: {
                 if !searchText.isEmpty {
                     Text("@\(searchText)")
