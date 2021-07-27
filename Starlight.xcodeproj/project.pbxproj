@@ -32,6 +32,10 @@
 		95C7119526AB89290014D6B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7118726AB89290014D6B7 /* ContentView.swift */; };
 		95C7119826AB89540014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119726AB89540014D6B7 /* Chica */; };
 		95C7119B26AB89780014D6B7 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = 95C7119A26AB89780014D6B7 /* Chica */; };
+		95C8B77B26AF621100F5DB24 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B77A26AF621100F5DB24 /* TimelineView.swift */; };
+		95C8B77C26AF621100F5DB24 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B77A26AF621100F5DB24 /* TimelineView.swift */; };
+		95C8B77D26AF862300F5DB24 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
+		95C8B77E26AF862400F5DB24 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
 		95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2E26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2F26AF19E700B011AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
@@ -78,6 +82,7 @@
 		95C7118726AB89290014D6B7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		95C7119C26AB8A4F0014D6B7 /* Starlight--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--iOS--Info.plist"; sourceTree = "<group>"; };
 		95C7119D26AB8A5B0014D6B7 /* Starlight--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Starlight--macOS--Info.plist"; sourceTree = "<group>"; };
+		95C8B77A26AF621100F5DB24 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		95CB6E3026AF1E6100B011AC /* Starlight (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Starlight (macOS).entitlements"; sourceTree = "<group>"; };
 		95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedRoundedBorderTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 			children = (
 				951FB2E626ADADB500E20654 /* SettingsView.swift */,
 				95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */,
+				95C8B77A26AF621100F5DB24 /* TimelineView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 				95A5196F26ACDCDF00ABD1A4 /* String.swift in Sources */,
 				95C7119226AB89290014D6B7 /* LoginView.swift in Sources */,
 				95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */,
+				95C8B77B26AF621100F5DB24 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +454,7 @@
 				95C7119126AB89290014D6B7 /* Compact.swift in Sources */,
 				95C7119326AB89290014D6B7 /* LoginView.swift in Sources */,
 				95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */,
+				95C8B77C26AF621100F5DB24 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C8B77E26AF862400F5DB24 /* String.swift in Sources */,
 				957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C8B77D26AF862300F5DB24 /* String.swift in Sources */,
 				957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

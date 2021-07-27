@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Starlight
 
 class Tests_macOS: XCTestCase {
 
@@ -29,6 +30,14 @@ class Tests_macOS: XCTestCase {
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testMarkdownConversion() throws {
+        let example =
+            #"<p>This is an example to <a href="https://www.google.com" class="starlight" rel="noreferrer noopener">Google</a>.</p>"#
+        let expected = #"This is an example to [Google](https://www.google.com)."#
+        
+        XCTAssertEqual(example.toMarkdown(), AttributedString(expected))
     }
 
     func testLaunchPerformance() throws {

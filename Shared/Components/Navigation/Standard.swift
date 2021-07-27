@@ -42,7 +42,7 @@ struct StandardNavigationLayout: View {
                 VStack {
                     List(selection: $selection) {
                         Section {
-                            NavigationLink(destination: Text("tabs.home").navigationTitle("tabs.home")) {
+                            NavigationLink(destination: TimelineView(timeline: .home)) {
                                 Label("tabs.home", systemImage: "house")
                             }
                             .tag(NavigationViews.home)
