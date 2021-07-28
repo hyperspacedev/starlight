@@ -18,8 +18,14 @@
 "tabs.network" = "Network";
 "tabs.explore" = "Explore";
 "tabs.profile" = "You";
+"tabs.notifs" = "Notifications";
 "tabs.messages" = "Messages";
 "tabs.prefs" = "Settings";
+
+// MARK: - Timelines
+"timelines.updatediff" = "Last updated %@ ago";
+"timelines.updatediff.started" = "Just updated now";
+"timelines.empty" = "Timeline Is Empty";
 
 // MARK: - Explore
 "explore.search" = "Search for Users, Posts, and Tags";
@@ -27,6 +33,11 @@
 "explore.trends.tagline" = "%1$@ people talking, %2$@ posts about this topic today";
 "explore.trends.tagline.accounts" = "%@ people talking";
 "explore.trends.tagline.uses" = "%@ posts about this topic today";
+
+// MARK: - Actions
+"actions.create" = "Create post";
+"actions.upload" = "Upload photos";
+"actions.reload" = "Refresh";
 
 // MARK: - Misc.
 "misc.placeholder" = "Content goes here";

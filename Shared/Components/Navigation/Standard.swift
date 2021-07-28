@@ -41,20 +41,19 @@ struct StandardNavigationLayout: View {
             NavigationView {
                 VStack {
                     List(selection: $selection) {
-                        Section {
-                            NavigationLink(destination: TimelineView(timeline: .home)) {
-                                Label("tabs.home", systemImage: "house")
-                            }
-                            .tag(NavigationViews.home)
-                            NavigationLink(destination: Text("tabs.network").navigationTitle("tabs.network")) {
-                                Label("tabs.network", systemImage: "network")
-                            }
-                            .tag(NavigationViews.network)
-                            NavigationLink(destination: Text("Messages").navigationTitle("Messages")) {
-                                Label("Messages", systemImage: "bubble.left")
-                            }
-                            .tag(NavigationViews.messages)
+                        NavigationLink(destination: TimelineView(.home){ }) {
+                            Label("tabs.home", systemImage: "house")
                         }
+                        .tag(NavigationViews.home)
+                        NavigationLink(destination: TimelineView(.local){ }) {
+                            Label("tabs.network", systemImage: "network")
+                        }
+                        .tag(NavigationViews.network)
+                        NavigationLink(destination: Text("Messages").navigationTitle("Messages")) {
+                            Label("Messages", systemImage: "bubble.left")
+                        }
+                        .tag(NavigationViews.messages)
+
                         TrendingList(trends: trends ?? [], limit: 5)
                         
                         #if os(iOS)
@@ -91,7 +90,6 @@ struct StandardNavigationLayout: View {
                         Image(systemName: "sidebar.left")
                     }.help("Show or hide the sidebar.")
                 }
-
                 ToolbarItem {
                     Button(action: selectNotifications) {
                         Image(systemName: "bell")
@@ -117,6 +115,10 @@ struct StandardNavigationLayout: View {
                 NSSplitViewController.toggleSidebar(_:)
             ), with: nil)
         #endif
+    }
+    
+    private func refresh() {
+        print("Refreshed!")
     }
 
     /// Change the current view selection to the notifications view.

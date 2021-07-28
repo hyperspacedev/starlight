@@ -14,10 +14,12 @@
 		954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
+		95A20B9526B0F752007CFD6B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A20B9426B0F752007CFD6B /* HomeView.swift */; };
 		95A5196F26ACDCDF00ABD1A4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
 		95A5197126ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */; };
 		95A5197226ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */; };
 		95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
+		95BE793926B11D6E00A10AD5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A20B9426B0F752007CFD6B /* HomeView.swift */; };
 		95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7118026AB89290014D6B7 /* Assets.xcassets */; };
@@ -72,6 +74,7 @@
 		957F126526AB88E400386F35 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		957F126B26AB88E400386F35 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957F126F26AB88E400386F35 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		95A20B9426B0F752007CFD6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		95A5196E26ACDCDF00ABD1A4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		95C7117F26AB89290014D6B7 /* StarlightApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 				951FB2E626ADADB500E20654 /* SettingsView.swift */,
 				95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */,
 				95C8B77A26AF621100F5DB24 /* TimelineView.swift */,
+				95A20B9426B0F752007CFD6B /* HomeView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -423,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */,
+				95A20B9526B0F752007CFD6B /* HomeView.swift in Sources */,
 				95F20B4D26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */,
 				95A5197126ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */,
@@ -443,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */,
+				95BE793926B11D6E00A10AD5 /* HomeView.swift in Sources */,
 				95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				95CB6E2F26AF19E700B011AC /* String.swift in Sources */,
 				951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */,

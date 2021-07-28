@@ -10,10 +10,7 @@ import SwiftUI
 struct CompactNavigationLayout: View {
     var body: some View {
         TabView {
-            VStack {
-                Text("Home Feed View")
-                    .padding()
-            }.tabItem {
+            HomeView().tabItem {
                 Label("tabs.home", systemImage: "house")
             }
             VStack {
@@ -21,6 +18,13 @@ struct CompactNavigationLayout: View {
                     .padding()
             }.tabItem {
                 Label("tabs.network", systemImage: "network")
+            }
+            VStack {
+                Text("tabs.notifs")
+                    .padding()
+            }
+            .tabItem {
+                Label("tabs.notifs", systemImage: "bell")
             }
             ExploreView()
             .tabItem {
