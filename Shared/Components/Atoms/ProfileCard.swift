@@ -8,22 +8,19 @@
 import SwiftUI
 import Chica
 
+/// A component that displays a profile picture, display name, and account information.
 struct ProfileCard: View {
     @State private var profile: Account?
     @State private var profileName: String = "Fediverse Account"
     
-    public enum ProfileImageSize: CGFloat {
-        case small = 32
-        case medium = 56
-        case large = 64
-    }
-    
-    var imageSize: ProfileImageSize = .large
+    /// The size of the profile image to use.
+    ///
+    /// - SeeAlso: ``ProfileImage.size``
+    var imageSize: ProfileImage.Size = .large
     
     var body: some View {
         HStack(spacing: 8) {
-            ProfileImage()
-                .frame(maxWidth: imageSize.rawValue)
+            ProfileImage(size: imageSize)
             VStack(alignment: .leading) {
                 Text(profileName)
                     .font(.system(.title, design: .rounded))
@@ -38,11 +35,11 @@ struct ProfileCard: View {
         } }
     }
     
-    func fetchProfile() async throws {
+    private func fetchProfile() async throws {
         profile = try await Chica.shared.request(.get, for: .verifyAccountCredentials)
     }
     
-    func emojifyProfileName() async throws {
+    private func emojifyProfileName() async throws {
         profileName = await profile?.displayName.emojified() ?? profile?.username ?? "Fediverse Account"
     }
 }

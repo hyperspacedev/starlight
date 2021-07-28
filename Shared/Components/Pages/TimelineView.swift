@@ -8,6 +8,7 @@
 import SwiftUI
 import Chica
 
+/// A view that displays a timeline of posts.
 struct TimelineView: View {
     
     enum Timeline {
@@ -22,7 +23,7 @@ struct TimelineView: View {
     var body: some View {
         VStack {
             if posts == nil {
-                Text("FUCK")
+                Text("misc.placeholder")
             } else {
                 List(posts ?? [], id: \.self) { status in
                     Text(status.content.toMarkdown())
@@ -37,12 +38,12 @@ struct TimelineView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    func loadData() {
+    private func loadData() {
         Task.init { try await fetchPostsFromTimeline() }
     }
     
     
-    func fetchPostsFromTimeline() async throws {
+    private func fetchPostsFromTimeline() async throws {
         // TODO: Implement the proper timeline networking requests here.
         switch timeline {
         case .home:

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The main view for adjusting settings.
 struct SettingsView: View {
     
     private enum SettingsKeys {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A custom text field style for a rounded border text field with padding.
 struct PaddedRoundedBorderTextFieldStyle: TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {
         configuration

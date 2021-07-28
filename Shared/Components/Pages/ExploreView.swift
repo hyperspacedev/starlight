@@ -8,6 +8,9 @@
 import SwiftUI
 import Chica
 
+/// The main view for the Explore page with trending lists, recommended follows, etc.
+///
+/// This page is the equivalent to the "Activity" and Recommended pages from Hyperspace Desktop.
 struct ExploreView: View {
     @State private var query: String = ""
     @State private var trendingTags: [Tag]?
@@ -34,13 +37,13 @@ struct ExploreView: View {
         .refreshable(action: loadData)
     }
     
-    func loadData() {
+    private func loadData() {
         Task.init {
             try await getTrends()
         }
     }
     
-    func getTrends() async throws {
+    private func getTrends() async throws {
         trendingTags = try await Chica.shared.request(.get, for: .trending)
     }
 }

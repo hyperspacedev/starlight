@@ -10,7 +10,19 @@ import Chica
 
 /// A convenience view for presenting an image of the current user's avatar.
 struct ProfileImage: View {
+    
     @State private var account: Account?
+    
+    /// The size of the image to use.
+    ///
+    /// Defaults to `ProfileImage.Size.large`.
+    @State var size: ProfileImage.Size = .large
+    
+    enum Size: CGFloat {
+        case small = 32
+        case medium = 56
+        case large = 64
+    }
     
     var body: some View {
         AsyncImage(url: URL(string: account?.avatarStatic ?? "")) { phase in
@@ -18,24 +30,21 @@ struct ProfileImage: View {
             case .empty:
                 ProgressView()
                     .padding()
-                    .frame(maxWidth: 64)
             case .failure:
                 Image(systemName: "person.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 64)
             case .success(let image):
                 image.resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(maxWidth: 64)
             @unknown default:
                 Image(systemName: "person.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 64)
             }
         }
+        .frame(maxWidth: size.rawValue)
         .onAppear {
             Task.init {
                 try await fetchProfile()
