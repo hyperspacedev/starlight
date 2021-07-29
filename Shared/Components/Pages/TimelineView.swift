@@ -28,9 +28,13 @@ public struct TimelineView<HeaderContent: View> : View {
     @State private var lastUpdate: Date = Date.now
     @State private var lastUpdateString = ""
     
+    @State private var state: ViewState = .initial
+    
     private var header: HeaderContent?
     
     private let timer = Timer.publish(every: 15, on: .current, in: .common).autoconnect()
+    
+    private let gridLayout: [GridItem] = [.init(.adaptive(minimum: 300, maximum: .infinity), spacing: 4, alignment: .top)]
     
     private var title: String {
         switch timeline {
@@ -89,26 +93,35 @@ public struct TimelineView<HeaderContent: View> : View {
         .foregroundColor(.secondary)
         .padding(16)
     }
+    
+    @ViewBuilder private func postGrid(_ stream: [Status]) -> some View {
+        Group {
+            if stream.isEmpty {
+                emptyView
+            } else {
+                LazyVGrid(columns: gridLayout) {
+                    ForEach(stream, id: \.self) { status in PostView(post: status) }
+                }.padding()
+            }
+        }
+        
+    }
         
     private var stream: some View {
         Group {
-            if let postStream = posts {
-                if postStream.isEmpty {
-                    emptyView
-                } else {
-                    ForEach(postStream, id: \.self) { status in
-                        Text(status.content.toMarkdown())
-                            .padding()
-                            .border(.selection, width: 1)
-                    }
+            switch state {
+            case .initial, .loading:
+                ProgressView()
+                    .padding()
+            case .loaded:
+                if let statuses = posts {
+                    postGrid(statuses)
                 }
-
-            } else {
+            case .errored(_):
                 Text("misc.placeholder")
                     .font(.system(.title, design: .rounded))
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     /// Refresh the data for this timeline.
@@ -121,7 +134,13 @@ public struct TimelineView<HeaderContent: View> : View {
     
     private func loadData() {
         Task.init {
-            try await fetchPostsFromTimeline()
+            state = .loading
+            do {
+                try await fetchPostsFromTimeline()
+                state = .loaded
+            } catch {
+                state = .errored(reason: "Unknown error")
+            }
             lastUpdate = Date.now
         }
     }
@@ -131,6 +150,7 @@ public struct TimelineView<HeaderContent: View> : View {
         switch timeline {
         case .home:
             posts = []
+            // posts = try await Chica.shared.request(.get, for: .accountStatuses(id: "308724"))
         case .local:
             posts = []
         case .public:

@@ -32,7 +32,9 @@ struct HomeView: View {
             #if os(iOS)
             .navigationBarHidden(true)
             #endif
-            .refreshable(action: timeline.refresh)
+            .refreshable {
+                timeline.refresh()
+            }
         }
     }
     
