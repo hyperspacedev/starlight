@@ -27,6 +27,10 @@
 "timelines.updatediff.started" = "Just updated now";
 "timelines.empty" = "Timeline Is Empty";
 
+// MARK: - Network
+"network.local" = "In my network";
+"network.federated" = "In the fediverse";
+
 // MARK: - Explore
 "explore.search" = "Search for Users, Posts, and Tags";
 "explore.trends" = "Trending Tags";

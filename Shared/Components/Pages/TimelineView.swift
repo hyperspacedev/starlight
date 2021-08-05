@@ -11,20 +11,14 @@ import Chica
 /// A view that displays a timeline of posts.
 public struct TimelineView<HeaderContent: View> : View {
     
-    enum NetworkScope {
-        case `public`
-        case local
-        case none
-    }
-    
-    init(_ timelineScope: TimelineScope, with networkScope: NetworkScope = .none, @ViewBuilder header: () -> HeaderContent) {
+    init(_ timelineScope: TimelineScope, with networkScope: TimelineNetworkScope = .none, @ViewBuilder header: () -> HeaderContent) {
         self.header = header()
         self.timeline = timelineScope
         self.networkScope = networkScope
     }
     
     var timeline: TimelineScope
-    var networkScope: NetworkScope
+    var networkScope: TimelineNetworkScope
     
     @State private var posts: [Status]? = []
     @State private var lastUpdate: Date = Date.now
@@ -43,9 +37,9 @@ public struct TimelineView<HeaderContent: View> : View {
         case .home:
             return NSLocalizedString("tabs.home", comment: "Home")
         case .network where self.networkScope == .local:
-            return NSLocalizedString("tabs.network", comment: "Network")
-        case .network where self.networkScope == .public:
-            return "In the Fediverse"
+            return NSLocalizedString("network.local", comment: "Network")
+        case .network where self.networkScope == .federated:
+            return NSLocalizedString("network.federated", comment: "Network")
         case .tag(let tag):
             return "#\(tag)"
         default:
@@ -65,10 +59,13 @@ public struct TimelineView<HeaderContent: View> : View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .onAppear(perform: loadData)
-        .refreshable(action: loadData)
-        .navigationTitle(title)
+        .onAppear { loadData(with: networkScope) }
+        .refreshable { loadData(with: networkScope) }
+        .onChange(of: networkScope) { value in
+            loadData(with: value)
+        }
         #if os(macOS)
+        .navigationTitle(title)
         .navigationSubtitle(
             lastUpdateString == ""
             ? NSLocalizedString("timelines.updatediff.started", comment: "Just updated")
@@ -138,11 +135,11 @@ public struct TimelineView<HeaderContent: View> : View {
         loadData()
     }
     
-    private func loadData() {
+    private func loadData(with scope: TimelineNetworkScope = .none) {
         Task.init {
             state = .loading
             do {
-                try await fetchPostsFromTimeline()
+                try await fetchPostsFromTimeline(with: scope)
                 state = .loaded
             } catch {
                 state = .errored(reason: "Unknown error")
@@ -151,12 +148,17 @@ public struct TimelineView<HeaderContent: View> : View {
         }
     }
 
-    private func fetchPostsFromTimeline() async throws {
+    private func fetchPostsFromTimeline(with scope: TimelineNetworkScope) async throws {
         do {
             switch timeline {
-            case _ where networkScope == .local:
+            case .network where scope == .federated:
+                posts = try await Chica.shared.request(.get, for: .timeline(scope: .network), params: ["local": "false"])
+            case .network where scope == .local:
                 posts = try await Chica.shared.request(.get, for: .timeline(scope: .network), params: ["local": "true"])
+            case .tag(_) where scope == .local:
+                posts = try await Chica.shared.request(.get, for: .timeline(scope: timeline), params: ["local": "true"])
             default:
+                print("OTHER")
                 posts = try await Chica().request(.get, for: .timeline(scope: timeline))
             }
         } catch FetchError.message(let reason, let data) {

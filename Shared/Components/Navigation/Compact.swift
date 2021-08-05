@@ -13,10 +13,7 @@ struct CompactNavigationLayout: View {
             HomeView().tabItem {
                 Label("tabs.home", systemImage: "house")
             }
-            VStack {
-                Text("Network View")
-                    .padding()
-            }.tabItem {
+            NetworkView().tabItem {
                 Label("tabs.network", systemImage: "network")
             }
             VStack {
