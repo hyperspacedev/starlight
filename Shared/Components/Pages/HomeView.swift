@@ -54,7 +54,7 @@ struct HomeView: View {
                 destination: Text("misc.placeholder")
                     .navigationTitle("tabs.profile")
             ) {
-                ProfileImage(size: .medium)
+                ProfileImage(for: .currentUser, size: .medium)
             }
         }
         .padding()

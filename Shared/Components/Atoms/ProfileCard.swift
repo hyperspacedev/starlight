@@ -20,7 +20,7 @@ struct ProfileCard: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            ProfileImage(size: imageSize)
+            ProfileImage(for: .currentUser, size: imageSize)
             VStack(alignment: .leading) {
                 Text(profileName)
                     .font(.system(.title, design: .rounded))
@@ -40,7 +40,7 @@ struct ProfileCard: View {
     }
     
     private func emojifyProfileName() async throws {
-        profileName = await profile?.displayName.emojified() ?? profile?.username ?? "Fediverse Account"
+        profileName = await profile?.getName().emojified() ?? "Fediverse Account"
     }
 }
 

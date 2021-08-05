@@ -13,11 +13,9 @@ struct PostView: View {
     var post: Status? = nil
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             if let status = post {
-                Text(RelativeDateTimeFormatter().localizedString(for: getPostDate(status: status) ?? .now, relativeTo: .now))
-                    .foregroundColor(.secondary)
-                    .font(.caption)
+                authorHeader(of: status)
                 VStack(alignment: .leading) {
                     Text(status.content.toMarkdown())
                 }
@@ -47,6 +45,20 @@ struct PostView: View {
         .padding()
         .background(.background)
         .cornerRadius(6)
+    }
+    
+    private func authorHeader(of status: Status) -> some View {
+        HStack {
+            ProfileImage(for: .user(id: status.account.id), size: .small)
+            VStack(alignment: .leading) {
+                Text(status.account.getName())
+                    .bold()
+                Text(RelativeDateTimeFormatter().localizedString(for: getPostDate(status: status) ?? .now, relativeTo: .now))
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
+        }
+        .font(.system(.body, design: .rounded))
     }
     
     private func getPostDate(status: Status) -> Date? {
