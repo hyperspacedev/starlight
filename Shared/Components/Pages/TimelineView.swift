@@ -11,18 +11,20 @@ import Chica
 /// A view that displays a timeline of posts.
 public struct TimelineView<HeaderContent: View> : View {
     
-    enum Timeline {
-        case home
-        case local
+    enum NetworkScope {
         case `public`
+        case local
+        case none
     }
     
-    init(_ timelineScope: TimelineView.Timeline, @ViewBuilder header: () -> HeaderContent) {
+    init(_ timelineScope: TimelineScope, with networkScope: NetworkScope = .none, @ViewBuilder header: () -> HeaderContent) {
         self.header = header()
         self.timeline = timelineScope
+        self.networkScope = networkScope
     }
     
-    var timeline: Timeline
+    var timeline: TimelineScope
+    var networkScope: NetworkScope
     
     @State private var posts: [Status]? = []
     @State private var lastUpdate: Date = Date.now
@@ -40,10 +42,14 @@ public struct TimelineView<HeaderContent: View> : View {
         switch timeline {
         case .home:
             return NSLocalizedString("tabs.home", comment: "Home")
-        case .local:
+        case .network where self.networkScope == .local:
             return NSLocalizedString("tabs.network", comment: "Network")
-        case .public:
+        case .network where self.networkScope == .public:
             return "In the Fediverse"
+        case .tag(let tag):
+            return "#\(tag)"
+        default:
+            return ""
         }
     }
         
@@ -146,15 +152,16 @@ public struct TimelineView<HeaderContent: View> : View {
     }
 
     private func fetchPostsFromTimeline() async throws {
-        // TODO: Implement the proper timeline networking requests here.
-        switch timeline {
-        case .home:
-            posts = []
-            // posts = try await Chica.shared.request(.get, for: .accountStatuses(id: "308724"))
-        case .local:
-            posts = []
-        case .public:
-            posts = []
+        do {
+            switch timeline {
+            case _ where networkScope == .local:
+                posts = try await Chica.shared.request(.get, for: .timeline(scope: .network), params: ["local": "true"])
+            default:
+                posts = try await Chica().request(.get, for: .timeline(scope: timeline))
+            }
+        } catch FetchError.message(let reason, let data) {
+            print(reason)
+            print(data.base64EncodedString())
         }
     }
     

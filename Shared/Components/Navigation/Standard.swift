@@ -45,7 +45,7 @@ struct StandardNavigationLayout: View {
                             Label("tabs.home", systemImage: "house")
                         }
                         .tag(NavigationViews.home)
-                        NavigationLink(destination: TimelineView(.local){ }) {
+                        NavigationLink(destination: TimelineView(.network, with: .local){ }) {
                             Label("tabs.network", systemImage: "network")
                         }
                         .tag(NavigationViews.network)

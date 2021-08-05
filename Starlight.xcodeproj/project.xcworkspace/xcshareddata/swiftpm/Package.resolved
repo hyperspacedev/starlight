@@ -2,11 +2,11 @@
   "object": {
     "pins": [
       {
-        "package": "chica",
+        "package": "Chica",
         "repositoryURL": "https://github.com/hyperspacedev/chica",
         "state": {
           "branch": "main",
-          "revision": "ffd35d471b41f8d103de30a6728e5f648afa29cc",
+          "revision": "99632bd2d1f6e695d6e7e09ec9ba595b1f04052c",
           "version": null
         }
       },

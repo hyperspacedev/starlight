@@ -62,7 +62,7 @@ struct PostView: View {
         case .public: return "globe"
         case .unlisted: return "eye.slash"
         case .private: return "person.2"
-        @unknown default: return "star"
+        default: return "star"
         }
     }
 }

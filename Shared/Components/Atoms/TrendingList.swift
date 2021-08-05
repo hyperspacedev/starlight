@@ -47,15 +47,16 @@ struct TrendingDetail: View {
     /// The tag to view details of.
     @State var tag: Tag
     
+    @State var timeline: [Status]? = []
+    
     var body: some View {
-        List {
+        ScrollView {
             #if os(iOS)
             header
             #endif
             
-            Text("misc.placeholder")
-                .padding()
-                .foregroundColor(.secondary)
+            TimelineView(.tag(tag: tag.name)) { }
+
         }
         .listStyle(.plain)
         .navigationTitle("#\(tag.name)")
@@ -99,6 +100,7 @@ struct TrendingDetail: View {
     
     /// Returns the number of posts using this tag within the past 24 hours.
     func getUsesForToday() -> Int { Int(tag.history?.first?.uses ?? "0") ?? 0 }
+    
 }
 
 struct TrendingList_Previews: PreviewProvider {
