@@ -10,31 +10,17 @@ import SwiftUI
 /// The page for the home view on iOS.
 struct HomeView: View {
     
-    var timeline = TimelineView(.home) {
-        HomeViewButtonRow()
-    }
+    var timeline = EmptyView()
     
     var body: some View {
         NavigationView {
-            Group {
-                #if os(iOS)
-                ZStack(alignment: .top) {
-                    timeline
-                    header
-                }
-                #else
-                VStack {
-                    timeline
-                }
-                #endif
+            VStack {
+                header
             }
             .navigationTitle("tabs.home")
             #if os(iOS)
             .navigationBarHidden(true)
             #endif
-            .refreshable {
-                timeline.refresh()
-            }
         }
     }
     

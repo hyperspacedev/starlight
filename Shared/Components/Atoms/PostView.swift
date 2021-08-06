@@ -12,51 +12,33 @@ struct PostView: View {
     
     var post: Status? = nil
     
+    var truncate: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let status = post {
                 authorHeader(of: status)
-                VStack(alignment: .leading) {
-                    Text(status.content.toMarkdown())
-                }
-                .frame(maxWidth: .infinity)
-                Spacer()
+                Text(status.content.toMarkdown())
+                    .lineLimit(truncate ? 3 : .max)
             }
-            HStack(spacing: 8) {
-                Button(action: {}) {
-                    Image(systemName: "heart")
-                }
-                Button(action: {}) {
-                    Image(systemName: "arrowshape.turn.up.left")
-                }
-                Button(action: {}) {
-                    Image(systemName: "arrow.2.squarepath")
-                }
-                Button(action: {}) {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                Spacer()
-                Image(systemName: visibilityImage)
-                    .foregroundColor(.secondary)
-            }
-            .font(.title2)
-            .buttonStyle(.borderless)
         }
+        .frame(maxWidth: .infinity)
         .padding()
-        .background(.background)
-        .cornerRadius(6)
     }
     
     private func authorHeader(of status: Status) -> some View {
         HStack {
             ProfileImage(for: .user(id: status.account.id), size: .small)
             VStack(alignment: .leading) {
-                Text(status.account.getName())
+                Text(status.account.getName().emojified())
                     .bold()
                 Text(RelativeDateTimeFormatter().localizedString(for: getPostDate(status: status) ?? .now, relativeTo: .now))
                     .foregroundColor(.secondary)
                     .font(.caption)
             }
+            Spacer()
+            Image(systemName: visibilityImage)
+                .foregroundColor(.secondary)
         }
         .font(.system(.body, design: .rounded))
     }

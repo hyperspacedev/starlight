@@ -26,6 +26,10 @@
 "timelines.updatediff" = "Last updated %@ ago";
 "timelines.updatediff.started" = "Just updated now";
 "timelines.empty" = "Timeline Is Empty";
+"timelines.context.empty" = "No Replies Found";
+"timelines.detail.title" = "Select a Post";
+"timelines.detail.subtitle" = "Select a post from the left to read more and view replies.";
+"timelines.errored" = "Couldn't Fetch Timeline";
 
 // MARK: - Network
 "network.local" = "In my network";
@@ -42,6 +46,7 @@
 "actions.create" = "Create post";
 "actions.upload" = "Upload photos";
 "actions.reload" = "Refresh";
+"actions.reply" = "Reply";
 
 // MARK: - Misc.
 "misc.placeholder" = "Content goes here";

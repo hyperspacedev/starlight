@@ -50,16 +50,7 @@ struct TrendingDetail: View {
     @State var timeline: [Status]? = []
     
     var body: some View {
-        ScrollView {
-            #if os(iOS)
-            header
-            #endif
-            
-            TimelineView(.tag(tag: tag.name)) { }
-
-        }
-        .listStyle(.plain)
-        .navigationTitle("#\(tag.name)")
+        TimelineMasterDetailView(timeline: .tag(tag: tag.name), localOnly: true)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #else

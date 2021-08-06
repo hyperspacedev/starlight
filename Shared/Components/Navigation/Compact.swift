@@ -10,7 +10,7 @@ import SwiftUI
 struct CompactNavigationLayout: View {
     var body: some View {
         TabView {
-            HomeView().tabItem {
+            TimelineMasterDetailView(timeline: .home).tabItem {
                 Label("tabs.home", systemImage: "house")
             }
             NetworkView().tabItem {

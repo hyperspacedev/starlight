@@ -2,7 +2,7 @@
 //  ViewState.swift
 //  ViewState
 //
-//  Created by Marquis Kurt on 28/7/21.
+//  Created by Marquis Kurt on 5/8/21.
 //
 
 import Foundation
@@ -17,6 +17,9 @@ enum ViewState {
     
     /// The data has been loaded.
     case loaded
+    
+    /// The data has been updated after being loaded.
+    case updated
     
     /// The view failed to load data for a given reason.
     case errored(reason: String)

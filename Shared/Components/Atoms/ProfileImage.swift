@@ -46,6 +46,7 @@ struct ProfileImage: View {
             case .empty:
                 ProgressView()
                     .padding()
+                    .frame(maxWidth: size.rawValue)
             case .failure:
                 Image(systemName: "person.circle")
                     .resizable()

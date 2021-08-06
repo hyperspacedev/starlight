@@ -41,7 +41,7 @@ struct StandardNavigationLayout: View {
             NavigationView {
                 VStack {
                     List(selection: $selection) {
-                        NavigationLink(destination: TimelineView(.home){ }) {
+                        NavigationLink(destination: TimelineMasterDetailView(timeline: .home)) {
                             Label("tabs.home", systemImage: "house")
                         }
                         .tag(NavigationViews.home)
@@ -90,18 +90,18 @@ struct StandardNavigationLayout: View {
                         Image(systemName: "sidebar.left")
                     }.help("Show or hide the sidebar.")
                 }
-                ToolbarItem {
-                    Button(action: selectNotifications) {
-                        Image(systemName: "bell")
-                    }
-                    .help("View your notifications.")
-                }
-
-                ToolbarItem {
-                    Button(action: selectNotifications) {
-                        Image(systemName: "square.and.pencil")
-                    }.help("Write a new post.")
-                }
+//                ToolbarItem {
+//                    Button(action: selectNotifications) {
+//                        Image(systemName: "bell")
+//                    }
+//                    .help("View your notifications.")
+//                }
+//
+//                ToolbarItem {
+//                    Button(action: selectNotifications) {
+//                        Image(systemName: "square.and.pencil")
+//                    }.help("Write a new post.")
+//                }
                 #endif
             }
         }

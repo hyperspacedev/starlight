@@ -13,26 +13,17 @@ struct NetworkView: View {
     @State private var networkScope: TimelineNetworkScope = .local
     
     var body: some View {
-        NavigationView {
-            VStack {
-                TimelineView(.network, with: networkScope) { }
-            }
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
+        TimelineMasterDetailView(timeline: .network, localOnly: networkScope == .local)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Picker(selection: $networkScope, content: {
-                        Label("network.local", systemImage: "person.3")
+                ToolbarItem {
+                    Picker("", selection: $networkScope) {
+                        Label("network.local", systemImage: "person.2")
                             .tag(TimelineNetworkScope.local)
                         Label("network.federated", systemImage: "globe")
                             .tag(TimelineNetworkScope.federated)
-                    }) {
-                        Label("Scope", systemImage: "globe")
                     }
                 }
             }
-        }
     }
 }
 

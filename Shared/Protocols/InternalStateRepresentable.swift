@@ -9,5 +9,8 @@ import Foundation
 import SwiftUI
 
 protocol InternalStateRepresentable {
+    
     var state: ViewState { get set }
+    
+    func loadData()
 }
