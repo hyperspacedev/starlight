@@ -34,7 +34,7 @@ struct ExploreView: View {
         .autocapitalization(.none)
         #endif
         .onAppear(perform: loadData)
-        .refreshable(action: loadData)
+        .refreshable { loadData() }
     }
     
     private func loadData() {

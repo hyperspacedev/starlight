@@ -1,6 +1,6 @@
 //
-//  TimelineView.swift
-//  TimelineView
+//  TimelineScrollViewCompatible.swift
+//  TimelineScrollViewCompatible
 //
 //  Created by Marquis Kurt on 5/8/21.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import Chica
 
 /// A view that displays posts and threads in a master-detail style.
-struct TimelineMasterDetailView: View, InternalStateRepresentable {
+struct TimelineScrollViewCompatible: View, InternalStateRepresentable {
     
     /// The timeline to fetch data from.
     var timeline: TimelineScope
@@ -33,20 +33,11 @@ struct TimelineMasterDetailView: View, InternalStateRepresentable {
     
     /// The body of the view.
     var body: some View {
-        NavigationView {
+        Group {
             switch state {
             case .initial, .loading:
-                List {
-                    ForEach(0..<10) { _ in dummyPost }
-                }
-                #if os(macOS)
-                .listStyle(.bordered(alternatesRowBackgrounds: true))
-                .frame(minWidth: 400)
-                #endif
-                .redacted(reason: .placeholder)
-                StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
-                    Text("timelines.detail.subtitle")
-                }
+                ForEach(0..<10) { _ in dummyPost }
+                    .redacted(reason: .placeholder)
             case .loaded, .updated:
                 loadedTimeline
             case let .errored(reason):
@@ -114,21 +105,14 @@ struct TimelineMasterDetailView: View, InternalStateRepresentable {
     /// The fully loaded timeline content.
     private var loadedTimeline: some View {
         Group {
-            List {
-                if let stream = statuses {
-                    ForEach(stream, id: \.self) { post in
-                        NavigationLink(destination: PostDetailView(post: post)) {
-                            PostView(post: post, truncate: true)
-                        }
+            if let stream = statuses {
+                ForEach(stream, id: \.self) { post in
+                    NavigationLink(destination: PostDetailView(post: post)) {
+                        PostView(post: post, truncate: true)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
-            #if os(macOS)
-            .listStyle(.bordered(alternatesRowBackgrounds: true))
-            .frame(minWidth: 400)
-            #else
-            .listStyle(.insetGrouped)
-            #endif
             
             if statuses?.isEmpty == true {
                 StackedLabel(systemName: "tray", title: "timelines.empty") {
@@ -136,10 +120,6 @@ struct TimelineMasterDetailView: View, InternalStateRepresentable {
                         Text("actions.reload")
                     }
                     .buttonStyle(.borderedProminent)
-                }
-            } else {
-                StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
-                    Text("timelines.detail.subtitle")
                 }
             }
         }
@@ -205,7 +185,7 @@ struct TimelineMasterDetailView: View, InternalStateRepresentable {
     }
 }
 
-struct TimelineView_Previews: PreviewProvider {
+struct TimelineScrollViewCompatible_Previews: PreviewProvider {
     static var previews: some View {
         TimelineMasterDetailView(timeline: .home)
     }

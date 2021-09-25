@@ -68,7 +68,7 @@ struct StandardNavigationLayout: View {
                 .frame(minWidth: 170, idealWidth: 180, maxWidth: .infinity, maxHeight: .infinity)
             }
             .onAppear(perform: loadData)
-            .refreshable(action: loadData)
+            .refreshable{ loadData() }
             .sheet(isPresented: $loggedOut) {
                 LoginView()
                 #if os(macOS)

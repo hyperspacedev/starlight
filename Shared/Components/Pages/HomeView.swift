@@ -6,21 +6,41 @@
 //
 
 import SwiftUI
+import StylableScrollView
 
 /// The page for the home view on iOS.
 struct HomeView: View {
-    
-    var timeline = EmptyView()
-    
     var body: some View {
         NavigationView {
-            VStack {
-                header
+            StylableScrollView(.vertical, showIndicators: false) {
+                TimelineScrollViewCompatible(timeline: .home)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal)
             }
-            .navigationTitle("tabs.home")
-            #if os(iOS)
-            .navigationBarHidden(true)
-            #endif
+            .scrollViewStyle(
+                StretchableScrollViewStyle(
+                    header: {
+                        Color.accentColor
+                            .opacity(0.75)
+                    },
+                    title: {
+                        header
+                    },
+                    navBarContent: {
+                        HStack {
+                            Text("tabs.home")
+                                .font(.title)
+                                .bold()
+                            Spacer()
+                            NavigationLink(destination: ProfileView(context: .currentUser)) {
+                                ProfileImage(for: .currentUser, size: .small)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.leading, 32)
+                    },
+                    false
+            ))
         }
     }
     
@@ -33,19 +53,16 @@ struct HomeView: View {
                     .foregroundColor(.secondary)
                 Text("tabs.home")
                     .font(.system(.largeTitle, design: .rounded))
+                    .foregroundColor(.white)
                     .bold()
             }
             Spacer()
-            NavigationLink(
-                destination: Text("misc.placeholder")
-                    .navigationTitle("tabs.profile")
-            ) {
+            NavigationLink(destination: ProfileView(context: .currentUser)) {
                 ProfileImage(for: .currentUser, size: .medium)
             }
         }
-        .padding()
+        .padding(.horizontal)
         .frame(maxWidth: .infinity)
-        .background(.bar)
     }
 }
 

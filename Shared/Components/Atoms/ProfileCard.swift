@@ -31,7 +31,7 @@ struct ProfileCard: View {
         .font(.system(.body, design: .rounded))
         .onAppear { Task.init {
             try await fetchProfile()
-            try await emojifyProfileName()
+            try emojifyProfileName()
         } }
     }
     
@@ -39,8 +39,8 @@ struct ProfileCard: View {
         profile = try await Chica.shared.request(.get, for: .verifyAccountCredentials)
     }
     
-    private func emojifyProfileName() async throws {
-        profileName = await profile?.getName().emojified() ?? "Fediverse Account"
+    private func emojifyProfileName() throws {
+        profileName = profile?.getName().emojified() ?? "Fediverse Account"
     }
 }
 

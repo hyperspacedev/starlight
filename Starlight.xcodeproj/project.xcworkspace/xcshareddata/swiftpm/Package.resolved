@@ -18,6 +18,15 @@
           "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
           "version": "4.2.2"
         }
+      },
+      {
+        "package": "StylableScrollView",
+        "repositoryURL": "https://github.com/hyperspacedev/StylableScrollView",
+        "state": {
+          "branch": "v1.0beta",
+          "revision": "144fcdbea1c6f7c7e33cc279bb5781abf788d6e8",
+          "version": null
+        }
       }
     ]
   },
