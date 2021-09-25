@@ -52,9 +52,10 @@ struct ProfileImage: View {
                     .resizable()
                     .scaledToFit()
             case .success(let image):
-                image.resizable()
+                image
+                    .resizable()
                     .scaledToFit()
-                    .clipShape(Circle())
+                    .cornerRadius(5)
             @unknown default:
                 Image(systemName: "person.circle")
                     .resizable()

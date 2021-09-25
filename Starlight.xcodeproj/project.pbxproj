@@ -73,7 +73,6 @@
 		95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2E26AF0A5F00B011AC /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */; };
 		95CB6E2F26AF19E700B011AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5196E26ACDCDF00ABD1A4 /* String.swift */; };
-		95D3AE1826FF8FC800B32DD9 /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 95D3AE1726FF8FC800B32DD9 /* StylableScrollView */; };
 		95D3AE1A26FF981C00B32DD9 /* TimelineScrollViewCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */; };
 		95D3AE1B26FF981C00B32DD9 /* TimelineScrollViewCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */; };
 		95D3AE1C26FF981C00B32DD9 /* TimelineScrollViewCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */; };
@@ -86,6 +85,7 @@
 		95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */; };
 		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
+		FAF1ABFC26FFCD0600C3D0EC /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = FAF1ABFB26FFCD0600C3D0EC /* StylableScrollView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95D3AE1826FF8FC800B32DD9 /* StylableScrollView in Frameworks */,
+				FAF1ABFC26FFCD0600C3D0EC /* StylableScrollView in Frameworks */,
 				95C7119826AB89540014D6B7 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +350,7 @@
 			name = "Starlight (iOS)";
 			packageProductDependencies = (
 				95C7119726AB89540014D6B7 /* Chica */,
-				95D3AE1726FF8FC800B32DD9 /* StylableScrollView */,
+				FAF1ABFB26FFCD0600C3D0EC /* StylableScrollView */,
 			);
 			productName = "Starlight (iOS)";
 			productReference = 957F125626AB88E400386F35 /* Starlight.app */;
@@ -452,7 +452,7 @@
 			mainGroup = 957F124926AB88E200386F35;
 			packageReferences = (
 				95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */,
-				95D3AE1626FF8FC800B32DD9 /* XCRemoteSwiftPackageReference "StylableScrollView" */,
+				FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */,
 			);
 			productRefGroup = 957F125726AB88E400386F35 /* Products */;
 			projectDirPath = "";
@@ -753,7 +753,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -786,7 +786,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = Z2RTAGA7V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -1036,7 +1036,7 @@
 				kind = branch;
 			};
 		};
-		95D3AE1626FF8FC800B32DD9 /* XCRemoteSwiftPackageReference "StylableScrollView" */ = {
+		FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperspacedev/StylableScrollView";
 			requirement = {
@@ -1057,9 +1057,9 @@
 			package = 95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */;
 			productName = Chica;
 		};
-		95D3AE1726FF8FC800B32DD9 /* StylableScrollView */ = {
+		FAF1ABFB26FFCD0600C3D0EC /* StylableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 95D3AE1626FF8FC800B32DD9 /* XCRemoteSwiftPackageReference "StylableScrollView" */;
+			package = FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */;
 			productName = StylableScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */

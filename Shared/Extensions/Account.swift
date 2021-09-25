@@ -19,4 +19,13 @@ extension Account {
     func getName() -> String {
         self.displayName.isEmpty ? "@" + self.acct : self.displayName
     }
+
+    /// Whether the account forms part of the Hyperspacedev team.
+    var isDev: Bool {
+        if self.id == "380904" || self.id == "329742" {
+            return true
+        }
+        return false
+    }
+
 }
