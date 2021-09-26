@@ -36,8 +36,7 @@ struct HomeView: View {
                                 ProfileImage(for: .currentUser, size: .small)
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.leading, 32)
+                        .padding(.horizontal)
                     },
                     false
             ))
