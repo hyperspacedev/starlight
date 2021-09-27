@@ -127,35 +127,41 @@ struct TimelineScrollViewCompatible: View, InternalStateRepresentable {
     
     /// Load the data into the view and render it.
     internal func loadData() {
+        if (statuses?.isEmpty == false) { return }
         Task.init {
             state = .loading
-            statuses = try await Chica.shared.request(
-                .get,
-                for: .timeline(scope: timeline),
-                params: localOnly ? ["local": "true"] : nil
-            )
+            do {
+                try await fetchTimelineData(restrictedToLocal: false)
+                state = .loaded
+            } catch FetchError.message(let reason, _){
+                state = .errored(reason: reason)
+            }
             lastUpdate = .now
-            state = .loaded
         }
     }
     
     /// Load the data into the view with respect to a local context and view it.
     /// - Parameter localRestrict: Whether to restrict the fetching to local posts only.
     func loadData(with localRestrict: Bool) {
+        if (statuses?.isEmpty == false) { return }
         Task.init {
             state = .loading
             do {
-                statuses = try await Chica.shared.request(
-                    .get,
-                    for: .timeline(scope: timeline),
-                    params: localRestrict ? ["local": "true"] : nil
-                )
+                try await fetchTimelineData(restrictedToLocal: localRestrict)
                 state = .loaded
             } catch FetchError.message(let reason, _){
                 state = .errored(reason: reason)
             }
-
+            lastUpdate = .now
         }
+    }
+    
+    private func fetchTimelineData(restrictedToLocal: Bool) async throws {
+        statuses = try await Chica.shared.request(
+            .get,
+            for: .timeline(scope: timeline),
+            params: restrictedToLocal ? ["local": "true"] : nil
+        )
     }
     
     /// Returns a suitable title for the NavigationView.

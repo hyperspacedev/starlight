@@ -189,7 +189,7 @@ struct ProfileView: View, InternalStateRepresentable {
             Task {
                 loadData()
             }
-            
+        
         }
         .scrollViewStyle(
             StretchableScrollViewStyle(

@@ -14,7 +14,9 @@ struct NetworkView: View {
     @State private var networkScope: TimelineNetworkScope = .local
     
     var body: some View {
-        StylableScrollView {
+        StylableScrollView(.vertical) {
+            
+            // FIXME: For some reason, this timeline seems to be disabled. I have no clue why. - @alicerunsonfedora
             TimelineScrollViewCompatible(timeline: .network, localOnly: networkScope == .local)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.horizontal)
