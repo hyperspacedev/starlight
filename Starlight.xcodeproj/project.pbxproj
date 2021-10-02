@@ -209,14 +209,14 @@
 		951FB2E526ADADA400E20654 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				951FB2E626ADADB500E20654 /* SettingsView.swift */,
 				95CB6E2C26AF0A5F00B011AC /* ExploreView.swift */,
 				95A20B9426B0F752007CFD6B /* HomeView.swift */,
 				9507187426BC4E31001EC7A5 /* NetworkView.swift */,
-				95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */,
-				9507189626BC65C7001EC7A5 /* TimelineMasterDetailView.swift */,
 				950718A526BC80E6001EC7A5 /* PostDetailView.swift */,
 				95D3AE1E26FF9CBE00B32DD9 /* ProfileView.swift */,
+				951FB2E626ADADB500E20654 /* SettingsView.swift */,
+				9507189626BC65C7001EC7A5 /* TimelineMasterDetailView.swift */,
+				95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -227,8 +227,8 @@
 				95C5742A2708DCC5000F0576 /* Posts */,
 				954A102326AC5A5A00E6F70B /* ProfileCard.swift */,
 				95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */,
-				951FB2E926ADB0FF00E20654 /* TrendingList.swift */,
 				9507189B26BC67D0001EC7A5 /* StackedLabel.swift */,
+				951FB2E926ADB0FF00E20654 /* TrendingList.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -300,9 +300,9 @@
 		95C5742A2708DCC5000F0576 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				95C5742B2708DCDD000F0576 /* DummyPost.swift */,
 				95BE793A26B1B73D00A10AD5 /* PostView.swift */,
 				95C574272708D5F8000F0576 /* TimelineViewable.swift */,
-				95C5742B2708DCDD000F0576 /* DummyPost.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
