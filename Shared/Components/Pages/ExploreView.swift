@@ -18,7 +18,7 @@ struct ExploreView: View {
     var body: some View {
         NavigationView {
             List {
-                TrendingList(trends: trendingTags ?? [])
+                TrendingScrollView(trends: trendingTags ?? [])
             }
             .navigationTitle("tabs.explore")
         }
