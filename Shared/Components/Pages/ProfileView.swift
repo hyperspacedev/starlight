@@ -31,13 +31,10 @@ struct ProfileView: View, InternalStateRepresentable {
     var body: some View {
         StylableScrollView(.vertical) {
             VStack(spacing: 0) {
-
                 VStack(spacing: 20) {
                     ZStack {
                         HStack {
-
                             VStack(alignment: .leading) {
-
                                 Text("10.0")
                                     .font(.system(size: 17, weight: .semibold, design: .rounded))
 
@@ -179,9 +176,12 @@ struct ProfileView: View, InternalStateRepresentable {
                 }
                 .zIndex(0.9)
 
-                TimelineScrollViewCompatible(timeline: .home)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding(.horizontal)
+                if let acct = account {
+                    TimelineScrollViewCompatible(scope: .profile(id: acct.id))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.horizontal)
+                }
+
 
             }
         }

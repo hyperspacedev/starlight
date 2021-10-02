@@ -41,7 +41,7 @@ struct StandardNavigationLayout: View {
             NavigationView {
                 VStack {
                     List(selection: $selection) {
-                        NavigationLink(destination: TimelineMasterDetailView(timeline: .home)) {
+                        NavigationLink(destination: TimelineMasterDetailView(scope: .home)) {
                             Label("tabs.home", systemImage: "house")
                         }
                         .tag(NavigationViews.home)

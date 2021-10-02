@@ -50,7 +50,7 @@ struct TrendingDetail: View {
     @State var timeline: [Status]? = []
     
     var body: some View {
-        TimelineMasterDetailView(timeline: .tag(tag: tag.name), localOnly: true)
+        TimelineMasterDetailView(scope: .tag(id: tag.name))
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #else

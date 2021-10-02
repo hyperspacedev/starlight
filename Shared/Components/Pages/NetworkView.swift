@@ -16,7 +16,7 @@ struct NetworkView: View {
     var body: some View {
         NavigationView {
             StylableScrollView(.vertical, showIndicators: false) {
-                TimelineScrollViewCompatible(timeline: .network, localOnly: networkScope == .local)
+                TimelineScrollViewCompatible(scope: .network(localOnly: networkScope == .local))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal)
             }

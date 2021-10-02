@@ -13,7 +13,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             StylableScrollView(.vertical, showIndicators: false) {
-                TimelineScrollViewCompatible(timeline: .home)
+                TimelineScrollViewCompatible(scope: .home)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal)
             }

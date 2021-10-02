@@ -54,6 +54,12 @@
 		95BE793926B11D6E00A10AD5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A20B9426B0F752007CFD6B /* HomeView.swift */; };
 		95BE793B26B1B73D00A10AD5 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE793A26B1B73D00A10AD5 /* PostView.swift */; };
 		95BE793C26B1B73D00A10AD5 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BE793A26B1B73D00A10AD5 /* PostView.swift */; };
+		95C574282708D5F8000F0576 /* TimelineViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C574272708D5F8000F0576 /* TimelineViewable.swift */; };
+		95C574292708D5F8000F0576 /* TimelineViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C574272708D5F8000F0576 /* TimelineViewable.swift */; };
+		95C5742C2708DCDD000F0576 /* DummyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5742B2708DCDD000F0576 /* DummyPost.swift */; };
+		95C5742D2708DCDD000F0576 /* DummyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5742B2708DCDD000F0576 /* DummyPost.swift */; };
+		95C5742F2708E5B6000F0576 /* TimelineViewableScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5742E2708E5B6000F0576 /* TimelineViewableScope.swift */; };
+		95C574302708E5B6000F0576 /* TimelineViewableScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5742E2708E5B6000F0576 /* TimelineViewableScope.swift */; };
 		95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7117F26AB89290014D6B7 /* StarlightApp.swift */; };
 		95C7118C26AB89290014D6B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7118026AB89290014D6B7 /* Assets.xcassets */; };
@@ -127,6 +133,9 @@
 		95A5196E26ACDCDF00ABD1A4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		95BE793A26B1B73D00A10AD5 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		95C574272708D5F8000F0576 /* TimelineViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewable.swift; sourceTree = "<group>"; };
+		95C5742B2708DCDD000F0576 /* DummyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPost.swift; sourceTree = "<group>"; };
+		95C5742E2708E5B6000F0576 /* TimelineViewableScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewableScope.swift; sourceTree = "<group>"; };
 		95C7117F26AB89290014D6B7 /* StarlightApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarlightApp.swift; sourceTree = "<group>"; };
 		95C7118026AB89290014D6B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95C7118326AB89290014D6B7 /* Standard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
@@ -184,6 +193,7 @@
 			children = (
 				9507188126BC50FE001EC7A5 /* TimelineNetworkScope.swift */,
 				950718A026BC8022001EC7A5 /* ViewState.swift */,
+				95C5742E2708E5B6000F0576 /* TimelineViewableScope.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -214,10 +224,10 @@
 		954A102226AC5A4E00E6F70B /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
+				95C5742A2708DCC5000F0576 /* Posts */,
 				954A102326AC5A5A00E6F70B /* ProfileCard.swift */,
 				95A5197026ACEEBE00ABD1A4 /* ProfileImage.swift */,
 				951FB2E926ADB0FF00E20654 /* TrendingList.swift */,
-				95BE793A26B1B73D00A10AD5 /* PostView.swift */,
 				9507189B26BC67D0001EC7A5 /* StackedLabel.swift */,
 			);
 			path = Atoms;
@@ -285,6 +295,16 @@
 				9507186F26BC48F0001EC7A5 /* Account.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		95C5742A2708DCC5000F0576 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				95BE793A26B1B73D00A10AD5 /* PostView.swift */,
+				95C574272708D5F8000F0576 /* TimelineViewable.swift */,
+				95C5742B2708DCDD000F0576 /* DummyPost.swift */,
+			);
+			path = Posts;
 			sourceTree = "<group>";
 		};
 		95C7118126AB89290014D6B7 /* Components */ = {
@@ -508,6 +528,7 @@
 			files = (
 				95CB6E2D26AF0A5F00B011AC /* ExploreView.swift in Sources */,
 				9507189726BC65C7001EC7A5 /* TimelineMasterDetailView.swift in Sources */,
+				95C5742C2708DCDD000F0576 /* DummyPost.swift in Sources */,
 				95A20B9526B0F752007CFD6B /* HomeView.swift in Sources */,
 				95F20B4D26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				9507187526BC4E31001EC7A5 /* NetworkView.swift in Sources */,
@@ -516,6 +537,8 @@
 				951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */,
 				95C7118E26AB89290014D6B7 /* Standard.swift in Sources */,
 				951FB2E726ADADB500E20654 /* SettingsView.swift in Sources */,
+				95C5742F2708E5B6000F0576 /* TimelineViewableScope.swift in Sources */,
+				95C574282708D5F8000F0576 /* TimelineViewable.swift in Sources */,
 				950718A626BC80E6001EC7A5 /* PostDetailView.swift in Sources */,
 				95C7119426AB89290014D6B7 /* ContentView.swift in Sources */,
 				95C7119026AB89290014D6B7 /* Compact.swift in Sources */,
@@ -539,6 +562,7 @@
 			files = (
 				95A5197326ACEEC800ABD1A4 /* ProfileCard.swift in Sources */,
 				9507189826BC65C7001EC7A5 /* TimelineMasterDetailView.swift in Sources */,
+				95C5742D2708DCDD000F0576 /* DummyPost.swift in Sources */,
 				95BE793926B11D6E00A10AD5 /* HomeView.swift in Sources */,
 				95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */,
 				9507187626BC4E31001EC7A5 /* NetworkView.swift in Sources */,
@@ -547,6 +571,8 @@
 				95C7118F26AB89290014D6B7 /* Standard.swift in Sources */,
 				951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */,
 				95CB6E2E26AF0A5F00B011AC /* ExploreView.swift in Sources */,
+				95C574302708E5B6000F0576 /* TimelineViewableScope.swift in Sources */,
+				95C574292708D5F8000F0576 /* TimelineViewable.swift in Sources */,
 				950718A726BC80E6001EC7A5 /* PostDetailView.swift in Sources */,
 				95A5197226ACEEBE00ABD1A4 /* ProfileImage.swift in Sources */,
 				95C7119526AB89290014D6B7 /* ContentView.swift in Sources */,
