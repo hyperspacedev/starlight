@@ -14,53 +14,52 @@ struct NetworkView: View {
     @State private var networkScope: TimelineNetworkScope = .local
     
     var body: some View {
-        StylableScrollView(.vertical) {
-            
-            // FIXME: For some reason, this timeline seems to be disabled. I have no clue why. - @alicerunsonfedora
-            TimelineScrollViewCompatible(timeline: .network, localOnly: networkScope == .local)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal)
-        }
-        .scrollViewStyle(
-            StretchableScrollViewStyle(
-                header: {
-                    Color.white
-                },
-                title: {
-                    HStack {
-                        Text("tabs.network")
-                            .font(.system(.title, design: .rounded))
-                            .bold()
-                        Spacer()
-                        networkPicker
-                    }
+        NavigationView {
+            StylableScrollView(.vertical, showIndicators: false) {
+                TimelineScrollViewCompatible(timeline: .network, localOnly: networkScope == .local)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal)
+            }
+            .scrollViewStyle(
+                StretchableScrollViewStyle(
+                    header: {
+                        Color.white
+                    },
+                    title: {
+                        HStack {
+                            Text("tabs.network")
+                                .font(.system(.title, design: .rounded))
+                                .bold()
+                            Spacer()
+                            networkPicker
+                        }
+                        .padding(.horizontal)
+                    },
+                    navBarContent: {
+                        HStack {
+                            Text("tabs.network")
+                                .font(.system(.title2, design: .rounded))
+                                .bold()
+                            Spacer()
+                            networkPicker
+                        }
+                        .padding(.horizontal)
 
-                },
-                navBarContent: {
-                    HStack {
-                        Text("tabs.network")
-                            .font(.system(.title2, design: .rounded))
-                            .bold()
-                        Spacer()
-                        networkPicker
-                    }
-                    .padding(.horizontal)
-
-                }
+                    },
+                    false
+                )
             )
-        )
+        }
     }
     
     var networkPicker: some View {
-        Picker("", selection: $networkScope) {
+        Picker("Select", selection: $networkScope) {
             Label("network.local", systemImage: "person.2")
                 .tag(TimelineNetworkScope.local)
             Label("network.federated", systemImage: "globe")
                 .tag(TimelineNetworkScope.federated)
         }
         .pickerStyle(.menu)
-        .foregroundColor(.white)
     }
 }
 
