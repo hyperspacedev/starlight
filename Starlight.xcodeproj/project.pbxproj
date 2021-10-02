@@ -250,13 +250,13 @@
 		957F124E26AB88E300386F35 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9507188626BC5A2F001EC7A5 /* Protocols */,
+				95C7118026AB89290014D6B7 /* Assets.xcassets */,
+				95C7118126AB89290014D6B7 /* Components */,
 				9507187B26BC50E5001EC7A5 /* Enums */,
 				95A5196D26ACDCD000ABD1A4 /* Extensions */,
-				95C7118026AB89290014D6B7 /* Assets.xcassets */,
-				95C7117F26AB89290014D6B7 /* StarlightApp.swift */,
 				FA18195F26AB8BF20041560E /* Localizable.strings */,
-				95C7118126AB89290014D6B7 /* Components */,
+				9507188626BC5A2F001EC7A5 /* Protocols */,
+				95C7117F26AB89290014D6B7 /* StarlightApp.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

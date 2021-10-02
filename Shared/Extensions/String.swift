@@ -55,4 +55,11 @@ extension String {
         ) else { return text }
         return replaceAttributedTag(tag, with: replacedString, in: text.replacingOccurrences(of: text[ranges], with: replacedString))
     }
+    
+    /// Returns a Markdown-parsed version of itself that replaces emoji shortcodes with images or emojis.
+    ///
+    /// Emoji shortcodes are defined with a surrounding pair of colons.
+    /// - SeeAlso: ``String.emojified``
+    /// - SeeAlso: ``String.toMarkdown``
+    func toEmojifiedMarkdown() -> AttributedString { self.emojified().toMarkdown() }
 }

@@ -34,20 +34,23 @@ struct ProfileView: View, InternalStateRepresentable {
                 VStack(spacing: 20) {
                     ZStack {
                         HStack {
+                            
+                            // NOTE: I'm not sure what "Rating" here refers to, since there's nothing
+                            // in the API that references this.
+//                            VStack(alignment: .leading) {
+//                                Text("10.0")
+//                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+//
+//                                Text("Rating")
+//                                    .font(.system(size: 18, weight: .regular, design: .rounded))
+//                                    .foregroundColor(.gray)
+//                            }
+//
+//                            Spacer()
+
                             VStack(alignment: .leading) {
-                                Text("10.0")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
 
-                                Text("Rating")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
-                            Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("1.64k")
+                                Text("\(account?.statusesCount ?? 0)")
                                     .font(.system(size: 17, weight: .semibold, design: .rounded))
 
                                 Text("Posts")
@@ -59,7 +62,7 @@ struct ProfileView: View, InternalStateRepresentable {
 
                             VStack(alignment: .leading) {
 
-                                Text("108")
+                                Text("\(account?.followersCount ?? 0)")
                                     .font(.system(size: 17, weight: .semibold, design: .rounded))
 
                                 Text("Following")
@@ -71,7 +74,7 @@ struct ProfileView: View, InternalStateRepresentable {
 
                             VStack(alignment: .leading) {
 
-                                Text("6.4M")
+                                Text("\(account?.followingCount ?? 0)")
                                     .font(.system(size: 17, weight: .semibold, design: .rounded))
 
                                 Text("Followers")
@@ -148,9 +151,7 @@ struct ProfileView: View, InternalStateRepresentable {
 
                 Divider()
 
-                if self.account != nil {
-                    self.fields
-                }
+                if self.account != nil { self.fields }
 
                 Picker(selection: self.$statusType, label: Text("Tweet style")) {
                     Text("Posts").tag(1)
@@ -164,13 +165,8 @@ struct ProfileView: View, InternalStateRepresentable {
                 .offset(y: self.tabBarOffset < 100 ? -tabBarOffset + 100 : 0)
                 .overlay {
                     GeometryReader { proxy -> Color in
-
                         let minY = proxy.frame(in: .global).minY
-
-                        Task.init {
-                            self.tabBarOffset = minY
-                        }
-
+                        Task.init { self.tabBarOffset = minY }
                         return Color.clear
                     }
                 }
@@ -227,25 +223,18 @@ struct ProfileView: View, InternalStateRepresentable {
             VStack(spacing: 0) {
                 Divider()
                 VStack {
-
                     ForEach(0 ..< count, content: { index in
-
                         HStack(spacing: 5) {
-
                             Text("\(self.account!.fields[index].name)")
                                 .bold()
-
                             if (self.account!.fields[index].verifiedAt != nil) {
                                 Image(systemName: "checkmark.seal.fill")
                                     .foregroundColor(.green)
                                     .opacity(0.7)
                             }
-
                             Spacer()
-
-                            Text("\(self.account!.fields[index].value.toMarkdown())")
+                            Text("\(self.account!.fields[index].value.toEmojifiedMarkdown())")
                                 .lineLimit(1)
-
                         }
                         .padding(.trailing,10)
 
@@ -327,8 +316,19 @@ struct ProfileView: View, InternalStateRepresentable {
                         .foregroundColor(.white)
                         .shadow(color: .black, radius: 10)
 
-                    if ((self.account?.isDev) != nil) {
+                    if (self.account?.isDev == true) {
                         Text("DEV")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .background(
+                                Color.secondary
+                                    .cornerRadius(5)
+                        )
+                    }
+                    
+                    if (account?.bot == true) {
+                        Text("BOT")
                             .bold()
                             .foregroundColor(.white)
                             .padding(5)
