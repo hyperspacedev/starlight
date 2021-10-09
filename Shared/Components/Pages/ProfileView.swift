@@ -34,101 +34,29 @@ struct ProfileView: View, InternalStateRepresentable {
                 VStack(spacing: 20) {
                     ZStack {
                         HStack {
-                            
                             // NOTE: I'm not sure what "Rating" here refers to, since there's nothing
                             // in the API that references this.
-//                            VStack(alignment: .leading) {
-//                                Text("10.0")
-//                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-//
-//                                Text("Rating")
-//                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-//                                    .foregroundColor(.gray)
-//                            }
-//
-//                            Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("\(account?.statusesCount ?? 0)")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-
-                                Text("Posts")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
+                            // blurb("10.0", with: "Rating")
+                            // Spacer()
+                            
+                            blurb("\(account?.statusesCount ?? 0)", with: "Posts")
                             Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("\(account?.followersCount ?? 0)")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-
-                                Text("Following")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
+                            blurb("\(account?.followersCount ?? 0)", with: "Following")
                             Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("\(account?.followingCount ?? 0)")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-
-                                Text("Followers")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
+                            blurb("\(account?.followingCount ?? 0)", with: "Followers")
                             Spacer()
-
-                            Button(action: { self.isPage1.toggle() }) {
-                                Image(systemName: "chevron.right")
-                                    .font(.headline)
-                                    .foregroundColor(Color(.systemGray3))
-                            }
+                            blurbButton()
 
                         }
                         .offset(x: self.isPage1 ? 0 : -self.availableSize.width)
 
                         HStack {
-
-                            Button(action: {
-                                self.isPage1.toggle()
-                            }) {
-                                Image(systemName: "chevron.left")
-                                    .font(.headline)
-                                    .foregroundColor(Color(.systemGray3))
-                            }
-
+                            blurbButton(backward: true)
                             Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("Sotogrande, Cádiz")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-
-                                Text("Location")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
+                            blurb("Sotogrande, Cádiz", with: "Location")
                             Spacer()
-
-                            VStack(alignment: .leading) {
-
-                                Text("16 April 2020")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
-
-                                Text("Joined")
-                                    .font(.system(size: 18, weight: .regular, design: .rounded))
-                                    .foregroundColor(.gray)
-                            }
-
+                            blurb("16 April 2020", with: "Joined")
                             Spacer()
-
                         }
                         .offset(x: self.isPage1 ? UIScreen.main.bounds.width : 0)
                         
@@ -212,6 +140,30 @@ struct ProfileView: View, InternalStateRepresentable {
             Task {
                 self.availableSize = size
             }
+        }
+    }
+    
+    /// A blurb view displayed below the profile header.
+    /// - Parameter data: The data that this blurb represents
+    /// - Parameter title: The title for the data
+    private func blurb(_ data: String, with title: String) -> some View {
+        VStack(alignment: .leading) {
+            Text(data)
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
+            Text(title)
+                .font(.system(size: 18, weight: .regular, design: .rounded))
+                .foregroundColor(.gray)
+        }
+    }
+    
+    /// Returns a button that toggles the state of the blurbs.
+    private func blurbButton(backward: Bool = false) -> some View {
+        // FIXME: This action doesn't seem to actually trigger anything, as if the button is dead.
+        // NOTE: Also, maybe we should make this a scrollable list horizontally?
+        Button(action: { self.isPage1.toggle() }) {
+            Image(systemName: backward ? "chevron.left" : "chevron.right")
+                .font(.headline)
+                .foregroundColor(Color(.systemGray3))
         }
     }
 
@@ -366,6 +318,7 @@ struct ProfileView: View, InternalStateRepresentable {
     
     internal func loadData() {
         Task.init {
+            if account != nil { return }
             state = .loading
             do {
                 try await getAccountData()
