@@ -82,7 +82,7 @@ struct TimelineViewable<Content: View>: View, InternalStateRepresentable {
         case .tag(let id):
             return "#\(id)"
         case .profile(_):
-            return "misc.placeholder"
+            return "tabs.profile"
         }
     }
     

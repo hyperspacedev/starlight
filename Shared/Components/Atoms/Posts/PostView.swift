@@ -32,7 +32,10 @@ struct PostView: View {
             VStack(alignment: .leading) {
                 Text(status.account.getName().emojified())
                     .bold()
-                Text(RelativeDateTimeFormatter().localizedString(for: getPostDate(status: status) ?? .now, relativeTo: .now))
+                Text(RelativeDateTimeFormatter().localizedString(
+                    for: status.createdAt.toMastodonDate() ?? .now,
+                       relativeTo: .now)
+                )
                     .foregroundColor(.secondary)
                     .font(.caption)
             }
@@ -43,6 +46,7 @@ struct PostView: View {
         .font(.system(.body, design: .rounded))
     }
     
+    @available(*, deprecated, renamed: "String.toMastodonDate")
     private func getPostDate(status: Status) -> Date? {
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"

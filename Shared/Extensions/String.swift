@@ -62,4 +62,13 @@ extension String {
     /// - SeeAlso: ``String.emojified``
     /// - SeeAlso: ``String.toMarkdown``
     func toEmojifiedMarkdown() -> AttributedString { self.emojified().toMarkdown() }
+    
+    /// Returns a date that conforms to the Mastodon date/time format.
+    func toMastodonDate() -> Date? {
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
+        format.timeZone = TimeZone(abbreviation: "UTC")
+        format.locale = Locale(identifier: "en_US_POSIX")
+        return format.date(from: self)
+    }
 }

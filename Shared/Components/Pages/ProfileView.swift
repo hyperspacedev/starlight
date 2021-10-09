@@ -45,6 +45,14 @@ struct ProfileView: View, InternalStateRepresentable {
                             Spacer()
                             blurb("\(account?.followingCount ?? 0)", with: "Followers")
                             Spacer()
+                            if let acct = account {
+                                blurb(
+                                    RelativeDateTimeFormatter()
+                                        .localizedString(for: acct.createdAt.toMastodonDate() ?? .now, relativeTo: .now)
+                                    , with: "Joined")
+                                Spacer()
+                            }
+
                             blurbButton()
 
                         }
@@ -54,8 +62,6 @@ struct ProfileView: View, InternalStateRepresentable {
                             blurbButton(backward: true)
                             Spacer()
                             blurb("Sotogrande, Cádiz", with: "Location")
-                            Spacer()
-                            blurb("16 April 2020", with: "Joined")
                             Spacer()
                         }
                         .offset(x: self.isPage1 ? UIScreen.main.bounds.width : 0)
@@ -104,35 +110,31 @@ struct ProfileView: View, InternalStateRepresentable {
                     TimelineScrollViewCompatible(scope: .profile(id: acct.id))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.horizontal)
+                } else {
+                    StackedLabel(image: Image(systemName: "star"), title: "misc.placeholder") {
+                        Button(action: { loadData() }) {
+                            Text("actions.reload")
+                        }
+                    }
                 }
 
 
             }
         }
-        .onAppear {
-            Task {
-                loadData()
-            }
-        
-        }
+        .onAppear { loadData() }
         .scrollViewStyle(
             StretchableScrollViewStyle(
-                header: {
-                    accountHeader
-                },
-                title: {
-                    title
-                },
-                navBarContent: { Text(account?.getName().emojified() ?? "misc.placeholder")
+                header: { accountHeader },
+                title: { title },
+                navBarContent: {
+                    Text(account?.getName().emojified() ?? "tabs.profile")
                         .bold()
-
-                    .navigationBarElement(
-                        axis: .trailing,
-                        {
-                            self.followButton
-                        }
-                    )
-
+                        .navigationBarElement(
+                            axis: .trailing,
+                            {
+                                self.followButton
+                            }
+                        )
                 }
             )
         )
