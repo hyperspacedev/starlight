@@ -32,45 +32,8 @@ struct ProfileView: View, InternalStateRepresentable {
         StylableScrollView(.vertical) {
             VStack(spacing: 0) {
                 VStack(spacing: 20) {
-                    ZStack {
-                        HStack {
-                            // NOTE: I'm not sure what "Rating" here refers to, since there's nothing
-                            // in the API that references this.
-                            // blurb("10.0", with: "Rating")
-                            // Spacer()
-                            
-                            blurb("\(account?.statusesCount ?? 0)", with: "Posts")
-                            Spacer()
-                            blurb("\(account?.followersCount ?? 0)", with: "Following")
-                            Spacer()
-                            blurb("\(account?.followingCount ?? 0)", with: "Followers")
-                            Spacer()
-                            if let acct = account {
-                                blurb(
-                                    RelativeDateTimeFormatter()
-                                        .localizedString(for: acct.createdAt.toMastodonDate() ?? .now, relativeTo: .now)
-                                    , with: "Joined")
-                                Spacer()
-                            }
-
-                            blurbButton()
-
-                        }
-                        .offset(x: self.isPage1 ? 0 : -self.availableSize.width)
-
-                        HStack {
-                            blurbButton(backward: true)
-                            Spacer()
-                            blurb("Sotogrande, Cádiz", with: "Location")
-                            Spacer()
-                        }
-                        .offset(x: self.isPage1 ? UIScreen.main.bounds.width : 0)
-                        
-                    }
-                    .animation(.spring(), value: isPage1)
-
+                    blurbHeader
                     Divider()
-                    
                 }
                 .padding([.horizontal, .top])
                 .zIndex(0.9)
@@ -129,18 +92,32 @@ struct ProfileView: View, InternalStateRepresentable {
                 navBarContent: {
                     Text(account?.getName().emojified() ?? "tabs.profile")
                         .bold()
-                        .navigationBarElement(
-                            axis: .trailing,
-                            {
-                                self.followButton
-                            }
-                        )
+                        .navigationBarElement(axis: .trailing, { navbarGroup })
                 }
             )
         )
         .transformSize { size in
             Task {
                 self.availableSize = size
+            }
+        }
+    }
+    
+    // MARK: - Children Views
+    
+    /// The navbar header for an account, which contains a profile image and some other text.
+    private var accountHeader: some View {
+        AsyncImage(url: URL(string: account?.headerStatic ?? "")) { phase in
+            switch phase {
+            case .success(let header):
+                header
+                Image("banner")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            case .empty, .failure:
+                Color.accentColor.redacted(reason: .placeholder)
+            @unknown default:
+                Color.accentColor.redacted(reason: .placeholder)
             }
         }
     }
@@ -168,11 +145,45 @@ struct ProfileView: View, InternalStateRepresentable {
                 .foregroundColor(Color(.systemGray3))
         }
     }
+    
+    /// A view that contains glance-able information about a profile sich as number of posts, follows, location, etc.
+    private var blurbHeader: some View {
+        ZStack {
+            HStack {
+                // NOTE: I'm not sure what "Rating" here refers to, since there's nothing
+                // in the API that references this.
+                // blurb("10.0", with: "Rating")
+                // Spacer()
+                blurb("\(account?.statusesCount ?? 0)", with: "Posts")
+                Spacer()
+                blurb("\(account?.followersCount ?? 0)", with: "Following")
+                Spacer()
+                blurb("\(account?.followingCount ?? 0)", with: "Followers")
+                Spacer()
+                if let acct = account {
+                    blurb(
+                        RelativeDateTimeFormatter()
+                            .localizedString(for: acct.createdAt.toMastodonDate() ?? .now, relativeTo: .now)
+                        , with: "Joined")
+                    Spacer()
+                }
+                blurbButton()
+            }
+            .offset(x: self.isPage1 ? 0 : -self.availableSize.width)
+            HStack {
+                blurbButton(backward: true)
+                Spacer()
+                blurb("Sotogrande, Cádiz", with: "Location")
+                Spacer()
+            }
+            .offset(x: self.isPage1 ? UIScreen.main.bounds.width : 0)
+        }
+        .animation(.spring(), value: isPage1)
+    }
 
+    /// A list of fields that pertain to the account.
     private var fields: some View {
-
         let count = self.account!.fields.count
-
         return VStack {
             VStack(spacing: 0) {
                 Divider()
@@ -203,7 +214,6 @@ struct ProfileView: View, InternalStateRepresentable {
                 .padding(.leading,10)
                 .padding(.vertical,15)
                 Divider()
-
             }
             .background(Color(.systemBackground))
             .padding(.top)
@@ -213,6 +223,7 @@ struct ProfileView: View, InternalStateRepresentable {
         .background(Color.systemGray6(for: self.scheme))
     }
 
+    /// A button that toggles following/unfollowing users.
     private var followButton: some View {
         Group {
             if self.isFollowing {
@@ -248,7 +259,35 @@ struct ProfileView: View, InternalStateRepresentable {
             }
         }
     }
+    
+    /// A group that contains either a disabled follow button or an enabled follow button.
+    var navbarGroup: some View {
+        Group {
+            switch context {
+            case .currentUser:
+                self.followButton
+                    .disabled(true)
+                    .opacity(0.5)
+            case .user(_):
+                self.followButton
+            }
+        }
+    }
+    
+    /// Returns a profile badge that denotes the profile as special.
+    /// - Parameter badgeText: A localized string key that describes the badge.
+    func profileBadge(_ badgeText: LocalizedStringKey) -> some View {
+        Text(badgeText)
+            .bold()
+            .foregroundColor(.white)
+            .padding(5)
+            .background(
+                Color.secondary
+                    .cornerRadius(5)
+        )
+    }
 
+    /// The title for this view.
     private var title: some View {
         HStack {
             ProfileImage(
@@ -262,7 +301,6 @@ struct ProfileView: View, InternalStateRepresentable {
                 )
 
             VStack(alignment: .leading, spacing: 0) {
-
                 HStack {
                     Text(account?.getName().emojified() ?? "")
                         .bold()
@@ -270,27 +308,8 @@ struct ProfileView: View, InternalStateRepresentable {
                         .foregroundColor(.white)
                         .shadow(color: .black, radius: 10)
 
-                    if (self.account?.isDev == true) {
-                        Text("DEV")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(5)
-                            .background(
-                                Color.secondary
-                                    .cornerRadius(5)
-                        )
-                    }
-                    
-                    if (account?.bot == true) {
-                        Text("BOT")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(5)
-                            .background(
-                                Color.secondary
-                                    .cornerRadius(5)
-                        )
-                    }
+                    if (self.account?.isDev == true) { profileBadge("DEV") }
+                    if (account?.bot == true) { profileBadge("BOT") }
                 }
 
                 Text("@\(self.account?.acct ?? "")")
@@ -301,23 +320,19 @@ struct ProfileView: View, InternalStateRepresentable {
 
         }
     }
-
-    private var accountHeader: some View {
-        AsyncImage(url: URL(string: account?.headerStatic ?? "")) { phase in
-            switch phase {
-            case .success(let header):
-                header
-                Image("banner")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            case .empty, .failure:
-                Color.accentColor.redacted(reason: .placeholder)
-            @unknown default:
-                Color.accentColor.redacted(reason: .placeholder)
-            }
+    
+    // MARK: - View Methods
+    /// Sets the account to the specified account context.
+    private func getAccountData() async throws {
+        switch context {
+        case .currentUser:
+            account = try await Chica.shared.request(.get, for: .verifyAccountCredentials)
+        case .user(let id):
+            account = try await Chica.shared.request(.get, for: .account(id: id))
         }
     }
     
+    /// Loads the data into the view.
     internal func loadData() {
         Task.init {
             if account != nil { return }
@@ -328,15 +343,6 @@ struct ProfileView: View, InternalStateRepresentable {
             } catch {
                 state = .errored(reason: "Unknown error")
             }
-        }
-    }
-    
-    private func getAccountData() async throws {
-        switch context {
-        case .currentUser:
-            account = try await Chica.shared.request(.get, for: .verifyAccountCredentials)
-        case .user(let id):
-            account = try await Chica.shared.request(.get, for: .account(id: id))
         }
     }
 }
