@@ -67,7 +67,7 @@ struct ProfileView: View, InternalStateRepresentable {
                         .offset(x: self.isPage1 ? UIScreen.main.bounds.width : 0)
                         
                     }
-                    .animation(.spring())
+                    .animation(.spring(), value: isPage1)
 
                     Divider()
                     
