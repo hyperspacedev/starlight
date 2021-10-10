@@ -16,10 +16,7 @@ struct CompactNavigationLayout: View {
             NetworkView().tabItem {
                 Label("tabs.network", systemImage: "network")
             }
-            VStack {
-                Text("tabs.notifs")
-                    .padding()
-            }
+            NotificationsView()
             .tabItem {
                 Label("tabs.notifs", systemImage: "bell")
             }

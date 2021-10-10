@@ -42,11 +42,20 @@
 "explore.trends.tagline.accounts" = "%@ people talking";
 "explore.trends.tagline.uses" = "%@ posts about this topic today";
 
+// MARK: - Notifications
+"notifs.clear" = "Clear All Notifications";
+"notifs.clear.prompt" = "This will clear all notifications in your fediverse account, read and unread. This actions is permanent and cannot be undone.";
+"notifs.empty" = "No New Notifications";
+"notifs.empty.prompt" = "Why not create a post to get started?";
+"notifs.errored" = "Couldn't Load Notifications";
+
 // MARK: - Actions
 "actions.create" = "Create post";
 "actions.upload" = "Upload photos";
 "actions.reload" = "Refresh";
 "actions.reply" = "Reply";
+"actions.cancel" = "Cancel";
+"actions.clearall" = "Clear All";
 
 // MARK: - Misc.
 "misc.placeholder" = "Content goes here";

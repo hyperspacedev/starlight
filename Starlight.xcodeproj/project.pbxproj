@@ -89,6 +89,10 @@
 		95D3AE2226FF9CBE00B32DD9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3AE1E26FF9CBE00B32DD9 /* ProfileView.swift */; };
 		95F20B4D26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */; };
 		95F20B4E26AF50F100E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */; };
+		95F9982B27136A5300CF911D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9982A27136A5300CF911D /* NotificationsView.swift */; };
+		95F9982C27136A5300CF911D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9982A27136A5300CF911D /* NotificationsView.swift */; };
+		95F9982D27136A5300CF911D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9982A27136A5300CF911D /* NotificationsView.swift */; };
+		95F9982E27136A5300CF911D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9982A27136A5300CF911D /* NotificationsView.swift */; };
 		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FAF1ABFC26FFCD0600C3D0EC /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = FAF1ABFB26FFCD0600C3D0EC /* StylableScrollView */; };
@@ -149,6 +153,7 @@
 		95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineScrollViewCompatible.swift; sourceTree = "<group>"; };
 		95D3AE1E26FF9CBE00B32DD9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		95F20B4C26AF4FFF00E8CA55 /* PaddedRoundedBorderTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedRoundedBorderTextFieldStyle.swift; sourceTree = "<group>"; };
+		95F9982A27136A5300CF911D /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		FA18195E26AB8BF20041560E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FA18196026AB8BF40041560E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +222,7 @@
 				951FB2E626ADADB500E20654 /* SettingsView.swift */,
 				9507189626BC65C7001EC7A5 /* TimelineMasterDetailView.swift */,
 				95D3AE1926FF981C00B32DD9 /* TimelineScrollViewCompatible.swift */,
+				95F9982A27136A5300CF911D /* NotificationsView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				95C7118A26AB89290014D6B7 /* StarlightApp.swift in Sources */,
 				9507188226BC50FE001EC7A5 /* TimelineNetworkScope.swift in Sources */,
 				95BE793B26B1B73D00A10AD5 /* PostView.swift in Sources */,
+				95F9982B27136A5300CF911D /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +594,7 @@
 				95C7118B26AB89290014D6B7 /* StarlightApp.swift in Sources */,
 				9507188326BC50FE001EC7A5 /* TimelineNetworkScope.swift in Sources */,
 				95BE793C26B1B73D00A10AD5 /* PostView.swift in Sources */,
+				95F9982C27136A5300CF911D /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +612,7 @@
 				9507187226BC48F0001EC7A5 /* Account.swift in Sources */,
 				9507189E26BC67D0001EC7A5 /* StackedLabel.swift in Sources */,
 				957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */,
+				95F9982D27136A5300CF911D /* NotificationsView.swift in Sources */,
 				9507189926BC65C7001EC7A5 /* TimelineMasterDetailView.swift in Sources */,
 				9507187726BC4E31001EC7A5 /* NetworkView.swift in Sources */,
 			);
@@ -623,6 +632,7 @@
 				9507187326BC48F0001EC7A5 /* Account.swift in Sources */,
 				9507189F26BC67D0001EC7A5 /* StackedLabel.swift in Sources */,
 				957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */,
+				95F9982E27136A5300CF911D /* NotificationsView.swift in Sources */,
 				9507189A26BC65C7001EC7A5 /* TimelineMasterDetailView.swift in Sources */,
 				9507187826BC4E31001EC7A5 /* NetworkView.swift in Sources */,
 			);
