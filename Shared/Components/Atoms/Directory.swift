@@ -8,19 +8,29 @@
 import SwiftUI
 import Chica
 
+/// A list section that shows people in the directory.
 struct Directory: View, InternalStateRepresentable {
 
+    /// An enumeration that represents the context for the section.
     enum Context {
+
+        /// The context will show new arrivals in the community.
         case newArrivals
+
+        /// The context will show accounts who have been active recently.
         case popular
     }
 
+    /// The context for this section.
     @State var context: Context
+
+    /// Whether to search only in the local scope. Defaults to true.
     @State var localOnly: Bool = true
 
     @State internal var state: ViewState = .initial
     @State private var directory: [Account]?
 
+    /// The main view of the directory.
     var body: some View {
         Section(sectionTitle) {
             Group {
