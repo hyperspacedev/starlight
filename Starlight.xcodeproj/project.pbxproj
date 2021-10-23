@@ -45,6 +45,7 @@
 		951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
 		9522CC5B272473F900DD0E5C /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522CC5A272473F900DD0E5C /* Directory.swift */; };
 		9522CC5C272473F900DD0E5C /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522CC5A272473F900DD0E5C /* Directory.swift */; };
+		9522CC6327247F6300DD0E5C /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 9522CC6227247F6300DD0E5C /* StylableScrollView */; };
 		954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
@@ -175,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9522CC6327247F6300DD0E5C /* StylableScrollView in Frameworks */,
 				95C7119B26AB89780014D6B7 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +403,7 @@
 			name = "Starlight (macOS)";
 			packageProductDependencies = (
 				95C7119A26AB89780014D6B7 /* Chica */,
+				9522CC6227247F6300DD0E5C /* StylableScrollView */,
 			);
 			productName = "Starlight (macOS)";
 			productReference = 957F125C26AB88E400386F35 /* Starlight.app */;
@@ -795,7 +798,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -828,7 +831,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z2RTAGA7V9;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -1089,6 +1092,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9522CC6227247F6300DD0E5C /* StylableScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */;
+			productName = StylableScrollView;
+		};
 		95C7119726AB89540014D6B7 /* Chica */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */;
