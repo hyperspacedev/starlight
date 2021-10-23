@@ -29,9 +29,10 @@ struct NotificationsView: View, InternalStateRepresentable {
                         if notifs.isEmpty { emptyNotifs }
                         else {
                             // FIXME: Replace placeholder with notification children views.
-                            VStack {
-                                Text("misc.placeholder")
-                                Text("\(notifs.count)")
+                            List {
+                                ForEach(notifs, id:\.id) { notif in
+                                    notificationEntry(for: notif)
+                                }
                             }
                         }
 
@@ -91,13 +92,41 @@ struct NotificationsView: View, InternalStateRepresentable {
         }
     }
     
+    private func notificationEntry(for notification: Notification) -> some View {
+        // Started on single notification view
+        // TODO: Finish the rest of this
+        HStack {
+            ProfileImage(for: .user(id: notification.account.id))
+            Group {
+                switch notification.type {
+                case .mention:
+                    if let mention = notification.status {
+                        Text(mention.content.toEmojifiedMarkdown())
+                    }
+                default:
+                    Text("misc.placeholder")
+                }
+            }
+        }
+    }
+    
     /// Loads the list of notifications.
     internal func loadData() {
-        state = .loading
-        // FIXME: Implement this method.
-        print("Not implemented.")
-        notifications = []
-        state = .loaded
+        Task.init {
+            state = .loading
+            do {
+                try await getNotifications()
+                state = .loaded
+            } catch {
+                state = .errored(reason: "")
+            }
+            state = .loaded
+        }
+
+    }
+    
+    func getNotifications() async throws {
+        notifications = try await Chica.shared.request(.get, for: .notifications)
     }
 }
 
