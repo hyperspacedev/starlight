@@ -14,11 +14,13 @@ import Chica
 struct ExploreView: View {
     @State private var query: String = ""
     @State private var trendingTags: [Tag]?
-    
+
     var body: some View {
         NavigationView {
             List {
                 TrendingScrollView(trends: trendingTags ?? [])
+                Directory(context: .popular)
+                Directory(context: .newArrivals)
             }
             .navigationTitle("tabs.explore")
         }

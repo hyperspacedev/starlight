@@ -291,7 +291,7 @@ struct ProfileView: View, InternalStateRepresentable {
     private var title: some View {
         HStack {
             ProfileImage(
-                for: .currentUser,
+                for: getProfileImageContext(),
                 size: .medium
             )
                 .shadow(color: .black, radius: 5)
@@ -343,6 +343,15 @@ struct ProfileView: View, InternalStateRepresentable {
             } catch {
                 state = .errored(reason: "Unknown error")
             }
+        }
+    }
+
+    private func getProfileImageContext() -> ProfileImage.AccountType {
+        switch context {
+        case .currentUser:
+            return ProfileImage.AccountType.currentUser
+        case .user(let id):
+            return ProfileImage.AccountType.user(id: id)
         }
     }
 }

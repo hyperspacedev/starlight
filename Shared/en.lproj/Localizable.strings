@@ -41,6 +41,8 @@
 "explore.trends.tagline" = "%1$@ people talking, %2$@ posts about this topic today";
 "explore.trends.tagline.accounts" = "%@ people talking";
 "explore.trends.tagline.uses" = "%@ posts about this topic today";
+"explore.directory.arrivals" = "New Arrivals";
+"explore.directory.popular" = "Active On Your Network";
 
 // MARK: - Notifications
 "notifs.clear" = "Clear All Notifications";
