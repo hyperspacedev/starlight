@@ -9,6 +9,8 @@ import SwiftUI
 import Chica
 
 /// A view that displays posts and threads in a master-detail style.
+///
+/// It is recommended that this view be used in split-view containers.
 struct TimelineMasterDetailView: View {
     
     @State var scope: TimelineViewableScope
@@ -16,9 +18,7 @@ struct TimelineMasterDetailView: View {
     /// The body of the view.
     var body: some View {
         TimelineViewable(scope: scope) { statuses in
-            // timeline(statuses)
-            TimelineMasterDetailList(stream: statuses)
-//            TimelineMasterDetailPrompt(stream: statuses)
+            timeline(statuses)
         }
     }
     
@@ -45,13 +45,12 @@ struct TimelineMasterDetailView: View {
     }
     
     private func timeline(_ statuses: [Status]?) -> some View {
-        Group {
-            TimelineMasterDetailList(stream: statuses)
-            TimelineMasterDetailPrompt(stream: statuses)
-        }
+        TimelineMasterDetailList(stream: statuses)
+            .frame(idealWidth: 450)
     }
 }
 
+/// A view that displays a list of posts that will push the details of a post onto the stack.
 struct TimelineMasterDetailList: View {
     var stream: [Status]?
     var body: some View {
@@ -71,24 +70,6 @@ struct TimelineMasterDetailList: View {
         .listStyle(.automatic)
         .navigationBarTitleDisplayMode(.large)
         #endif
-    }
-}
-
-struct TimelineMasterDetailPrompt: View {
-    var stream: [Status]?
-    var body: some View {
-        if stream?.isEmpty == true {
-            StackedLabel(systemName: "tray", title: "timelines.empty") {
-                Button(action: {}) {
-                    Text("actions.reload")
-                }
-                .buttonStyle(.borderedProminent)
-            }
-        } else {
-            StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
-                Text("timelines.detail.subtitle")
-            }
-        }
     }
 }
 

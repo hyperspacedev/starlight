@@ -70,12 +70,14 @@ struct StandardNavigationLayout: View {
                 }
                 .frame(minWidth: 170, idealWidth: 180, maxWidth: .infinity, maxHeight: .infinity)
 
+                // This view is used to instantiate the split column, which will be taken on in other children.
                 Group {
                     StackedLabel(systemName: "tray.fill", title: "masterdetail.list.title") {
                         Text("masterdetail.list.subtitle")
                     }
                 }
 
+                // This view is used to instantiate the detaul view, thus making the full split-view container.
                 Group {
                     StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
                         Text("timelines.detail.subtitle")

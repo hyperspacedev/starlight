@@ -22,7 +22,9 @@ struct StarlightApp: App {
         
         #if os(macOS)
         Settings {
-            SettingsView()
+            NavigationView {
+                SettingsView()
+            }
         }
         #endif
     }

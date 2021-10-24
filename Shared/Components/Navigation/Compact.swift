@@ -24,7 +24,9 @@ struct CompactNavigationLayout: View {
             .tabItem {
                 Label("tabs.explore", systemImage: "magnifyingglass")
             }
-            SettingsView()
+            NavigationView {
+                SettingsView()
+            }
             .tabItem {
                 Label("tabs.prefs", systemImage: "gear")
             }
