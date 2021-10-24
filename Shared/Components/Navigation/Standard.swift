@@ -45,7 +45,7 @@ struct StandardNavigationLayout: View {
                             Label("tabs.home", systemImage: "house")
                         }
                         .tag(NavigationViews.home)
-                        NavigationLink(destination: NetworkView()) {
+                        NavigationLink(destination: TimelineMasterDetailView(scope: .network(localOnly: true))) {
                             Label("tabs.network", systemImage: "network")
                         }
                         .tag(NavigationViews.network)
@@ -63,9 +63,24 @@ struct StandardNavigationLayout: View {
                         #endif
                     }
                     .listStyle(.sidebar)
+                    #if os(iOS)
+                    .navigationTitle("Starlight")
+                    #endif
                     .frame(minWidth: 170, maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .frame(minWidth: 170, idealWidth: 180, maxWidth: .infinity, maxHeight: .infinity)
+
+                Group {
+                    StackedLabel(systemName: "tray.fill", title: "masterdetail.list.title") {
+                        Text("masterdetail.list.subtitle")
+                    }
+                }
+
+                Group {
+                    StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
+                        Text("timelines.detail.subtitle")
+                    }
+                }
             }
             .onAppear(perform: loadData)
             .refreshable{ loadData() }

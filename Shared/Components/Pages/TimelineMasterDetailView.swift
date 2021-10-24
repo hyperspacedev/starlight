@@ -15,10 +15,10 @@ struct TimelineMasterDetailView: View {
     
     /// The body of the view.
     var body: some View {
-        NavigationView {
-            TimelineViewable(scope: scope) { statuses in
-                timeline(statuses)
-            }
+        TimelineViewable(scope: scope) { statuses in
+            // timeline(statuses)
+            TimelineMasterDetailList(stream: statuses)
+//            TimelineMasterDetailPrompt(stream: statuses)
         }
     }
     
@@ -46,37 +46,50 @@ struct TimelineMasterDetailView: View {
     
     private func timeline(_ statuses: [Status]?) -> some View {
         Group {
-            List {
-                if let stream = statuses {
-                    ForEach(stream, id: \.id) { post in
-                        NavigationLink(destination: PostDetailView(post: post)) {
-                            PostView(post: post, truncate: true)
-                        }
+            TimelineMasterDetailList(stream: statuses)
+            TimelineMasterDetailPrompt(stream: statuses)
+        }
+    }
+}
+
+struct TimelineMasterDetailList: View {
+    var stream: [Status]?
+    var body: some View {
+        List {
+            if let posts = stream {
+                ForEach(posts, id: \.id) { post in
+                    NavigationLink(destination: PostDetailView(post: post)) {
+                        PostView(post: post, truncate: true)
                     }
-                }
-            }
-            #if os(macOS)
-            .listStyle(.bordered(alternatesRowBackgrounds: true))
-            .frame(minWidth: 400)
-            #else
-            .listStyle(.insetGrouped)
-            #endif
-            
-            if statuses?.isEmpty == true {
-                StackedLabel(systemName: "tray", title: "timelines.empty") {
-                    Button(action: {}) {
-                        Text("actions.reload")
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-            } else {
-                StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
-                    Text("timelines.detail.subtitle")
                 }
             }
         }
+        #if os(macOS)
+        .listStyle(.bordered(alternatesRowBackgrounds: true))
+        .frame(minWidth: 400)
+        #else
+        .listStyle(.automatic)
+        .navigationBarTitleDisplayMode(.large)
+        #endif
     }
-        
+}
+
+struct TimelineMasterDetailPrompt: View {
+    var stream: [Status]?
+    var body: some View {
+        if stream?.isEmpty == true {
+            StackedLabel(systemName: "tray", title: "timelines.empty") {
+                Button(action: {}) {
+                    Text("actions.reload")
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        } else {
+            StackedLabel(systemName: "newspaper", title: "timelines.detail.title") {
+                Text("timelines.detail.subtitle")
+            }
+        }
+    }
 }
 
 struct TimelineView_Previews: PreviewProvider {
