@@ -22,6 +22,10 @@
 "tabs.messages" = "Messages";
 "tabs.prefs" = "Settings";
 
+// MARK: - Master Detail Views
+"masterdetail.list.title" = "Select a Page";
+"masterdetail.list.subtitle" = "Select a page from the sidebar to view its contents here.";
+
 // MARK: - Timelines
 "timelines.updatediff" = "Last updated %@ ago";
 "timelines.updatediff.started" = "Just updated now";
