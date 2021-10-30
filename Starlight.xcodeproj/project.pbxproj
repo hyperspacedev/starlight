@@ -39,13 +39,13 @@
 		950718A726BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
 		950718A826BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
 		950718A926BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
+		951C5E5D272DB88A00DA9B89 /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 951C5E5C272DB88A00DA9B89 /* StylableScrollView */; };
 		951FB2E726ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
 		951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
 		951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
 		951FB2EB26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
 		9522CC5B272473F900DD0E5C /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522CC5A272473F900DD0E5C /* Directory.swift */; };
 		9522CC5C272473F900DD0E5C /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522CC5A272473F900DD0E5C /* Directory.swift */; };
-		9522CC6327247F6300DD0E5C /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 9522CC6227247F6300DD0E5C /* StylableScrollView */; };
 		954A102426AC5A5A00E6F70B /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A102326AC5A5A00E6F70B /* ProfileCard.swift */; };
 		957F126626AB88E400386F35 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126526AB88E400386F35 /* Tests_iOS.swift */; };
 		957F127026AB88E400386F35 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957F126F26AB88E400386F35 /* Tests_macOS.swift */; };
@@ -176,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9522CC6327247F6300DD0E5C /* StylableScrollView in Frameworks */,
+				951C5E5D272DB88A00DA9B89 /* StylableScrollView in Frameworks */,
 				95C7119B26AB89780014D6B7 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,7 +403,7 @@
 			name = "Starlight (macOS)";
 			packageProductDependencies = (
 				95C7119A26AB89780014D6B7 /* Chica */,
-				9522CC6227247F6300DD0E5C /* StylableScrollView */,
+				951C5E5C272DB88A00DA9B89 /* StylableScrollView */,
 			);
 			productName = "Starlight (macOS)";
 			productReference = 957F125C26AB88E400386F35 /* Starlight.app */;
@@ -1092,7 +1092,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9522CC6227247F6300DD0E5C /* StylableScrollView */ = {
+		951C5E5C272DB88A00DA9B89 /* StylableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */;
 			productName = StylableScrollView;
