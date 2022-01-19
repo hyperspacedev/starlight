@@ -1085,7 +1085,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperspacedev/StylableScrollView";
 			requirement = {
-				branch = v1.0beta;
+				branch = "v0.1.0/release-candidate";
 				kind = branch;
 			};
 		};

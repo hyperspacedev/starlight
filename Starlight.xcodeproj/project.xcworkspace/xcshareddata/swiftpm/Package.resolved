@@ -23,8 +23,8 @@
         "package": "StylableScrollView",
         "repositoryURL": "https://github.com/hyperspacedev/StylableScrollView",
         "state": {
-          "branch": "v1.0beta",
-          "revision": "a6065363eed302c9079e6ee3df44965adbc82290",
+          "branch": "v0.1.0/release-candidate",
+          "revision": "37a41262942bd04d2eb4cb62a0d16a7053d85a28",
           "version": null
         }
       }
