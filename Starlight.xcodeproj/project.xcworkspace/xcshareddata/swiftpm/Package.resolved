@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/hyperspacedev/chica",
         "state": {
           "branch": "main",
-          "revision": "19bc50ad348beda66766e9e2ddb33c240f4cdd23",
+          "revision": "d8af360437a130b7debb46998f6d1feb3855a190",
           "version": null
         }
       },
@@ -21,10 +21,10 @@
       },
       {
         "package": "StylableScrollView",
-        "repositoryURL": "https://github.com/hyperspacedev/StylableScrollView",
+        "repositoryURL": "https://github.com/hyperspacedev/stylablescrollview",
         "state": {
-          "branch": "v1.0beta",
-          "revision": "b2803cab4f45d84c2a8894aefe9b510e87eeb1c7",
+          "branch": "v0.1.0/release-candidate",
+          "revision": "37a41262942bd04d2eb4cb62a0d16a7053d85a28",
           "version": null
         }
       }

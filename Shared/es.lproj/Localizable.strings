@@ -6,14 +6,31 @@
   
 */
 
-// - MARK: Login and Registration
+// MARK: - Login and Registration
 "login.button" = "Iniciar sesión";
-"login.header" = "Iniciar sesión";
-"login.info" = "Inicia sesión con una cuenta de Mastodon o de Twitter para ver publicaciones de cualquier lugar del mundo, así como crear publicaciones, seguir a otras personas ¡y más cosas!";
+"signup.button" = "Registrarse";
+"login.welcome" = "Bienvenido a Starlight! 🌟";
+"login.thanks" = "Gracias por descargarte la app ❤️";
+"login.info" = "Starlight es la aplicación perfecta para gestionar tus cuentas de Mastodon y Twitter.";
+"login.disclaimer" = "Al pulsar cualquiera de estos botones, estás aceptando nuestros [Términos de Uso](https://example.com) y [Política de Privacidad](https://hyperspace.marquiskurt.net/privacy).";
+"login.picker.title" = "Escoger instancia";
+"login.picker.textfield.placeholder" = "Dominio de la instancia";
+"login.picker.info" = "El dominio de una instancia es normalmente lo que sigue después de el ***\"@\"*** en tu usuario (e.g. usuario@**ejemplo.com**, donde **[ejemplo.com](https://ejemplo.com)** es el dominio de la instancia).\n\nSi tu usuario no dispone de este dominio, lo más probable es que estés usando [mastodon.social](https://mastodon.social).";
 
-// - MARK: Tabs
+// MARK: - Tabs
 "tabs.home" = "Inicio";
 "tabs.network" = "Red";
 "tabs.explore" = "Explorar";
 "tabs.profile" = "Perfil";
+"tabs.notifs" = "Notificaciones";
+"tabs.messages" = "Mensajes";
 "tabs.prefs" = "Ajustes";
+
+// MARK: - Timelines
+"timelines.updatediff" = "Última vez actualizado hace %@";
+"timelines.updatediff.started" = "Versión más reciente.";
+"timelines.empty" = "Este feed está vacío.";
+"timelines.context.empty" = "No se han encontrado respuestas.";
+"timelines.detail.title" = "Elige una publicación";
+"timelines.detail.subtitle" = "Elige una publicación de las que se encuentran en la izquierda para leer más y ver respuestas.";
+"timelines.errored" = "No se pudo obtener el feed.";

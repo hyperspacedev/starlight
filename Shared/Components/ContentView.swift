@@ -11,7 +11,8 @@ import SwiftUI
 /// The structured view for the app
 struct ContentView: View {
     
-    @State private var authState: Chica.OAuth.State = Chica.OAuth.shared.authState
+    @ObservedObject private var OAuthManager: Chica.OAuth = Chica.OAuth.shared
+    @Environment(\.deeplink) var deeplink
 
     #if os(iOS)
     /// Determines whether the device is compact or standard
@@ -24,17 +25,20 @@ struct ContentView: View {
             StandardNavigationLayout()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             #else
-            if authState == .signedOut {
-                LoginView()
-            } else {
+            switch self.OAuthManager.authState {
+            case .authenthicated(_):
                 if horizontalSizeClass == .compact {
                     CompactNavigationLayout()
                 } else {
                     StandardNavigationLayout()
                 }
+            default:
+                LoginView()
+                    .environment(\.deeplink, self.deeplink)
             }
             #endif
         }
+        .animation(.spring(), value: self.OAuthManager.authState)
     }
 }
 

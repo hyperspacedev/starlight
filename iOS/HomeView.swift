@@ -38,7 +38,8 @@ struct HomeView: View {
                         }
                         .padding(.horizontal)
                     },
-                    false
+                    leadingElements: { _ in EmptyView() },
+                    trailingElements: { _ in EmptyView() }
             ))
         }
     }
