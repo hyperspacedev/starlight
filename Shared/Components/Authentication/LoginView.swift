@@ -18,6 +18,12 @@ struct LoginView: View {
     @State var hasFinishedLoading: Bool = false
 
     @State var fediverseName: String = ""
+    @State var toggleSafari: Bool = false
+    @State var url: URL? = nil {
+        didSet {
+            self.toggleSafari.toggle()
+        }
+    }
 
     @StateObject var manager: Chica.OAuth = Chica.OAuth.shared
 
@@ -217,6 +223,17 @@ struct LoginView: View {
                     return Color.clear
                 }
             )
+            .fullScreenCover(isPresented: self.$toggleSafari, content: {
+                Group {
+                    if let url = self.url {
+                        SFSafariViewWrapper(url: url)
+                            .edgesIgnoringSafeArea(.all)
+                    }
+                }
+                .onAppear() {
+                    print(self.url)
+                }
+            })
             .sheet(isPresented: $present) {
                 HalfSheet {
                     VStack(alignment: .leading, spacing: 20) {
@@ -280,8 +297,12 @@ struct LoginView: View {
                         Button(
                             action: {
                                 Task.init {
-                                    print(self.manager.authState)
-                                    await Chica.OAuth.shared.startOauthFlow(for: self.fediverseName)
+                                    await Chica.OAuth.shared.startOauthFlow(for: self.fediverseName) { authURL in
+                                        self.present.toggle()
+                                        asyncAfter(0.1, action: {
+                                            self.url = authURL
+                                        })
+                                    }
                                 }
                             },
                             label: {
@@ -365,100 +386,3 @@ struct HalfSheet<Content>: UIViewControllerRepresentable where Content : View {
 
     }
 }
-
-//
-//struct LoginView: View {
-//
-//    @State private var fediverseName: String = ""
-//    @State private var twitterName: String = ""
-//    @State private var loggedIn: Bool = false
-//
-//    var body: some View {
-//        VStack(spacing: 16.0) {
-//            header
-//            Spacer()
-//            fediverseLogin
-//            Text("or")
-//            twitterLogin
-//            Spacer()
-//            Text("login.register.prompt")
-//            loginButton
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .font(.system(.body, design: .rounded))
-//        .padding()
-//    }
-//
-//    var header: some View {
-//        HStack(alignment: .firstTextBaseline) {
-//            VStack(alignment: .leading) {
-//                Text("login.header")
-//                    .font(.system(.largeTitle, design: .rounded))
-//                    .bold()
-//                Text("login.info")
-//                    .foregroundColor(.gray)
-//            }
-//            Image(systemName: "star")
-//                .font(.largeTitle)
-//        }
-//    }
-//
-//    var fediverseLogin: some View {
-//        VStack(alignment: .leading) {
-//            Section("Mastodon") {
-//                TextField("example@mastodon.online", text: $fediverseName)
-//                    .textFieldStyle(.paddedRoundedBorder)
-//                Text(
-//                    String(
-//                        format: NSLocalizedString("login.fullname", comment: "Full username sign in"),
-//                        "mastodon.online"
-//                    )
-//                )
-//                    .font(.caption)
-//                    .foregroundColor(.gray)
-//            }
-//
-//        }
-//    }
-//
-//    var twitterLogin: some View {
-//        VStack(alignment: .leading) {
-//            Section("Twitter") {
-//                TextField("@twitter", text: $twitterName)
-//                    .textFieldStyle(.paddedRoundedBorder)
-//            }
-//
-//        }
-//    }
-//
-//    func getUserDomain() -> String {
-//        if fediverseName.contains("@") {
-//            let components = fediverseName.split(separator: "@")
-//            return "\(components.last ?? "mastodon.online")"
-//        }
-//        return "mastodon.online"
-//    }
-//
-//    var loginButton: some View {
-//        Button(action: {
-//            Task.init {
-//                await Chica.OAuth.shared.startOauthFlow(for: getUserDomain())
-//            }
-//        }) {
-//            Text("login.button")
-//                .bold()
-//        }
-//        .buttonStyle(.plain)
-//        .padding()
-//        .frame(maxWidth: .infinity)
-//        .background(Color.accentColor)
-//        .foregroundColor(.white)
-//        .cornerRadius(6.0)
-//    }
-//}
-//
-//struct LoginView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoginView()
-//    }
-//}
