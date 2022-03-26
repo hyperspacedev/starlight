@@ -93,7 +93,9 @@ struct ProfileView: View, InternalStateRepresentable {
                     Text(account?.getName().emojified() ?? "tabs.profile")
                         .bold()
                         .navigationBarElement(axis: .trailing, { navbarGroup })
-                }
+                },
+                leadingElements: { _ in EmptyView() },
+                trailingElements: { _ in EmptyView() }
             )
         )
         .transformSize { size in
@@ -146,7 +148,7 @@ struct ProfileView: View, InternalStateRepresentable {
         }
     }
     
-    /// A view that contains glance-able information about a profile sich as number of posts, follows, location, etc.
+    /// A view that contains glance-able information about a profile such as number of posts, follows, location, etc.
     private var blurbHeader: some View {
         ZStack {
             HStack {

@@ -145,7 +145,9 @@ struct TrendingDetailScrollViewCompatible: View {
             StretchableScrollViewStyle(
                 header: { Color.accentColor.opacity(0.75) },
                 title: { header.foregroundColor(.white) },
-                navBarContent: { Text("#\(tag.name)").bold() }
+                navBarContent: { Text("#\(tag.name)").bold() },
+                leadingElements: { _ in EmptyView() },
+                trailingElements: { _ in EmptyView() }
             )
         )
     }
