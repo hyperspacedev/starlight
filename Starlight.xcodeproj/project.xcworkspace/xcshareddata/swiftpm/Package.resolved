@@ -6,11 +6,7 @@
         "repositoryURL": "https://github.com/hyperspacedev/chica",
         "state": {
           "branch": "main",
-<<<<<<< HEAD
-          "revision": "83e4fe53bc6cc79acf6c46ba4881a54d8c36db66",
-=======
           "revision": "72f399c147cf20862eea361278ff9e5c124ffc69",
->>>>>>> refactor/GH-16
           "version": null
         }
       },

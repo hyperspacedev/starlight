@@ -180,11 +180,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				951C5E5D272DB88A00DA9B89 /* StylableScrollView in Frameworks */,
 				95C7119B26AB89780014D6B7 /* Chica in Frameworks */,
-=======
->>>>>>> refactor/GH-16
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,11 +424,8 @@
 			);
 			name = "Starlight (macOS)";
 			packageProductDependencies = (
-<<<<<<< HEAD
 				95C7119A26AB89780014D6B7 /* Chica */,
 				951C5E5C272DB88A00DA9B89 /* StylableScrollView */,
-=======
->>>>>>> refactor/GH-16
 			);
 			productName = "Starlight (macOS)";
 			productReference = 957F125C26AB88E400386F35 /* Starlight.app */;
@@ -831,11 +825,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = FQQXSP79X3;
-=======
-				DEVELOPMENT_TEAM = 54WRV8QX2U;
->>>>>>> refactor/GH-16
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -868,11 +858,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = FQQXSP79X3;
-=======
-				DEVELOPMENT_TEAM = 54WRV8QX2U;
->>>>>>> refactor/GH-16
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -1135,21 +1121,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-<<<<<<< HEAD
-		951C5E5C272DB88A00DA9B89 /* StylableScrollView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FAF1ABFA26FFCD0600C3D0EC /* XCRemoteSwiftPackageReference "StylableScrollView" */;
-			productName = StylableScrollView;
-		};
-		95C7119726AB89540014D6B7 /* Chica */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 95C7119626AB89540014D6B7 /* XCRemoteSwiftPackageReference "chica" */;
-			productName = Chica;
-		};
-		95C7119A26AB89780014D6B7 /* Chica */ = {
-=======
 		FA1DCB4327B0740400647AE2 /* Chica */ = {
->>>>>>> refactor/GH-16
 			isa = XCSwiftPackageProductDependency;
 			package = FA1DCB4227B0740400647AE2 /* XCRemoteSwiftPackageReference "chica" */;
 			productName = Chica;

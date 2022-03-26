@@ -230,9 +230,6 @@ struct LoginView: View {
                             .edgesIgnoringSafeArea(.all)
                     }
                 }
-                .onAppear() {
-                    print(self.url)
-                }
             })
             .sheet(isPresented: $present) {
                 HalfSheet {
