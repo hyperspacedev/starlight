@@ -140,7 +140,7 @@ struct TimelineViewable<Content: View>: View, InternalStateRepresentable {
             statuses = try await Chica.shared.request(
                 .get,
                 for: .timeline(scope: .network),
-                params: localOnly ? ["local": "true"] : nil
+                body: localOnly ? ["local": "true"] : nil
             )
         case .list(let id):
             statuses = try await Chica.shared.request(

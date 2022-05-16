@@ -8,23 +8,12 @@
 import SwiftUI
 import Chica
 import StylableScrollView
+import SafariView
+import SPAlert
 
-struct LoginView: View {
+struct LoginView: View, KeyboardReadable {
 
-    @State var layer: CGRect = CGRect.init()
-    @State var availableSize: CGSize = CGSize.init()
-
-    @State var present: Bool = false
-    @State var hasFinishedLoading: Bool = false
-
-    @State var fediverseName: String = ""
-    @State var toggleSafari: Bool = false
-    @State var url: URL? = nil {
-        didSet {
-            self.toggleSafari.toggle()
-        }
-    }
-
+    @StateObject var viewModel = ViewModel()
     @StateObject var manager: Chica.OAuth = Chica.OAuth.shared
 
     @Environment(\.colorScheme) var colorSchemes
@@ -43,343 +32,147 @@ struct LoginView: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        NavigationView {
-            VStack {
-
-                Color.clear
-                    .background(
-                        Image("banner")
+        Form {
+            Section(
+                header: VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        Image("logo")
                             .resizable()
-                            .scaledToFill()
-                            .frame(width: self.availableSize.width, height: self.availableSize.height / 1.5)
-                            .zIndex(0.1)
-                    )
-                    .frame(height: self.availableSize.height / 1.5)
-                    .overlay(
-                        Path { path in
-                            path.move(
-                                to: CGPoint(
-                                    x : self.layer.minX,
-                                    y : self.layer.midY
-                                )
-                            )
-                            path.addLine(
-                                to : CGPoint(
-                                    x: self.layer.minX,
-                                    y : self.layer.maxY
-                                )
-                            )
-                            path.addLine(
-                                to : CGPoint(
-                                    x: self.layer.maxX,
-                                    y : self.layer.maxY
-                                )
-                            )
-                        }
-                            .fill(Color.backgroundColor)
-                        .animation(.spring())
-                    )
-                    .background(
-                        GeometryReader { proxy -> Color in
-
-                            Task {
-                                self.layer = proxy.frame(in: .global)
-                            }
-
-                            return Color.clear
-                        }
-                    )
-                    .overlay(
-                        HStack {
-                            Text("login.welcome")
-                                .bold()
-                            .font(.largeTitle)
-                            .padding()
-                            Spacer()
-                        }.frame(width: self.availableSize.width / 1.5),
-                        alignment: .bottomLeading
-                    )
-
-                VStack(alignment: .leading) {
-
-                    VStack(spacing: 20) {
-
-                        HStack {
-
-                            Text("login.thanks")
-                                .bold()
-
-                            Spacer()
-
-                        }
-                        .font(.system(size: 20))
-
-                        HStack {
-
-                            Text("login.info")
-
-                            Spacer()
-
-                        }
-                        .font(.system(size: 23))
-                    }
-
-                    Spacer()
-
-                    VStack(spacing: 10) {
-
-                        HStack {
-
-                            Button(
-                                action: {
-                                    if let url = URL(string: "starlight://register") {
-                                        openURL(url)
-                                    }
-                                }
-                            ) {
-                                HStack {
-
-                                    Spacer()
-
-                                    Text("signup.button")
-
-                                    Spacer()
-
-                                }
-                                .font(.system(size: 17, weight: .medium, design: .rounded))
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(
-                                            LinearGradient(
-                                                gradient: Gradient(
-                                                    colors: [.blue, .purple, .pink, .red, .orange, .yellow, .green
-                                                    ]
-                                                ),
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            ),
-                                            lineWidth: 2
-                                        )
-                                        .opacity(0.6)
-                                )
-                            }
-                            .buttonStyle(PlainButtonStyle())
-
-                            Menu {
-
-                                Button("Twitter", action: {})
-                                Button("Mastodon", action: {
-                                    self.present.toggle()
-                                })
-
-                            } label: {
-                                HStack {
-
-                                    Spacer()
-
-                                    Text("login.button")
-
-                                    Spacer()
-
-                                }
-                                .font(.system(size: 17, weight: .medium, design: .rounded))
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.blue, lineWidth: 2)
-                                )
-                            }
-                            .buttonStyle(PlainButtonStyle())
-
-                        }
-
-                        Text("login.disclaimer")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-
-                    }
-
-                }
-                .zIndex(1)
-                .background(
-                    Color.backgroundColor
-                )
-                .padding([.horizontal, .bottom])
-
-                Spacer()
-
-            }
-            .navigationBarHidden(true)
-            .ignoresSafeArea()
-            .background(
-                GeometryReader { proxy -> Color in
-
-                    Task {
-                        self.availableSize = proxy.frame(in: .global).size
-                    }
-
-                    return Color.clear
-                }
-            )
-            .fullScreenCover(isPresented: self.$toggleSafari, content: {
-                Group {
-                    if let url = self.url {
-                        SFSafariViewWrapper(url: url)
-                            .edgesIgnoringSafeArea(.all)
-                    }
-                }
-            })
-            .sheet(isPresented: $present) {
-                HalfSheet {
-                    VStack(alignment: .leading, spacing: 20) {
-                        HStack {
-                            Button(
-                                action: {
-                                    self.present.toggle()
-                                },
-                                label: {
-                                    Text("\(Image(systemName: "xmark"))")
-                                        .bold()
-                                        .foregroundColor(.secondary)
-                                        .padding(10)
-                                        .background(
-                                            Circle()
-                                                .foregroundColor(
-                                                    Color(.systemGray6)
-                                                )
-                                        )
-                                }
-                            )
-
-                            Spacer()
-
-                        }
-                        .overlay(
-                            VStack(spacing: 10) {
-                                Text("login.picker.title")
-                                    .foregroundColor(.gray)
-                                    .font(
-                                        .system(
-                                            size: 17,
-                                            weight: .bold,
-                                            design: .monospaced
-                                        )
-                                    )
-                                RoundedRectangle(cornerRadius: 15)
-                                    .foregroundColor(Color(.systemGray6))
-                                    .frame(width: 150, height: 3)
-                            },
-                            alignment: .center
-                        )
-
-                        TextField(
-                            "login.picker.textfield.placeholder",
-                            text: self.$fediverseName
-                        )
-                            .font(.system(size: 17, weight: .bold, design: .default))
-                            .foregroundColor(.gray)
-                            .padding()
-                            .background(
-                                Color(.systemGray6)
-                                    .cornerRadius(10)
-                            )
-                        Text("login.picker.info")
-                            .font(.system(size: 16))
-                            .opacity(0.8)
+                            .scaledToFit()
+                            .frame(height: 100)
                         Spacer()
                     }
-                    .overlay(
-                        Button(
-                            action: {
-                                Task.init {
-                                    await Chica.OAuth.shared.startOauthFlow(for: self.fediverseName) { authURL in
-                                        self.present.toggle()
-                                        asyncAfter(0.1, action: {
-                                            self.url = authURL
-                                        })
-                                    }
-                                }
-                            },
-                            label: {
-                                HStack {
-                                    Spacer()
+                    Text("login.welcome")
+                        .font(
+                            .system(
+                                .largeTitle,
+                                design: .rounded
+                            )
+                        ).bold()
+                        .lineLimit(10)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(
+                            Color(.label)
+                        )
+                        .frame(
+                            maxWidth: .infinity,
+                            minHeight: 100,
+                            alignment: .center
+                        )
+                }.padding(.top),
+                footer: Text("login.info")
+                    .font(.system(size: 17))
+            ) { EmptyView() }
+                .listRowInsets(EdgeInsets())
 
-                                    if self.manager.authState == .signinInProgress {
-                                        ProgressView(value: 1)
-                                            .progressViewStyle(CircularProgressViewStyle())
-                                    } else  {
-                                        Text("login.button")
-                                            .foregroundColor(.white)
-                                            .bold()
-                                    }
+            Section(
+                footer: Text("login.textfield.info")
+            ) {
+                HStack {
 
-                                    Spacer()
-                                }
-                                .padding()
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(.blue)
-                                    )
-                            })
-                            .disabled(self.manager.authState == .signinInProgress),
-                        alignment: .bottom
+                    TextField(
+                        "login.textfield.placeholder",
+                        text: $viewModel.instanceDomain
                     )
-                    .padding()
+                        .font(.system(.body, design: .rounded))
+
+                    Text("\(Image(systemName: "globe.europe.africa.fill"))")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 25))
+                }
+                .frame(height: 40)
+            }
+
+            Section {
+                Button(
+                    action: {
+                        Task {
+                            do {
+                                try await Chica.OAuth.shared.startOauthFlow(
+                                    for: viewModel.instanceDomain,
+                                    authHandler: { url in
+                                        //  Publishing changes from background threads is not allowed
+                                        Task { @MainActor in
+                                            viewModel.url = url
+                                        }
+                                    }
+                                )
+                            } catch {
+                                let alert = SPAlertView(
+                                    title: "An error ocurred",
+                                    message: error.localizedDescription,
+                                    preset: .error
+                                )
+                                alert.present()
+                            }
+                        }
+                    },
+                    label: {
+                        HStack {
+                            Spacer()
+                            Text("login.button")
+                                .bold()
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .padding()
+                        .background(
+                            Image("background")
+                                .resizable()
+                                .scaledToFill()
+                                .edgesIgnoringSafeArea(.all)
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 8)
+                    }
+
+                ).listRowInsets(EdgeInsets())
+            }
+        }
+        .overlay(
+            HStack {
+                if !viewModel.keyboardVisible {
+                    Text("signup.message")
+                }
+            }, alignment: .bottom
+        )
+        .onReceive(keyboardPublisher) {
+            viewModel.keyboardVisible = $0
+        }
+        .onChange(of: self.deeplink, perform: { deeplink in
+            Task {
+                if case let .oauth(code) = deeplink {
+                    do {
+                        try await Chica.OAuth.shared.continueOauthFlow(code)
+                    } catch {
+                        let alert = SPAlertView(
+                            title: "An error ocurred",
+                            message: error.localizedDescription,
+                            preset: .error
+                        )
+                        alert.present()
+                    }
+                } else if case .signUp = deeplink {
+                    print("Sign up view...")
                 }
             }
-            .onChange(of: self.manager.authState, perform: {
-                switch $0 {
-                case .authenthicated(_):
-                    self.present.toggle()
-                default:
-                    break
-                }
-            })
-            .onChange(of: self.deeplink, perform: { deeplink in
-                Task.init {
-                    if case let .oauth(code) = deeplink {
-                        await Chica.OAuth.shared.continueOauthFlow(code)
-                    }
-                }
-            })
-        }
-        
+        })
+        .fullScreenCover(
+            isPresented: $viewModel.toggleSafari,
+            content: {
+                SafariView(url: $viewModel.url)
+                    .collapsible(.constant(true))
+                    .ignoresSafeArea()
+            }
+        )
+        .navigationBarHidden(true)
+
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-    }
-}
-
-class HalfSheetController<Content>: UIHostingController<Content> where Content : View {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let presentation = sheetPresentationController {
-            // configure at will
-            presentation.detents = [.medium()]
-            presentation.preferredCornerRadius = 30
-        }
-    }
-}
-
-struct HalfSheet<Content>: UIViewControllerRepresentable where Content : View {
-
-    private let content: Content
-    
-    @inlinable init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    func makeUIViewController(context: Self.Context) -> HalfSheetController<Content>{
-        return HalfSheetController(rootView: content)
-    }
-    
-    func updateUIViewController(_: HalfSheetController<Content>, context: Self.Context) {
-
     }
 }

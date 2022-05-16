@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Chica
 
 /// The main view for adjusting settings.
 /// - Important: This view is _not_ wrapped in a NavigationView. For areas that need it, please wrap the SettingsView in a NavigationView.
@@ -35,6 +36,9 @@ struct SettingsView: View {
                     #endif
                 }
                 .tag(SettingsKeys.account)
+                Button("Log out") {
+                    Chica.OAuth.shared.logOut()
+                }
                 
                 Section {
                     NavigationLink(destination: Text("General").navigationTitle("General")) {

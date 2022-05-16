@@ -38,7 +38,7 @@
 		950718A726BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
 		950718A826BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
 		950718A926BC80E6001EC7A5 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950718A526BC80E6001EC7A5 /* PostDetailView.swift */; };
-		951C5E5D272DB88A00DA9B89 /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 951C5E5C272DB88A00DA9B89 /* StylableScrollView */; };
+		951C5E5D272DB88A00DA9B89 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		951FB2E726ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
 		951FB2E826ADADB500E20654 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E626ADADB500E20654 /* SettingsView.swift */; };
 		951FB2EA26ADB0FF00E20654 /* TrendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951FB2E926ADB0FF00E20654 /* TrendingList.swift */; };
@@ -98,9 +98,14 @@
 		FA17072127EFBC6600B3862D /* asyncAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17071F27EFBC6600B3862D /* asyncAfter.swift */; };
 		FA18195C26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
 		FA18195D26AB8BF20041560E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA18195F26AB8BF20041560E /* Localizable.strings */; };
-		FA1DCB4427B0740400647AE2 /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = FA1DCB4327B0740400647AE2 /* Chica */; };
 		FA1DCB4727B0741400647AE2 /* StylableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = FA1DCB4627B0741400647AE2 /* StylableScrollView */; };
+		FA4EAC652831CB7E00FB4D1C /* SafariView in Frameworks */ = {isa = PBXBuildFile; productRef = FA4EAC642831CB7E00FB4D1C /* SafariView */; };
+		FA4EAC682831CF8100FB4D1C /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = FA4EAC672831CF8100FB4D1C /* Chica */; };
+		FA4EAC6B2831CFAE00FB4D1C /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = FA4EAC6A2831CFAE00FB4D1C /* SPAlert */; };
+		FA4EAC6E2831D1E600FB4D1C /* Chica in Frameworks */ = {isa = PBXBuildFile; productRef = FA4EAC6D2831D1E600FB4D1C /* Chica */; };
 		FAE98F4427A6EDB000DBF1FB /* NetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507187426BC4E31001EC7A5 /* NetworkView.swift */; };
+		FAEE99652831C4EF0017B9FE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE99642831C4EF0017B9FE /* LoginViewModel.swift */; };
+		FAEE99672831C80F0017B9FE /* KeyboardReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE99662831C80F0017B9FE /* KeyboardReadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +169,8 @@
 		FA17071F27EFBC6600B3862D /* asyncAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asyncAfter.swift; sourceTree = "<group>"; };
 		FA18195E26AB8BF20041560E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FA18196026AB8BF40041560E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FAEE99642831C4EF0017B9FE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FAEE99662831C80F0017B9FE /* KeyboardReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardReadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +178,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4EAC682831CF8100FB4D1C /* Chica in Frameworks */,
+				FA4EAC652831CB7E00FB4D1C /* SafariView in Frameworks */,
+				FA4EAC6E2831D1E600FB4D1C /* Chica in Frameworks */,
+				FA4EAC6B2831CFAE00FB4D1C /* SPAlert in Frameworks */,
 				FA1DCB4727B0741400647AE2 /* StylableScrollView in Frameworks */,
-				FA1DCB4427B0740400647AE2 /* Chica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,8 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951C5E5D272DB88A00DA9B89 /* StylableScrollView in Frameworks */,
-				95C7119B26AB89780014D6B7 /* Chica in Frameworks */,
+				951C5E5D272DB88A00DA9B89 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +359,7 @@
 		95C7118526AB89290014D6B7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				FAEE99632831C4E20017B9FE /* ViewModels */,
 				95C7118626AB89290014D6B7 /* LoginView.swift */,
 			);
 			path = Authentication;
@@ -374,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				FA17071F27EFBC6600B3862D /* asyncAfter.swift */,
+				FAEE99662831C80F0017B9FE /* KeyboardReadable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -384,6 +395,14 @@
 				95A20B9426B0F752007CFD6B /* HomeView.swift */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		FAEE99632831C4E20017B9FE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FAEE99642831C4EF0017B9FE /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,8 +422,11 @@
 			);
 			name = "Starlight (iOS)";
 			packageProductDependencies = (
-				FA1DCB4327B0740400647AE2 /* Chica */,
 				FA1DCB4627B0741400647AE2 /* StylableScrollView */,
+				FA4EAC642831CB7E00FB4D1C /* SafariView */,
+				FA4EAC672831CF8100FB4D1C /* Chica */,
+				FA4EAC6A2831CFAE00FB4D1C /* SPAlert */,
+				FA4EAC6D2831D1E600FB4D1C /* Chica */,
 			);
 			productName = "Starlight (iOS)";
 			productReference = 957F125626AB88E400386F35 /* Starlight.app */;
@@ -424,8 +446,6 @@
 			);
 			name = "Starlight (macOS)";
 			packageProductDependencies = (
-				95C7119A26AB89780014D6B7 /* Chica */,
-				951C5E5C272DB88A00DA9B89 /* StylableScrollView */,
 			);
 			productName = "Starlight (macOS)";
 			productReference = 957F125C26AB88E400386F35 /* Starlight.app */;
@@ -506,8 +526,10 @@
 			);
 			mainGroup = 957F124926AB88E200386F35;
 			packageReferences = (
-				FA1DCB4227B0740400647AE2 /* XCRemoteSwiftPackageReference "chica" */,
 				FA1DCB4527B0741400647AE2 /* XCRemoteSwiftPackageReference "stylablescrollview" */,
+				FA4EAC632831CB7E00FB4D1C /* XCRemoteSwiftPackageReference "SafariView" */,
+				FA4EAC692831CFAE00FB4D1C /* XCRemoteSwiftPackageReference "SPAlert" */,
+				FA4EAC6C2831D1E600FB4D1C /* XCRemoteSwiftPackageReference "chica" */,
 			);
 			productRefGroup = 957F125726AB88E400386F35 /* Products */;
 			projectDirPath = "";
@@ -578,9 +600,11 @@
 				95C574282708D5F8000F0576 /* TimelineViewable.swift in Sources */,
 				950718A626BC80E6001EC7A5 /* PostDetailView.swift in Sources */,
 				95C7119426AB89290014D6B7 /* ContentView.swift in Sources */,
+				FAEE99672831C80F0017B9FE /* KeyboardReadable.swift in Sources */,
 				95C7119026AB89290014D6B7 /* Compact.swift in Sources */,
 				9507187026BC48F0001EC7A5 /* Account.swift in Sources */,
 				95D3AE1A26FF981C00B32DD9 /* TimelineScrollViewCompatible.swift in Sources */,
+				FAEE99652831C4EF0017B9FE /* LoginViewModel.swift in Sources */,
 				9507189C26BC67D0001EC7A5 /* StackedLabel.swift in Sources */,
 				95D3AE1F26FF9CBE00B32DD9 /* ProfileView.swift in Sources */,
 				950718A126BC8022001EC7A5 /* ViewState.swift in Sources */,
@@ -825,7 +849,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = 54WRV8QX2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -858,7 +882,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FQQXSP79X3;
+				DEVELOPMENT_TEAM = 54WRV8QX2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Starlight--iOS--Info.plist";
@@ -1102,14 +1126,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA1DCB4227B0740400647AE2 /* XCRemoteSwiftPackageReference "chica" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hyperspacedev/chica";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		FA1DCB4527B0741400647AE2 /* XCRemoteSwiftPackageReference "stylablescrollview" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperspacedev/stylablescrollview";
@@ -1118,18 +1134,56 @@
 				kind = branch;
 			};
 		};
+		FA4EAC632831CB7E00FB4D1C /* XCRemoteSwiftPackageReference "SafariView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alicerunsonfedora/SafariView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		FA4EAC692831CFAE00FB4D1C /* XCRemoteSwiftPackageReference "SPAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPAlert";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		FA4EAC6C2831D1E600FB4D1C /* XCRemoteSwiftPackageReference "chica" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperspacedev/chica";
+			requirement = {
+				branch = feat/rewrite;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA1DCB4327B0740400647AE2 /* Chica */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA1DCB4227B0740400647AE2 /* XCRemoteSwiftPackageReference "chica" */;
-			productName = Chica;
-		};
 		FA1DCB4627B0741400647AE2 /* StylableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA1DCB4527B0741400647AE2 /* XCRemoteSwiftPackageReference "stylablescrollview" */;
 			productName = StylableScrollView;
+		};
+		FA4EAC642831CB7E00FB4D1C /* SafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4EAC632831CB7E00FB4D1C /* XCRemoteSwiftPackageReference "SafariView" */;
+			productName = SafariView;
+		};
+		FA4EAC672831CF8100FB4D1C /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Chica;
+		};
+		FA4EAC6A2831CFAE00FB4D1C /* SPAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4EAC692831CFAE00FB4D1C /* XCRemoteSwiftPackageReference "SPAlert" */;
+			productName = SPAlert;
+		};
+		FA4EAC6D2831D1E600FB4D1C /* Chica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4EAC6C2831D1E600FB4D1C /* XCRemoteSwiftPackageReference "chica" */;
+			productName = Chica;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

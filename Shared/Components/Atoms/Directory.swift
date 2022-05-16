@@ -104,7 +104,7 @@ struct Directory: View, InternalStateRepresentable {
         if directory?.isEmpty == false { return }
         let ordering = context == .newArrivals ? "new" : "active"
         directory = try await Chica.shared.request(
-            .get, for: .directory, params: ["local": "true", "limit": "5", "order": ordering])
+            .get, for: .directory, body: ["local": "true", "limit": "5", "order": ordering])
     }
 }
 

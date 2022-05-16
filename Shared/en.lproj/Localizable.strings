@@ -7,15 +7,17 @@
 */
 
 // MARK: - Login and Registration
+
+// MARK: – LOGIN
 "login.button" = "Log in";
-"signup.button" = "Sign up";
-"login.welcome" = "Welcome to Starlight! 🌟";
-"login.thanks" = "Thanks for downloading ❤️";
+"login.welcome" = "Welcome to Starlight!";
 "login.info" = "Starlight is the perfect companion app for managing your Mastodon and Twitter accounts.";
-"login.disclaimer" = "By tapping any of these buttons you accept our [Terms of Service](https://example.com) and [Privacy Policy](https://hyperspace.marquiskurt.net/privacy).";
-"login.picker.title" = "Choose instance";
-"login.picker.textfield.placeholder" = "Instance domain";
-"login.picker.info" = "The instance domain is usually what follows after the ***\"@\"*** in your username (e.g. user@**example.com**, where **[example.com](https://example.com)** is the instance domain).\n\nIf your username doesn't have any domain, chances are you're using [mastodon.social](https://mastodon.social).";
+"login.textfield.placeholder" = "Instance domain";
+"login.textfield.info" = "The instance domain is usually what follows after the ***\"@\"*** in your username (e.g. user@**example.com**, where **[example.com](https://example.com)** is the instance domain).\n\nIf your username doesn't have any domain, chances are you're using [mastodon.social](https://mastodon.social).";
+
+// MARK: – SIGNUP
+"signup.button" = "Sign up";
+"signup.message" = "Don't have an account? [Sign Up](starlight://signup)";
 
 // MARK: - Tabs
 "tabs.home" = "Home";
